@@ -1,0 +1,7 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^.*\.DS_Store$
+^README\.Rmd$
+^cran-comments\.md$
+^NEWS\.md$
+^\.travis\.yml$

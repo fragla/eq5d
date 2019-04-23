@@ -1,0 +1,21 @@
+Package: eq5d
+Type: Package
+Title: An Implementation of Functions for Calculating 'EQ-5D' Indices
+Version: 0.0.0.9000
+Authors@R: c(
+    person("Fraser", "Morton", email = "fraser.morton@glasgow.ac.uk", role = c("aut", "cre")),
+    person(c("Jagtar", "Singh"), "Nijjar", email = "jsn33@medschl.cam.ac.uk", role = "aut"))
+Description: An implementation of functions for calculating EQ-5D indices in R. The 
+    package can calculate indices for both EQ-5D-3L and EQ-5D-5L value sets. Additionally, a 
+    shiny web tool is included to enable the calculation of multiple EQ-5D index values via a 
+    web browser using EQ-5D dimension scores stored in CSV or xlsx files. 
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Suggests: 
+    testthat, 
+    shiny, 
+    DT, 
+    mime, 
+    xlsx
+RoxygenNote: 6.1.1
