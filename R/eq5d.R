@@ -65,13 +65,28 @@ eq5d.data.frame <- function(scores, version, type, country) {
 #' \code{valuesets} returns a data.frame of the available EQ-5D value sets
 #'     in the \code{eq5d} package.
 #' 
+#' @param type string EQ-5D value set type. TTO or VAS for EQ-5D-3L or VT for EQ-5D-5L.
+#' @param version string either 3L or 5L.
+#' @param country string one of the countries for which there is a value set.
+#' 
 #' @return A data.frame countaining the EQ-5D version, value set type and country
 #' @examples
 #' valuesets()
+#' valuesets(type="TTO")
+#' valuesets(version="5L")
+#' valuesets(country="UK")
 #' @export
-valuesets <- function() {
+valuesets <- function(type=NULL, version=NULL, country=NULL) {
+  if(!is.null(version)) version <- paste0("EQ-5D-", version)
+  
   tto <- data.frame(Version="EQ-5D-3L", Type="TTO", Country=colnames(get("TTO")))
   vas <- data.frame(Version="EQ-5D-3L", Type="VAS", Country=colnames(get("VAS")))
   vt <- data.frame(Version="EQ-5D-5L", Type="VT", Country=colnames(get("VT")))
-  rbind(tto, vas, vt)
+  vs <- rbind(tto, vas, vt)
+  
+  if(!is.null(type)) vs <- vs[vs$Type==type,]
+  if(!is.null(version)) vs <- vs[vs$Version==version,]
+  if(!is.null(country)) vs <- vs[vs$Country==country,]
+  rownames(vs) <- NULL
+  return(vs)
 }
