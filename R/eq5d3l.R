@@ -3,17 +3,18 @@
 #' Calculate indices for EQ-5D-3L value sets. Available value sets can be seen 
 #'   using the function \code{valuesets}
 #' 
-#' @param scores numeric with names Mobility, Care, Activity, Pain and Anxiety.
+#' @param scores numeric or data.frame with names/colnames MO, SC, UA, PD and AD representing
+#'   Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.
 #' @param type 3L values set type. Either TTO or VAS.
 #' @param country value set country. 
 #' @examples
-#' eq5d3l(scores=c(Mobility=1,Care=2,Activity=3,Pain=1,Anxiety=3), type="VAS", country="UK")
-#' eq5d3l(scores=c(Mobility=3,Care=2,Activity=3,Pain=2,Anxiety=3), type="TTO", country="Germany")
+#' eq5d3l(scores=c(MO=1,SC=2,UA=3,PD=1,AD=3), type="VAS", country="UK")
+#' eq5d3l(scores=c(MO=3,SC=2,UA=3,PD=2,AD=3), type="TTO", country="Germany")
 #' 
 #' @export
 eq5d3l <- function(scores, type="TTO", country="UK") {
   
-  if(!all(names(scores) %in% c("Mobility", "Care", "Activity", "Pain", "Anxiety"))) {
+  if(!all(names(scores) %in% c("MO", "SC", "UA", "PD", "AD"))) {
     stop("Unable to identify EQ-5D dimensions in scores.")
   }
   
@@ -87,21 +88,21 @@ eq5d3l <- function(scores, type="TTO", country="UK") {
 
 .D1 <- function(scores) {
   x <- 0
-  if(!is.na(scores["Mobility"]) && scores["Mobility"] > 1) x <- x + 1
-  if(!is.na(scores["Care"]) && scores["Care"] > 1) x <- x + 1
-  if(!is.na(scores["Activity"]) && scores["Activity"] > 1) x <- x + 1
-  if(!is.na(scores["Pain"]) && scores["Pain"] > 1) x <- x + 1
-  if(!is.na(scores["Anxiety"]) && scores["Anxiety"] > 1) x <- x + 1
+  if(!is.na(scores["MO"]) && scores["MO"] > 1) x <- x + 1
+  if(!is.na(scores["SC"]) && scores["SC"] > 1) x <- x + 1
+  if(!is.na(scores["UA"]) && scores["UA"] > 1) x <- x + 1
+  if(!is.na(scores["PD"]) && scores["PD"] > 1) x <- x + 1
+  if(!is.na(scores["AD"]) && scores["AD"] > 1) x <- x + 1
   x <- x - 1
   ifelse(x > 0, return(x), return(0))}
 
 .I2 <- function(scores) {
   x <- 0
-  if(!is.na(scores["Mobility"]) && scores["Mobility"] == 2) x <- x + 1
-  if(!is.na(scores["Care"]) && scores["Care"] == 2) x <- x + 1
-  if(!is.na(scores["Activity"]) && scores["Activity"] ==2) x <- x + 1
-  if(!is.na(scores["Pain"]) && scores["Pain"] == 2) x <- x + 1
-  if(!is.na(scores["Anxiety"]) && scores["Anxiety"] == 2) x <- x + 1
+  if(!is.na(scores["MO"]) && scores["MO"] == 2) x <- x + 1
+  if(!is.na(scores["SC"]) && scores["SC"] == 2) x <- x + 1
+  if(!is.na(scores["UA"]) && scores["UA"] == 2) x <- x + 1
+  if(!is.na(scores["PD"]) && scores["PD"] == 2) x <- x + 1
+  if(!is.na(scores["AD"]) && scores["AD"] == 2) x <- x + 1
   x <- x - 1
   ifelse(x > 0, return(x), return(0))
 }
@@ -112,11 +113,11 @@ eq5d3l <- function(scores, type="TTO", country="UK") {
 
 .I3 <- function(scores) {
   x <- 0
-  if(!is.na(scores["Mobility"]) && scores["Mobility"] == 3) x <- x + 1
-  if(!is.na(scores["Care"]) && scores["Care"] == 3) x <- x + 1
-  if(!is.na(scores["Activity"]) && scores["Activity"] == 3) x <- x + 1
-  if(!is.na(scores["Pain"]) && scores["Pain"] == 3) x <- x + 1
-  if(!is.na(scores["Anxiety"]) && scores["Anxiety"] == 3) x <- x + 1
+  if(!is.na(scores["MO"]) && scores["MO"] == 3) x <- x + 1
+  if(!is.na(scores["SC"]) && scores["SC"] == 3) x <- x + 1
+  if(!is.na(scores["UA"]) && scores["UA"] == 3) x <- x + 1
+  if(!is.na(scores["PD"]) && scores["PD"] == 3) x <- x + 1
+  if(!is.na(scores["AD"]) && scores["AD"] == 3) x <- x + 1
   x <- x - 1
   ifelse(x > 0, return(x), return(0))
 }

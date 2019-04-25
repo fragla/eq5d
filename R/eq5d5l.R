@@ -3,16 +3,17 @@
 #' Calculate indices for EQ-5D-5L value sets. Available value sets can be seen 
 #'   using the function \code{valuesets}
 #' 
-#' @param scores numeric with names Mobility, Care, Activity, Pain and Anxiety.
+#' @param scores numeric or data.frame with names/colnames MO, SC, UA, PD and AD representing
+#'   Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.
 #' @param country value set country. 
 #' @examples
-#' eq5d5l(scores=c(Mobility=1,Care=2,Activity=3,Pain=4,Anxiety=5), country="England")
-#' eq5d5l(scores=c(Mobility=3,Care=2,Activity=5,Pain=2,Anxiety=3), country="Netherlands")
+#' eq5d5l(scores=c(MO=1,SC=2,UA=3,PD=4,AD=5), country="England")
+#' eq5d5l(scores=c(MO=3,SC=2,UA=5,PD=2,AD=3), country="Netherlands")
 #' 
 #' @export
 eq5d5l <- function(scores, country="England") {
   
-  if(!all(names(scores) %in% c("Mobility", "Care", "Activity", "Pain", "Anxiety")))
+  if(!all(names(scores) %in% c("MO", "SC", "UA", "PD", "AD")))
     stop("Unable to identify EQ-5D dimensions in scores.")
   
   if(!all(scores %in% 1:5))

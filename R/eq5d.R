@@ -3,20 +3,21 @@
 #' Calculate EQ-5D indices for EQ-5D-3L and EQ-5D-5L. Available value sets can be seen 
 #'   using the function \code{valuesets}
 #' 
-#' @param scores numeric or data.frame with names/colnames Mobility, Care, Activity, Pain and Anxiety.
+#' @param scores numeric or data.frame with names/colnames MO, SC, UA, PD and AD representing
+#'   Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.
 #' @param version string of value "3L" or "5L" to indicate instrument version. 
 #' @param type string specifying method type used in deriving value set scores. Options 
 #'   are TTO or VAS for EQ-5D-3L and VT for EQ-5D-5L.
 #' @param country string of value set country name used.
 #' @examples
-#' eq5d(scores=c(Mobility=1,Care=2,Activity=3,Pain=4,Anxiety=5), 
+#' eq5d(scores=c(MO=1,SC=2,UA=3,PD=4,AD=5), 
 #'  country="Indonesia", version="5L")
-#' eq5d(scores=c(Mobility=3,Care=2,Activity=3,Pain=2,Anxiety=3), 
+#' eq5d(scores=c(MO=3,SC=2,UA=3,PD=2,AD=3), 
 #'  type="TTO", version="3L", country="Germany")
 #' 
 #' test.df <- data.frame(
-#'   Mobility=c(1,2,3,4,5), Care=c(1,5,4,3,2),
-#'   Activity=c(1,5,2,3,1), Pain=c(1,3,4,3,4), Anxiety=c(1,2,1,2,1)
+#'   MO=c(1,2,3,4,5), SC=c(1,5,4,3,2),
+#'   UA=c(1,5,2,3,1), PD=c(1,3,4,3,4), AD=c(1,2,1,2,1)
 #'   )
 #' eq5d(test.df, country="Canada", version="5L")
 #'
@@ -28,7 +29,7 @@ eq5d <- function (scores, version, type, country) {
 #' @export
 eq5d.numeric <- function(scores, version, type, country) {
   
-  if(!all(names(scores) %in% c("Mobility", "Care", "Activity", "Pain", "Anxiety"))) {
+  if(!all(names(scores) %in% c("MO", "SC", "UA", "PD", "AD"))) {
     stop("Unable to identify EQ-5D dimensions in scores.")
   }
 

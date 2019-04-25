@@ -100,9 +100,9 @@ shinyServer(function(input, output) {
     
     eq5d <- sapply(1:nrow(dat), function(x) {
       if(input$version=="5L") {
-        eq5d::eq5d5l(scores=c(Mobility=dat[x,idx[1]],Care=dat[x,idx[2]],Activity=dat[x,idx[3]],Pain=dat[x,idx[4]],Anxiety=dat[x,idx[5]]), country=input$country)
+        eq5d::eq5d5l(scores=c(mo=dat[x,idx[1]],sc=dat[x,idx[2]],ua=dat[x,idx[3]],pd=dat[x,idx[4]],ad=dat[x,idx[5]]), country=input$country)
       } else {
-        eq5d::eq5d3l(scores=c(Mobility=dat[x,idx[1]],Care=dat[x,idx[2]],Activity=dat[x,idx[3]],Pain=dat[x,idx[4]],Anxiety=dat[x,idx[5]]), type=input$type, country=input$country)
+        eq5d::eq5d3l(scores=c(mo=dat[x,idx[1]],sc=dat[x,idx[2]],ua=dat[x,idx[3]],pd=dat[x,idx[4]],ad=dat[x,idx[5]]), type=input$type, country=input$country)
       }
     })
     res <- cbind(dat[,idx],eq5d)
