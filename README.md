@@ -1,7 +1,8 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- badges: start -->
-<!-- badges: end -->
+[![Travis build status](https://travis-ci.org/fragla/eq5d.svg?branch=master)](https://travis-ci.org/fragla/eq5d) <!-- badges: end -->
+
 EQ-5D
 =====
 
