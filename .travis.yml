@@ -10,3 +10,5 @@ os:
   - osx
 install:
     - sudo R CMD javareconf
+sudo: required
+
