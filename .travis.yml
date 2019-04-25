@@ -8,3 +8,5 @@ r:
 os:
   - linux
   - osx
+install:
+    - sudo R CMD javareconf
