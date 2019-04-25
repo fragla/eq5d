@@ -4,7 +4,14 @@
 \alias{valuesets}
 \title{Get the available EQ-5D value sets}
 \usage{
-valuesets()
+valuesets(type = NULL, version = NULL, country = NULL)
+}
+\arguments{
+\item{type}{string EQ-5D value set type. TTO or VAS for EQ-5D-3L or VT for EQ-5D-5L.}
+
+\item{version}{string either 3L or 5L.}
+
+\item{country}{string one of the countries for which there is a value set.}
 }
 \value{
 A data.frame countaining the EQ-5D version, value set type and country
@@ -15,4 +22,7 @@ A data.frame countaining the EQ-5D version, value set type and country
 }
 \examples{
 valuesets()
+valuesets(type="TTO")
+valuesets(version="5L")
+valuesets(country="UK")
 }

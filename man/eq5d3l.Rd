@@ -7,7 +7,8 @@
 eq5d3l(scores, type = "TTO", country = "UK")
 }
 \arguments{
-\item{scores}{numeric with names Mobility, Care, Activity, Pain and Anxiety.}
+\item{scores}{numeric or data.frame with names/colnames MO, SC, UA, PD and AD representing
+Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.}
 
 \item{type}{3L values set type. Either TTO or VAS.}
 
@@ -18,7 +19,7 @@ Calculate indices for EQ-5D-3L value sets. Available value sets can be seen
   using the function \code{valuesets}
 }
 \examples{
-eq5d3l(scores=c(Mobility=1,Care=2,Activity=3,Pain=1,Anxiety=3), type="VAS", country="UK")
-eq5d3l(scores=c(Mobility=3,Care=2,Activity=3,Pain=2,Anxiety=3), type="TTO", country="Germany")
+eq5d3l(scores=c(MO=1,SC=2,UA=3,PD=1,AD=3), type="VAS", country="UK")
+eq5d3l(scores=c(MO=3,SC=2,UA=3,PD=2,AD=3), type="TTO", country="Germany")
 
 }
