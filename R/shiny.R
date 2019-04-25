@@ -9,6 +9,8 @@
 #' shiny_eq5d()
 #' shiny_eq5d(display.mode="normal")
 #' }
+#' 
+#' @export
 shiny_eq5d <- function(display.mode = "normal") {
   pkgs <- c("shiny", "DT", "mime", "xlsx")
   missing <- sapply(pkgs, function(x){!requireNamespace(x, quietly=TRUE)})
