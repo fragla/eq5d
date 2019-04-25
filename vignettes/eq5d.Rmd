@@ -33,30 +33,48 @@ The package eq5d provides methods to calculate index scores for both EQ-5D-3L an
 ```{r quickStart}
 library(eq5d)
 
-scores <- c(Mobility=1,Care=2,Activity=3,Pain=4,Anxiety=5)
+#single calculation
 
-eq5d(scores=scores, country="Indonesia", version="5L")
+#named vector MO, SC, UA, PD and AD represent mobility, self-care, usual activites, pain/discomfort and anxiety/depression, respectfully.
+scores <- c(MO=1,SC=2,UA=3,PD=2,AD=1)
+
+#EQ-5D-3L using the UK TTO value set
+eq5d(scores=scores, country="UK", version="3L", type="TTO")
+
+#multiple calculations
+scores.df <- data.frame(
+  MO=c(1,2,3,4,5), SC=c(1,5,4,3,2), UA=c(1,5,2,3,1), PD=c(1,3,4,3,4), AD=c(1,2,1,2,1)
+)
+
+#EQ-5D-5L using the Canadian VT value set
+eq5d(scores.df, country="Canada", version="5L")
+
 ```
 
+## Value sets
+
+The available value sets can be viewed using the **_valuesets_** function. The results can be filtered by EQ-5D version, value set type or by country.
+
 ```{r valuesets}
-# Return all value sets.
+# Return all value sets (top 6 returned for brevity).
 head(valuesets())
 
-# Return VAS based value sets.
+# Return VAS based value sets (top 6 returned for brevity).
 head(valuesets(type="VAS"))
 
-# Return EQ-5D-5L value sets.
+# Return EQ-5D-5L value sets (top 6 returned for brevity).
 head(valuesets(version="5L"))
 
 # Return all UK value sets.
 valuesets(country="UK")
 ```
 
+## Shiny web interface
 
-```{r overview}
-eq5d(scores=c(Mobility=3,Care=2,Activity=3,Pain=2,Anxiety=3), 
-  type="TTO", version="3L", country="Germany")
+The calulation of multiple EQ-5D indices can also be performed using the packaged [Shiny](https://shiny.rstudio.com) app and requires [shiny](https://cran.r-project.org/web/packages/shiny/index.html), [DT](https://cran.r-project.org/web/packages/DT/index.html), [mime](https://cran.r-project.org/web/packages/mime/index.html) and [xlsx](https://cran.r-project.org/web/packages/xlsx/index.html) packages. The CSV/xlsx headers should be the same as the names of the vector passed to the **_eq5d_** function i.e. MO, SC, UA, PD and AD.
 
+```{r shiny, eval=FALSE}
+shiny_eq5d()
 ```
 
 
