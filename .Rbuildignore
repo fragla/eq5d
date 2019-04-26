@@ -6,3 +6,4 @@
 ^NEWS\.md$
 ^\.travis\.yml$
 ^LICENSE\.md$
+^appveyor\.yml$

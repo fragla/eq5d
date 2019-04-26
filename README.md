@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- badges: start -->
-[![Travis build status](https://travis-ci.org/fragla/eq5d.svg?branch=master)](https://travis-ci.org/fragla/eq5d) <!-- badges: end -->
+[![Travis build status](https://travis-ci.org/fragla/eq5d.svg?branch=master)](https://travis-ci.org/fragla/eq5d) [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/fragla/eq5d?branch=master&svg=true)](https://ci.appveyor.com/project/fragla/eq5d) <!-- badges: end -->
 
 EQ-5D
 =====
