@@ -9,5 +9,7 @@ r:
 os:
   - linux
   - osx
+warnings_are_errors: true
+
 
 
