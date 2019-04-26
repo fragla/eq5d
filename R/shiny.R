@@ -11,7 +11,7 @@
 #' }
 #' @export
 shiny_eq5d <- function(display.mode = "normal") {
-  pkgs <- c("shiny", "DT", "mime", "xlsx")
+  pkgs <- c("shiny", "DT", "mime", "readxl")
   missing <- sapply(pkgs, function(x){!requireNamespace(x, quietly=TRUE)})
   if (any(missing)) {
     stop(paste("The following package(s) are required for shiny_eq5d to work:", 

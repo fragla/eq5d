@@ -17,7 +17,7 @@ Suggests:
     shiny,
     DT,
     mime,
-    xlsx,
+    readxl,
     knitr,
     rmarkdown
 URL: https://github.com/fragla/eq5d

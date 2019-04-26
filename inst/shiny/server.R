@@ -1,7 +1,7 @@
 library(eq5d)
 library(DT)
 library(mime)
-library(xlsx)
+library(readxl)
 
 shinyServer(function(input, output) {
   
@@ -9,10 +9,12 @@ shinyServer(function(input, output) {
   output$choose_dataset <- renderUI({
     fileInput("data", "Choose data file",
               accept = c(
-                "text/csv",
-                "text/comma-separated-values,text/plain",
-                ".csv",
-                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+#                "text/csv",
+#                "text/comma-separated-values,text/plain",
+#                ".csv",
+                mimemap["csv"],
+                mimemap["xls"],
+                mimemap["xlsx"])
     )
   })
   
@@ -82,8 +84,10 @@ shinyServer(function(input, output) {
   )
   
   datasetInput <- reactive({
-    if(input$data$type==mimemap["xlsx"]) {
-      dat <- read.xlsx2(file=input$data$datapath, sheetIndex=1, header=TRUE)
+    if(input$data$type %in% c(mimemap["xls"], mimemap["xlsx"])) {
+      dat <- read_excel(input$data$datapath)
+      dat <- as.data.frame(dat)
+      #dat <- read.xlsx2(file=input$data$datapath, sheetIndex=1, header=TRUE)
     }
     else {
       dat <- read.csv(file=input$data$datapath, header=TRUE)
