@@ -77,13 +77,12 @@ eq5d3l <- function(scores, type="TTO", country="UK") {
 }
 
 .ordinalScore <- function(scores, survey) {
-  if (all(!is.na(survey[c("D1", "I2square", "I3", "I3square"),]))) {
-    oscore <-
-      .D1(scores) * survey["D1",] +
-      .I2Square(scores) * survey["I2square",] +
-      .I3(scores) * survey["I3",] +
-      .I3Square(scores) * survey["I3square",]
-  }
+  return(
+      c(.D1(scores) * survey["D1",],
+      .I2Square(scores) * survey["I2square",],
+      .I3(scores) * survey["I3",],
+      .I3Square(scores) * survey["I3square",])
+  )
 }
 
 .D1 <- function(scores) {
