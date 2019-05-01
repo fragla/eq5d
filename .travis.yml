@@ -9,6 +9,7 @@ r:
 os:
   - linux
   - osx
+    latex: false
 warnings_are_errors: true
 
 
