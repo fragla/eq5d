@@ -6,7 +6,7 @@
 EQ-5D
 =====
 
-EQ-5D is a one of the most popular health related quality of life instruments that can be used in the clinical and economic evaluation of health care as well as in population health surveys. Developed by the [EuroQol](https://www.euroqol.org) group, the instrument consists of two components: health state description and evaluation.
+EQ-5D is one of the most popular health related quality of life instruments that can be used in the clinical and economic evaluation of health care as well as in population health surveys. Developed by the [EuroQol](https://www.euroqol.org) group, the instrument consists of two components: health state description and evaluation.
 
 In the description component a person's health status is measured in terms of five dimensions; mobility, self-care, usual activities, pain/discomfort, and anxiety/depression. For each dimension a patient self-rates their level of severity for using a three-level ([EQ-5D-3L](https://euroqol.org/eq-5d-instruments/eq-5d-3l-about/)) or a five-level ([EQ-5D-5L](https://euroqol.org/eq-5d-instruments/eq-5d-5l-about/)) scale, generating a five digit number.
 
@@ -59,13 +59,13 @@ The available value sets can be viewed using the ***valuesets*** function. The r
 ``` r
 # Return all value sets (top 6 returned for brevity).
 head(valuesets())
-#>    Version Type     Country
-#> 1 EQ-5D-3L  TTO     Denmark
-#> 2 EQ-5D-3L  TTO     Germany
-#> 3 EQ-5D-3L  TTO       Japan
-#> 4 EQ-5D-3L  TTO Netherlands
-#> 5 EQ-5D-3L  TTO       Spain
-#> 6 EQ-5D-3L  TTO          UK
+#>    Version Type Country
+#> 1 EQ-5D-3L  TTO Denmark
+#> 2 EQ-5D-3L  TTO  France
+#> 3 EQ-5D-3L  TTO Germany
+#> 4 EQ-5D-3L  TTO   Italy
+#> 5 EQ-5D-3L  TTO   Japan
+#> 6 EQ-5D-3L  TTO   Korea
 
 # Return VAS based value sets (top 6 returned for brevity).
 head(valuesets(type="VAS"))
@@ -97,7 +97,7 @@ valuesets(country="UK")
 Shiny web interface
 -------------------
 
-The calulation of multiple EQ-5D indices can also be performed using the packaged [Shiny](https://shiny.rstudio.com) app and requires [shiny](https://cran.r-project.org/web/packages/shiny/index.html), [DT](https://cran.r-project.org/web/packages/DT/index.html), [mime](https://cran.r-project.org/web/packages/mime/index.html) and [xlsx](https://cran.r-project.org/web/packages/xlsx/index.html) packages. The CSV/xlsx headers should be the same as the names of the vector passed to the ***eq5d*** function i.e. MO, SC, UA, PD and AD.
+The calulation of multiple EQ-5D indices can also be performed by upload of a CSV or Excel file using the packaged [Shiny](https://shiny.rstudio.com) app. This requires the [shiny](https://cran.r-project.org/web/packages/shiny/index.html), [DT](https://cran.r-project.org/web/packages/DT/index.html), [mime](https://cran.r-project.org/web/packages/mime/index.html) and [readxl](https://cran.r-project.org/web/packages/readxl/index.html) packages. The CSV/Excel headers should be the same as the names of the vector passed to the ***eq5d*** function i.e. MO, SC, UA, PD and AD. The app is launched using the ***shiny\_eq5d*** function.
 
 ``` r
 shiny_eq5d()
