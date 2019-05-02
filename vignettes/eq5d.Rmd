@@ -18,13 +18,13 @@ knitr::opts_chunk$set(
 
 #EQ-5D
 
-EQ-5D is a one of the most popular health related quality of life instruments that can be used in the clinical and economic evaluation of health care as well as in population health surveys. Developed by the [EuroQol](https://www.euroqol.org) group, the instrument consists of two components: health state description and evaluation.  
+EQ-5D is one of the most popular health related quality of life instruments that can be used in the clinical and economic evaluation of health care as well as in population health surveys. Developed by the [EuroQol](https://www.euroqol.org) group, the instrument consists of two components: health state description and evaluation.  
 
 In the description component a person's health status is measured in terms of five dimensions; mobility, self-care, usual activities, pain/discomfort, and anxiety/depression. For each dimension a patient self-rates their level of severity for using a three-level ([EQ-5D-3L](https://euroqol.org/eq-5d-instruments/eq-5d-3l-about/)) or a five-level ([EQ-5D-5L](https://euroqol.org/eq-5d-instruments/eq-5d-5l-about/)) scale, generating a five digit number.
 
 The evaluation component requires a patient to record their overall health status using a visual analogue scale (EQ-VAS).
 
-Following assessment the five digit number from the descriptive component can be converted to an index score to compare how good or bad the patient's health state is relative to the general population of a country.
+Following assessment the scores from the descriptive component can be reported as a five digit number ranging from 11111 (full health) to 33333/55555 (worst health). This number can be converted to an index score to compare how good or bad the patient's health state is relative to the general population of a country.
 
 The package eq5d provides methods to calculate index scores for both EQ-5D-3L and EQ-5D-5L value sets. Additionally, a [Shiny](https://shiny.rstudio.com) app is provided to enable multiple index values to be calculated via a web browser.
 
@@ -53,7 +53,7 @@ eq5d(scores.df, country="Canada", version="5L")
 
 ## Value sets
 
-The available value sets can be viewed using the **_valuesets_** function. The results can be filtered by EQ-5D version, value set type or by country.
+The available value sets can be viewed using the ***valuesets*** function. The results can be filtered by EQ-5D version, value set type or by country.
 
 ```{r valuesets}
 # Return all value sets (top 6 returned for brevity).
@@ -71,10 +71,8 @@ valuesets(country="UK")
 
 ## Shiny web interface
 
-The calulation of multiple EQ-5D indices can also be performed using the packaged [Shiny](https://shiny.rstudio.com) app and requires [shiny](https://cran.r-project.org/package=shiny), [DT](https://cran.r-project.org/package=DT), [mime](https://cran.r-project.org/package=mime) and [xlsx](https://cran.r-project.org/package=xlsx) packages. The CSV/xlsx headers should be the same as the names of the vector passed to the **_eq5d_** function i.e. MO, SC, UA, PD and AD.
+The calulation of multiple EQ-5D indices can also be performed by upload of a CSV or Excel file using the packaged [Shiny](https://shiny.rstudio.com) app. This requires the [shiny](https://cran.r-project.org/package=shiny), [DT](https://cran.r-project.org/package=DT), [mime](https://cran.r-project.org/package=mime) and [readxl](https://cran.r-project.org/package=readxl) packages. The CSV/Excel headers should be the same as the names of the vector passed to the ***eq5d*** function i.e. MO, SC, UA, PD and AD.  The app is launched using the ***shiny_eq5d*** function.
 
-```{r shiny, eval=FALSE}
+```{r shiny, echo=TRUE, eval=FALSE}
 shiny_eq5d()
 ```
-
-
