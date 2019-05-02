@@ -1,12 +1,17 @@
 #' EQ-5D-3L TTO value set data.
 #'
 #' Coefficients for the estimation of the EQ-5D-3L index values based on TTO valuation studies
-#'   for Denmark, Germany, Japan, Netherlands, Spain, UK, USA and Zimbabwe.
-#'   
+#'   for Denmark, France, Germany, Italy, Japan, Korea, Netherlands, Spain, Thailand, UK, 
+#'   USA and Zimbabwe.
+#'      
 #' @source
 #' Szende, A., Oppe, M., & de Charro, F. (2007), Comparative review of Time Trade-Off value sets. 
 #'   In Szende, A., Oppe, M., & Devlin, N. (Ed.), EQ-5D Value Sets: Inventory, Comparative Review
 #'   and User Guide (pp. 27-28). Dordrecht, The Netherlands: Springer.
+#'   
+#' Janssen, B., Szende, A., & Ramos-Goñi JM. (2014), Data and Methods.
+#'   Szende, A., Janssen, B., & Cabasés, J. (Ed.), In Self-Reported Population Health: An 
+#'   International Perspective based on EQ-5D (p 13). Dordrecht, The Netherlands: Springer.
 #'   
 "TTO"
 
