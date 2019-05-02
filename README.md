@@ -12,7 +12,7 @@ In the description component a person's health status is measured in terms of fi
 
 The evaluation component requires a patient to record their overall health status using a visual analogue scale (EQ-VAS).
 
-Following assessment the five digit number from the descriptive component can be converted to an index score to compare how good or bad the patient's health state is relative to the general population of a country.
+Following assessment the scores from the descriptive component can be reported as a five digit number ranging from 11111 (full health) to 33333/55555 (worst health). This number can be converted to an index score to compare how good or bad the patient's health state is relative to the general population of a country.
 
 The package eq5d provides methods to calculate index scores for both EQ-5D-3L and EQ-5D-5L value sets. Additionally, a [Shiny](https://shiny.rstudio.com) app is provided to enable multiple index values to be calculated via a web browser.
 
