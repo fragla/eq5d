@@ -97,7 +97,7 @@ valuesets(country="UK")
 Shiny web interface
 -------------------
 
-The calulation of multiple EQ-5D indices can also be performed by upload of a CSV or Excel file using the packaged [Shiny](https://shiny.rstudio.com) app. This requires the [shiny](https://cran.r-project.org/web/packages/shiny/index.html), [DT](https://cran.r-project.org/web/packages/DT/index.html), [mime](https://cran.r-project.org/web/packages/mime/index.html) and [readxl](https://cran.r-project.org/web/packages/readxl/index.html) packages. The CSV/Excel headers should be the same as the names of the vector passed to the ***eq5d*** function i.e. MO, SC, UA, PD and AD. The app is launched using the ***shiny\_eq5d*** function.
+The calulation of multiple EQ-5D indices can also be performed by upload of a CSV or Excel file using the packaged [Shiny](https://shiny.rstudio.com) app. This requires the [shiny](https://cran.r-project.org/package=shiny), [DT](https://cran.r-project.org/package=DT), [mime](https://cran.r-project.org/package=mime) and [readxl](https://cran.r-project.org/package=readxl) packages. The CSV/Excel headers should be the same as the names of the vector passed to the ***eq5d*** function i.e. MO, SC, UA, PD and AD. The app is launched using the ***shiny\_eq5d*** function.
 
 ``` r
 shiny_eq5d()
