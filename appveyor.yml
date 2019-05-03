@@ -22,6 +22,17 @@ environment:
 
 # Adapt as necessary starting from here
 
+  global:
+    WARNINGS_ARE_ERRORS: 1
+    R_ARCH: x64
+
+  matrix:
+    - R_VERSION: release
+    
+    - R_VERSION: devel
+    
+    - R_VERSION: oldrel
+
 build_script:
   - travis-tool.sh install_deps
 
