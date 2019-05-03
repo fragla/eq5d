@@ -32,8 +32,8 @@ Value sets for the EQ-5D-3L are available for many countries and have been produ
 
 For the EQ-5D-5L, a standardised valuation study protocol (EQ-VT) was developed by the EuroQol group based on the composite time trade-off (cTTO) valuation technique supplemented by a discrete choice experiment (DCE).  The EuroQol group recommends users to use a standard value set where available.  
 
-Advice on choosing a value set can be found on the EuroQol website https://euroqol.org/eq-5d-instruments/eq-5d-3l-about/valuation/choosing-a-value-set/
-
+Advice on [choosing a value set](https://euroqol.org/eq-5d-instruments/eq-5d-3l-about/valuation/choosing-a-value-set/
+) can be found on the EuroQol website 
 
 ## Quick Start
 
