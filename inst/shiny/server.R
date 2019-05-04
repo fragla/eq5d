@@ -9,9 +9,6 @@ shinyServer(function(input, output) {
   output$choose_dataset <- renderUI({
     fileInput("data", "Choose data file",
               accept = c(
-#                "text/csv",
-#                "text/comma-separated-values,text/plain",
-#                ".csv",
                 mimemap["csv"],
                 mimemap["xls"],
                 mimemap["xlsx"])
@@ -97,10 +94,6 @@ shinyServer(function(input, output) {
     if(is.null(idx)) {
       stop("Unable to identify EQ-5D dimensions in the file header.")
     }
-    
-    # if(input$version=="EQ-5D-5L" && !any(dat > 3)) {
-    #   showNotification("No scores greater than 3 found. Is this really EQ-5D-5L?", type="message")
-    # }
     
     eq5d <- sapply(1:nrow(dat), function(x) {
       if(input$version=="5L") {
