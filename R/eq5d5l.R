@@ -3,7 +3,7 @@
 #' Calculate indices for EQ-5D-5L value sets. Available value sets can be seen 
 #'   using the function \code{valuesets}
 #' 
-#' @param scores numeric or data.frame with names/colnames MO, SC, UA, PD and AD representing
+#' @param scores numeric with names MO, SC, UA, PD and AD representing
 #'   Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.
 #' @param country value set country. 
 #' @examples

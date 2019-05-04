@@ -7,7 +7,7 @@
 eq5d5l(scores, country = "England")
 }
 \arguments{
-\item{scores}{numeric or data.frame with names/colnames MO, SC, UA, PD and AD representing
+\item{scores}{numeric with names MO, SC, UA, PD and AD representing
 Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.}
 
 \item{country}{value set country.}
