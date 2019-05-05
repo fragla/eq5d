@@ -178,5 +178,7 @@ test_that("EQ-5D-3L throws error for incorrect parameters", {
   expect_error(eq5d(c(MO=2,SC=4,UA=6,PD=8,AD=10),"5L", "VAS"))
   expect_error(eq5d(c(MO=2,SC=4,UA=6,PD=8,AD=10),"5L", "VAS", "Jupiter"))
   expect_error(eq5d(c(MO=1,SC=2,UA=3,PD=4,AD=5),"5L", "VAS", "UK"))
+  expect_error(eq5d(c(MB=1,SC=2,UA=3,PD=2,AD=1), type="TTO", version="3L", country="UK"))
+  expect_error(eq5d(c(MO=1,SC=2,UA=3,PD=4,AD=5),"5L", "VAS", "Liechtenstein"))
 })
 

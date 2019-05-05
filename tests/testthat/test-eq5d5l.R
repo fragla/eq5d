@@ -1,6 +1,5 @@
 context("EQ-5D-5L")
 
-
 test_that("EQ-5D-5L Canada gives correct answer", {
   expect_equal(eq5d5l(c(MO=2,SC=3,UA=1,PD=4,AD=5), "Canada"), 0.275)
   expect_equal(eq5d5l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "Canada"), 0.949)
@@ -111,4 +110,11 @@ test_that("EQ-5D-5L China gives correct answer", {
   expect_equal(eq5d5l(c(MO=1,SC=1,UA=2,PD=1,AD=1), "China"), 0.955)
   expect_equal(eq5d5l(c(MO=2,SC=1,UA=1,PD=1,AD=1), "China"), 0.934)
   expect_equal(eq5d5l(c(MO=5,SC=5,UA=5,PD=5,AD=5), "China"), -0.391)
+})
+
+context("EQ-5D-5L Incorrect params")
+
+test_that("EQ-5D-5L throws error for incorrect parameters", {
+  expect_error(eq5d5l(c(MD=5,SC=5,UA=5,PD=5,AD=5), "China", type="VT"))
+  expect_error(eq5d5l(c(MD=1,SC=7,UA=1,PD=1,AD=1), "Canada"))
 })

@@ -80,3 +80,11 @@ test_that("EQ-5D-3L Zimbabwe Crosswalk gives correct answer", {
   expect_equal(eq5dcw(c(MO=4,SC=5,UA=4,PD=5,AD=4), "Zimbabwe"), 0.119)
   expect_equal(eq5dcw(c(MO=5,SC=5,UA=5,PD=5,AD=5), "Zimbabwe"), -0.145)
 })
+
+context("EQ-5D-5L Crosswalk Incorrect params")
+
+test_that("EQ-5D-5L throws error for incorrect parameters", {
+  expect_error(eq5d5l(c(MD=5,SC=5,UA=5,PD=5,AD=5), "UK", type="CW"))
+  expect_error(eq5d5l(c(MD=1,SC=2,UA=3,PD=4,AD=6), "UK", type="CW"))
+  expect_error(eq5d5l(c(MD=1,SC=2,UA=3,PD=4,AD=5), "Swaziland", type="CW"))
+})
