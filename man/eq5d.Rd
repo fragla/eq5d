@@ -13,7 +13,7 @@ Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.}
 \item{version}{string of value "3L" or "5L" to indicate instrument version.}
 
 \item{type}{string specifying method type used in deriving value set scores. Options 
-are TTO or VAS for EQ-5D-3L and VT for EQ-5D-5L.}
+are TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L or CW for EQ-5D-5L crosswalk conversion valueset.}
 
 \item{country}{string of value set country name used.}
 }
