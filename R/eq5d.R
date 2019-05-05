@@ -7,7 +7,7 @@
 #'   Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.
 #' @param version string of value "3L" or "5L" to indicate instrument version. 
 #' @param type string specifying method type used in deriving value set scores. Options 
-#'   are TTO or VAS for EQ-5D-3L and VT for EQ-5D-5L.
+#'   are TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L or CW for EQ-5D-5L crosswalk conversion valueset.
 #' @param country string of value set country name used.
 #' @examples
 #' eq5d(scores=c(MO=1,SC=2,UA=3,PD=4,AD=5), 
@@ -27,7 +27,7 @@ eq5d <- function (scores, version, type, country) {
 }
 
 #' @export
-eq5d.numeric <- function(scores, version, type, country) {
+eq5d.numeric <- function(scores, version=NULL, type=NULL, country=NULL) {
   
   if(!all(names(scores) %in% c("MO", "SC", "UA", "PD", "AD"))) {
     stop("Unable to identify EQ-5D dimensions in scores.")
@@ -48,12 +48,16 @@ eq5d.numeric <- function(scores, version, type, country) {
   if(version=="3L") {
     eq5d3l(scores, type=type, country=country)
   } else {
-    eq5d5l(scores, country=country)
+    if(!is.null(type) && type=="CW") {
+      eq5dcw(scores, country=country)
+    } else {
+      eq5d5l(scores, country=country)
+    }
   }
 }
 
 #' @export
-eq5d.data.frame <- function(scores, version, type, country) {
+eq5d.data.frame <- function(scores, version=NULL, type=NULL, country=NULL) {
   indices <- sapply(1:nrow(scores), function(x) {
     eq5d.numeric(scores[x,], version=version, type=type, country=country)
   })
@@ -66,7 +70,8 @@ eq5d.data.frame <- function(scores, version, type, country) {
 #' \code{valuesets} returns a data.frame of the available EQ-5D value sets
 #'     in the \code{eq5d} package.
 #' 
-#' @param type string EQ-5D value set type. TTO or VAS for EQ-5D-3L or VT for EQ-5D-5L.
+#' @param type string EQ-5D value set type. TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L or 
+#'   CW for EQ-5D-5L crosswalk conversion dataset.
 #' @param version string either 3L or 5L.
 #' @param country string one of the countries for which there is a value set.
 #' 
@@ -83,7 +88,8 @@ valuesets <- function(type=NULL, version=NULL, country=NULL) {
   tto <- data.frame(Version="EQ-5D-3L", Type="TTO", Country=colnames(get("TTO")))
   vas <- data.frame(Version="EQ-5D-3L", Type="VAS", Country=colnames(get("VAS")))
   vt <- data.frame(Version="EQ-5D-5L", Type="VT", Country=colnames(get("VT")))
-  vs <- rbind(tto, vas, vt)
+  cw <- data.frame(Version="EQ-5D-5L", Type="CW", Country=colnames(get("CW")))
+  vs <- rbind(tto, vas, vt, cw)
   
   if(!is.null(type)) vs <- vs[vs$Type==type,]
   if(!is.null(version)) vs <- vs[vs$Version==version,]
