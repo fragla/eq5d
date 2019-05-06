@@ -16,6 +16,14 @@ Following assessment the scores from the descriptive component can be reported a
 
 The package eq5d provides methods to calculate index scores for both EQ-5D-3L and EQ-5D-5L value sets. Additionally, a [Shiny](https://shiny.rstudio.com) app is provided to enable multiple index values to be calculated via a web browser.
 
+Value sets for EQ-5D-3L are available for many countries and have been produced using the time trade-off (TTO) valuation technique or the visual analogue scale (VAS) valuation technique. Some countries have TTO and VAS value sets for EQ-5D-3L.
+
+For the EQ-5D-5L, a standardised valuation study protocol (EQ-VT) was developed by the EuroQol group based on the composite time trade-off (cTTO) valuation technique supplemented by a discrete choice experiment (DCE). The EuroQol group recommends users to use a standard value set where available.
+
+The EQ-5D-5L "crosswalk" value sets published by [*van Hout et al*](https://www.ncbi.nlm.nih.gov/pubmed/22867780) are also included. The crosswalk value sets enable index values to be calculated for EQ-5D-5L data where no value set is available by mapping between the EQ-5D-5L and EQ-5D-3L descriptive systems.
+
+Advice on [choosing a value set](https://euroqol.org/eq-5d-instruments/eq-5d-3l-about/valuation/choosing-a-value-set/) can be found on the EuroQol website.
+
 Installation
 ------------
 
@@ -47,7 +55,7 @@ scores.df <- data.frame(
 )
 
 #EQ-5D-5L using the Canadian VT value set
-eq5d(scores.df, country="Canada", version="5L")
+eq5d(scores.df, country="Canada", version="5L", type="VT")
 #> [1] 0.949 0.362 0.390 0.524 0.431
 ```
 
@@ -92,6 +100,7 @@ valuesets(country="UK")
 #>    Version Type Country
 #> 1 EQ-5D-3L  TTO      UK
 #> 2 EQ-5D-3L  VAS      UK
+#> 3 EQ-5D-5L   CW      UK
 ```
 
 Shiny web interface
