@@ -54,7 +54,7 @@ scores.df <- data.frame(
 )
 
 #EQ-5D-5L using the Canadian VT value set
-eq5d(scores.df, country="Canada", version="5L")
+eq5d(scores.df, country="Canada", version="5L", type="VT")
 
 ```
 

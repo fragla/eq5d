@@ -7,10 +7,10 @@
 #'   Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.
 #' @param version string of value "3L" or "5L" to indicate instrument version. 
 #' @param type string specifying method type used in deriving value set scores. Options 
-#'   are TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L or CW for EQ-5D-5L crosswalk conversion valueset.
+#'   are TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L or CW for EQ-5D-5L crosswalk conversion valuesets.
 #' @param country string of value set country name used.
 #' @examples
-#' eq5d(scores=c(MO=1,SC=2,UA=3,PD=4,AD=5), 
+#' eq5d(scores=c(MO=1,SC=2,UA=3,PD=4,AD=5), type="VT", 
 #'  country="Indonesia", version="5L")
 #' eq5d(scores=c(MO=3,SC=2,UA=3,PD=2,AD=3), 
 #'  type="TTO", version="3L", country="Germany")
@@ -19,7 +19,7 @@
 #'   MO=c(1,2,3,4,5), SC=c(1,5,4,3,2),
 #'   UA=c(1,5,2,3,1), PD=c(1,3,4,3,4), AD=c(1,2,1,2,1)
 #'   )
-#' eq5d(scores.df, country="Canada", version="5L")
+#' eq5d(scores.df, country="Canada", version="5L", type="VT")
 #'
 #' @export
 eq5d <- function (scores, version, type, country) {
@@ -48,10 +48,12 @@ eq5d.numeric <- function(scores, version=NULL, type=NULL, country=NULL) {
   if(version=="3L") {
     eq5d3l(scores, type=type, country=country)
   } else {
-    if(!is.null(type) && type=="CW") {
+    if(!is.null(type) && type=="VT") {
+      eq5d5l(scores, country=country)
+    } else if(!is.null(type) && type=="CW") {
       eq5dcw(scores, country=country)
     } else {
-      eq5d5l(scores, country=country)
+      stop("EQ-5D-5L valueset type not recognised. Must be one of 'VT' or 'CW'.")
     }
   }
 }

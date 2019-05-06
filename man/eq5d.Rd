@@ -13,7 +13,7 @@ Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.}
 \item{version}{string of value "3L" or "5L" to indicate instrument version.}
 
 \item{type}{string specifying method type used in deriving value set scores. Options 
-are TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L or CW for EQ-5D-5L crosswalk conversion valueset.}
+are TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L or CW for EQ-5D-5L crosswalk conversion valuesets.}
 
 \item{country}{string of value set country name used.}
 }
@@ -22,7 +22,7 @@ Wrapper for \code{eq5d3l} and \code{eq5d5l}. Calculate EQ-5D indices for EQ-5D-3
 Available value sets can be seen using the function \code{valuesets}
 }
 \examples{
-eq5d(scores=c(MO=1,SC=2,UA=3,PD=4,AD=5), 
+eq5d(scores=c(MO=1,SC=2,UA=3,PD=4,AD=5), type="VT", 
  country="Indonesia", version="5L")
 eq5d(scores=c(MO=3,SC=2,UA=3,PD=2,AD=3), 
  type="TTO", version="3L", country="Germany")
@@ -31,6 +31,6 @@ scores.df <- data.frame(
   MO=c(1,2,3,4,5), SC=c(1,5,4,3,2),
   UA=c(1,5,2,3,1), PD=c(1,3,4,3,4), AD=c(1,2,1,2,1)
   )
-eq5d(scores.df, country="Canada", version="5L")
+eq5d(scores.df, country="Canada", version="5L", type="VT")
 
 }
