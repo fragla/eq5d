@@ -115,6 +115,7 @@ test_that("EQ-5D-5L China gives correct answer", {
 context("EQ-5D-5L Incorrect params")
 
 test_that("EQ-5D-5L throws error for incorrect parameters", {
-  expect_error(eq5d5l(c(MD=5,SC=5,UA=5,PD=5,AD=5), "China", type="VT"))
-  expect_error(eq5d5l(c(MD=1,SC=7,UA=1,PD=1,AD=1), "Canada"))
+  expect_error(eq5d5l(c(MD=5,SC=5,UA=5,PD=5,AD=5), "China"))
+  expect_error(eq5d5l(c(MO=1,SC=7,UA=1,PD=1,AD=1), "Canada"))
+  expect_error(eq5d5l(c(MO=1,SC=2,UA=3,PD=4,AD=5), "Swaziland"))
 })
