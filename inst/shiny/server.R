@@ -26,31 +26,34 @@ shinyServer(function(input, output) {
     if(is.null(input$version))
       return()
     
-    if(input$version=="5L") {
-      countries <- colnames(VT)
-    }
-    else{
-      countries <- sort(unique(c(colnames(TTO), colnames(VAS))))
-    }
+    countries <- sort(unique(as.character(valuesets(version=input$version)$Country)))
+
     selectInput("country", "Country:", 
                 choices=countries, selected=FALSE, selectize = FALSE)
   })
   
   output$choose_type <- renderUI({
-    if(is.null(input$version))
-      return()
-    
-    if(input$version!="3L")
+    if(is.null(input$country))
       return()
     
     type <- NULL
-    if(!is.null(input$country)) {
-      if(input$country %in% colnames(TTO))
-        type <-c(type, "TTO")
-      
-      if(input$country %in% colnames(VAS))
-        type <-c(type, "VAS")
-    }
+      if(input$version=="3L") {
+        
+          if(input$country %in% colnames(TTO))
+            type <-c(type, "TTO")
+          
+          if(input$country %in% colnames(VAS))
+            type <-c(type, "VAS")
+          
+      } else {
+        
+          if(input$country %in% colnames(VT))
+            type <-c(type, "VT")
+          
+          if(input$country %in% colnames(CW))
+            type <-c(type, "CW")
+          
+      }
     
     selectInput("type", "Type:", 
                 choices=type, selected=FALSE, selectize = FALSE)
@@ -61,7 +64,16 @@ shinyServer(function(input, output) {
     if(is.null(input$data))
       return()
     
-    datasetInput()
+    vs <- valuesets(version=input$version, type=input$type, country=input$country)
+    
+    if(nrow(vs) != 1)
+      return()
+    
+    eq5d <- eq5d(dataset(), version=input$version, type=input$type, country=input$country)
+    res <- cbind(dataset(),eq5d)
+    colnames(res) <- c("Mobility", "Self-care", "Usual activities", "Pain", "Anxiety/depression", paste0("EQ-5D-", input$version))
+
+    res
   })
   
   output$export<- renderUI({
@@ -72,19 +84,17 @@ shinyServer(function(input, output) {
   
   output$download <- downloadHandler(
     filename = function() {
-      type <- ifelse(input$version=="3L", paste0(input$country, "_", input$type), input$country)
-      paste(input$version, "_", type, "_", format(Sys.time(), "%Y%m%d%M%S"), ".csv", sep = "")
+      paste(input$version, "_", input$country, "_", input$type, "_", format(Sys.time(), "%Y%m%d%M%S"), ".csv", sep = "")
     },
     content = function(file) {
       write.csv(datasetInput(), file, row.names = FALSE)
     }
   )
   
-  datasetInput <- reactive({
+  dataset <- reactive({
     if(input$data$type %in% c(mimemap["xls"], mimemap["xlsx"])) {
       dat <- read_excel(input$data$datapath)
       dat <- as.data.frame(dat)
-      #dat <- read.xlsx2(file=input$data$datapath, sheetIndex=1, header=TRUE)
     }
     else {
       dat <- read.csv(file=input$data$datapath, header=TRUE)
@@ -94,18 +104,7 @@ shinyServer(function(input, output) {
     if(is.null(idx)) {
       stop("Unable to identify EQ-5D dimensions in the file header.")
     }
-    
-    eq5d <- sapply(1:nrow(dat), function(x) {
-      if(input$version=="5L") {
-        eq5d::eq5d5l(scores=c(MO=dat[x,idx[1]],SC=dat[x,idx[2]],UA=dat[x,idx[3]],PD=dat[x,idx[4]],AD=dat[x,idx[5]]), country=input$country)
-      } else {
-        eq5d::eq5d3l(scores=c(MO=dat[x,idx[1]],SC=dat[x,idx[2]],UA=dat[x,idx[3]],PD=dat[x,idx[4]],AD=dat[x,idx[5]]), type=input$type, country=input$country)
-      }
-    })
-    res <- cbind(dat[,idx],eq5d)
-    colnames(res) <- c("Mobility", "Self-care", "Usual activities", "Pain", "Anxiety/depression", paste0("EQ-5D-", input$version))
-    
-    res
+    return(dat)
   })
   
   getColumnIndex <- function(dat) {
