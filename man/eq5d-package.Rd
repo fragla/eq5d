@@ -9,7 +9,7 @@
 An implementation of functions for calculating EQ-5D indices in R. The 
     package can calculate indices for both EQ-5D-3L and EQ-5D-5L value sets. Additionally, a 
     shiny web tool is included to enable the calculation of multiple EQ-5D index values via a 
-    web browser using EQ-5D dimension scores stored in CSV or xlsx files.
+    web browser using EQ-5D dimension scores stored in CSV or Excel files.
 }
 \seealso{
 Useful links:
