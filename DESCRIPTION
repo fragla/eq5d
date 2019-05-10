@@ -25,3 +25,4 @@ URL: https://github.com/fragla/eq5d
 BugReports: https://github.com/fragla/eq5d/issues
 RoxygenNote: 6.1.1
 VignetteBuilder: knitr
+Language: en-GB

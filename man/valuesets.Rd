@@ -15,7 +15,7 @@ CW for EQ-5D-5L crosswalk conversion dataset.}
 \item{country}{string one of the countries for which there is a value set.}
 }
 \value{
-A data.frame countaining the EQ-5D version, value set type and country
+A data.frame containing the EQ-5D version, value set type and country
 }
 \description{
 \code{valuesets} returns a data.frame of the available EQ-5D value sets

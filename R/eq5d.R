@@ -68,7 +68,7 @@ eq5d.data.frame <- function(scores, version=NULL, type=NULL, country=NULL) {
 #' @param version string either 3L or 5L.
 #' @param country string one of the countries for which there is a value set.
 #' 
-#' @return A data.frame countaining the EQ-5D version, value set type and country
+#' @return A data.frame containing the EQ-5D version, value set type and country
 #' @examples
 #' valuesets()
 #' valuesets(type="TTO")
