@@ -36,15 +36,6 @@ eq5d.numeric <- function(scores, version=NULL, type=NULL, country=NULL) {
   if(!version %in% c("3L", "5L"))
     stop("EQ-5D version not one of 3L or 5L.")
 
-  # if(version=="3L" && !type %in% c("TTO", "VAS"))
-  #   stop("Valuation type must be one of TTO or VAS.")
-  # 
-  # if(!all(scores %in% 1:3) && version=="3L")
-  #   stop("Scores must be coded as 1, 2 or 3 for EQ-5D-3L")
-  # 
-  # if(!all(scores %in% 1:5) && version=="5L")
-  #   stop("Scores must be coded as 1, 2, 3, 4 or 5 for EQ-5D-5L")
-
   if(version=="3L") {
     eq5d3l(scores, type=type, country=country)
   } else {

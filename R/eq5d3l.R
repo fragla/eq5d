@@ -41,7 +41,6 @@ eq5d3l <- function(scores, type="TTO", country="UK") {
   }
 
   return(round(index, digits=3))
-  #.eq5d3l.std(mobility, care, activity, pain, anxiety, survey)
 }
 
 .eq5d3l.add <- function(values) {
