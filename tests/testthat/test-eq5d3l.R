@@ -179,11 +179,5 @@ test_that("EQ-5D-3L throws error for incorrect parameters", {
   expect_error(eq5d3l(c(MO=1,SC=2,UA=3,PD=4,AD=5), "VAS", "UK"))
   expect_error(eq5d3l(c(MO=1,SC=1,UA=1,PD=1,AD=1), type="XXX"))
   expect_error(eq5d3l(c(MO=1,SC=2,UA=3,PD=2,AD=1), "VAS", "Liechtenstein"))
-  
-  #expect_error(eq5d3l(c(MO=1,SC=1,UA=1,PD=1,AD=1),"10L", "TTO"))
-  #expect_error(eq5d3l(c(MO=1,SC=2,UA=3,PD=4,AD=5),"3L", "VAS"))
-  #expect_error(eq5d3l(c(MO=2,SC=4,UA=6,PD=8,AD=10),"5L", "VAS"))
-  #expect_error(eq5d3l(c(MO=2,SC=4,UA=6,PD=8,AD=10),"3L", "VAS", "Jupiter"))
-  #expect_error(eq5d3l(c(MO=1,SC=2,UA=3,PD=4,AD=5),"3L", "VAS", "UK"))
 })
 
