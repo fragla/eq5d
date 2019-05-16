@@ -18,19 +18,19 @@ knitr::opts_chunk$set(
 
 #EQ-5D
 
-EQ-5D is one of the most popular health related quality of life instruments that can be used in the clinical and economic evaluation of health care as well as in population health surveys. Developed by the [EuroQol](https://www.euroqol.org) group, the instrument consists of two components: health state description and evaluation.  
+EQ-5D is a popular health related quality of life instrument used in the clinical and economic evaluation of health care. Developed by the [EuroQol](https://www.euroqol.org) group, the instrument consists of two components: health state description and evaluation. 
 
-In the description component a person's health status is measured in terms of five dimensions; mobility, self-care, usual activities, pain/discomfort, and anxiety/depression. For each dimension a patient self-rates their level of severity using a three-level ([EQ-5D-3L](https://euroqol.org/eq-5d-instruments/eq-5d-3l-about/)) or a five-level ([EQ-5D-5L](https://euroqol.org/eq-5d-instruments/eq-5d-5l-about/)) scale, generating a five digit number.
+For the description component a subject self-rates their health in terms of five dimensions; mobility, self-care, usual activities, pain/discomfort, and anxiety/depression using either a three-level ([EQ-5D-3L](https://euroqol.org/eq-5d-instruments/eq-5d-3l-about/)) or a five-level ([EQ-5D-5L](https://euroqol.org/eq-5d-instruments/eq-5d-5l-about/)) scale. 
 
 The evaluation component requires a patient to record their overall health status using a visual analogue scale (EQ-VAS).
 
-Following assessment the scores from the descriptive component can be reported as a five digit number ranging from 11111 (full health) to 33333/55555 (worst health). This number can be converted to an index score to compare how good or bad the patient's health state is relative to the general population of a country.
+Following assessment the scores from the descriptive component can be reported as a five digit number ranging from 11111 (full health) to 33333/55555 (worst health). However, frequently the scores on these five dimensions are converted to a single utility index using country specific value sets, which can be used in the clinical and economic evaluation of health care as well as in population health surveys.
 
-The package eq5d provides methods to calculate index scores for both EQ-5D-3L and EQ-5D-5L value sets. Additionally, a [Shiny](https://shiny.rstudio.com) app is provided to enable multiple index values to be calculated via a web browser.
+The eq5d package provides methods to calculate index scores from a subject's dimension scores, for both EQ-5D-3L and EQ-5D-5L value sets. Additionally, a [Shiny](https://shiny.rstudio.com) app is included to enable the calculation of multiple EQ-5D index values via a web browser using EQ-5D dimension scores stored in CSV or Excel files.
 
 Value sets for EQ-5D-3L are available for many countries and have been produced using the time trade-off (TTO) valuation technique or the visual analogue scale (VAS) valuation technique.  Some countries have TTO and VAS value sets for EQ-5D-3L.
 
-For the EQ-5D-5L, a standardised valuation study protocol (EQ-VT) was developed by the EuroQol group based on the composite time trade-off (cTTO) valuation technique supplemented by a discrete choice experiment (DCE).  The EuroQol group recommends users to use a standard value set where available.  
+For EQ-5D-5L, a standardised valuation study protocol (EQ-VT) was developed by the EuroQol group based on the composite time trade-off (cTTO) valuation technique supplemented by a discrete choice experiment (DCE).  The EuroQol group recommends users to use a standard value set where available.
 
 The EQ-5D-5L "crosswalk" value sets published by [*van Hout et al*](https://www.ncbi.nlm.nih.gov/pubmed/22867780) are also included. The crosswalk value sets enable index values to be calculated for EQ-5D-5L data where no value set is available by mapping between the EQ-5D-5L and EQ-5D-3L descriptive systems.
 
