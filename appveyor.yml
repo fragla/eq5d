@@ -11,7 +11,7 @@ install:
   ps: Bootstrap
 
 cache:
-  #- C:\RLibrary
+  - C:\RLibrary
 
 environment:
   NOT_CRAN: true
@@ -25,6 +25,7 @@ environment:
   global:
     WARNINGS_ARE_ERRORS: 1
     R_ARCH: x64
+    USE_RTOOLS: true
 
   matrix:
     - R_VERSION: release
