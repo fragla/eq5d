@@ -1,3 +1,9 @@
+## Resubmission
+This is a resubmission. In this version I have:
+
+* Updated the DESCRIPTION file to include relevant references (as per Martina Schmirl's email).
+* Updated the README and docs.
+
 ## Test environments
 * local OS X install, R 3.5.2
 * ubuntu 14.04 (on travis-ci), R 3.5.3, R 3.6.0, devel
