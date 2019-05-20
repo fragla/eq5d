@@ -2,7 +2,7 @@
 % Please edit documentation in R/eq5d.R
 \name{valuesets}
 \alias{valuesets}
-\title{Get the available EQ-5D value sets}
+\title{Get the available EQ-5D value sets.}
 \usage{
 valuesets(type = NULL, version = NULL, country = NULL)
 }

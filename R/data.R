@@ -1,4 +1,4 @@
-#' EQ-5D-5L Crosswalk data.
+#' EQ-5D-5L Crosswalk data
 #'
 #' Crosswalk index value calculation table to calculate EQ-5D-3L indices from EQ-5D-5L data
 #'   for Denmark, France, Germany, Japan, Netherlands, Spain, Thailand, UK, USA 
@@ -13,7 +13,7 @@
 #'   
 "CW"
 
-#' EQ-5D-3L TTO value set data.
+#' EQ-5D-3L TTO value set data
 #'
 #' Coefficients for the estimation of the EQ-5D-3L index values based on TTO valuation studies
 #'   for Denmark, France, Germany, Italy, Japan, Korea, Netherlands, Spain, Thailand, UK, 
@@ -30,7 +30,7 @@
 #'   
 "TTO"
 
-#' EQ-5D-3L VAS value set data.
+#' EQ-5D-3L VAS value set data
 #'
 #' Coefficients for the estimation of the EQ-5D-3L index values based on VAS valuation studies
 #'  for Belgium, Denmark, Europe, Finland, Germany, New Zealand, Slovenia, Spain and UK.
@@ -42,7 +42,7 @@
 #' 
 "VAS"
 
-#' EQ-5D-5L VT value set data.
+#' EQ-5D-5L VT value set data
 #'
 #' EQ-5D-5L VT value set calculation data for Canada, China, England, Germany, 
 #'   Hong Kong, Indonesia, Ireland, Japan, Korea, Malaysia, Netherlands, Spain,

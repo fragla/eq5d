@@ -35,10 +35,11 @@ Value sets for EQ-5D-3L are available for many countries and have been produced 
 
 For EQ-5D-5L, a standardised valuation study protocol (EQ-VT) was developed by the EuroQol group based on the composite time trade-off (cTTO) valuation technique supplemented by a discrete choice experiment (DCE).  The EuroQol group recommends users to use a standard value set where available.
 
-The EQ-5D-5L "crosswalk" value sets published by [*van Hout et al*](https://www.ncbi.nlm.nih.gov/pubmed/22867780) are also included. The crosswalk value sets enable index values to be calculated for EQ-5D-5L data where no value set is available by mapping between the EQ-5D-5L and EQ-5D-3L descriptive systems.
+The EQ-5D-5L "crosswalk" value sets published by [van Hout *et al*](https://www.ncbi.nlm.nih.gov/pubmed/22867780) are also included. The crosswalk value sets enable index values to be calculated for EQ-5D-5L data where no value set is available by mapping between the EQ-5D-5L and EQ-5D-3L descriptive systems.
 
-Advice on [choosing a value set](https://euroqol.org/eq-5d-instruments/eq-5d-3l-about/valuation/choosing-a-value-set/
-) can be found on the EuroQol website.
+Additional information on EQ-5D can be found on the [EuroQol](https://www.euroqol.org) website as well as in [Szende *et al* (2007)]( https://www.doi.org/10.1007/1-4020-5511-0) and [Szende 
+    *et al* (2014)](https://www.doi.org/10.1007/978-94-007-7596-1). Advice on [choosing a value set](https://euroqol.org/eq-5d-instruments/eq-5d-3l-about/valuation/choosing-a-value-set/
+) can also be found on the EuroQol website.
 
 ## Installation
 

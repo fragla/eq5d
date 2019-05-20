@@ -2,7 +2,7 @@
 % Please edit documentation in R/shiny.R
 \name{shiny_eq5d}
 \alias{shiny_eq5d}
-\title{Launch shiny EQ-5D interface.}
+\title{Launch shiny EQ-5D interface}
 \usage{
 shiny_eq5d(display.mode = "normal")
 }

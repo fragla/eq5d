@@ -3,7 +3,7 @@
 \docType{data}
 \name{CW}
 \alias{CW}
-\title{EQ-5D-5L Crosswalk data.}
+\title{EQ-5D-5L Crosswalk data}
 \format{An object of class \code{data.frame} with 3125 rows and 10 columns.}
 \source{
 van Hout B, Janssen MF, et al. Interim scoring for the EQ-5D-5L: Mapping the EQ-5D-5L 

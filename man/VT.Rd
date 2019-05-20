@@ -3,7 +3,7 @@
 \docType{data}
 \name{VT}
 \alias{VT}
-\title{EQ-5D-5L VT value set data.}
+\title{EQ-5D-5L VT value set data}
 \format{An object of class \code{data.frame} with 34 rows and 14 columns.}
 \source{
 \enumerate{

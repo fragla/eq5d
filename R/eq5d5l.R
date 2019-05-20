@@ -1,7 +1,7 @@
-#' Calculate EQ-5D-5L indices.
+#' Calculate EQ-5D-5L index scores
 #' 
-#' Calculate indices for EQ-5D-5L value sets. Available value sets can be seen 
-#'   using the function \code{valuesets}
+#' Calculate indices for EQ-5D-5L value sets. Available value sets can be viewed 
+#'   using the function \code{valuesets}.
 #' 
 #' @param scores numeric with names MO, SC, UA, PD and AD representing
 #'   Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.
@@ -17,7 +17,7 @@ eq5d5l <- function(scores, country="England") {
     stop("Unable to identify EQ-5D dimensions in scores.")
   
   if(!all(scores %in% 1:5))
-    stop("Scores must be coded as 1, 2, 3, 4 or 5 for EQ-5D-5L")
+    stop("Scores must be coded as 1, 2, 3, 4 or 5 for EQ-5D-5L.")
   
   survey <- get("VT")
   

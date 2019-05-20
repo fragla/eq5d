@@ -2,7 +2,7 @@
 % Please edit documentation in R/eq5d5l.R
 \name{eq5d5l}
 \alias{eq5d5l}
-\title{Calculate EQ-5D-5L indices.}
+\title{Calculate EQ-5D-5L index scores}
 \usage{
 eq5d5l(scores, country = "England")
 }
@@ -13,8 +13,8 @@ Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.}
 \item{country}{value set country.}
 }
 \description{
-Calculate indices for EQ-5D-5L value sets. Available value sets can be seen 
-  using the function \code{valuesets}
+Calculate indices for EQ-5D-5L value sets. Available value sets can be viewed 
+  using the function \code{valuesets}.
 }
 \examples{
 eq5d5l(scores=c(MO=1,SC=2,UA=3,PD=4,AD=5), country="England")

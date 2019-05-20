@@ -2,24 +2,27 @@
 % Please edit documentation in R/eq5d.R
 \name{eq5d}
 \alias{eq5d}
-\title{Calculate EQ-5D indices.}
+\title{Calculate EQ-5D index scores}
 \usage{
 eq5d(scores, version, type, country)
 }
 \arguments{
-\item{scores}{numeric or data.frame with names/colnames MO, SC, UA, PD and AD representing
-Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.}
+\item{scores}{numeric or data.frame with names/colnames MO, SC, UA, PD and AD
+representing Mobility, Self-care, Usual activities, Pain/discomfort and 
+Anxiety/depression.}
 
 \item{version}{string of value "3L" or "5L" to indicate instrument version.}
 
-\item{type}{string specifying method type used in deriving value set scores. Options 
-are TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L or CW for EQ-5D-5L crosswalk conversion valuesets.}
+\item{type}{string specifying method type used in deriving value set scores. 
+Options are TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L or CW for EQ-5D-5L 
+crosswalk conversion valuesets.}
 
 \item{country}{string of value set country name used.}
 }
 \description{
-Wrapper for \code{eq5d3l} and \code{eq5d5l}. Calculate EQ-5D indices for EQ-5D-3L and EQ-5D-5L. 
-Available value sets can be seen using the function \code{valuesets}
+Wrapper for \code{eq5d3l} and \code{eq5d5l}. Calculate EQ-5D index scores for 
+EQ-5D-3L and EQ-5D-5L. Available value sets can be viewed using the function 
+\code{valuesets}.
 }
 \examples{
 eq5d(scores=c(MO=1,SC=2,UA=3,PD=4,AD=5), type="VT", 

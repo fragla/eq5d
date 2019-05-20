@@ -3,7 +3,7 @@
 \docType{data}
 \name{VAS}
 \alias{VAS}
-\title{EQ-5D-3L VAS value set data.}
+\title{EQ-5D-3L VAS value set data}
 \format{An object of class \code{data.frame} with 13 rows and 9 columns.}
 \source{
 Oppe, M., Szende, A., & de Charro, F. (2007), Comparative review of Visual Analogue Scale value sets.

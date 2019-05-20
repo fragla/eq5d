@@ -1,7 +1,7 @@
-#' Calculate EQ-5D-3L indices.
+#' Calculate EQ-5D-3L index scores
 #' 
-#' Calculate indices for EQ-5D-3L value sets. Available value sets can be seen 
-#'   using the function \code{valuesets}
+#' Calculate indices for EQ-5D-3L value sets. Available value sets can be viewed 
+#'   using the function \code{valuesets}.
 #' 
 #' @param scores numeric with names MO, SC, UA, PD and AD representing
 #'   Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.
@@ -19,7 +19,7 @@ eq5d3l <- function(scores, type="TTO", country="UK") {
   }
   
   if(!all(scores %in% 1:3))
-    stop("Scores must be coded as 1, 2 or 3 for EQ-5D-3L")
+    stop("Scores must be coded as 1, 2 or 3 for EQ-5D-3L.")
   
   if(!type %in% c("TTO", "VAS"))
     stop("Valuation type must be one of TTO or VAS.")

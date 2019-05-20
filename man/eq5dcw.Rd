@@ -2,7 +2,7 @@
 % Please edit documentation in R/eq5dcw.R
 \name{eq5dcw}
 \alias{eq5dcw}
-\title{Calculate EQ-5D-5L crosswalk indices.}
+\title{Calculate EQ-5D-5L crosswalk index scores}
 \usage{
 eq5dcw(scores, country = "UK")
 }
@@ -14,7 +14,7 @@ Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.}
 }
 \description{
 Calculate indices for EQ-5D-5L indices by mapping them onto EQ-5D-3L value sets. 
-Available value sets can be seen using the function \code{valuesets}
+Available value sets can be viewed using the function \code{valuesets}.
 }
 \examples{
 eq5dcw(scores=c(MO=1,SC=2,UA=5,PD=1,AD=3), country="UK")

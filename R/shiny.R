@@ -1,4 +1,4 @@
-#' Launch shiny EQ-5D interface.
+#' Launch shiny EQ-5D interface
 #' 
 #' \code{shiny_eq5d} launches a shiny interface for browser based EQ-5D calculations.
 #' 

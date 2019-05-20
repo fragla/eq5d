@@ -1,13 +1,16 @@
-#' Calculate EQ-5D indices.
+#' Calculate EQ-5D index scores
 #' 
-#' Wrapper for \code{eq5d3l} and \code{eq5d5l}. Calculate EQ-5D indices for EQ-5D-3L and EQ-5D-5L. 
-#' Available value sets can be seen using the function \code{valuesets}
+#' Wrapper for \code{eq5d3l} and \code{eq5d5l}. Calculate EQ-5D index scores for 
+#' EQ-5D-3L and EQ-5D-5L. Available value sets can be viewed using the function 
+#' \code{valuesets}.
 #' 
-#' @param scores numeric or data.frame with names/colnames MO, SC, UA, PD and AD representing
-#'   Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.
+#' @param scores numeric or data.frame with names/colnames MO, SC, UA, PD and AD
+#'   representing Mobility, Self-care, Usual activities, Pain/discomfort and 
+#'   Anxiety/depression.
 #' @param version string of value "3L" or "5L" to indicate instrument version. 
-#' @param type string specifying method type used in deriving value set scores. Options 
-#'   are TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L or CW for EQ-5D-5L crosswalk conversion valuesets.
+#' @param type string specifying method type used in deriving value set scores. 
+#'   Options are TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L or CW for EQ-5D-5L 
+#'   crosswalk conversion valuesets.
 #' @param country string of value set country name used.
 #' @examples
 #' eq5d(scores=c(MO=1,SC=2,UA=3,PD=4,AD=5), type="VT", 
@@ -58,7 +61,7 @@ eq5d.data.frame <- function(scores, version=NULL, type=NULL, country=NULL) {
   return(indices)
 }
 
-#' Get the available EQ-5D value sets
+#' Get the available EQ-5D value sets.
 #' 
 #' \code{valuesets} returns a data.frame of the available EQ-5D value sets
 #'     in the \code{eq5d} package.
