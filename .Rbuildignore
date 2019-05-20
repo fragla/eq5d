@@ -8,3 +8,4 @@
 ^LICENSE\.md$
 ^appveyor\.yml$
 ^codecov\.yml$
+^CRAN-RELEASE$
