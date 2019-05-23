@@ -118,6 +118,8 @@ The calulation of multiple EQ-5D indices can also be performed by upload of a CS
 shiny_eq5d()
 ```
 
+Alternatively, it can be accessed without installing R/Shiny/eq5d by visiting [shinyapps.io](https://fragla.shinyapps.io/shiny-eq5d).
+
 ![Shiny EQ-5D app screenshot](man/figures/shiny_app_screenshot.png)
 
 License
