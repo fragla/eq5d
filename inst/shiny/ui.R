@@ -6,7 +6,9 @@ shinyUI(pageWithSidebar(
     uiOutput("choose_version"),
     uiOutput("choose_country"),
     uiOutput("choose_type"),
-    uiOutput("choose_dataset")
+    uiOutput("choose_dataset"),
+    uiOutput("include_raw_data")
+    
   ),
   
   

@@ -60,8 +60,12 @@ shinyServer(function(input, output) {
     
   })
   
+  output$include_raw_data <- renderUI({
+    checkboxInput("raw", "Include all submitted data in table", TRUE)
+  })
+  
   output$eq5d_table <- DT::renderDataTable({
-    if(is.null(input$data))
+    if(is.null(input$data) || is.null(input$version) || is.null(input$type) || is.null(input$country))
       return()
     
     vs <- valuesets(version=input$version, type=input$type, country=input$country)
@@ -69,11 +73,9 @@ shinyServer(function(input, output) {
     if(nrow(vs) != 1)
       return()
     
-    eq5d <- eq5d(dataset(), version=input$version, type=input$type, country=input$country)
-    res <- cbind(dataset(),eq5d)
-    colnames(res) <- c("Mobility", "Self-care", "Usual activities", "Pain", "Anxiety/depression", paste0("EQ-5D-", input$version))
+    res <- getTableData()
 
-    res
+    return(res)
   })
   
   output$export<- renderUI({
@@ -87,24 +89,28 @@ shinyServer(function(input, output) {
       paste(input$version, "_", input$country, "_", input$type, "_", format(Sys.time(), "%Y%m%d%M%S"), ".csv", sep = "")
     },
     content = function(file) {
-      write.csv(datasetInput(), file, row.names = FALSE)
+      write.csv(getTableData(), file, row.names = FALSE)
     }
   )
   
-  dataset <- reactive({
+  rawdata <- reactive({
     if(input$data$type %in% c(mimemap["xls"], mimemap["xlsx"])) {
       dat <- read_excel(input$data$datapath)
       dat <- as.data.frame(dat)
     }
     else {
       dat <- read.csv(file=input$data$datapath, header=TRUE)
-    }
+    }    
+  })
+  
+  dataset <- reactive({
+    dat <- rawdata()
     
     idx <- getColumnIndex(dat)
     if(is.null(idx)) {
       stop("Unable to identify EQ-5D dimensions in the file header.")
     }
-    return(dat)
+    return(dat[,idx])
   })
   
   getColumnIndex <- function(dat) {
@@ -122,5 +128,17 @@ shinyServer(function(input, output) {
     } else {
       return(NULL)
     }
+  }
+  
+  getTableData <- function() {
+    eq5d <- eq5d(dataset(), version=input$version, type=input$type, country=input$country)
+    if(input$raw) {
+      res <- cbind(rawdata(), eq5d)
+      colnames(res)[ncol(res)] <- paste0("EQ-5D-", input$version)
+    } else {
+      res <- cbind(dataset(), eq5d)
+      colnames(res) <- c("Mobility", "Self-care", "Usual activities", "Pain/discomfort", "Anxiety/depression", paste0("EQ-5D-", input$version))
+    }
+    return(res)
   }
 })
