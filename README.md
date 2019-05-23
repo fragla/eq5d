@@ -27,7 +27,13 @@ Additional information on EQ-5D can be found on the [EuroQol](https://www.euroqo
 Installation
 ------------
 
-You can install eq5d from [GitHub](https://github.com/) with:
+You can install the released version of eq5d from [CRAN](https://CRAN.R-project.org) with:
+
+``` r
+install.packages("eq5d")
+```
+
+And the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
