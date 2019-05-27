@@ -1,5 +1,14 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
+eq5d 0.1.1 (2019-05-27)
+=======================
+
+-   Fixed issue where displayed description values were mislabelled in the Shiny app table when the columns in the uploaded file weren't in the order MO, SC, UA, PD, AD.
+
+-   Fixed issue with Shiny app download button not working correctly.
+
+-   Added checkbox to Shiny app to give the option of displaying the index scores with all info provided in the uploaded file or just with the dimension scores.
+
 eq5d 0.1.0 (2019-05-10)
 =======================
 
