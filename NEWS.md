@@ -1,5 +1,10 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
+eq5d (development version)
+==========================
+
+-   Added Brazilian TTO value set.
+
 eq5d 0.1.1 (2019-05-27)
 =======================
 

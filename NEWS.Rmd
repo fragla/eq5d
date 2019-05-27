@@ -7,6 +7,10 @@ output: github_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+# eq5d (development version)
+
+* Added Brazilian TTO value set.
+
 # eq5d 0.1.1 (2019-05-27)
 
 * Fixed issue where displayed description values were mislabelled in the Shiny app table when the columns in the uploaded file weren't in the order MO, SC, UA, PD, AD.
