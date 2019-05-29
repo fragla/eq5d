@@ -9,6 +9,10 @@ r:
 os:
   - linux
   - osx
+matrix:
+  exclude:
+    - r: devel
+      os: osx
 latex: false
 warnings_are_errors: true
 
