@@ -78,6 +78,7 @@ eq5d3l <- function(scores, type="TTO", country="UK") {
 .ordinalScore <- function(scores, survey) {
   return(
       c(.D1(scores) * survey["D1",],
+      .I2(scores) * survey["I2",],
       .I2Square(scores) * survey["I2square",],
       .I3(scores) * survey["I3",],
       .I3Square(scores) * survey["I3square",],
