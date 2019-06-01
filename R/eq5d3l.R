@@ -80,7 +80,9 @@ eq5d3l <- function(scores, type="TTO", country="UK") {
       c(.D1(scores) * survey["D1",],
       .I2Square(scores) * survey["I2square",],
       .I3(scores) * survey["I3",],
-      .I3Square(scores) * survey["I3square",])
+      .I3Square(scores) * survey["I3square",],
+      .C3Square(scores) * survey["C3square",],
+      .X5(scores) * survey["X5",])
   )
 }
 
@@ -122,6 +124,26 @@ eq5d3l <- function(scores, type="TTO", country="UK") {
 
 .I3Square <- function(scores) {
   return(.I3(scores)^2)
+}
+
+.C3 <- function(scores) {
+  x <- 0
+  if(!is.na(scores["MO"]) && scores["MO"] == 3) x <- x + 1
+  if(!is.na(scores["SC"]) && scores["SC"] == 3) x <- x + 1
+  if(!is.na(scores["UA"]) && scores["UA"] == 3) x <- x + 1
+  if(!is.na(scores["PD"]) && scores["PD"] == 3) x <- x + 1
+  if(!is.na(scores["AD"]) && scores["AD"] == 3) x <- x + 1
+  
+  return(x)
+}
+
+.C3Square <- function(scores) {
+  return(.C3(scores)^2)
+}
+
+.X5 <- function(scores) {
+  x5 <- all(scores %in% c(2,3))
+  return(ifelse(x5, 1, 0))
 }
 
 
