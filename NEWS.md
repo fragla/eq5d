@@ -3,7 +3,9 @@
 eq5d (development version)
 ==========================
 
--   Added Brazilian, Canadian, Chilean, Polish, Portuguese and Trinidad and Tobago TTO value sets.
+-   Added Brazilian, Canadian, Chilean, Polish, Portuguese, Taiwanese and Trinidad and Tobago EQ-5D-3L TTO value sets.
+
+-   Added Taiwanese EQ-5D-5L VT value set.
 
 eq5d 0.1.1 (2019-05-27)
 =======================

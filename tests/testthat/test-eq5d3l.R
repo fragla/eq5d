@@ -109,7 +109,15 @@ test_that("EQ-5D-3L Spain TTO gives correct answer", {
   expect_equal(eq5d3l(c(MO=3,SC=3,UA=3,PD=3,AD=3), "TTO", "Spain"), -0.654)
 })
 
-test_that("EQ-5D-5L Thailand TTO gives correct answer", {
+test_that("EQ-5D-3L Taiwan TTO gives correct answer", {
+  expect_equal(eq5d3l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "TTO", "Taiwan"), 1)
+  expect_equal(eq5d3l(c(MO=2,SC=1,UA=1,PD=1,AD=2), "TTO", "Taiwan"), 0.538)
+  expect_equal(eq5d3l(c(MO=2,SC=1,UA=3,PD=1,AD=3), "TTO", "Taiwan"), 0.012)
+  expect_equal(eq5d3l(c(MO=2,SC=3,UA=2,PD=3,AD=2), "TTO", "Taiwan"), -0.274)
+  expect_equal(eq5d3l(c(MO=3,SC=3,UA=3,PD=3,AD=3), "TTO", "Taiwan"), -0.674)
+})
+
+test_that("EQ-5D-3L Thailand TTO gives correct answer", {
   expect_equal(eq5d3l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "TTO", "Thailand"), 1)
   expect_equal(eq5d3l(c(MO=1,SC=1,UA=1,PD=1,AD=2), "TTO", "Thailand"), 0.766)
   expect_equal(eq5d3l(c(MO=2,SC=1,UA=2,PD=1,AD=2), "TTO", "Thailand"), 0.586)
@@ -117,7 +125,7 @@ test_that("EQ-5D-5L Thailand TTO gives correct answer", {
   expect_equal(eq5d3l(c(MO=3,SC=3,UA=3,PD=3,AD=3), "TTO", "Thailand"), -0.452)
 })
 
-test_that("EQ-5D-5L Trinidad and Tobago TTO gives correct answer", {
+test_that("EQ-5D-3L Trinidad and Tobago TTO gives correct answer", {
   expect_equal(eq5d3l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "TTO", "Trinidad_and_Tobago"), 1)
   expect_equal(eq5d3l(c(MO=1,SC=1,UA=1,PD=1,AD=2), "TTO", "Trinidad_and_Tobago"), 0.896)
   expect_equal(eq5d3l(c(MO=2,SC=1,UA=2,PD=1,AD=2), "TTO", "Trinidad_and_Tobago"), 0.808)
