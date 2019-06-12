@@ -2,6 +2,7 @@ library(eq5d)
 library(DT)
 library(mime)
 library(readxl)
+library(ggplot2)
 
 shinyServer(function(input, output) {
   
@@ -37,23 +38,23 @@ shinyServer(function(input, output) {
       return()
     
     type <- NULL
-      if(input$version=="3L") {
+    if(input$version=="3L") {
+      
+        if(input$country %in% colnames(TTO))
+          type <-c(type, "TTO")
         
-          if(input$country %in% colnames(TTO))
-            type <-c(type, "TTO")
-          
-          if(input$country %in% colnames(VAS))
-            type <-c(type, "VAS")
-          
-      } else {
+        if(input$country %in% colnames(VAS))
+          type <-c(type, "VAS")
         
-          if(input$country %in% colnames(VT))
-            type <-c(type, "VT")
-          
-          if(input$country %in% colnames(CW))
-            type <-c(type, "CW")
-          
-      }
+    } else {
+      
+        if(input$country %in% colnames(VT))
+          type <-c(type, "VT")
+        
+        if(input$country %in% colnames(CW))
+          type <-c(type, "CW")
+        
+    }
     
     selectInput("type", "Type:", 
                 choices=type, selected=FALSE, selectize = FALSE)
@@ -62,6 +63,10 @@ shinyServer(function(input, output) {
   
   output$include_raw_data <- renderUI({
     checkboxInput("raw", "Include all submitted data in table", TRUE)
+  })
+
+  output$show_mean <- renderUI({
+    checkboxInput("mean", "Show mean on plot", TRUE)
   })
   
   output$eq5d_table <- DT::renderDataTable({
@@ -86,7 +91,7 @@ shinyServer(function(input, output) {
   
   output$download <- downloadHandler(
     filename = function() {
-      paste(input$version, "_", input$country, "_", input$type, "_", format(Sys.time(), "%Y%m%d%M%S"), ".csv", sep = "")
+      paste(input$version, "_", input$country, "_", input$type, "_", format(Sys.time(), "%Y%m%d%H%M%S"), ".csv", sep = "")
     },
     content = function(file) {
       write.csv(getTableData(), file, row.names = FALSE)
@@ -134,11 +139,75 @@ shinyServer(function(input, output) {
     eq5d <- eq5d(dataset(), version=input$version, type=input$type, country=input$country)
     if(input$raw) {
       res <- cbind(rawdata(), eq5d)
-      colnames(res)[ncol(res)] <- paste0("EQ-5D-", input$version)
     } else {
       res <- cbind(dataset(), eq5d)
-      colnames(res) <- c("Mobility", "Self-care", "Usual activities", "Pain/discomfort", "Anxiety/depression", paste0("EQ-5D-", input$version))
     }
+    colnames(res)[ncol(res)] <- "Index"
     return(res)
   }
+
+  # Output the data
+  output$density_plot <- renderPlot({
+    if(is.null(input$data) || is.null(input$group))
+      return()
+
+    data <- getTableData()
+
+    if(input$group=="None" || !input$raw) {
+      p <- ggplot(data, aes_string(x=input$plot_data)) + 
+           geom_density(color="darkblue", fill="lightblue", alpha=0.4)
+
+      if(input$mean) {
+        p <- p + geom_vline(aes_string(xintercept=mean(data[[input$plot_data]])),
+            color="darkblue", linetype="dashed")
+      }
+           
+    } else {
+
+      mu <- aggregate(data[[input$plot_data]], list(group=data[[input$group]]), mean)
+
+      p <- ggplot(data, aes_string(x=input$plot_data, fill=input$group)) + 
+           geom_density(alpha=0.4)         
+
+      if(input$mean) {
+        p <- p + geom_vline(data=mu, aes_string(xintercept="x", color="group"),
+             linetype="dashed", show.legend=FALSE)
+      }   
+    }
+
+    if(input$plot_data != "Index") {
+      p <- p + scale_x_continuous(breaks= 1:sub("L", "", input$version), labels = 1:sub("L", "", input$version))
+    }
+
+    return(p)
+    
+  })
+
+  output$choose_plot_data <- renderUI({
+    selectInput("plot_data", "Plot data:",
+        c("Index", "MO", "SC", "UA", "PD", "AD")
+    )
+  })
+
+  output$choose_group_by <- renderUI({
+    if(is.null(input$data)) {
+      return()
+    }
+    data <- getTableData()
+    columns <- colnames(data)
+    columns <- columns[!columns %in% c("MO", "SC", "UA", "PD", "AD", "Index")]
+
+    groups <- "None"
+    if(length(columns) > 0) {
+      include <- apply(data[columns], 2, function(x) { length(unique(x))!=length(x)})
+      groups <- c(groups, names(which(include)))
+    } 
+    selectInput("group", "Group by:",
+        groups
+    )
+  })
+
+  output$example_data <- renderUI({
+        p(strong("EQ-5D-3L example data:"), a(img(src="images/icons8-microsoft-excel-48.png", height = 24, width = 24), href="data/eq5d3l_example.xlsx", target="_blank"))
+  })
 })
