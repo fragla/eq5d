@@ -99,14 +99,18 @@ valuesets(country="UK")
 
 ## Shiny web interface
 
-The calulation of multiple EQ-5D indices can also be performed by upload of a CSV or Excel file using the packaged [Shiny](https://shiny.rstudio.com) app. This requires the [shiny](https://cran.r-project.org/package=shiny), [DT](https://cran.r-project.org/package=DT), [mime](https://cran.r-project.org/package=mime) and [readxl](https://cran.r-project.org/package=readxl) packages. The CSV/Excel headers should be the same as the names of the vector passed to the **_eq5d_** function i.e. MO, SC, UA, PD and AD.  The app is launched using the **_shiny_eq5d_** function.
+The calculation (and visualisation) of multiple EQ-5D indices can also be performed by upload of a CSV or Excel file using the packaged [Shiny](https://shiny.rstudio.com) app. This requires the [shiny](https://cran.r-project.org/package=shiny), [DT](https://cran.r-project.org/package=DT),
+[ggplot2](https://cran.r-project.org/package=ggplot2),
+[mime](https://cran.r-project.org/package=mime) and [readxl](https://cran.r-project.org/package=readxl) packages. The CSV/Excel headers should be the same as the names of the vector passed to the **_eq5d_** function i.e. MO, SC, UA, PD and AD.  The app is launched using the **_shiny_eq5d_** function.
 
 ```{r shiny, echo=TRUE, eval=FALSE}
 shiny_eq5d()
 ```
 Alternatively, it can be accessed without installing R/Shiny/eq5d by visiting [shinyapps.io](https://fragla.shinyapps.io/shiny-eq5d).
 
-![Shiny EQ-5D app screenshot](man/figures/shiny_app_screenshot.png)
+![Shiny EQ-5D app main screenshot](man/figures/shiny_app_screenshot_main.png)
+
+![Shiny EQ-5D app plots screenshot](man/figures/shiny_app_screenshot_plots.png)
 
 ## License
 

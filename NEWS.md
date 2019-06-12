@@ -7,6 +7,10 @@ eq5d (development version)
 
 -   Added Taiwanese EQ-5D-5L VT value set.
 
+-   Example data added to shiny app.
+
+-   ggplot2 density plot added to shiny app.
+
 eq5d 0.1.1 (2019-05-27)
 =======================
 

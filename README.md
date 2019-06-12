@@ -74,22 +74,22 @@ The available value sets can be viewed using the ***valuesets*** function. The r
 # Return all value sets (top 6 returned for brevity).
 head(valuesets())
 #>    Version Type Country
-#> 1 EQ-5D-3L  TTO Denmark
-#> 2 EQ-5D-3L  TTO  France
-#> 3 EQ-5D-3L  TTO Germany
-#> 4 EQ-5D-3L  TTO   Italy
-#> 5 EQ-5D-3L  TTO   Japan
-#> 6 EQ-5D-3L  TTO   Korea
+#> 1 EQ-5D-3L  TTO  Brazil
+#> 2 EQ-5D-3L  TTO  Canada
+#> 3 EQ-5D-3L  TTO   Chile
+#> 4 EQ-5D-3L  TTO Denmark
+#> 5 EQ-5D-3L  TTO  France
+#> 6 EQ-5D-3L  TTO Germany
 
 # Return VAS based value sets (top 6 returned for brevity).
 head(valuesets(type="VAS"))
-#>    Version Type    Country
-#> 1 EQ-5D-3L  VAS    Belgium
-#> 2 EQ-5D-3L  VAS    Denmark
-#> 3 EQ-5D-3L  VAS     Europe
-#> 4 EQ-5D-3L  VAS    Finland
-#> 5 EQ-5D-3L  VAS    Germany
-#> 6 EQ-5D-3L  VAS NewZealand
+#>    Version Type  Country
+#> 1 EQ-5D-3L  VAS  Belgium
+#> 2 EQ-5D-3L  VAS  Denmark
+#> 3 EQ-5D-3L  VAS   Europe
+#> 4 EQ-5D-3L  VAS  Finland
+#> 5 EQ-5D-3L  VAS  Germany
+#> 6 EQ-5D-3L  VAS Malaysia
 
 # Return EQ-5D-5L value sets (top 6 returned for brevity).
 head(valuesets(version="5L"))
@@ -112,7 +112,7 @@ valuesets(country="UK")
 Shiny web interface
 -------------------
 
-The calulation of multiple EQ-5D indices can also be performed by upload of a CSV or Excel file using the packaged [Shiny](https://shiny.rstudio.com) app. This requires the [shiny](https://cran.r-project.org/package=shiny), [DT](https://cran.r-project.org/package=DT), [mime](https://cran.r-project.org/package=mime) and [readxl](https://cran.r-project.org/package=readxl) packages. The CSV/Excel headers should be the same as the names of the vector passed to the ***eq5d*** function i.e. MO, SC, UA, PD and AD. The app is launched using the ***shiny\_eq5d*** function.
+The calculation (and visualisation) of multiple EQ-5D indices can also be performed by upload of a CSV or Excel file using the packaged [Shiny](https://shiny.rstudio.com) app. This requires the [shiny](https://cran.r-project.org/package=shiny), [DT](https://cran.r-project.org/package=DT), [ggplot2](https://cran.r-project.org/package=ggplot2), [mime](https://cran.r-project.org/package=mime) and [readxl](https://cran.r-project.org/package=readxl) packages. The CSV/Excel headers should be the same as the names of the vector passed to the ***eq5d*** function i.e. MO, SC, UA, PD and AD. The app is launched using the ***shiny\_eq5d*** function.
 
 ``` r
 shiny_eq5d()
@@ -120,7 +120,9 @@ shiny_eq5d()
 
 Alternatively, it can be accessed without installing R/Shiny/eq5d by visiting [shinyapps.io](https://fragla.shinyapps.io/shiny-eq5d).
 
-![Shiny EQ-5D app screenshot](man/figures/shiny_app_screenshot.png)
+![Shiny EQ-5D app main screenshot](man/figures/shiny_app_screenshot_main.png)
+
+![Shiny EQ-5D app plots screenshot](man/figures/shiny_app_screenshot_plots.png)
 
 License
 -------
