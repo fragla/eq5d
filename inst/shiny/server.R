@@ -146,9 +146,21 @@ shinyServer(function(input, output) {
     return(res)
   }
 
-  # Output the data
-  output$density_plot <- renderPlot({
-    if(is.null(input$data) || is.null(input$group))
+  output$plot <- renderPlot({
+    if(is.null(input$data) || is.null(input$plot_type) || is.null(input$group))
+      return()
+
+    if(input$plot_type=="density") {
+      return(density_plot())
+    } else if(input$plot_type=="ecdf") {
+      return(ecdf_plot())
+    } else {
+      stop("Unable to identify plot type")
+    }
+  })
+
+  density_plot <- reactive({
+    if(is.null(input$data) || is.null(input$plot_type) || is.null(input$group))
       return()
 
     data <- getTableData()
@@ -183,9 +195,47 @@ shinyServer(function(input, output) {
     
   })
 
+  ecdf_plot <- reactive({
+    if(is.null(input$data) || is.null(input$plot_type) || is.null(input$group))
+      return()
+
+    data <- getTableData()
+
+    if(input$group=="None" || !input$raw) {
+
+      p <- ggplot(data, aes_string(input$plot_data)) + stat_ecdf(geom = "step", colour="darkblue")
+
+      if(input$mean) {
+        p <- p + geom_vline(aes_string(xintercept=mean(data[[input$plot_data]])),
+            color="darkblue", linetype="dashed")
+      }
+           
+    } else {
+
+      p <- ggplot(data, aes_string(input$plot_data, colour = input$group)) + stat_ecdf(geom = "step")
+      mu <- aggregate(data[[input$plot_data]], list(group=data[[input$group]]), mean)        
+
+      if(input$mean) {
+        p <- p + geom_vline(data=mu, aes_string(xintercept="x", color="group"),
+             linetype="dashed", show.legend=FALSE)
+      }   
+    }
+
+    p <- p + labs(y='Cumulative probability')
+
+    return(p)
+    
+  })
+
   output$choose_plot_data <- renderUI({
     selectInput("plot_data", "Plot data:",
         c("Index", "MO", "SC", "UA", "PD", "AD")
+    )
+  })
+
+  output$choose_plot_type <- renderUI({
+    selectInput("plot_type", "Plot type:",
+        c("Density"="density", "ECDF"="ecdf")
     )
   })
 
@@ -207,7 +257,4 @@ shinyServer(function(input, output) {
     )
   })
 
-  output$example_data <- renderUI({
-        p(strong("EQ-5D-3L example data:"), a(img(src="images/icons8-microsoft-excel-48.png", height = 24, width = 24), href="data/eq5d3l_example.xlsx", target="_blank"))
-  })
 })
