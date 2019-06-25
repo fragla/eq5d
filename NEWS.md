@@ -9,7 +9,9 @@ eq5d (development version)
 
 -   Example data added to shiny app.
 
--   ggplot2 density plot added to shiny app.
+-   Plots tab and ggplot2 density and ecdf plots added to shiny app.
+
+-   Added functionality to shiny app to calculate a single index score.
 
 eq5d 0.1.1 (2019-05-27)
 =======================

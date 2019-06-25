@@ -4,9 +4,36 @@ library(mime)
 library(readxl)
 library(ggplot2)
 
+options(shiny.sanitize.errors = FALSE)
+
 shinyServer(function(input, output) {
   
   # Drop-down selection box for which data set
+  output$choose_dimensions <- renderUI({
+    if(is.null(input$version))
+      return()
+    
+    if(input$version=="3L") {
+      levels <- 1:3
+    } else {
+      levels <- 1:5
+    }
+
+    splitLayout(
+    
+      selectInput("mo", "Mobility:", 
+                  choices=levels, selected=FALSE, selectize = FALSE, width="100px"),
+      selectInput("sc", "Self care:", 
+                  choices=levels, selected=FALSE, selectize = FALSE, width="100px"),
+      selectInput("ua", "Usual activities:",
+                  choices=levels, selected=FALSE, selectize = FALSE, width="100px"),
+      selectInput("pd", "Pain/discomfort:",
+                  choices=levels, selected=FALSE, selectize = FALSE, width="100px"),
+      selectInput("ad", "Anxiety/depression:",
+                  choices=levels, selected=FALSE, selectize = FALSE, width="100px")
+    )
+    
+  })
   output$choose_dataset <- renderUI({
     fileInput("data", "Choose data file",
               accept = c(
@@ -14,6 +41,13 @@ shinyServer(function(input, output) {
                 mimemap["xls"],
                 mimemap["xlsx"])
     )
+  })
+  
+  output$choose_calc_type <- renderUI({
+    radioButtons("multi", "Multiple calculations:",
+                 c("Single"="single", "Multiple"="multiple"),
+                 selected="multiple",
+                 inline=T)
   })
   
   output$choose_version <- renderUI({
@@ -83,6 +117,25 @@ shinyServer(function(input, output) {
     return(res)
   })
   
+  output$eq5d_text <- renderText({
+    if(any(is.null(input$mo), is.null(input$sc), is.null(input$ua), is.null(input$pd), is.null(input$ad)))
+      return()
+    
+    if(any(is.null(input$version), is.null(input$type), is.null(input$country)))
+       return()
+    
+    if(!paste0("EQ-5D-", input$version) %in% valuesets(type=input$type)$Version)
+      return()
+    
+    if(!input$country %in% valuesets(type=input$type)$Country)
+      return()
+    
+    dimensions <- c(MO=input$mo, SC=input$sc, UA=input$ua, PD=input$pd, AD=input$ad)
+    class(dimensions) <- "numeric"
+    score <- eq5d(dimensions, version=input$version, type=input$type, country=input$country)
+    paste0("The index for EQ-5D-", input$version, " ", input$country, " ", input$type, " value set is: ", score)
+  })
+  
   output$export<- renderUI({
     if(!is.null(input$data)) {
       downloadButton("download", 'Download Output File')
@@ -105,7 +158,7 @@ shinyServer(function(input, output) {
     }
     else {
       dat <- read.csv(file=input$data$datapath, header=TRUE)
-    }    
+    }   
   })
   
   dataset <- reactive({

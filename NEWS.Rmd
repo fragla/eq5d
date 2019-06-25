@@ -17,6 +17,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 * Plots tab and ggplot2 density and ecdf plots added to shiny app.
 
+* Added functionality to shiny app to calculate a single index score.
+
 # eq5d 0.1.1 (2019-05-27)
 
 * Fixed issue where displayed description values were mislabelled in the Shiny app table when the columns in the uploaded file weren't in the order MO, SC, UA, PD, AD.
