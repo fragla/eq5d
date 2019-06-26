@@ -38,6 +38,21 @@ Additional information on EQ-5D can be found on the [EuroQol](https://www.euroqo
     *et al* (2014)](https://www.doi.org/10.1007/978-94-007-7596-1). Advice on [choosing a value set](https://euroqol.org/eq-5d-instruments/eq-5d-3l-about/valuation/choosing-a-value-set/
 ) can also be found on the EuroQol website.
 
+## Installation
+
+You can install the released version of eq5d from [CRAN](https://CRAN.R-project.org) with:
+
+``` r
+install.packages("eq5d")
+```
+
+And the development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("fragla/eq5d")
+```
+
 ## Quick Start
 
 ```{r quickStart}
@@ -81,7 +96,9 @@ valuesets(country="UK")
 
 ## Shiny web interface
 
-The calulation of multiple EQ-5D indices can also be performed by upload of a CSV or Excel file using the packaged [Shiny](https://shiny.rstudio.com) app. This requires the [shiny](https://cran.r-project.org/package=shiny), [DT](https://cran.r-project.org/package=DT), [mime](https://cran.r-project.org/package=mime) and [readxl](https://cran.r-project.org/package=readxl) packages. The CSV/Excel headers should be the same as the names of the vector passed to the ***eq5d*** function i.e. MO, SC, UA, PD and AD.  The app is launched using the ***shiny_eq5d*** function.
+The calculation (and visualisation) of multiple EQ-5D indices can also be performed by upload of a CSV or Excel file using the packaged [Shiny](https://shiny.rstudio.com) app. This requires the [shiny](https://cran.r-project.org/package=shiny), [DT](https://cran.r-project.org/package=DT),
+[ggplot2](https://cran.r-project.org/package=ggplot2),
+[mime](https://cran.r-project.org/package=mime) and [readxl](https://cran.r-project.org/package=readxl) packages. The CSV/Excel headers should be the same as the names of the vector passed to the ***eq5d*** function i.e. MO, SC, UA, PD and AD.  The app is launched using the ***shiny_eq5d*** function.
 
 ```{r shiny, echo=TRUE, eval=FALSE}
 shiny_eq5d()

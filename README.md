@@ -83,13 +83,13 @@ head(valuesets())
 
 # Return VAS based value sets (top 6 returned for brevity).
 head(valuesets(type="VAS"))
-#>    Version Type  Country
-#> 1 EQ-5D-3L  VAS  Belgium
-#> 2 EQ-5D-3L  VAS  Denmark
-#> 3 EQ-5D-3L  VAS   Europe
-#> 4 EQ-5D-3L  VAS  Finland
-#> 5 EQ-5D-3L  VAS  Germany
-#> 6 EQ-5D-3L  VAS Malaysia
+#>    Version Type    Country
+#> 1 EQ-5D-3L  VAS    Belgium
+#> 2 EQ-5D-3L  VAS    Denmark
+#> 3 EQ-5D-3L  VAS     Europe
+#> 4 EQ-5D-3L  VAS    Finland
+#> 5 EQ-5D-3L  VAS    Germany
+#> 6 EQ-5D-3L  VAS NewZealand
 
 # Return EQ-5D-5L value sets (top 6 returned for brevity).
 head(valuesets(version="5L"))

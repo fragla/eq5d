@@ -81,7 +81,7 @@ eq5d(scores.df, country="Canada", version="5L", type="VT")
 
 ## Value sets
 
-The available value sets can be viewed using the **_valuesets_** function. The results can be filtered by EQ-5D version, value set type or by country.
+The available value sets can be viewed using the ***valuesets*** function. The results can be filtered by EQ-5D version, value set type or by country.
 
 ```{r valuesets}
 # Return all value sets (top 6 returned for brevity).
@@ -101,7 +101,7 @@ valuesets(country="UK")
 
 The calculation (and visualisation) of multiple EQ-5D indices can also be performed by upload of a CSV or Excel file using the packaged [Shiny](https://shiny.rstudio.com) app. This requires the [shiny](https://cran.r-project.org/package=shiny), [DT](https://cran.r-project.org/package=DT),
 [ggplot2](https://cran.r-project.org/package=ggplot2),
-[mime](https://cran.r-project.org/package=mime) and [readxl](https://cran.r-project.org/package=readxl) packages. The CSV/Excel headers should be the same as the names of the vector passed to the **_eq5d_** function i.e. MO, SC, UA, PD and AD.  The app is launched using the **_shiny_eq5d_** function.
+[mime](https://cran.r-project.org/package=mime) and [readxl](https://cran.r-project.org/package=readxl) packages. The CSV/Excel headers should be the same as the names of the vector passed to the ***eq5d*** function i.e. MO, SC, UA, PD and AD.  The app is launched using the ***shiny_eq5d*** function.
 
 ```{r shiny, echo=TRUE, eval=FALSE}
 shiny_eq5d()
