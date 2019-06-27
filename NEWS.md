@@ -1,7 +1,7 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
-eq5d 0.2.0 (development version)
-================================
+eq5d 0.2.0 (2019-06-27)
+=======================
 
 -   Added Brazilian, Canadian, Chilean, Polish, Portuguese, Taiwanese and Trinidad and Tobago EQ-5D-3L TTO value sets.
 
