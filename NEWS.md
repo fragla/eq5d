@@ -1,7 +1,7 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
-eq5d (development version)
-==========================
+eq5d 0.2.0 (development version)
+================================
 
 -   Added Brazilian, Canadian, Chilean, Polish, Portuguese, Taiwanese and Trinidad and Tobago EQ-5D-3L TTO value sets.
 
@@ -12,6 +12,8 @@ eq5d (development version)
 -   Plots tab and ggplot2 density and ecdf plots added to shiny app.
 
 -   Added functionality to shiny app to calculate a single index score.
+
+-   Notification added to shiny app to warn when EQ-5D-5L is selected, but all uploaded values are 1, 2 or 3.
 
 eq5d 0.1.1 (2019-05-27)
 =======================
