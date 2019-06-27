@@ -38,7 +38,8 @@ shinyUI(
           uiOutput("choose_plot_data"),
           uiOutput("choose_plot_type"),
           uiOutput("choose_group_by"),
-          uiOutput("show_mean")
+          uiOutput("show_average"),
+          uiOutput("choose_average_method")
         ),
         mainPanel(
           plotOutput("plot")

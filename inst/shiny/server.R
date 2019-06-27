@@ -99,8 +99,15 @@ shinyServer(function(input, output) {
     checkboxInput("raw", "Include all submitted data in table", TRUE)
   })
 
-  output$show_mean <- renderUI({
-    checkboxInput("mean", "Show mean on plot", TRUE)
+  output$show_average <- renderUI({
+    checkboxInput("average", "Show mean/median on plot", TRUE)
+  })
+  
+  output$choose_average_method <- renderUI({
+    radioButtons("average_method", "Show:",
+                 c("Mean"="mean", "Median"="median"),
+                 selected="mean",
+                 inline=T)
   })
   
   output$eq5d_table <- DT::renderDataTable({
@@ -223,23 +230,25 @@ shinyServer(function(input, output) {
 
     data <- getTableData()
 
+    ave.meth <- get_average_method()
+    
     if(input$group=="None" || !input$raw) {
       p <- ggplot(data, aes_string(x=input$plot_data)) + 
            geom_density(color="darkblue", fill="lightblue", alpha=0.4)
 
-      if(input$mean) {
-        p <- p + geom_vline(aes_string(xintercept=mean(data[[input$plot_data]])),
+      if(input$average) {
+        p <- p + geom_vline(aes_string(xintercept=ave.meth(data[[input$plot_data]])),
             color="darkblue", linetype="dashed")
       }
            
     } else {
 
-      mu <- aggregate(data[[input$plot_data]], list(group=data[[input$group]]), mean)
+      mu <- aggregate(data[[input$plot_data]], list(group=data[[input$group]]), ave.meth)
 
       p <- ggplot(data, aes_string(x=input$plot_data, fill=input$group)) + 
            geom_density(alpha=0.4)         
 
-      if(input$mean) {
+      if(input$average) {
         p <- p + geom_vline(data=mu, aes_string(xintercept="x", color="group"),
              linetype="dashed", show.legend=FALSE)
       }   
@@ -258,22 +267,24 @@ shinyServer(function(input, output) {
       return()
 
     data <- getTableData()
+    
+    ave.meth <- get_average_method()
 
     if(input$group=="None" || !input$raw) {
 
       p <- ggplot(data, aes_string(input$plot_data)) + stat_ecdf(geom = "step", colour="darkblue")
 
-      if(input$mean) {
-        p <- p + geom_vline(aes_string(xintercept=mean(data[[input$plot_data]])),
+      if(input$average) {
+        p <- p + geom_vline(aes_string(xintercept=ave.meth(data[[input$plot_data]])),
             color="darkblue", linetype="dashed")
       }
            
     } else {
 
       p <- ggplot(data, aes_string(input$plot_data, colour = input$group)) + stat_ecdf(geom = "step")
-      mu <- aggregate(data[[input$plot_data]], list(group=data[[input$group]]), mean)        
+      mu <- aggregate(data[[input$plot_data]], list(group=data[[input$group]]), ave.meth)        
 
-      if(input$mean) {
+      if(input$average) {
         p <- p + geom_vline(data=mu, aes_string(xintercept="x", color="group"),
              linetype="dashed", show.legend=FALSE)
       }   
@@ -313,6 +324,14 @@ shinyServer(function(input, output) {
     selectInput("group", "Group by:",
         groups
     )
+  })
+  
+  get_average_method <- reactive({
+    if(input$average_method=="mean") {
+      return(mean)
+    } else {
+      return(median)
+    }
   })
 
 })
