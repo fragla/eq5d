@@ -35,6 +35,7 @@ Suggests:
     DT,
     mime,
     readxl,
+    ggplot2,
     knitr,
     rmarkdown,
     covr
