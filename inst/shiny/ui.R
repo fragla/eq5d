@@ -1,3 +1,5 @@
+library(ggiraph)
+
 shinyUI(
   fluidPage(
     titlePanel("EQ-5D"),

@@ -3,6 +3,7 @@ library(DT)
 library(mime)
 library(readxl)
 library(ggplot2)
+library(ggiraph)
 library(ggiraphExtra)
 
 options(shiny.sanitize.errors = FALSE)
