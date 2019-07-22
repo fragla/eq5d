@@ -3,6 +3,7 @@ library(DT)
 library(mime)
 library(readxl)
 library(ggplot2)
+library(ggiraphExtra)
 
 options(shiny.sanitize.errors = FALSE)
 
@@ -211,17 +212,22 @@ shinyServer(function(input, output) {
     return(res)
   }
 
-  output$plot <- renderPlot({
+  output$plot <- renderggiraph({
     if(is.null(input$data) || is.null(input$plot_type) || is.null(input$group))
       return()
 
     if(input$plot_type=="density") {
-      return(density_plot())
+      code <- density_plot()
     } else if(input$plot_type=="ecdf") {
-      return(ecdf_plot())
-    } else {
+      code <- ecdf_plot()
+    } else if(input$plot_type=="radar") {
+      code <- radar_plot()
+    }  else {
       stop("Unable to identify plot type")
     }
+    output <- ggiraph(code = print(code), selection_type = "single")
+
+    return(output)
   })
 
   density_plot <- reactive({
@@ -237,20 +243,20 @@ shinyServer(function(input, output) {
            geom_density(color="darkblue", fill="lightblue", alpha=0.4)
 
       if(input$average) {
-        p <- p + geom_vline(aes_string(xintercept=ave.meth(data[[input$plot_data]])),
-            color="darkblue", linetype="dashed")
+        p <- p + geom_vline_interactive(aes_string(xintercept=ave.meth(data[[input$plot_data]])),
+            color="darkblue", linetype="dashed", tooltip = paste0(input$average_method, ": ", get_average_value()), data_id = "density_mean")
       }
            
     } else {
-
-      mu <- aggregate(data[[input$plot_data]], list(group=data[[input$group]]), ave.meth)
+      data[[input$group]] <- as.factor(as.character(data[[input$group]]))
+      mu <- get_average_value()
 
       p <- ggplot(data, aes_string(x=input$plot_data, fill=input$group)) + 
            geom_density(alpha=0.4)         
 
       if(input$average) {
-        p <- p + geom_vline(data=mu, aes_string(xintercept="x", color="group"),
-             linetype="dashed", show.legend=FALSE)
+        p <- p + geom_vline_interactive(data=mu, aes_string(xintercept="x", color="group"),
+             linetype="dashed", show.legend=FALSE, tooltip = paste0(input$average_method, ": ", mu$x), data_id = paste0("density_", input$average_method, "_", mu$group))
       }   
     }
 
@@ -275,18 +281,18 @@ shinyServer(function(input, output) {
       p <- ggplot(data, aes_string(input$plot_data)) + stat_ecdf(geom = "step", colour="darkblue")
 
       if(input$average) {
-        p <- p + geom_vline(aes_string(xintercept=ave.meth(data[[input$plot_data]])),
-            color="darkblue", linetype="dashed")
+        p <- p + geom_vline_interactive(aes_string(xintercept=ave.meth(data[[input$plot_data]])),
+            color="darkblue", linetype="dashed", tooltip = paste0(input$average_method, ": ", get_average_value()), data_id = "ecdf_mean")
       }
            
     } else {
 
       p <- ggplot(data, aes_string(input$plot_data, colour = input$group)) + stat_ecdf(geom = "step")
-      mu <- aggregate(data[[input$plot_data]], list(group=data[[input$group]]), ave.meth)        
+      mu <- get_average_value()        
 
       if(input$average) {
-        p <- p + geom_vline(data=mu, aes_string(xintercept="x", color="group"),
-             linetype="dashed", show.legend=FALSE)
+        p <- p + geom_vline_interactive(data=mu, aes_string(xintercept="x", color="group"),
+             linetype="dashed", show.legend=FALSE, tooltip = paste0(input$average_method, ": ", mu$x), data_id = paste0("ecdf_", input$average_method, "_", mu$group))
       }   
     }
 
@@ -294,6 +300,23 @@ shinyServer(function(input, output) {
 
     return(p)
     
+  })
+  
+  radar_plot <- reactive({
+    if(is.null(input$data) || is.null(input$plot_type) || is.null(input$group))
+      return()
+    
+    data <- getTableData()
+    
+    if(input$group=="None" || !input$raw) {
+    
+      data <- data[,names(data) %in% c("MO", "SC", "UA", "PD", "AD")]
+      p <- ggRadar(data=data, rescale=FALSE, colour = "#F8766D", alpha = 0.4)
+    } else {
+      data <- data[,names(data) %in% c("MO", "SC", "UA", "PD", "AD", input$group)]
+      p <- ggRadar(data=data,aes_string(color=input$group), rescale=FALSE) + theme(legend.position="right")
+    }
+    return(p)
   })
 
   output$choose_plot_data <- renderUI({
@@ -304,7 +327,7 @@ shinyServer(function(input, output) {
 
   output$choose_plot_type <- renderUI({
     selectInput("plot_type", "Plot type:",
-        c("Density"="density", "ECDF"="ecdf")
+        c("Density"="density", "ECDF"="ecdf", "Radar"="radar")
     )
   })
 
@@ -332,6 +355,20 @@ shinyServer(function(input, output) {
     } else {
       return(median)
     }
+  })
+
+  get_average_value <- reactive({
+
+    data <- getTableData()
+    
+    ave.meth <- get_average_method()
+    
+    if(input$group == "None") {
+      mu <- aggregate(as.formula(paste(input$plot_data, "~ 1")), data, function(x){round(ave.meth(x),3)})
+    } else {
+      mu <- aggregate(data[[input$plot_data]], list(group=data[[input$group]]), function(x){round(ave.meth(x),3)})
+    }
+    return(mu)
   })
 
 })

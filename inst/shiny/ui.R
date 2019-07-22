@@ -35,14 +35,20 @@ shinyUI(
       ),
       tabPanel("Plots",
         sidebarPanel(
-          uiOutput("choose_plot_data"),
+          conditionalPanel(
+            condition = "input.plot_type != 'radar'",
+            uiOutput("choose_plot_data")
+          ),
           uiOutput("choose_plot_type"),
           uiOutput("choose_group_by"),
-          uiOutput("show_average"),
-          uiOutput("choose_average_method")
+          conditionalPanel(
+            condition = "input.plot_type != 'radar'",
+            uiOutput("show_average"),
+            uiOutput("choose_average_method")
+          )
         ),
         mainPanel(
-          plotOutput("plot")
+          ggiraphOutput("plot")
         )     
       )
     )
