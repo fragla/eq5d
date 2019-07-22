@@ -1,5 +1,12 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
+eq5d (development version)
+==========================
+
+-   Added radar plot to shiny application.
+
+-   Tool tips added to radar plot and to means/medians of density/ecdf plots.
+
 eq5d 0.2.0 (2019-06-27)
 =======================
 
