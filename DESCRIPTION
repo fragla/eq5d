@@ -36,6 +36,7 @@ Suggests:
     mime,
     readxl,
     ggplot2,
+    ggiraph,
     ggiraphExtra,
     knitr,
     rmarkdown,
