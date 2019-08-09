@@ -9,9 +9,12 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 # eq5d (development version)
 
-* Added radar plot to shiny application.
-
-* Tool tips added to radar plot and to means/medians of density/ecdf plots.
+* Updates to shiny application
+    * New navbar layout
+    * Added radar plot.
+    * Tool tips added to radar plot and to means/medians of density/ecdf plots.
+    * shinycssloader icons used when waiting for a plot to load in shiny.
+    * Download button added to plots page.
 
 # eq5d 0.2.0 (2019-06-27)
 
