@@ -9,6 +9,7 @@ eq5d (development version)
     -   Tool tips added to radar plot and to means/medians of density/ecdf plots.
     -   shinycssloader icons used when waiting for a plot to load in shiny.
     -   Download button added to plots page.
+    -   Help/FAQ page added.
 
 eq5d 0.2.0 (2019-06-27)
 =======================
