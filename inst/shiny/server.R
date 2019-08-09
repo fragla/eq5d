@@ -150,13 +150,13 @@ shinyServer(function(input, output) {
     paste0("The index for EQ-5D-", input$version, " ", input$country, " ", input$type, " value set is: ", score)
   })
   
-  output$export<- renderUI({
+  output$export_table <- renderUI({
     if(!is.null(input$data)) {
-      downloadButton("download", 'Download Output File')
+      downloadButton("download_table", 'Download Output File')
     }
   })
   
-  output$download <- downloadHandler(
+  output$download_table <- downloadHandler(
     filename = function() {
       paste(input$version, "_", input$country, "_", input$type, "_", format(Sys.time(), "%Y%m%d%H%M%S"), ".csv", sep = "")
     },
@@ -165,13 +165,28 @@ shinyServer(function(input, output) {
     }
   )
   
+  output$export_plot <- renderUI({
+    if(!is.null(input$data)) {
+      downloadButton("download_plot", 'Download plot')
+    }
+  })
+  
+  output$download_plot <- downloadHandler(
+    filename = function() {
+      paste(input$version, "_", input$country, "_", input$type, "_", input$plot_type, "_", format(Sys.time(), "%Y%m%d%H%M%S"), ".pdf", sep = "")
+    },
+    content = function(file) {
+      ggsave(file, getPlot(),"pdf")
+    }
+  )
+  
   rawdata <- reactive({
     if(input$data$type %in% c(mimemap["xls"], mimemap["xlsx"])) {
-      dat <- read_excel(input$data$datapath)
+      dat <- read_excel(input$data$datapath, na=c("NA",""))
       dat <- as.data.frame(dat)
     }
     else {
-      dat <- read.csv(file=input$data$datapath, header=TRUE)
+      dat <- read.csv(file=input$data$datapath, header=TRUE, stringsAsFactors=FALSE, na.strings=c("NA",""))
     }   
   })
   
@@ -180,9 +195,17 @@ shinyServer(function(input, output) {
     
     idx <- getColumnIndex(dat)
     if(is.null(idx)) {
+      print(head(dat))
       stop("Unable to identify EQ-5D dimensions in the file header.")
     }
-    return(dat[,idx])
+    
+    dat <- dat[,idx]
+    if(!all(sapply(dat, function(x) is.numeric(x)))) {
+      print(head(dat))
+      stop("Non-numeric values found in uploaded EQ-5D dimensions.")
+    }
+    
+    return(dat)
   })
   
   getColumnIndex <- function(dat) {
@@ -217,19 +240,28 @@ shinyServer(function(input, output) {
     if(is.null(input$data) || is.null(input$plot_type) || is.null(input$group))
       return()
 
-    if(input$plot_type=="density") {
-      code <- density_plot()
-    } else if(input$plot_type=="ecdf") {
-      code <- ecdf_plot()
-    } else if(input$plot_type=="radar") {
-      code <- radar_plot()
-    }  else {
-      stop("Unable to identify plot type")
-    }
+    code <- getPlot()
+    
     output <- ggiraph(code = print(code), selection_type = "single")
 
     return(output)
   })
+  
+  getPlot <- function() {
+    if(input$plot_type=="density") {
+      print("Density")
+      code <- density_plot()
+    } else if(input$plot_type=="ecdf") {
+      print("ECDF")
+      code <- ecdf_plot()
+    } else if(input$plot_type=="radar") {
+      print("Radar")
+      code <- radar_plot()
+    }  else {
+      stop("Unable to identify plot type")
+    }
+    return(code)
+  }
 
   density_plot <- reactive({
     if(is.null(input$data) || is.null(input$plot_type) || is.null(input$group))
@@ -249,9 +281,8 @@ shinyServer(function(input, output) {
       }
            
     } else {
-      data[[input$group]] <- as.factor(as.character(data[[input$group]]))
+      #data[[input$group]] <- as.factor(as.character(data[[input$group]]))
       mu <- get_average_value()
-
       p <- ggplot(data, aes_string(x=input$plot_data, fill=input$group)) + 
            geom_density(alpha=0.4)         
 
@@ -337,12 +368,12 @@ shinyServer(function(input, output) {
       return()
     }
     data <- getTableData()
-    columns <- colnames(data)
-    columns <- columns[!columns %in% c("MO", "SC", "UA", "PD", "AD", "Index")]
-
+    data <- data[!colnames(data) %in% c("MO", "SC", "UA", "PD", "AD")]
+    data <- data[sapply(data, function(x) is.character(x) || is.logical(x) || is.factor(x))]
+    
     groups <- "None"
-    if(length(columns) > 0) {
-      include <- apply(data[columns], 2, function(x) { length(unique(x))!=length(x)})
+    if(ncol(data) > 0) {
+      include <- apply(data, 2, function(x) {length(unique(x))!=length(x)})
       groups <- c(groups, names(which(include)))
     } 
     selectInput("group", "Group by:",
