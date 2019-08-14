@@ -103,6 +103,12 @@ test_that("EQ-5D-3L Portugal TTO gives correct answer", {
   expect_equal(eq5d3l(c(MO=3,SC=3,UA=3,PD=3,AD=3), "TTO", "Portugal"), -0.496)
 })
 
+test_that("EQ-5D-3L Singapore TTO gives correct answer", {
+  expect_equal(eq5d3l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "TTO", "Singapore"), 1)
+  expect_equal(eq5d3l(c(MO=1,SC=1,UA=1,PD=2,AD=1), "TTO", "Singapore"), 0.854)
+  expect_equal(eq5d3l(c(MO=3,SC=3,UA=3,PD=3,AD=3), "TTO", "Singapore"), -0.769)
+})
+
 test_that("EQ-5D-3L Spain TTO gives correct answer", {
   expect_equal(eq5d3l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "TTO", "Spain"), 1)
   expect_equal(eq5d3l(c(MO=1,SC=1,UA=1,PD=2,AD=2), "TTO", "Spain"), 0.825)
@@ -202,6 +208,15 @@ test_that("EQ-5D-3L Germany VAS gives correct answer", {
   expect_equal(eq5d3l(c(MO=3,SC=1,UA=1,PD=3,AD=1), "VAS", "Germany"), 0.170)
   expect_equal(eq5d3l(c(MO=3,SC=2,UA=2,PD=3,AD=2), "VAS", "Germany"), 0.099)
   expect_equal(eq5d3l(c(MO=3,SC=3,UA=3,PD=3,AD=3), "VAS", "Germany"), 0.021)
+})
+
+test_that("EQ-5D-3L Malaysia VAS gives correct answer", {
+  expect_equal(eq5d3l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "VAS", "Malaysia"), 1)
+  expect_equal(eq5d3l(c(MO=1,SC=1,UA=1,PD=2,AD=1), "VAS", "Malaysia"), 0.879)
+  expect_equal(eq5d3l(c(MO=1,SC=1,UA=3,PD=1,AD=2), "VAS", "Malaysia"), 0.614)
+  expect_equal(eq5d3l(c(MO=1,SC=3,UA=3,PD=1,AD=1), "VAS", "Malaysia"), 0.535)
+  expect_equal(eq5d3l(c(MO=3,SC=2,UA=3,PD=1,AD=3), "VAS", "Malaysia"), 0.321)
+  expect_equal(eq5d3l(c(MO=3,SC=3,UA=3,PD=3,AD=3), "VAS", "Malaysia"), 0.131)
 })
 
 test_that("EQ-5D-3L New Zealand VAS gives correct answer", {
