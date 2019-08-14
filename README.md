@@ -83,13 +83,13 @@ head(valuesets())
 
 # Return VAS based value sets (top 6 returned for brevity).
 head(valuesets(type="VAS"))
-#>    Version Type    Country
-#> 1 EQ-5D-3L  VAS    Belgium
-#> 2 EQ-5D-3L  VAS    Denmark
-#> 3 EQ-5D-3L  VAS     Europe
-#> 4 EQ-5D-3L  VAS    Finland
-#> 5 EQ-5D-3L  VAS    Germany
-#> 6 EQ-5D-3L  VAS NewZealand
+#>    Version Type  Country
+#> 1 EQ-5D-3L  VAS  Belgium
+#> 2 EQ-5D-3L  VAS  Denmark
+#> 3 EQ-5D-3L  VAS   Europe
+#> 4 EQ-5D-3L  VAS  Finland
+#> 5 EQ-5D-3L  VAS  Germany
+#> 6 EQ-5D-3L  VAS Malaysia
 
 # Return EQ-5D-5L value sets (top 6 returned for brevity).
 head(valuesets(version="5L"))
@@ -122,7 +122,7 @@ Alternatively, it can be accessed without installing R/Shiny/eq5d by visiting [s
 
 ![Shiny EQ-5D app main screenshot](man/figures/shiny_app_screenshot_main.png)
 
-![Shiny EQ-5D app plots screenshot](man/figures/shiny_app_screenshot_plots.png)
+![Shiny EQ-5D app density plot screenshot](man/figures/shiny_app_screenshot_density.png) ![Shiny EQ-5D app ecdf plot screenshot](man/figures/shiny_app_screenshot_ecdf.png) ![Shiny EQ-5D app radar plot screenshot](man/figures/shiny_app_screenshot_radar.png)
 
 License
 -------
