@@ -82,8 +82,13 @@ eq5d3l <- function(scores, type="TTO", country="UK") {
       .I2Square(scores) * survey["I2square",],
       .I3(scores) * survey["I3",],
       .I3Square(scores) * survey["I3square",],
+      .O2(scores) * survey["O2",],
+      .O3(scores) * survey["O3",],
+      .C2Square(scores) * survey["C2square",],
       .C3Square(scores) * survey["C3square",],
-      .X5(scores) * survey["X5",])
+      .X5(scores) * survey["X5",],
+      .Z2(scores) * survey["Z2",],
+      .Z3(scores) * survey["Z3",])
   )
 }
 
@@ -127,6 +132,21 @@ eq5d3l <- function(scores, type="TTO", country="UK") {
   return(.I3(scores)^2)
 }
 
+.C2 <- function(scores) {
+  x <- 0
+  if(!is.na(scores["MO"]) && scores["MO"] == 2) x <- x + 1
+  if(!is.na(scores["SC"]) && scores["SC"] == 2) x <- x + 1
+  if(!is.na(scores["UA"]) && scores["UA"] == 2) x <- x + 1
+  if(!is.na(scores["PD"]) && scores["PD"] == 2) x <- x + 1
+  if(!is.na(scores["AD"]) && scores["AD"] == 2) x <- x + 1
+  
+  return(x)
+}
+
+.C2Square <- function(scores) {
+  return(.C2(scores)^2)
+}
+
 .C3 <- function(scores) {
   x <- 0
   if(!is.na(scores["MO"]) && scores["MO"] == 3) x <- x + 1
@@ -142,9 +162,39 @@ eq5d3l <- function(scores, type="TTO", country="UK") {
   return(.C3(scores)^2)
 }
 
+.O2 <- function(scores){
+  x <- 0
+  if(identical(unique(sort(scores)),c(1,2)) | identical(unique(sort(scores)), 2)) {
+    x <- 1
+  }
+  return(x)
+}
+
+.O3 <- function(scores){
+  x <- 0
+  if(identical(unique(sort(scores)),c(1,3)) | identical(unique(sort(scores)), 3)) {
+    x <- 1
+  }
+  return(x) 
+}
+
 .X5 <- function(scores) {
   x5 <- all(scores %in% c(2,3))
   return(ifelse(x5, 1, 0))
 }
 
+.Z2 <- function(scores) {
+  #at least one dimension at level 2 and one dimension at level 3
+  z2 <- any(scores == 2) & any(scores==3)
+  return(ifelse(z2, 1, 0))
+}
+
+.Z3 <- function(scores) {
+  #number of dimensions at level 2 given at least one dimension at level 3
+  x <- 0
+  if(any(scores==3)) {
+    x <- sum(scores==2)
+  }
+  return(x)
+}
 
