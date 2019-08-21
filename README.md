@@ -83,13 +83,13 @@ head(valuesets())
 
 # Return VAS based value sets (top 6 returned for brevity).
 head(valuesets(type="VAS"))
-#>    Version Type  Country
-#> 1 EQ-5D-3L  VAS  Belgium
-#> 2 EQ-5D-3L  VAS  Denmark
-#> 3 EQ-5D-3L  VAS   Europe
-#> 4 EQ-5D-3L  VAS  Finland
-#> 5 EQ-5D-3L  VAS  Germany
-#> 6 EQ-5D-3L  VAS Malaysia
+#>    Version Type Country
+#> 1 EQ-5D-3L  VAS Belgium
+#> 2 EQ-5D-3L  VAS Denmark
+#> 3 EQ-5D-3L  VAS  Europe
+#> 4 EQ-5D-3L  VAS Finland
+#> 5 EQ-5D-3L  VAS Germany
+#> 6 EQ-5D-3L  VAS    Iran
 
 # Return EQ-5D-5L value sets (top 6 returned for brevity).
 head(valuesets(version="5L"))
@@ -112,7 +112,7 @@ valuesets(country="UK")
 Shiny web interface
 -------------------
 
-The calculation (and visualisation) of multiple EQ-5D indices can also be performed by upload of a CSV or Excel file using the packaged [Shiny](https://shiny.rstudio.com) app. This requires the [shiny](https://cran.r-project.org/package=shiny), [DT](https://cran.r-project.org/package=DT), [ggplot2](https://cran.r-project.org/package=ggplot2), [mime](https://cran.r-project.org/package=mime) and [readxl](https://cran.r-project.org/package=readxl) packages. The CSV/Excel headers should be the same as the names of the vector passed to the ***eq5d*** function i.e. MO, SC, UA, PD and AD. The app is launched using the ***shiny\_eq5d*** function.
+The calculation (and visualisation) of multiple EQ-5D indices can also be performed by upload of a CSV or Excel file using the packaged [Shiny](https://shiny.rstudio.com) app. This requires the [shiny](https://cran.r-project.org/package=shiny), [DT](https://cran.r-project.org/package=DT), [ggplot2](https://cran.r-project.org/package=ggplot2), [ggiraph](https://cran.r-project.org/package=ggiraph), [ggiraphExtra](https://cran.r-project.org/package=ggiraphExtra), [mime](https://cran.r-project.org/package=mime) and [readxl](https://cran.r-project.org/package=readxl) packages. The CSV/Excel headers should be the same as the names of the vector passed to the ***eq5d*** function i.e. MO, SC, UA, PD and AD. The app is launched using the ***shiny\_eq5d*** function.
 
 ``` r
 shiny_eq5d()
