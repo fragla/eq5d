@@ -4,17 +4,22 @@
 \name{VAS}
 \alias{VAS}
 \title{EQ-5D-3L VAS value set data}
-\format{An object of class \code{data.frame} with 19 rows and 10 columns.}
+\format{An object of class \code{data.frame} with 21 rows and 11 columns.}
 \source{
 Oppe, M., Szende, A., & de Charro, F. (2007), Comparative review of Visual Analogue Scale value sets.
   In Szende, A., Oppe, M., & Devlin, N. (Ed.), EQ-5D Value Sets: Inventory, Comparative Review
-  and User Guide (pp. 37-38). Dordrecht, The Netherlands: Springer.
+  and User Guide (pp. 37-38). Dordrecht, The Netherlands: Springer.  
+  
+\strong{Iran}: Goudarzi R, Zeraati H, Akbari Sari A, Rashidian A, Mohammad K. Population-Based Preference Weights for the EQ-5D Health States Using the Visual Analogue Scale (VAS) in Iran. Iran Red Crescent Med J. 2016 Feb 13;18(2):e21584. doi: 10.5812/ircmj.21584. \href{https://www.ncbi.nlm.nih.gov/pubmed/27186384}{PubMed}
+
+\strong{Malaysia}: Yusof FA, Goh A, Azmi S. Estimating an EQ-5D value set for Malaysia using time trade-off and visual analogue scale methods. Value Health. 2012 Jan-Feb;15(1 Suppl):S85-90. doi: 10.1016/j.jval.2011.11.024. \href{https://www.ncbi.nlm.nih.gov/pubmed/22265073}{PubMed}
 }
 \usage{
 VAS
 }
 \description{
 Coefficients for the estimation of the EQ-5D-3L index values based on VAS valuation studies
- for Belgium, Denmark, Europe, Finland, Germany, New Zealand, Slovenia, Spain and UK.
+ for Belgium, Denmark, Europe, Finland, Germany, Iran, Malaysia, New Zealand, Slovenia, Spain
+ and UK.
 }
 \keyword{datasets}
