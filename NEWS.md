@@ -3,6 +3,10 @@
 eq5d (development version)
 ==========================
 
+-   Added Iran, Malaysia and Singapore EQ-5D-3L value sets.
+
+-   Added USA EQ-5D-5L valueset.
+
 -   Updates to shiny application
     -   New navbar layout
     -   Added radar plot.
