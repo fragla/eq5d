@@ -5,6 +5,7 @@ library(readxl)
 library(ggplot2)
 library(ggiraph)
 library(ggiraphExtra)
+library(shinyWidgets)
 
 options(shiny.sanitize.errors = FALSE)
 
@@ -116,6 +117,7 @@ shinyServer(function(input, output) {
     if(is.null(input$data) || is.null(input$version) || is.null(input$type) || is.null(input$country))
       return()
     
+    print(paste(input$version, type=input$type, country=input$country))
     vs <- valuesets(version=input$version, type=input$type, country=input$country)
     
     if(nrow(vs) != 1)
@@ -195,13 +197,11 @@ shinyServer(function(input, output) {
     
     idx <- getColumnIndex(dat)
     if(is.null(idx)) {
-      print(head(dat))
       stop("Unable to identify EQ-5D dimensions in the file header.")
     }
     
     dat <- dat[,idx]
     if(!all(sapply(dat, function(x) is.numeric(x)))) {
-      print(head(dat))
       stop("Non-numeric values found in uploaded EQ-5D dimensions.")
     }
     
@@ -225,7 +225,7 @@ shinyServer(function(input, output) {
     }
   }
   
-  getTableData <- function() {
+  getTableData <- reactive({
     eq5d <- eq5d(dataset(), version=input$version, type=input$type, country=input$country)
     if(input$raw) {
       res <- cbind(rawdata(), eq5d)
@@ -234,20 +234,37 @@ shinyServer(function(input, output) {
     }
     colnames(res)[ncol(res)] <- "Index"
     return(res)
-  }
+  })
+  
+  getTableDataByGroup <- reactive({
+    data <- getTableData()
+    
+    if(input$group != "None") {
+      data <- data[which(data[,input$group] %in% input$group_member),]
+    }
+    
+    return(data)
+  })
 
   output$plot <- renderggiraph({
     if(is.null(input$data) || is.null(input$plot_type) || is.null(input$group))
       return()
+    
+    if(input$group!="None" && is.null(input$group_member))
+      return()
 
     code <- getPlot()
-    
+
     output <- ggiraph(code = print(code), selection_type = "single")
 
     return(output)
   })
   
-  getPlot <- function() {
+  getPlot <- reactive({
+    if(is.null(input$group)) {
+      return()
+    }
+
     if(input$plot_type=="density") {
       print("Density")
       code <- density_plot()
@@ -261,50 +278,51 @@ shinyServer(function(input, output) {
       stop("Unable to identify plot type")
     }
     return(code)
-  }
+  })
 
   density_plot <- reactive({
     if(is.null(input$data) || is.null(input$plot_type) || is.null(input$group))
       return()
 
-    data <- getTableData()
-
-    ave.meth <- get_average_method()
+    data <- getTableDataByGroup()
     
-    if(input$group=="None" || !input$raw) {
-      p <- ggplot(data, aes_string(x=input$plot_data)) + 
-           geom_density(color="darkblue", fill="lightblue", alpha=0.4)
-
-      if(input$average) {
-        p <- p + geom_vline_interactive(aes_string(xintercept=ave.meth(data[[input$plot_data]])),
-            color="darkblue", linetype="dashed", tooltip = paste0(input$average_method, ": ", get_average_value()), data_id = "density_mean")
+    if(nrow(data) > 0) {
+      ave.meth <- get_average_method()
+      
+      if(input$group=="None" || !input$raw) {
+        p <- ggplot(data, aes_string(x=input$plot_data)) + 
+             geom_density(color="darkblue", fill="lightblue", alpha=0.4)
+  
+        if(input$average) {
+          p <- p + geom_vline_interactive(aes_string(xintercept=ave.meth(data[[input$plot_data]])),
+              color="darkblue", linetype="dashed", tooltip = paste0(input$average_method, ": ", get_average_value()), data_id = "density_mean")
+        }
+             
+      } else {
+        colours <- getGroupColours()
+        mu <- get_average_value()
+        p <- ggplot(data, aes_string(x=input$plot_data, fill=input$group)) + 
+             geom_density(alpha=0.4) + scale_fill_manual(values=colours) + scale_color_manual(values=colours)  
+  
+        if(input$average) {
+          p <- p + geom_vline_interactive(data=mu, aes_string(xintercept="x", color="group"),
+               linetype="dashed", show.legend=FALSE, tooltip = paste0(input$average_method, ": ", mu$x), data_id = paste0("density_", input$average_method, "_", mu$group))
+        }   
       }
-           
-    } else {
-      #data[[input$group]] <- as.factor(as.character(data[[input$group]]))
-      mu <- get_average_value()
-      p <- ggplot(data, aes_string(x=input$plot_data, fill=input$group)) + 
-           geom_density(alpha=0.4)         
-
-      if(input$average) {
-        p <- p + geom_vline_interactive(data=mu, aes_string(xintercept="x", color="group"),
-             linetype="dashed", show.legend=FALSE, tooltip = paste0(input$average_method, ": ", mu$x), data_id = paste0("density_", input$average_method, "_", mu$group))
-      }   
+  
+      if(input$plot_data != "Index") {
+        p <- p + scale_x_continuous(breaks= 1:sub("L", "", input$version), labels = 1:sub("L", "", input$version))
+      }
+  
+      return(p)
     }
-
-    if(input$plot_data != "Index") {
-      p <- p + scale_x_continuous(breaks= 1:sub("L", "", input$version), labels = 1:sub("L", "", input$version))
-    }
-
-    return(p)
-    
   })
 
   ecdf_plot <- reactive({
     if(is.null(input$data) || is.null(input$plot_type) || is.null(input$group))
       return()
 
-    data <- getTableData()
+    data <- getTableDataByGroup()
     
     ave.meth <- get_average_method()
 
@@ -318,8 +336,9 @@ shinyServer(function(input, output) {
       }
            
     } else {
-
-      p <- ggplot(data, aes_string(input$plot_data, colour = input$group)) + stat_ecdf(geom = "step")
+      colours <- getGroupColours()
+      p <- ggplot(data, aes_string(input$plot_data, colour = input$group)) + 
+        stat_ecdf(geom = "step") + scale_color_manual(values=colours)
       mu <- get_average_value()        
 
       if(input$average) {
@@ -338,15 +357,18 @@ shinyServer(function(input, output) {
     if(is.null(input$data) || is.null(input$plot_type) || is.null(input$group))
       return()
     
-    data <- getTableData()
+    data <- getTableDataByGroup()
     
     if(input$group=="None" || !input$raw) {
     
       data <- data[,names(data) %in% c("MO", "SC", "UA", "PD", "AD")]
       p <- ggRadar(data=data, rescale=FALSE, colour = "#F8766D", alpha = 0.4)
     } else {
+      colours <- getGroupColours()
       data <- data[,names(data) %in% c("MO", "SC", "UA", "PD", "AD", input$group)]
-      p <- ggRadar(data=data,aes_string(color=input$group), rescale=FALSE) + theme(legend.position="right")
+      p <- ggRadar(data=data,aes_string(color=input$group), rescale=FALSE) + 
+        scale_fill_manual(values=colours) + scale_color_manual(values=colours) +
+        theme(legend.position="right")
     }
     return(p)
   })
@@ -381,6 +403,25 @@ shinyServer(function(input, output) {
     )
   })
   
+  output$choose_group_members <- renderUI({
+
+    if(is.null(input$group) || input$group=="None") {
+      return()
+    }
+    data <- getTableData()
+
+    pickerInput(
+      inputId = "group_member",
+      label = "Select/deselect group members",
+      choices = unique(data[[input$group]]),
+      selected =unique(data[[input$group]]),
+      options = list(
+        `actions-box` = FALSE,
+        `none-selected-text` = "Please select at least one."),
+      multiple = TRUE
+    )
+  })
+  
   get_average_method <- reactive({
     if(input$average_method=="mean") {
       return(mean)
@@ -391,7 +432,10 @@ shinyServer(function(input, output) {
 
   get_average_value <- reactive({
 
-    data <- getTableData()
+    data <- getTableDataByGroup()
+    
+    if(nrow(data)==0)
+      return()
     
     ave.meth <- get_average_method()
     
@@ -402,5 +446,22 @@ shinyServer(function(input, output) {
     }
     return(mu)
   })
+  
+  ggplotColours <- function(n = 6, h = c(0, 360) + 15){
+    if ((diff(h) %% 360) < 1) h[2] <- h[2] - 360/n
+    hcl(h = (seq(h[1], h[2], length = n)), c = 100, l = 65)
+  }
+  
+  getGroupColours <- reactive({
+    data <- getTableData()
+    groups <- unique(data[[input$group]])
+    colours <- ggplotColours(length(groups))
+    names(colours) <- groups
+    return(colours)
+  })
 
+  gg_color_hue <- function(n) {
+    hues = seq(15, 375, length = n + 1)
+    hcl(h = hues, l = 65, c = 100)[1:n]
+  }
 })

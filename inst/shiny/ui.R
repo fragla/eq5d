@@ -3,7 +3,6 @@ library(shinycssloaders)
 
 shinyUI(
   navbarPage("EQ-5D",
-
     tabPanel("Data", tags$style(HTML("
               .col-sm-4, .col-sm-8 {margin-top:5px;}")),
       sidebarPanel(
@@ -42,6 +41,10 @@ shinyUI(
         ),
         uiOutput("choose_plot_type"),
         uiOutput("choose_group_by"),
+        conditionalPanel(
+          condition = "input.group != 'None'",
+          uiOutput("choose_group_members")
+        ),
         conditionalPanel(
           condition = "input.plot_type != 'radar'",
           uiOutput("show_average"),
