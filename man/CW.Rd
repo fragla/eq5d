@@ -10,7 +10,7 @@ van Hout B, Janssen MF, et al. Interim scoring for the EQ-5D-5L: Mapping the EQ-
   to EQ-5D-3L value sets. Value in Health 2012 Jul-Aug;15(5):708-15. doi: 10.1016/j.jval.2012.02.008. 
   \href{https://www.ncbi.nlm.nih.gov/pubmed/22867780}{PubMed}
 
-\href{https://euroqol.org/wp-content/uploads/2018/02/EQ-5D-5L_Crosswalk_Index_Value_Calculator.v2.xls}{EQ-5D-5L Crosswalk Index Value Calculator}
+\href{https://euroqol.org/wp-content/uploads/2018/02/EQ-5D-5L_Crosswalk_Index_Value_Calculator_v2.xls}{EQ-5D-5L Crosswalk Index Value Calculator}
 }
 \usage{
 CW
