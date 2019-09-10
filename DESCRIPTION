@@ -29,6 +29,7 @@ Description: EQ-5D is a popular health related quality of life instrument used
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Depends: R (>= 3.5.0)
 Suggests: 
     testthat,
     shiny,
