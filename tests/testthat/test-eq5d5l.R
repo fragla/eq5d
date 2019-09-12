@@ -102,7 +102,7 @@ test_that("EQ-5D-5L Spain gives correct answer", {
 
 test_that("EQ-5D-5L Taiwan gives correct answer", {
   expect_equal(eq5d5l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "Taiwan"), 1)
-  expect_equal(eq5d5l(c(MO=1,SC=2,UA=3,PD=4,AD=5), "Taiwan"), 0.039)
+  expect_equal(eq5d5l(c(MO=1,SC=2,UA=3,PD=4,AD=5), "Taiwan"), 0.039, tolerance = .0011)
   expect_equal(eq5d5l(c(MO=4,SC=2,UA=1,PD=1,AD=4), "Taiwan"), 0.219)
   expect_equal(eq5d5l(c(MO=5,SC=5,UA=5,PD=4,AD=5), "Taiwan"), -0.913)
   expect_equal(eq5d5l(c(MO=5,SC=5,UA=4,PD=4,AD=4), "Taiwan"), -0.761)
