@@ -98,6 +98,8 @@ valuesets(country="UK")
 
 The calculation (and visualisation) of multiple EQ-5D indices can also be performed by upload of a CSV or Excel file using the packaged [Shiny](https://shiny.rstudio.com) app. This requires the [shiny](https://cran.r-project.org/package=shiny), [DT](https://cran.r-project.org/package=DT),
 [ggplot2](https://cran.r-project.org/package=ggplot2),
+[ggiraph](https://cran.r-project.org/package=ggiraph),
+[ggiraphExtra](https://cran.r-project.org/package=ggiraphExtra),
 [mime](https://cran.r-project.org/package=mime) and [readxl](https://cran.r-project.org/package=readxl) packages. The CSV/Excel headers should be the same as the names of the vector passed to the ***eq5d*** function i.e. MO, SC, UA, PD and AD.  The app is launched using the ***shiny_eq5d*** function.
 
 ```{r shiny, echo=TRUE, eval=FALSE}

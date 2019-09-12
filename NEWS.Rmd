@@ -7,16 +7,19 @@ output: github_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-# eq5d (development version)
+# eq5d 0.3.0 (2019-09-12)
 
-* Added Iran, Malaysia and Singapore EQ-5D-3L value sets.
+* Added Iran and Malaysia EQ-5D-3L VAS value sets
 
-* Added USA EQ-5D-5L valueset.
+* Added Singapore EQ-5D-3L TTO value set.
+
+* Added USA EQ-5D-5L value set.
 
 * Updates to shiny application
     * New navbar layout
     * Added radar plot.
-    * Tool tips added to radar plot and to means/medians of density/ecdf plots.
+    * Ability to customise plots by adding/removing specific data groups.
+    * Tool tips added means/medians of density/ecdf plots.
     * shinycssloader icons used when waiting for a plot to load in shiny.
     * Download button added to plots page.
     * Help/FAQ page added.
