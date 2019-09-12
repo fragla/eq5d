@@ -3,6 +3,7 @@ library(shinycssloaders)
 
 shinyUI(
   navbarPage("EQ-5D",
+    
     tabPanel("Data", tags$style(HTML("
               .col-sm-4, .col-sm-8 {margin-top:5px;}")),
       sidebarPanel(
@@ -100,6 +101,7 @@ shinyUI(
           can be found ', 
           a(href='https://github.com/fragla/eq5d/blob/master/DESCRIPTION', ' here'), '.')))
       )
-    )
+    ),
+    tags$head( tags$style(type="text/css", "text {font-family: sans-serif}"))
   )
 )
