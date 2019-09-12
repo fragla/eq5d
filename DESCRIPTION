@@ -1,7 +1,7 @@
 Package: eq5d
 Type: Package
 Title: Methods for Calculating 'EQ-5D' Utility Index Scores
-Version: 0.2.0.9001
+Version: 0.3.0
 Authors@R: c(
     person("Fraser", "Morton", email = "fraser.morton@glasgow.ac.uk", role = c("aut", "cre")),
     person(c("Jagtar", "Singh"), "Nijjar", email = "jsn33@medschl.cam.ac.uk", role = "aut"))
