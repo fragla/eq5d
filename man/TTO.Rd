@@ -4,7 +4,7 @@
 \name{TTO}
 \alias{TTO}
 \title{EQ-5D-3L TTO value set data}
-\format{An object of class \code{data.frame} with 25 rows and 20 columns.}
+\format{An object of class \code{data.frame} with 25 rows and 21 columns.}
 \source{
 Szende, A., Oppe, M., & de Charro, F. (2007), Comparative review of Time Trade-Off value sets. 
   In Szende, A., Oppe, M., & Devlin, N. (Ed.), EQ-5D Value Sets: Inventory, Comparative Review
@@ -25,6 +25,8 @@ Janssen, B., Szende, A., & Ramos-Goñi JM. (2014), Data and Methods.
 \strong{Portugal}: Ferreira LN, Ferreira PL, Pereira LN, Oppe M. The valuation of the EQ-5D in Portugal. Qual Life Res. 2014;23(2):413-23. \href{https://www.ncbi.nlm.nih.gov/pubmed/23748906}{PubMed}
 
 \strong{Singapore}: Luo N, Wang P, Thumboo J, Lim YW, Vrijhoef HJ. Valuation of EQ-5D-3L health states in Singapore: modeling of time trade-off values for 80 empirically observed health states. Pharmacoeconomics. 2014 May;32(5):495-507. doi: 10.1007/s40273-014-0142-1. \href{https://www.ncbi.nlm.nih.gov/pubmed/24519603}{PubMed}
+
+\strong{Sweden}: Burström K, Sun S, Gerdtham UG, Henriksson M, Johannesson M, Levin LÅ, Zethraeus N. Swedish experience-based value sets for EQ-5D health states. Qual Life Res. 2014 Mar;23(2):431-42. doi: 10.1007/s11136-013-0496-4. \href{https://www.ncbi.nlm.nih.gov/pubmed/23975375}{PubMed}
 
 \strong{Taiwan}: Lee HY, Hung MC, Hu FC, Chang YY, Hsieh CL, Wang JD. Estimating quality weights for EQ-5D (EuroQol-5 dimensions) health states with the time trade-off method in Taiwan. J Formos Med Assoc. 2013;112(11):699-706. \href{https://www.ncbi.nlm.nih.gov/pubmed/24183199}{PubMed}
 
