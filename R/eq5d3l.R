@@ -31,7 +31,7 @@ eq5d3l <- function(scores, type="TTO", country="UK") {
   
   survey <- survey[country]
 
-  values <- c(.minOne2Or3(scores, survey), .minOne3(scores, survey), .dimensionScores(scores, survey), .ordinalScore(scores, survey))
+  values <- c(survey["FullHealth",], .minOne2Or3(scores, survey), .minOne3(scores, survey), .dimensionScores(scores, survey), .ordinalScore(scores, survey))
   index <- NULL
 
   if(type=="VAS" && country=="Germany") {
@@ -44,7 +44,7 @@ eq5d3l <- function(scores, type="TTO", country="UK") {
 }
 
 .eq5d3l.add <- function(values) {
-  1+sum(values, na.rm = TRUE)
+  sum(values, na.rm = TRUE)
 }
 
 .eq5d3l.mult <- function(values) {
