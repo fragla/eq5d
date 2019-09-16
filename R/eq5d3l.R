@@ -31,7 +31,7 @@ eq5d3l <- function(scores, type="TTO", country="UK") {
   
   survey <- survey[country]
 
-  values <- c(survey["FullHealth",], .minOne2Or3(scores, survey), .minOne3(scores, survey), .dimensionScores(scores, survey), .ordinalScore(scores, survey))
+  values <- c(survey["FullHealth",], .minOne2Or3(scores, survey), .minOne3(scores, survey), .dimensionScores(scores, survey), .ordinalScore(scores, survey), .interactions(scores, survey))
   index <- NULL
 
   if(type=="VAS" && country=="Germany") {
@@ -196,5 +196,25 @@ eq5d3l <- function(scores, type="TTO", country="UK") {
     x <- sum(scores==2)
   }
   return(x)
+}
+
+.interactions <- function(scores, survey) {
+  score.dimensions <- paste0(names(scores), scores)
+  interactions <- INTERACTIONS[which(!is.na(survey[INTERACTIONS,]))]
+  
+  if(length(interactions) > 0) {
+    interaction.pairs <- sapply(interactions, function(x) {
+      pairs <- strsplit(gsub("([[:digit:]])([[:upper:]])", "\\1 \\2", x, " ")," ")
+      lapply(pairs, function(y){
+        all(y %in% score.dimensions)
+      })
+    })
+    interaction.pairs <- unlist(interaction.pairs)
+    interaction.present <- which(interaction.pairs)
+    
+    if(length(interaction.present) > 0) {
+      return(survey[names(interaction.present),])
+    }
+  }
 }
 
