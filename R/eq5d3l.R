@@ -199,6 +199,14 @@ eq5d3l <- function(scores, type="TTO", country="UK") {
 }
 
 .interactions <- function(scores, survey) {
+  INTERACTIONS <- c("MO2SC2", "MO2SC3", "MO2UA2", "MO2UA3", "MO2PD2", "MO2PD3", 
+                    "MO2AD2", "MO2AD3", "MO3SC3", "MO3UA3", "MO3PD2", "MO3PD3", 
+                    "MO3AD2", "MO3AD3", "SC2UA2", "SC2UA3", "SC2PD2", "SC2PD3", 
+                    "SC2AD2", "SC2AD3", "SC3UA2", "SC3UA3", "SC3PD2", "SC3PD3", 
+                    "SC3AD2", "SC3AD3", "UA2PD2", "UA2PD3", "UA2AD2", "UA2AD3", 
+                    "UA3PD2", "UA3PD3", "UA3AD2", "UA3AD3", "PD2AD2", "PD2AD3", 
+                    "PD3AD2", "PD3AD3")
+  
   score.dimensions <- paste0(names(scores), scores)
   interactions <- INTERACTIONS[which(!is.na(survey[INTERACTIONS,]))]
   
