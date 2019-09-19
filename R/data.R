@@ -16,9 +16,9 @@
 #' EQ-5D-3L TTO value set data
 #'
 #' Coefficients for the estimation of the EQ-5D-3L index values based on TTO valuation studies
-#'   for Brazil, Canada, Chile, Denmark, France, Germany, Italy, Japan, Korea, 
-#'   Netherlands, Poland, Portugal, Spain, Taiwan, Thailand, Trinidad and Tobago, 
-#'   UK, USA and Zimbabwe.
+#'   for Argentina, Brazil, Canada, Chile, Denmark, France, Germany, Italy, Japan, 
+#'   Korea, Netherlands, Poland, Portugal, Singapore, Spain, Sri Lanka, Sweden, Taiwan, 
+#'   Thailand, Trinidad and Tobago, UK, USA and Zimbabwe.
 #'      
 #' @source
 #' Szende, A., Oppe, M., & de Charro, F. (2007), Comparative review of Time Trade-Off value sets. 
@@ -53,8 +53,8 @@
 #' EQ-5D-3L VAS value set data
 #'
 #' Coefficients for the estimation of the EQ-5D-3L index values based on VAS valuation studies
-#'  for Belgium, Denmark, Europe, Finland, Germany, Iran, Malaysia, New Zealand, Slovenia, Spain
-#'  and UK.
+#'  for Belgium, Denmark, Europe, Finland, Germany, Iran, Malaysia, New Zealand, 
+#'  Slovenia, Spain and UK.
 #' 
 #' @source 
 #' Oppe, M., Szende, A., & de Charro, F. (2007), Comparative review of Visual Analogue Scale value sets.
@@ -71,8 +71,8 @@
 #' EQ-5D-5L VT value set data
 #'
 #' EQ-5D-5L VT value set calculation data for Canada, China, England, Germany, 
-#'   Hong Kong, Indonesia, Ireland, Japan, Korea, Malaysia, Netherlands, Spain,
-#'   Taiwan, Thailand and Uruguay.
+#'   Hong Kong, Indonesia, Ireland, Japan, Korea, Malaysia, Netherlands, Poland, 
+#'   Portugal, Spain, Taiwan, Thailand, Uruguay and USA.
 #'
 #' @source 
 #'   \enumerate{
