@@ -19,7 +19,7 @@ VAS
 }
 \description{
 Coefficients for the estimation of the EQ-5D-3L index values based on VAS valuation studies
- for Belgium, Denmark, Europe, Finland, Germany, Iran, Malaysia, New Zealand, Slovenia, Spain
- and UK.
+ for Belgium, Denmark, Europe, Finland, Germany, Iran, Malaysia, New Zealand, 
+ Slovenia, Spain and UK.
 }
 \keyword{datasets}

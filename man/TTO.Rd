@@ -4,7 +4,7 @@
 \name{TTO}
 \alias{TTO}
 \title{EQ-5D-3L TTO value set data}
-\format{An object of class \code{data.frame} with 25 rows and 21 columns.}
+\format{An object of class \code{data.frame} with 63 rows and 24 columns.}
 \source{
 Szende, A., Oppe, M., & de Charro, F. (2007), Comparative review of Time Trade-Off value sets. 
   In Szende, A., Oppe, M., & Devlin, N. (Ed.), EQ-5D Value Sets: Inventory, Comparative Review
@@ -13,6 +13,8 @@ Szende, A., Oppe, M., & de Charro, F. (2007), Comparative review of Time Trade-O
 Janssen, B., Szende, A., & Ramos-Goñi JM. (2014), Data and Methods.
   Szende, A., Janssen, B., & Cabasés, J. (Ed.), In Self-Reported Population Health: An 
   International Perspective based on EQ-5D (p 13). Dordrecht, The Netherlands: Springer.
+
+\strong{Australia}: Viney R, Norman R, King MT, Cronin P, Street DJ, Knox S, Ratcliffe J. Time trade-off derived EQ-5D weights for Australia. Value Health. 2011 Sep-Oct;14(6):928-36. doi: 10.1016/j.jval.2011.04.009. \href{https://www.ncbi.nlm.nih.gov/pubmed/21914515}{PubMed}
 
 \strong{Brazil}: Viegas Andrade M, Noronha K, Kind P, Maia AC, Miranda de Menezes R, De Barros Reis C, Nepomuceno Souza M, Martins D, Gomes L, Nichele D, Calazans J, Mascarenhas T, Carvalho L, Lins C. Societal Preferences for EQ-5D Health States from a Brazilian Population Survey. Value in Health Regional Issues 2013;2(3):405–412. \href{https://www.ncbi.nlm.nih.gov/pubmed/29702778}{PubMed}  
 
@@ -39,8 +41,8 @@ TTO
 }
 \description{
 Coefficients for the estimation of the EQ-5D-3L index values based on TTO valuation studies
-  for Brazil, Canada, Chile, Denmark, France, Germany, Italy, Japan, Korea, 
-  Netherlands, Poland, Portugal, Spain, Taiwan, Thailand, Trinidad and Tobago, 
-  UK, USA and Zimbabwe.
+  for Argentina, Australia, Brazil, Canada, Chile, Denmark, France, Germany, Italy, Japan, 
+  Korea, Netherlands, Poland, Portugal, Singapore, Spain, Sri Lanka, Sweden, Taiwan, 
+  Thailand, Trinidad and Tobago, UK, USA and Zimbabwe.
 }
 \keyword{datasets}
