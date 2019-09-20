@@ -33,9 +33,11 @@ eq5d3l <- function(scores, type="TTO", country="UK") {
 
   values <- c(survey["FullHealth",], .minOne2Or3(scores, survey), .minOne3(scores, survey), .dimensionScores(scores, survey), .ordinalScore(scores, survey), .interactions(scores, survey))
   index <- NULL
-
+  
   if(type=="VAS" && country=="Germany") {
     index <- .eq5d3l.mult(values)
+  } else if(country=="Australia" && type=="TTO" && .collapseScore(scores) %in% names(.australiaImplausible())) {
+    index <- as.numeric(.australiaImplausible()[[.collapseScore(scores)]])
   } else {
     index <- .eq5d3l.add(values)
   }
@@ -226,3 +228,12 @@ eq5d3l <- function(scores, type="TTO", country="UK") {
   }
 }
 
+.australiaImplausible <- function() {
+  implausible <- c(0.154, 0.101, 0.154, 0.101, 0.02, 0.02, 0.086, 0.033, 0.086, 0.033, -0.048, -0.048, -0.083, -0.136, -0.206, -0.045, -0.083, -0.098, -0.136, -0.199, -0.217, -0.217)
+  names(implausible) <- c("12133", "12233", "13133", "13233", "13332", "13333", "22133", "22233", "23133", "23233", "23332", "23333", "32133", "32233", "32333", "33132", "33133", "33232", "33233", "33323", "33332", "33333")
+  return(implausible)
+}
+
+.collapseScore <- function(score) {
+  return(paste(score, collapse=""))
+}
