@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 * Added Poland and Portugal EQ-5D-5L value sets.
 
-* Added Australian, Sri Lankan and Swedish EQ-5D-3L TTO value sets.
+* Added Australian, Chinese, Sri Lankan and Swedish EQ-5D-3L TTO value sets.
 
 # eq5d 0.3.0 (2019-09-12)
 

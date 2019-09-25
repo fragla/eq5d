@@ -1,9 +1,16 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
+eq5d (development version)
+==========================
+
+-   Added Poland and Portugal EQ-5D-5L value sets.
+
+-   Added Australian, Chinese, Sri Lankan and Swedish EQ-5D-3L TTO value sets.
+
 eq5d 0.3.0 (2019-09-12)
 =======================
 
--   Added Iran and Malaysia EQ-5D-3L VAS value sets
+-   Added Iran and Malaysia EQ-5D-3L VAS value sets.
 
 -   Added Singapore EQ-5D-3L TTO value set.
 

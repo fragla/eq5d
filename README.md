@@ -73,13 +73,13 @@ The available value sets can be viewed using the ***valuesets*** function. The r
 ``` r
 # Return all value sets (top 6 returned for brevity).
 head(valuesets())
-#>    Version Type Country
-#> 1 EQ-5D-3L  TTO  Brazil
-#> 2 EQ-5D-3L  TTO  Canada
-#> 3 EQ-5D-3L  TTO   Chile
-#> 4 EQ-5D-3L  TTO Denmark
-#> 5 EQ-5D-3L  TTO  France
-#> 6 EQ-5D-3L  TTO Germany
+#>    Version Type   Country
+#> 1 EQ-5D-3L  TTO Argentina
+#> 2 EQ-5D-3L  TTO Australia
+#> 3 EQ-5D-3L  TTO    Brazil
+#> 4 EQ-5D-3L  TTO    Canada
+#> 5 EQ-5D-3L  TTO     Chile
+#> 6 EQ-5D-3L  TTO     China
 
 # Return VAS based value sets (top 6 returned for brevity).
 head(valuesets(type="VAS"))
