@@ -32,12 +32,17 @@ eq5d <- function (scores, version, type, country) {
 #' @export
 eq5d.numeric <- function(scores, version=NULL, type=NULL, country=NULL) {
   
+  if(!version %in% c("3L", "5L"))
+    stop("EQ-5D version not one of 3L or 5L.")
+  
+  if(is.numeric(scores[1]) & nchar(scores[1])==5 & scores[1] >= 11111 & scores[1] <= 11111 * as.numeric(sub("L", "", version))) {
+    scores <- as.numeric(strsplit(as.character(scores[1]), "")[[1]])
+    names(scores) <- c("MO", "SC", "UA", "PD", "AD")    
+  }
+  
   if(!all(names(scores) %in% c("MO", "SC", "UA", "PD", "AD"))) {
     stop("Unable to identify EQ-5D dimensions in scores.")
   }
-
-  if(!version %in% c("3L", "5L"))
-    stop("EQ-5D version not one of 3L or 5L.")
 
   if(version=="3L") {
     eq5d3l(scores, type=type, country=country)
