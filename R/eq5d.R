@@ -6,7 +6,8 @@
 #' 
 #' @param scores numeric or data.frame with names/colnames MO, SC, UA, PD and AD
 #'   representing Mobility, Self-care, Usual activities, Pain/discomfort and 
-#'   Anxiety/depression.
+#'   Anxiety/depression. Alternatively an EQ-5D  score can be provided in 
+#'   five digit format e.g. 12321.
 #' @param version string of value "3L" or "5L" to indicate instrument version. 
 #' @param type string specifying method type used in deriving value set scores. 
 #'   Options are TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L or CW for EQ-5D-5L 
@@ -23,6 +24,14 @@
 #'   UA=c(1,5,2,3,1), PD=c(1,3,4,3,4), AD=c(1,2,1,2,1)
 #'   )
 #' eq5d(scores.df, country="Canada", version="5L", type="VT")
+#'
+#' eq5d(scores=12321, type="TTO", version="3L", country="UK")
+#'
+#' scores.df2 <- data.frame(
+#'   state=c(11111,12121,23232,33333)
+#' )
+#' 
+#' eq5d(scores=scores.df2, type="TTO", version="3L", country="UK")
 #'
 #' @export
 eq5d <- function (scores, version, type, country) {
@@ -59,8 +68,8 @@ eq5d.numeric <- function(scores, version=NULL, type=NULL, country=NULL) {
 
 #' @export
 eq5d.data.frame <- function(scores, version=NULL, type=NULL, country=NULL) {
-  indices <- sapply(1:nrow(scores), function(x) {
-    eq5d.numeric(scores[x,], version=version, type=type, country=country)
+  indices <- apply(scores, 1, function(x) {
+    eq5d.numeric(x, version=version, type=type, country=country)
   })
   
   return(indices)
