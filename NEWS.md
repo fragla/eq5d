@@ -5,7 +5,11 @@ eq5d (development version)
 
 -   Added Poland and Portugal EQ-5D-5L value sets.
 
--   Added Australian, Chinese, Sri Lankan and Swedish EQ-5D-3L TTO value sets.
+-   Added Argentinian, Australian, Chinese, Sri Lankan and Swedish EQ-5D-3L TTO value sets.
+
+-   Functionality added to handle dimension scores in five digit format e.g. 12321
+
+-   Speed improvements when calculating multiple index scores.
 
 eq5d 0.3.0 (2019-09-12)
 =======================
