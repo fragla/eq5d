@@ -200,26 +200,33 @@ shinyServer(function(input, output) {
       stop("Unable to identify EQ-5D dimensions in the file header.")
     }
     
-    dat <- dat[,idx]
+    if(length(idx)==1) {
+      dat <- as.data.frame(do.call(rbind, strsplit(as.character(dat[[idx]]), "")))
+      colnames(dat) <- c("MO", "SC", "UA", "PD", "AD")
+      dat <- as.data.frame(apply(dat, 2, function(x) as.numeric(as.character(x))))
+      
+    } else {
+      dat <- dat[idx]
+    }
+    
     if(!all(sapply(dat, function(x) is.numeric(x)))) {
       stop("Non-numeric values found in uploaded EQ-5D dimensions.")
     }
-    
     return(dat)
   })
   
   getColumnIndex <- function(dat) {
     
-    short <- c("MO", "SC", "UA", "PD", "AD")
-    long <- c("Mobility", "Care", "Activity", "Pain", "Anxiety")
+    short <- getDimensionNames()
+    five.digit <- "State"
     
     short.idx <- match(tolower(short), tolower(colnames(dat)))
-    long.idx <- match(tolower(long), tolower(colnames(dat)))
+    five.digit.idx <- match(tolower(five.digit), tolower(colnames(dat)))
     
     if(all(!is.na(short.idx))) {
       return(short.idx)
-    } else if (all(!is.na(long.idx))) {
-      return(long.idx)
+    } else if (!is.na(five.digit.idx)) {
+      return(five.digit.idx)
     } else {
       return(NULL)
     }
@@ -228,7 +235,11 @@ shinyServer(function(input, output) {
   getTableData <- reactive({
     eq5d <- eq5d(dataset(), version=input$version, type=input$type, country=input$country)
     if(input$raw) {
-      res <- cbind(rawdata(), eq5d)
+      if(all(getDimensionNames() %in% colnames(rawdata()))) {
+        res <- cbind(rawdata(), eq5d)
+      } else {
+        res <- cbind(rawdata(), dataset(), eq5d)
+      }
     } else {
       res <- cbind(dataset(), eq5d)
     }
@@ -361,7 +372,7 @@ shinyServer(function(input, output) {
     
     if(input$group=="None" || !input$raw) {
     
-      data <- data[,names(data) %in% c("MO", "SC", "UA", "PD", "AD")]
+      data <- data[,names(data) %in% getDimensionNames()]
       p <- ggRadar(data=data, rescale=FALSE, colour = "#F8766D", alpha = 0.4)
     } else {
       colours <- getGroupColours()
@@ -390,7 +401,7 @@ shinyServer(function(input, output) {
       return()
     }
     data <- getTableData()
-    data <- data[!colnames(data) %in% c("MO", "SC", "UA", "PD", "AD")]
+    data <- data[!colnames(data) %in% getDimensionNames()]
     data <- data[sapply(data, function(x) is.character(x) || is.logical(x) || is.factor(x))]
     
     groups <- "None"
@@ -464,4 +475,8 @@ shinyServer(function(input, output) {
     hues = seq(15, 375, length = n + 1)
     hcl(h = hues, l = 65, c = 100)[1:n]
   }
+  
+  getDimensionNames <- reactive({
+    return(c("MO", "SC", "UA", "PD", "AD"))
+  })
 })

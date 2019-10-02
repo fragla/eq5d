@@ -2,7 +2,10 @@ library(ggiraph)
 library(shinycssloaders)
 
 shinyUI(
-  navbarPage("EQ-5D",
+  navbarPage(title="EQ-5D",
+             header=singleton(tags$head(
+               tags$style(type="text/css", "text {font-family: sans-serif}")
+               )),
     
     tabPanel("Data", tags$style(HTML("
               .col-sm-4, .col-sm-8 {margin-top:5px;}")),
@@ -101,7 +104,6 @@ shinyUI(
           can be found ', 
           a(href='https://github.com/fragla/eq5d/blob/master/DESCRIPTION', ' here'), '.')))
       )
-    ),
-    tags$head( tags$style(type="text/css", "text {font-family: sans-serif}"))
+    )
   )
 )
