@@ -64,13 +64,15 @@ shinyUI(
       div(style="padding-left:20%;padding-right:20%;",
         h4("How do I format my data for uploading?"),
         p("Data to be uploaded should be in either a Microsoft Excel (xlsx/xls) file or 
-          a CSV file. The file should be a minimum of five columns and must contain a 
-          header row with the labels MO, SC, UA, PD and AD (representing the 
-          dimensions Mobility, Self-care, Usual activities, Pain/discomfort and 
-          Anxiety/depression). Additional columns can be included in the file. 
-          Non-numeric columns can be used for grouping data in the plots tab. An 
-          example file can be downloaded " , 
+          a CSV file. The file should contain either a header row with the labels 
+          MO, SC, UA, PD and AD (representing the dimensions Mobility, Self-care, 
+          Usual activities, Pain/discomfort and Anxiety/depression) or use the column 
+          label 'State' with the scores encoded in five digit format. Additional columns 
+          can be included in the file as can been seen in the image below. Both formats 
+          in the image will produce the same results. Non-numeric columns can be used for 
+          grouping data in the plots tab. An example file can be downloaded " , 
           a("here", href="data/eq5d3l_example.xlsx", target="_blank"), "."),
+        div(img(src="images/shiny_app_excel_scores.png", width="75%"), style="text-align:center"),
         h4("I've uploaded my data. What do I do now?"),
         p("Once a file of EQ-5D dimension scores has been successfully uploaded the 
           correct EQ-5D version and value set need to be selected from side bar for 
