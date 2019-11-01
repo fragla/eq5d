@@ -64,10 +64,8 @@ shinyServer(function(input, output) {
     if(is.null(input$version))
       return()
     
-    countries <- sort(unique(as.character(valuesets(version=input$version)$Country)))
-
     selectInput("country", "Country:", 
-                choices=countries, selected=FALSE, selectize = FALSE)
+                choices=getReadableCountryNames(), selected=FALSE, selectize = FALSE)
   })
   
   output$choose_type <- renderUI({
@@ -478,5 +476,14 @@ shinyServer(function(input, output) {
   
   getDimensionNames <- reactive({
     return(c("MO", "SC", "UA", "PD", "AD"))
+  })
+  
+  getReadableCountryNames <- reactive({
+    countries <- sort(unique(as.character(valuesets(version=input$version)$Country)))
+    countries.list <- as.list(countries)
+    countries <- gsub("_", " ", countries)
+    countries <- unlist(lapply(strsplit(gsub("([[:lower:]])([[:upper:]])", "\\1 \\2", countries), " "), function(x){paste(x, collapse=" ")}))
+    names(countries.list) <- countries
+    return(countries.list)
   })
 })
