@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 # eq5d (development version)
 
-* Added Poland and Portugal EQ-5D-5L value sets.
+* Added Polish and Portuguese EQ-5D-5L value sets.
 
 * Added Argentinian, Australian, Chinese, Sri Lankan and Swedish EQ-5D-3L TTO value sets.
 
