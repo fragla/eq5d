@@ -1,7 +1,7 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
-eq5d (development version)
-==========================
+eq5d 0.4.0 (2019-11-12)
+=======================
 
 -   Added Polish and Portuguese EQ-5D-5L value sets.
 
