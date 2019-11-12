@@ -55,16 +55,23 @@ scores <- c(MO=1,SC=2,UA=3,PD=2,AD=1)
 eq5d(scores=scores, country="UK", version="3L", type="TTO")
 #> [1] 0.329
 
-#multiple calculations
+#Using five digit format
+eq5d(scores=12321, country="UK", version="3L", type="TTO")
+#> [1] 0.329
+
+#multiple calculations using the Canadian VT value set
+
+#data.frame with individual dimensions
 scores.df <- data.frame(
   MO=c(1,2,3,4,5), SC=c(1,5,4,3,2), UA=c(1,5,2,3,1), PD=c(1,3,4,3,4), AD=c(1,2,1,2,1)
 )
 
-scores.df2 <- data.frame(state=c(11111,25532,34241,43332,52141))
-
-#EQ-5D-5L using the Canadian VT value set
 eq5d(scores.df, country="Canada", version="5L", type="VT")
 #> [1] 0.949 0.362 0.390 0.524 0.431
+
+#data.frame using five digit format
+scores.df2 <- data.frame(state=c(11111,25532,34241,43332,52141))
+
 eq5d(scores.df2, country="Canada", version="5L", type="VT")
 #> [1] 0.949 0.362 0.390 0.524 0.431
 ```
