@@ -66,13 +66,22 @@ scores <- c(MO=1,SC=2,UA=3,PD=2,AD=1)
 #EQ-5D-3L using the UK TTO value set
 eq5d(scores=scores, country="UK", version="3L", type="TTO")
 
-#multiple calculations
+#Using five digit format
+eq5d(scores=12321, country="UK", version="3L", type="TTO")
+
+#multiple calculations using the Canadian VT value set
+
+#data.frame with individual dimensions
 scores.df <- data.frame(
   MO=c(1,2,3,4,5), SC=c(1,5,4,3,2), UA=c(1,5,2,3,1), PD=c(1,3,4,3,4), AD=c(1,2,1,2,1)
 )
 
-#EQ-5D-5L using the Canadian VT value set
 eq5d(scores.df, country="Canada", version="5L", type="VT")
+
+#data.frame using five digit format
+scores.df2 <- data.frame(state=c(11111,25532,34241,43332,52141))
+
+eq5d(scores.df2, country="Canada", version="5L", type="VT")
 
 ```
 
@@ -100,7 +109,9 @@ The calculation (and visualisation) of multiple EQ-5D indices can also be perfor
 [ggplot2](https://cran.r-project.org/package=ggplot2),
 [ggiraph](https://cran.r-project.org/package=ggiraph),
 [ggiraphExtra](https://cran.r-project.org/package=ggiraphExtra),
-[mime](https://cran.r-project.org/package=mime) and [readxl](https://cran.r-project.org/package=readxl) packages. The CSV/Excel headers should be the same as the names of the vector passed to the ***eq5d*** function i.e. MO, SC, UA, PD and AD.  The app is launched using the ***shiny_eq5d*** function.
+[mime](https://cran.r-project.org/package=mime) and [readxl](https://cran.r-project.org/package=readxl) packages. The CSV/Excel headers should be the same as the names of the vector passed to the ***eq5d*** function i.e. MO, SC, UA, PD and AD or the column name "State" if using the five digit format.
+
+The app is launched using the ***shiny_eq5d*** function.
 
 ```{r shiny, echo=TRUE, eval=FALSE}
 shiny_eq5d()
