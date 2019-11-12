@@ -45,7 +45,7 @@ TTO
 }
 \description{
 Coefficients for the estimation of the EQ-5D-3L index values based on TTO valuation studies
-  for Argentina, Australia, Brazil, Canada, Chile, Denmark, France, Germany, Italy, Japan, 
+  for Argentina, Australia, Brazil, Canada, Chile, China, Denmark, France, Germany, Italy, Japan, 
   Netherlands, Poland, Portugal, Singapore, South Korea, Spain, Sri Lanka, Sweden, Taiwan, 
   Thailand, Trinidad and Tobago, UK, USA and Zimbabwe.
 }
