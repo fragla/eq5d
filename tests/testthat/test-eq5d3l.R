@@ -156,7 +156,7 @@ test_that("EQ-5D-3L Sri Lanka TTO gives correct answer", {
 test_that("EQ-5D-3L Sweden TTO gives correct answer", {
   expect_equal(eq5d3l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "TTO", "Sweden"), 0.969)
   expect_equal(eq5d3l(c(MO=1,SC=1,UA=1,PD=2,AD=1), "TTO", "Sweden"), 0.935)
-  expect_equal(eq5d3l(c(MO=1,SC=2,UA=3,PD=2,AD=1), "TTO", "Sweden"), 0.728)
+  expect_equal(eq5d3l(c(MO=1,SC=2,UA=3,PD=2,AD=1), "TTO", "Sweden"), 0.728, tolerance = .0011)
   expect_equal(eq5d3l(c(MO=1,SC=2,UA=3,PD=1,AD=3), "TTO", "Sweden"), 0.555)
   expect_equal(eq5d3l(c(MO=2,SC=2,UA=2,PD=2,AD=3), "TTO", "Sweden"), 0.489)
   expect_equal(eq5d3l(c(MO=3,SC=2,UA=3,PD=2,AD=3), "TTO", "Sweden"), 0.396)
