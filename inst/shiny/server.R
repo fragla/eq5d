@@ -9,6 +9,8 @@ library(shinyWidgets)
 
 options(shiny.sanitize.errors = FALSE)
 
+addResourcePath('example-data', system.file("extdata", package="eq5d"))
+
 shinyServer(function(input, output) {
   
   # Drop-down selection box for which data set

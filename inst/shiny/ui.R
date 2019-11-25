@@ -20,8 +20,8 @@ shinyUI(
           uiOutput("include_raw_data"),
           hr(),
           h5("Example data"),
-          p("EQ-5D-3L example data:", a(img(src="images/icons8-microsoft-excel-48.png", height = 24, width = 24), href="data/eq5d3l_example.xlsx", target="_blank"), style="margin-bottom:0"),
-          p("EQ-5D-5L example data:", a(img(src="images/icons8-microsoft-excel-48.png", height = 24, width = 24), href="data/eq5d5l_example.xlsx", target="_blank"), style="margin-top:0")
+          p("EQ-5D-3L example data:", a(img(src="images/icons8-microsoft-excel-48.png", height = 24, width = 24), href="example-data/eq5d3l_example.xlsx", target="_blank"), style="margin-bottom:0"),
+          p("EQ-5D-5L example data:", a(img(src="images/icons8-microsoft-excel-48.png", height = 24, width = 24), href="example-data/eq5d5l_example.xlsx", target="_blank"), style="margin-bottom:0")
         )
       ),
       mainPanel(
