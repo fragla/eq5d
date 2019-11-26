@@ -7,6 +7,13 @@ output: github_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+# eq5d (development version)
+
+* Wilcoxon and Kruskal-Wallis/Dunn Test added to shiny application.
+
+* Added Ethiopian EQ-5D-5L value set.
+
+
 # eq5d 0.4.0 (2019-11-12)
 
 * Added Polish and Portuguese EQ-5D-5L value sets.
