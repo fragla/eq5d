@@ -6,6 +6,7 @@ library(ggplot2)
 library(ggiraph)
 library(ggiraphExtra)
 library(shinyWidgets)
+library(FSA)
 
 options(shiny.sanitize.errors = FALSE)
 
@@ -432,6 +433,83 @@ shinyServer(function(input, output) {
       multiple = TRUE
     )
   })
+  
+  getStatistics <- reactive({
+    stats <- NULL
+    if(length(input$group_member)==2) {
+      stats <- getWilcoxStats()
+    } else if (length(input$group_member) > 2) {
+      stats <- getKruskalStats()
+    }
+    return(stats)
+  })
+  
+  output$statistics <- renderUI({
+    stats <- getStatistics()
+    if(is.null(stats))
+      return("Select a group to perform statistical tests.")
+    
+    taglist <- tagList(
+      h5(stats$method),
+      p(paste("Data", stats$data.name)),
+      p(paste0(names(stats$statistic), " = ", round(stats$statistic,1))),
+      p("p.value = ", round(stats$p.value,5))
+    )
+    
+    if(length(input$group_member) > 2 & stats$p.value < 0.05) {
+      taglist[[length(taglist)+1]] <- actionButton("posthoc","View post hoc tests")
+    }
+    return(taglist)
+  })
+  
+  output$posthocTable <- renderDataTable({
+    stats <- getStatistics()
+    table <- data.frame(lapply(stats$posthoc$res, function(y) if(is.numeric(y)) round(y, 5) else y))
+    datatable(table)
+  })
+  
+  observeEvent(input$posthoc,{
+    stats <- getStatistics()
+    showModal(
+      modalDialog(
+        h2("Post hoc tests"),
+        p(paste("Dunn's test with", stats$posthoc$method, "correction")),
+        DT::dataTableOutput('posthocTable'),
+        uiOutput("export_posthoc"),
+        size = "m"
+      )
+    )
+  })
+  
+  getWilcoxStats <- reactive({
+    data <- getTableDataByGroup()
+    res <- wilcox.test(as.formula(paste(input$plot_data," ~ ", input$group)), data)
+    return(res)
+  })
+  
+  getKruskalStats <- reactive({
+    data <- getTableDataByGroup()
+    res <- kruskal.test(as.formula(paste(input$plot_data," ~ ", input$group)), data)
+    
+    if(res$p.value < 0.05) {
+      res$posthoc <- dunnTest(as.formula(paste(input$plot_data," ~ ", input$group)), data)
+    }
+    return(res)
+  })
+  
+  output$export_posthoc <- renderUI({
+      downloadButton("download_posthoc", 'Download Post Hoc Data')
+  })
+  
+  output$download_posthoc <- downloadHandler(
+    filename = function() {
+      paste(input$version, "_", input$country, "_", input$type, "_post_hoc_", format(Sys.time(), "%Y%m%d%H%M%S"), ".csv", sep = "")
+    },
+    content = function(file) {
+      stats <- getStatistics()
+      write.csv(stats$posthoc$res, file, row.names = FALSE)
+    }
+  )
   
   get_average_method <- reactive({
     if(input$average_method=="mean") {

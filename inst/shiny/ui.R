@@ -56,9 +56,15 @@ shinyUI(
         )
       ),
       mainPanel(
-        withSpinner(ggiraphOutput("plot")),
-        uiOutput("export_plot")
-      )     
+        column(8, 
+            withSpinner(ggiraphOutput("plot")),
+            uiOutput("export_plot")
+        ),
+        column(4, 
+            h4("Statistical analysis"),
+            uiOutput("statistics")
+        )
+      )
     ),
     tabPanel("Help/FAQs",
       div(style="padding-left:20%;padding-right:20%;",
