@@ -34,15 +34,18 @@
 #' eq5d(scores=scores.df2, type="TTO", version="3L", country="UK")
 #'
 #' @export
-eq5d <- function (scores, version, type, country) {
+eq5d <- function (scores, version, type, country, ignore.incomplete) {
   UseMethod("eq5d", scores)
 }
 
 #' @export
-eq5d.numeric <- function(scores, version=NULL, type=NULL, country=NULL) {
+eq5d.numeric <- function(scores, version=NULL, type=NULL, country=NULL, ignore.incomplete=FALSE) {
   
   if(!version %in% c("3L", "5L"))
     stop("EQ-5D version not one of 3L or 5L.")
+  
+  if(ignore.incomplete && any(is.na(scores)))
+     return(NA)
   
   if(is.numeric(scores[1]) & nchar(scores[1])==5 & scores[1] >= 11111 & scores[1] <= 11111 * as.numeric(sub("L", "", version))) {
     scores <- as.numeric(strsplit(as.character(scores[1]), "")[[1]])
@@ -67,9 +70,9 @@ eq5d.numeric <- function(scores, version=NULL, type=NULL, country=NULL) {
 }
 
 #' @export
-eq5d.data.frame <- function(scores, version=NULL, type=NULL, country=NULL) {
+eq5d.data.frame <- function(scores, version=NULL, type=NULL, country=NULL, ignore.incomplete=FALSE) {
   indices <- apply(scores, 1, function(x) {
-    eq5d.numeric(x, version=version, type=type, country=country)
+    eq5d.numeric(x, version=version, type=type, country=country, ignore.incomplete=ignore.incomplete)
   })
   
   return(indices)
