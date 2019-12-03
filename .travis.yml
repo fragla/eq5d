@@ -19,6 +19,12 @@ warnings_are_errors: true
 after_success:
     - Rscript -e 'covr::codecov(type = "all", line_exclusions = "R/shiny.R")'
 
-before_install:
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install cairo; fi
+#before_install:
+#  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install cairo; fi
+  
+addons:
+  apt:
+    packages: libmpfr-dev
+  homebrew:
+    packages: cairo
 
