@@ -7,6 +7,7 @@ library(ggiraph)
 library(ggiraphExtra)
 library(shinyWidgets)
 library(FSA)
+library(PMCMRplus)
 
 options(shiny.sanitize.errors = FALSE)
 
@@ -103,6 +104,35 @@ shinyServer(function(input, output) {
     checkboxInput("raw", "Include all submitted data in table", TRUE)
   })
 
+  getPaired <- reactive({
+    data <- getTableDataByGroup()
+    group.totals <- table(data[input$group])
+    
+    data <- data[!colnames(data) %in% c(getDimensionNames(), "Index", input$group)]
+    if(ncol(data) > 0) {
+      id.columns <- lapply(data, function(x){
+        id.totals <- table(x)
+        length(unique(id.totals))==1 & length(unique(group.totals))==1 & sum(id.totals)==sum(group.totals)
+      })
+      return(names(id.columns)[which(unlist(id.columns))])
+    }
+  })
+  
+  output$show_paired <- renderUI({
+    if(!is.null(input$group) && input$group != "None") { ##getbalanced test
+      data <- getTableData()
+      data <- data[!colnames(data) %in% c(getDimensionNames(), "Index", input$group)]
+      id.groups <- getPaired()
+      if(!is.null(id.groups)) {
+        tagList(
+          checkboxInput("paired", "Data are paired", TRUE),
+          selectInput("id", "ID column:", 
+                      choices=id.groups, selected=FALSE, selectize = FALSE)
+        )
+      }
+    }
+  })
+  
   output$show_average <- renderUI({
     checkboxInput("average", "Show mean/median on plot", TRUE)
   })
@@ -251,7 +281,7 @@ shinyServer(function(input, output) {
   getTableDataByGroup <- reactive({
     data <- getTableData()
     
-    if(input$group != "None") {
+    if(!is.null(input$group) && input$group != "None") {
       data <- data[which(data[,input$group] %in% input$group_member),]
     }
     
@@ -435,16 +465,29 @@ shinyServer(function(input, output) {
   })
   
   getStatistics <- reactive({
+    if(is.null(input$group) || input$group=="None") {
+      return()
+    }
+    
+    data <- getTableDataByGroup()
     stats <- NULL
     if(length(input$group_member)==2) {
       stats <- getWilcoxStats()
     } else if (length(input$group_member) > 2) {
-      stats <- getKruskalStats()
+      if(!is.null(getPaired()) & length(getPaired()) > 0 & input$paired) {
+        if(is.null(input$id))
+          return()
+        #input$id!="None" &  & input$paired
+        stats <- getFriedmanStats()
+      } else {
+        stats <- getKruskalStats()
+      }
     }
     return(stats)
   })
   
   output$statistics <- renderUI({
+    
     stats <- getStatistics()
     if(is.null(stats))
       return("Select a group to perform statistical tests.")
@@ -455,7 +498,6 @@ shinyServer(function(input, output) {
       p(paste0(names(stats$statistic), " = ", round(stats$statistic,1))),
       p("p.value = ", round(stats$p.value,5))
     )
-    
     if(length(input$group_member) > 2 & stats$p.value < 0.05) {
       taglist[[length(taglist)+1]] <- actionButton("posthoc","View post hoc tests")
     }
@@ -473,7 +515,7 @@ shinyServer(function(input, output) {
     showModal(
       modalDialog(
         h2("Post hoc tests"),
-        p(paste("Dunn's test with", stats$posthoc$method, "correction")),
+        p(stats$posthoc$method),
         DT::dataTableOutput('posthocTable'),
         uiOutput("export_posthoc"),
         size = "m"
@@ -493,6 +535,22 @@ shinyServer(function(input, output) {
     
     if(res$p.value < 0.05) {
       res$posthoc <- dunnTest(as.formula(paste(input$plot_data," ~ ", input$group)), data)
+      res$posthoc$method <- paste("Dunn's test with", res$posthoc$method, "correction")
+    }
+    return(res)
+  })
+  
+  getFriedmanStats <- reactive({
+    data <- getTableDataByGroup()
+    res <- friedman.test(as.formula(paste(input$plot_data, " ~ ", input$group, " | ", input$id)),
+                  data = data)
+    if(res$p.value < 0.05) {
+      nt <- frdAllPairsNemenyiTest(as.formula(paste(input$plot_data, " ~ ", input$group, " | ", input$id)), data)
+      nt.stats <- na.omit(as.data.frame(as.table(nt$statistic)))
+      nt.p.value <- na.omit(as.data.frame(as.table(nt$p.value)))
+      nt$res <- data.frame(Comparison=paste(nt.stats$Var2, "-", nt.stats$Var1), "Mean rank diff"=nt.stats$Freq, P.adj=nt.p.value$Freq)
+      nt$method <- paste("Nemenyi test with", nt$p.adjust.method, "correction")
+      res$posthoc <- nt
     }
     return(res)
   })

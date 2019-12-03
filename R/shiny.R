@@ -11,7 +11,7 @@
 #' }
 #' @export
 shiny_eq5d <- function(display.mode = "normal") {
-  pkgs <- c("shiny", "DT", "ggplot2", "ggiraph", "ggiraphExtra", "mime", "readxl")
+  pkgs <- c("shiny", "DT", "FSA", "ggplot2", "ggiraph", "ggiraphExtra", "mime", "PMCMRplus", "readxl")
   missing <- sapply(pkgs, function(x){!requireNamespace(x, quietly=TRUE)})
   if (any(missing)) {
     stop(paste("The following package(s) are required for shiny_eq5d to work:", 

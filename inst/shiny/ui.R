@@ -53,7 +53,8 @@ shinyUI(
           condition = "input.plot_type != 'radar'",
           uiOutput("show_average"),
           uiOutput("choose_average_method")
-        )
+        ),
+        uiOutput("show_paired")
       ),
       mainPanel(
         column(8, 

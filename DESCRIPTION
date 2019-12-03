@@ -39,6 +39,8 @@ Suggests:
     ggplot2,
     ggiraph,
     ggiraphExtra,
+    FSA,
+    PMCMRplus,
     knitr,
     rmarkdown,
     covr
