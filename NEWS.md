@@ -3,9 +3,14 @@
 
 # eq5d (development version)
 
-  - Wilcoxon and Kruskal-Wallis/Dunn Test added to shiny application.
+  - Wilcoxon and Kruskal-Wallis/Dunn tests added to shiny application.
+
+  - Friedman and Nemenyi tests also added for paired data.
 
   - Added Ethiopian EQ-5D-5L value set.
+
+  - Added ignore.incomplete option to eq5d function to skip incomplete
+    scores.
 
 # eq5d 0.4.0 (2019-11-12)
 
