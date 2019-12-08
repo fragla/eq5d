@@ -26,3 +26,19 @@ test_that("Wrapper function gives correct answer", {
   expect_equal(eq5d(12345, country="Indonesia", version="5L", type="VT"), 0.240)
 })
 
+test_that("when ignore.incomplete flag is TRUE the correct answer is returned", {
+  expect_equal(eq5d(c(MO=1,SC=2,UA=3,PD=2,AD=1), type="TTO", version="3L", country="UK", ignore.incomplete=TRUE), 0.329)
+  expect_equal(eq5d(c(MO=1,SC=2,UA=3,PD=NA,AD=1), type="TTO", version="3L", country="UK", ignore.incomplete=TRUE), NA)
+  expect_equal(eq5d(12321, type="TTO", version="3L", country="UK", ignore.incomplete=TRUE), 0.329)
+  expect_equal(eq5d(1232, type="TTO", version="3L", country="UK", ignore.incomplete=TRUE), NA)
+  expect_equal(eq5d(NA_integer_, type="TTO", version="3L", country="UK", ignore.incomplete=TRUE), NA)
+})
+
+test_that("when ignore.incomplete flag is FALSE the correct answer is returned", {
+  expect_error(eq5d(c(MO=1,SC=2,UA=3,PD=NA,AD=1), type="TTO", version="3L", country="UK", ignore.incomplete=FALSE))
+  expect_error(eq5d("12321", type="TTO", version="3L", country="UK", ignore.incomplete=FALSE))
+  expect_error(eq5d(1232, type="TTO", version="3L", country="UK", ignore.incomplete=FALSE))
+  expect_error(eq5d(NA_integer_, type="TTO", version="3L", country="UK", ignore.incomplete=FALSE))
+  
+})
+
