@@ -46,15 +46,28 @@ eq5d.numeric <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
   if(!version %in% c("3L", "5L"))
     stop("EQ-5D version not one of 3L or 5L.")
   
-  if(ignore.incomplete && any(is.na(scores)))
-     return(NA)
-  
-  if(is.numeric(scores[1]) & nchar(scores[1])==5 & scores[1] >= 11111 & scores[1] <= 11111 * as.numeric(sub("L", "", version))) {
-    scores <- as.numeric(strsplit(as.character(scores[1]), "")[[1]])
-    names(scores) <- c("MO", "SC", "UA", "PD", "AD")    
+  if(any(is.na(scores))) {
+    if(ignore.incomplete) {
+      return(NA)
+    } else {
+      stop("Missing/non-numeric dimension found.")
+    }
   }
   
-  if(!all(names(scores) %in% c("MO", "SC", "UA", "PD", "AD"))) {
+  if(length(scores)==1) {
+    if(is.numeric(scores[1]) & scores[1] %in% .getDimensionCombinations(version)) {
+      scores <- as.numeric(strsplit(as.character(scores[1]), "")[[1]])
+      names(scores) <- c("MO", "SC", "UA", "PD", "AD")    
+    } else {
+      if(ignore.incomplete) {
+        return(NA)
+      } else {
+        stop("Invalid dimension state found.")
+      }
+    }
+  }
+
+  if(!all(c("MO", "SC", "UA", "PD", "AD") %in% names(scores))) {
     stop("Unable to identify EQ-5D dimensions in scores.")
   }
 
@@ -111,4 +124,11 @@ valuesets <- function(type=NULL, version=NULL, country=NULL) {
   if(!is.null(country)) vs <- vs[vs$Country==country,]
   rownames(vs) <- NULL
   return(vs)
+}
+
+.getDimensionCombinations <- function(version) {
+  max.value <- sub("L", "", version)
+  dimensions <- expand.grid(1:max.value, 1:max.value, 1:max.value, 1:max.value, 1:max.value)
+  indexes <- apply(dimensions, 1, function(x){paste(x, collapse="")})
+  return(indexes)
 }
