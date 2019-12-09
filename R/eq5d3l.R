@@ -166,15 +166,15 @@ eq5d3l <- function(scores, type="TTO", country="UK") {
 
 .O2 <- function(scores){
   x <- 0
-  if(identical(unique(sort(scores)),c(1,2)) | identical(unique(sort(scores)), 2)) {
-    x <- 1
+  if(isTRUE(all.equal(unique(sort(scores)), c(1,2))) || isTRUE(all.equal(unique(sort(scores)),2))) {
+      x <- 1
   }
   return(x)
 }
 
 .O3 <- function(scores){
   x <- 0
-  if(identical(unique(sort(scores)),c(1,3)) | identical(unique(sort(scores)), 3)) {
+  if(isTRUE(all.equal(unique(sort(scores)), c(1,3))) || isTRUE(all.equal(unique(sort(scores)),3))) {
     x <- 1
   }
   return(x) 
