@@ -119,7 +119,10 @@ shinyServer(function(input, output) {
   })
   
   output$show_paired <- renderUI({
-    if(!is.null(input$group) && input$group != "None") { ##getbalanced test
+    if(!is.null(input$group) && input$group != "None") { 
+      if(length(getPaired())==0)
+        return()
+      
       data <- getTableData()
       data <- data[!colnames(data) %in% c(getDimensionNames(), "Index", input$group)]
       id.groups <- getPaired()
@@ -232,10 +235,17 @@ shinyServer(function(input, output) {
     }
     
     if(length(idx)==1) {
+      length.check <- sapply(dat[[idx]], nchar)
+      if(any(is.na(length.check)|length.check!=5)) {
+        if(ignoreIncomplete()) {
+          dat[which(length.check!=5),idx] <- NA
+        } else {
+          stop("States identified without five digits.")
+        }
+      }
       dat <- as.data.frame(do.call(rbind, strsplit(as.character(dat[[idx]]), "")))
       colnames(dat) <- c("MO", "SC", "UA", "PD", "AD")
       dat <- as.data.frame(apply(dat, 2, function(x) as.numeric(as.character(x))))
-      
     } else {
       dat <- dat[idx]
     }
@@ -264,7 +274,7 @@ shinyServer(function(input, output) {
   }
   
   getTableData <- reactive({
-    eq5d <- eq5d(dataset(), version=input$version, type=input$type, country=input$country)
+    eq5d <- eq5d(dataset(), version=input$version, type=input$type, country=input$country, ignore.incomplete=ignoreIncomplete())
     if(input$raw) {
       if(all(getDimensionNames() %in% colnames(rawdata()))) {
         res <- cbind(rawdata(), eq5d)
@@ -280,12 +290,18 @@ shinyServer(function(input, output) {
   
   getTableDataByGroup <- reactive({
     data <- getTableData()
+    data <- data[!is.na(data[[input$plot_data]]),]
     
     if(!is.null(input$group) && input$group != "None") {
       data <- data[which(data[,input$group] %in% input$group_member),]
     }
     
     return(data)
+  })
+  
+  ignoreIncomplete <- reactive({
+    ignore.incomplete <- ifelse(is.null(input$ignore_incomplete), TRUE, input$ignore_incomplete)
+    return(ignore.incomplete)
   })
 
   output$plot <- renderggiraph({
@@ -432,7 +448,7 @@ shinyServer(function(input, output) {
       return()
     }
     data <- getTableData()
-    data <- data[!colnames(data) %in% getDimensionNames()]
+    data <- data[!tolower(colnames(data)) %in% tolower(c(getDimensionNames(), "State"))]
     data <- data[sapply(data, function(x) is.character(x) || is.logical(x) || is.factor(x))]
     
     groups <- "None"
@@ -474,12 +490,11 @@ shinyServer(function(input, output) {
     if(length(input$group_member)==2) {
       stats <- getWilcoxStats()
     } else if (length(input$group_member) > 2) {
-      if(!is.null(getPaired()) & length(getPaired()) > 0 & input$paired) {
-        if(is.null(input$id))
-          return()
-        #input$id!="None" &  & input$paired
+      if(!is.null(getPaired()) & length(getPaired()) > 0 & !is.null(input$paired) && input$paired) {
+        print("Friedman")
         stats <- getFriedmanStats()
       } else {
+        print("Kruskal")
         stats <- getKruskalStats()
       }
     }
@@ -568,6 +583,10 @@ shinyServer(function(input, output) {
       write.csv(stats$posthoc$res, file, row.names = FALSE)
     }
   )
+  
+  output$ignore_incomplete <- renderUI({
+    checkboxInput("ignore_incomplete", "Ignore data with incomplete/missing dimension scores", TRUE)
+  })
   
   get_average_method <- reactive({
     if(input$average_method=="mean") {

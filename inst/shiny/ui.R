@@ -37,7 +37,7 @@ shinyUI(
         )
       )
     ),
-    tabPanel("Plots",
+    tabPanel("Analysis",
       sidebarPanel(
         conditionalPanel(
           condition = "input.plot_type != 'radar'",
@@ -66,6 +66,12 @@ shinyUI(
             uiOutput("statistics")
         )
       )
+    ),
+    tabPanel("Settings",
+             div(style="padding-left:20%;padding-right:20%;",
+                 h3("Error handling"),
+                 uiOutput("ignore_incomplete")
+             )
     ),
     tabPanel("Help/FAQs",
       div(style="padding-left:20%;padding-right:20%;",
