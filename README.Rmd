@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 [![Codecov test coverage](https://codecov.io/gh/fragla/eq5d/branch/master/graph/badge.svg)](https://codecov.io/gh/fragla/eq5d?branch=master)
 <!-- badges: end -->
 
-#EQ-5D
+# EQ-5D
 
 EQ-5D is a popular health related quality of life instrument used in the clinical and economic evaluation of health care. Developed by the [EuroQol](https://www.euroqol.org) group, the instrument consists of two components: health state description and evaluation. 
 
@@ -29,7 +29,7 @@ The evaluation component requires a patient to record their overall health statu
 
 Following assessment the scores from the descriptive component can be reported as a five digit number ranging from 11111 (full health) to 33333/55555 (worst health). However, frequently the scores on these five dimensions are converted to a single utility index using country specific value sets, which can be used in the clinical and economic evaluation of health care as well as in population health surveys.
 
-The eq5d package provides methods to calculate index scores from a subject's dimension scores, for both EQ-5D-3L and EQ-5D-5L value sets. Additionally, a [Shiny](https://shiny.rstudio.com) app is included to enable the calculation of multiple EQ-5D index values via a web browser using EQ-5D dimension scores stored in CSV or Excel files.
+The eq5d package provides methods to calculate index scores from a subject's dimension scores, for both EQ-5D-3L and EQ-5D-5L value sets. Additionally, a [Shiny](https://shiny.rstudio.com) app is included to enable the calculation, visualisation and automated statistical analysis of multiple EQ-5D index values via a web browser using EQ-5D dimension scores stored in CSV or Excel files.  
 
 Value sets for EQ-5D-3L are available for many countries and have been produced using the time trade-off (TTO) valuation technique or the visual analogue scale (VAS) valuation technique.  Some countries have TTO and VAS value sets for EQ-5D-3L.
 
@@ -84,7 +84,7 @@ eq5d(scores.df, country="Canada", version="5L", type="VT")
 #data.frame using five digit format
 scores.df2 <- data.frame(state=c(11111,25532,34241,43332,52141))
 
-eq5d(scores.df2, country="Canada", version="5L", type="VT")
+eq5d(scores.df2, country="Canada", version="5L", type="VT", five.digit="state")
 
 ```
 
@@ -128,6 +128,7 @@ Alternatively, it can be accessed without installing R/Shiny/eq5d by visiting [s
 ![Shiny EQ-5D app density plot screenshot](man/figures/shiny_app_screenshot_density.png)
 ![Shiny EQ-5D app ecdf plot screenshot](man/figures/shiny_app_screenshot_ecdf.png)
 ![Shiny EQ-5D app radar plot screenshot](man/figures/shiny_app_screenshot_radar.png)
+![Shiny EQ-5D app posthoc stats plot screenshot](man/figures/shiny_app_screenshot_posthoc.png)
 
 ## License
 

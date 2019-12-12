@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-#EQ-5D
+# EQ-5D
 
 EQ-5D is a popular health related quality of life instrument used in the clinical and economic evaluation of health care. Developed by the [EuroQol](https://www.euroqol.org) group, the instrument consists of two components: health state description and evaluation. 
 
@@ -81,7 +81,7 @@ eq5d(scores.df, country="Canada", version="5L", type="VT")
 #data.frame using five digit format
 scores.df2 <- data.frame(state=c(11111,25532,34241,43332,52141))
 
-eq5d(scores.df2, country="Canada", version="5L", type="VT")
+eq5d(scores.df2, country="Canada", version="5L", type="VT", five.digit="state")
 
 ```
 
