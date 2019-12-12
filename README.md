@@ -164,6 +164,29 @@ valuesets(country="UK")
 #> 3 EQ-5D-5L   CW      UK
 ```
 
+## Example data
+
+Example data is included with the package and can be accessed using the
+***system.file*** function.
+
+``` r
+# View example files.
+dir(path=system.file("extdata", package="eq5d"))
+#> [1] "eq5d3l_example.xlsx"            "eq5d3l_five_digit_example.xlsx"
+#> [3] "eq5d5l_example.xlsx"
+
+# Read example EQ-5D-3L data.
+library(readxl)
+data <- read_excel(system.file("extdata", "eq5d3l_example.xlsx", package="eq5d"))
+
+# Calculate index scores
+scores <- eq5d(data, country="UK", version="3L", type="TTO")
+
+# Top 6 scores
+head(scores)
+#> [1]  0.760  0.796 -0.003  0.796  0.656  1.000
+```
+
 ## Shiny web interface
 
 The calculation (and visualisation) of multiple EQ-5D indices can also

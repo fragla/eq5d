@@ -106,6 +106,25 @@ head(valuesets(version="5L"))
 valuesets(country="UK")
 ```
 
+## Example data
+
+Example data is included with the package and can be accessed using the ***system.file*** function.
+
+```{r example data}
+# View example files.
+dir(path=system.file("extdata", package="eq5d"))
+
+# Read example EQ-5D-3L data.
+library(readxl)
+data <- read_excel(system.file("extdata", "eq5d3l_example.xlsx", package="eq5d"))
+
+# Calculate index scores
+scores <- eq5d(data, country="UK", version="3L", type="TTO")
+
+# Top 6 scores
+head(scores)
+```
+
 ## Shiny web interface
 
 The calculation (and visualisation) of multiple EQ-5D indices can also be performed by upload of a CSV or Excel file using the packaged [Shiny](https://shiny.rstudio.com) app. This requires the [shiny](https://cran.r-project.org/package=shiny), [DT](https://cran.r-project.org/package=DT),
