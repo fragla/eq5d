@@ -15,6 +15,9 @@
 #' @param country string of value set country name used.
 #' @param ignore.incomplete logical to indicate whether to ignore dimension 
 #'   with missing data.
+#' @param ... character vectors, specifying "dimensions" column names or 
+#'   "five.digit" column name. Defaults are "MO", "SC", "UA", "PD" and "AD"
+#'   for dimensions and "State" for five.digit.
 #' @examples
 #' eq5d(scores=c(MO=1,SC=2,UA=3,PD=4,AD=5), type="VT", 
 #'  country="Indonesia", version="5L")
@@ -33,16 +36,16 @@
 #'   state=c(11111,12121,23232,33333)
 #' )
 #' 
-#' eq5d(scores=scores.df2, type="TTO", version="3L", country="UK")
+#' eq5d(scores=scores.df2, type="TTO", version="3L", country="UK", five.digit="state")
 #'
 #' @export
-eq5d <- function (scores, version, type, country, ignore.incomplete) {
+eq5d <- function (scores, version, type, country, ignore.incomplete, ...) {
   UseMethod("eq5d", scores)
 }
 
 #' @export
-eq5d.numeric <- function(scores, version=NULL, type=NULL, country=NULL, ignore.incomplete=FALSE) {
-  
+eq5d.numeric <- function(scores, version=NULL, type=NULL, country=NULL, ignore.incomplete=FALSE, ...) {
+
   if(!version %in% c("3L", "5L"))
     stop("EQ-5D version not one of 3L or 5L.")
   
@@ -85,7 +88,24 @@ eq5d.numeric <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
 }
 
 #' @export
-eq5d.data.frame <- function(scores, version=NULL, type=NULL, country=NULL, ignore.incomplete=FALSE) {
+eq5d.data.frame <- function(scores, version=NULL, type=NULL, country=NULL, ignore.incomplete=FALSE, ...) {
+  args <- list(...)
+  
+  dimensions <- c("MO", "SC", "UA", "PD", "AD")
+  five.digit <- "State"
+
+  if(!is.null(args$dimensions)) {dimensions <- args$dimensions}
+  if(!is.null(args$five.digit)) {five.digit <- args$five.digit}
+
+  if(all(dimensions %in% names(scores))) {
+    scores <- scores[,dimensions]
+    colnames(scores) <- c("MO", "SC", "UA", "PD", "AD")
+  } else if(five.digit %in% names(scores)) {
+    scores <- scores[,five.digit, drop=FALSE]
+  } else {
+    stop("Unable to identify EQ-5D dimensions in data.frame.")
+  }
+  
   indices <- apply(scores, 1, function(x) {
     eq5d.numeric(x, version=version, type=type, country=country, ignore.incomplete=ignore.incomplete)
   })
