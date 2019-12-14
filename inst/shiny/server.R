@@ -540,7 +540,12 @@ shinyServer(function(input, output) {
   
   getWilcoxStats <- reactive({
     data <- getTableDataByGroup()
-    res <- wilcox.test(as.formula(paste(input$plot_data," ~ ", input$group)), data)
+    paired <- FALSE
+    if(!is.null(getPaired()) & length(getPaired()) > 0 & !is.null(input$paired) && input$paired) {
+      data <- data[order(data[input$id], data[input$group]),]
+      paired <- TRUE
+    }
+    res <- wilcox.test(as.formula(paste(input$plot_data," ~ ", input$group)), data, paired=paired)
     return(res)
   })
   
@@ -586,6 +591,15 @@ shinyServer(function(input, output) {
   
   output$ignore_incomplete <- renderUI({
     checkboxInput("ignore_incomplete", "Ignore data with incomplete/missing dimension scores", TRUE)
+  })
+  
+  output$stats_tests <- renderTable({
+
+      data.frame(Groups=c(2, 2, ">2", ">2"),
+                 Paired=c("No", "Yes", "No", "Yes"),
+                 Test=c("Wilcoxon rank sum test", "Wilcoxon signed rank test",
+                        "Kruskal-Wallis rank sum test with Dunn's test for post hoc testing.", "Friedman's rank sum test with the Nemenyi test for post hoc testing."))
+
   })
   
   get_average_method <- reactive({

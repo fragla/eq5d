@@ -97,7 +97,20 @@ shinyUI(
           dimensions. If the uploaded data included additional categorical  
           information, it is possible to incorporate this information into the plots. 
           To do this select the category from the 'Group by' drop down menu on the 
-          plots page."),
+          plots page. This information will also be used in the automated statistical 
+          analysis. "),
+        h4("My EQ-5D data is missing/incomplete. What should I do?"),
+        p("The application will automatically skip missing/incomplete EQ-5D data. If 
+          you wish to turn this feature off (and receive an error) you can do so by 
+          deselecting the 'Ignore data with incomplete/missing dimension scores' 
+          checkbox in the 'Settings' tab."),
+        h4("What statistical analyses are performed?"),
+        p("The statistical tests performed depend on the data and the category selected 
+          in the 'Group by' drop down. The statistical tests that can be performed can be
+          seen in the table below. The application will automatically try to determine 
+          whether the data are paired. Paired testing may be switched off using the 'Data 
+          are paired' checkbox."),
+          tableOutput("stats_tests"),
         h4("What does 'Unable to identify EQ-5D dimensions in the file header' mean?"),
         p("This means it's not been possible for the software to find all of the 
           EQ-5D dimensions in the header of the uploaded file. This could be for a 
