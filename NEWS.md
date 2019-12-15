@@ -1,16 +1,23 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-# eq5d (development version)
+# eq5d 0.5.0 (2019-12-15)
 
-  - Wilcoxon and Kruskal-Wallis/Dunn tests added to shiny application.
+  - Wilcoxon rank sum test and Kruskal-Wallis/Dunn tests added to shiny
+    application.
 
-  - Friedman and Nemenyi tests also added for paired data.
+  - Wilcoxon signed rank test and Friedman/Nemenyi tests also added for
+    paired data.
 
   - Added Ethiopian EQ-5D-5L value set.
 
   - Added ignore.incomplete option to eq5d function to skip incomplete
     scores.
+
+  - Added dimensions and five.digit options to eq5d function to change
+    default column names when using data.frames.
+
+  - Addressed the noLD unit test issues in the previous version.
 
 # eq5d 0.4.0 (2019-11-12)
 
