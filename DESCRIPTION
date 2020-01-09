@@ -40,6 +40,8 @@ Suggests:
     ggplot2,
     ggiraph,
     ggiraphExtra,
+    shinycssloaders,
+    shinyWidgets,
     FSA,
     PMCMRplus,
     knitr,
