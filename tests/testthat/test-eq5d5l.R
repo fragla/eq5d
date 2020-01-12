@@ -33,6 +33,15 @@ test_that("EQ-5D-5L Ethiopia gives correct answer", {
   expect_equal(eq5d5l(c(MO=5,SC=5,UA=5,PD=5,AD=5), "Ethiopia"), -0.718)
 })
 
+test_that("EQ-5D-5L France gives correct answer", {
+  expect_equal(eq5d5l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "France"), 1)
+  expect_equal(eq5d5l(c(MO=2,SC=2,UA=2,PD=2,AD=2), "France"), 0.850)
+  expect_equal(eq5d5l(c(MO=3,SC=3,UA=3,PD=3,AD=3), "France"), 0.768)
+  expect_equal(eq5d5l(c(MO=4,SC=4,UA=4,PD=4,AD=4), "France"), 0.028)
+  expect_equal(eq5d5l(c(MO=5,SC=4,UA=3,PD=2,AD=1), "France"), 0.441)
+  expect_equal(eq5d5l(c(MO=5,SC=5,UA=5,PD=5,AD=5), "France"), -0.525)
+})
+
 test_that("EQ-5D-5L Germany gives correct answer", {
   expect_equal(eq5d5l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "Germany"), 1)
   expect_equal(eq5d5l(c(MO=2,SC=1,UA=1,PD=1,AD=1), "Germany"), 0.974)
