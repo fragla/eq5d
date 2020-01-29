@@ -263,7 +263,7 @@ test_that("EQ-5D-3L Iran VAS gives correct answer", {
   expect_equal(eq5d3l(c(MO=1,SC=1,UA=1,PD=1,AD=3), "VAS", "Iran"), 0.640)
   expect_equal(eq5d3l(c(MO=2,SC=1,UA=2,PD=3,AD=2), "VAS", "Iran"), 0.295)
   expect_equal(eq5d3l(c(MO=3,SC=2,UA=2,PD=2,AD=3), "VAS", "Iran"), 0.043)
-  expect_equal(eq5d3l(c(MO=3,SC=3,UA=3,PD=3,AD=3), "VAS", "Iran"), -0.070)
+  expect_equal(eq5d3l(c(MO=3,SC=3,UA=3,PD=3,AD=3), "VAS", "Iran"), -0.07, tolerance = .0011)
 })
 
 test_that("EQ-5D-3L Malaysia VAS gives correct answer", {
