@@ -1,6 +1,14 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
+# eq5d (development version)
+
+  - Added French EQ-5D-5L value set.
+
+  - Minor edits to docs.
+
+  - Fixed unit test failing due to new implementation of round function.
+
 # eq5d 0.5.0 (2019-12-15)
 
   - Wilcoxon rank sum test and Kruskal-Wallis/Dunn tests added to shiny
