@@ -33,8 +33,8 @@
 VT
 }
 \description{
-EQ-5D-5L VT value set calculation data for Canada, China, England, Germany, 
-  Hong Kong, Indonesia, Ireland, Japan, Malaysia, Netherlands, 
+EQ-5D-5L VT value set calculation data for Canada, China, England, France,
+  Germany, Hong Kong, Indonesia, Ireland, Japan, Malaysia, Netherlands, 
   Poland, Portugal, South Korea, Spain, Taiwan, Thailand, Uruguay and USA.
 }
 \keyword{datasets}
