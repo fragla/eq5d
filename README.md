@@ -153,8 +153,8 @@ head(valuesets(version="5L"))
 #> 2 EQ-5D-5L   VT    China
 #> 3 EQ-5D-5L   VT  England
 #> 4 EQ-5D-5L   VT Ethiopia
-#> 5 EQ-5D-5L   VT  Germany
-#> 6 EQ-5D-5L   VT HongKong
+#> 5 EQ-5D-5L   VT   France
+#> 6 EQ-5D-5L   VT  Germany
 
 # Return all UK value sets.
 valuesets(country="UK")

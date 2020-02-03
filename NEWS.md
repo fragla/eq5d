@@ -1,7 +1,7 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-# eq5d (development version)
+# eq5d 0.6.0 (2020-02-03)
 
   - Added French EQ-5D-5L value set.
 
