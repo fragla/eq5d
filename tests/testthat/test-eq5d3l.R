@@ -303,7 +303,7 @@ test_that("EQ-5D-3L Slovenia VAS gives correct answer", {
 
 test_that("EQ-5D-3L Spain VAS gives correct answer", {
   expect_equal(eq5d3l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "VAS", "Spain"), 1)
-  expect_equal(eq5d3l(c(MO=1,SC=3,UA=1,PD=1,AD=1), "VAS", "Spain"), 0.436)
+  expect_equal(eq5d3l(c(MO=1,SC=3,UA=1,PD=1,AD=1), "VAS", "Spain"), 0.436, tolerance = .0011)
   expect_equal(eq5d3l(c(MO=1,SC=3,UA=3,PD=1,AD=2), "VAS", "Spain"), 0.274)
   expect_equal(eq5d3l(c(MO=3,SC=3,UA=2,PD=2,AD=2), "VAS", "Spain"), 0.090)
   expect_equal(eq5d3l(c(MO=3,SC=3,UA=3,PD=3,AD=3), "VAS", "Spain"), -0.076)
