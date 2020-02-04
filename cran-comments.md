@@ -1,3 +1,9 @@
+## Resubmission
+This is a resubmission. In this version I have:
+
+Fixed the test throwing an error on win-builder.
+Tested on Windows Server 2012, R-devel, Rtools4.0, 32/64 bit (experimental)
+
 ## Test environments
 * local OS X install, R 3.6.1
 * Ubuntu 16.04.6 LTS (on travis-ci), R 3.5.3, R 3.6.2, devel
