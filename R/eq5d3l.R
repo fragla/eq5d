@@ -18,8 +18,14 @@ eq5d3l <- function(scores, type="TTO", country="UK") {
     stop("Unable to identify EQ-5D dimensions in scores.")
   }
   
-  if(!all(scores %in% 1:3))
-    stop("Scores must be coded as 1, 2 or 3 for EQ-5D-3L.")
+  if(!all(scores %in% 1:3)) {
+    message <- "Scores must be coded as 1, 2 or 3 for EQ-5D-3L."
+    if(all(scores %in% 1:5)) {
+      message <- paste(message, "Are you using EQ-5D-5L?")
+    }
+    stop(message)
+  }
+    
   
   if(!type %in% c("TTO", "VAS"))
     stop("Valuation type must be one of TTO or VAS.")
