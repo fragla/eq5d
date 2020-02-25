@@ -39,7 +39,7 @@
 #' eq5d(scores=scores.df2, type="TTO", version="3L", country="UK", five.digit="state")
 #'
 #' @export
-eq5d <- function (scores, version = "3L", type ="TTO", country = "UK", ignore.incomplete = T, ...) {
+eq5d <- function (scores, version, type, country, ignore.incomplete, ...) {
   UseMethod("eq5d", scores)
 }
 
