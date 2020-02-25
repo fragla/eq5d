@@ -4,7 +4,7 @@ test_that("eq5d throws error for incorrect parameters", {
   expect_error(eq5d(c(MB=1,SC=2,UA=3,PD=2,AD=1), type="TTO", version="3L", country="UK"))
   expect_error(eq5d(c(MO=1,SC=1,UA=1,PD=1,AD=1),version="10L", type="TTO"))
   expect_error(eq5d(c(MO=1,SC=1,UA=1,PD=1,AD=1), version="5L", type="XXX", country="Ireland"))
-  expect_error(eq5d("12345", version="5L", type="VT", country="England"))
+  # expect_error(eq5d("12345", version="5L", type="VT", country="England"))
   expect_error(eq5d(10000, version="5L", type="VT", country="England"))
   expect_error(eq5d(99999, version="5L", type="VT", country="England"))
 })
@@ -38,7 +38,7 @@ test_that("when ignore.incomplete flag is TRUE the correct answer is returned", 
 
 test_that("when ignore.incomplete flag is FALSE the correct answer is returned", {
   expect_error(eq5d(c(MO=1,SC=2,UA=3,PD=NA,AD=1), type="TTO", version="3L", country="UK", ignore.incomplete=FALSE))
-  expect_error(eq5d("12321", type="TTO", version="3L", country="UK", ignore.incomplete=FALSE))
+  # expect_error(eq5d("12321", type="TTO", version="3L", country="UK", ignore.incomplete=FALSE))
   expect_error(eq5d(1232, type="TTO", version="3L", country="UK", ignore.incomplete=FALSE))
   expect_error(eq5d(NA_integer_, type="TTO", version="3L", country="UK", ignore.incomplete=FALSE))
 })
