@@ -38,32 +38,11 @@
 #' 
 #' eq5d(scores=scores.df2, type="TTO", version="3L", country="UK", five.digit="state")
 #'
+#' eq5d(scores=scores.df2$state, type="TTO", version="3L", country="UK")
+#'
 #' @export
 eq5d <- function (scores, version, type, country, ignore.incomplete, ...) {
   UseMethod("eq5d", scores)
-}
-
-.eq5d <- function(scores,version=version,type=type, country=country, ignore.incomplete, ...){
-  
-  if(any(is.na(scores))) {
-    if(ignore.incomplete) {
-      return(NA)
-    } else {
-      stop("Missing/non-numeric dimension found.")
-    }
-  }
-  
-  if(version=="3L") {
-    eq5d3l(scores, type=type, country=country)
-  } else {
-    if(!is.null(type) && type=="VT") {
-      eq5d5l(scores, country=country)
-    } else if(!is.null(type) && type=="CW") {
-      eq5dcw(scores, country=country)
-    } else {
-      stop("EQ-5D-5L valueset type not recognised. Must be one of 'VT' or 'CW'.")
-    }
-  }
 }
 
 #' @export
@@ -95,27 +74,6 @@ eq5d.data.frame <- function(scores, version=NULL, type=NULL, country=NULL, ignor
 eq5d.matrix <- function(scores, version=NULL, type=NULL, country=NULL, ignore.incomplete=FALSE, ...) {
   scores <- as.data.frame(scores)
   eq5d.data.frame(scores, version=version, type=type, country=country, ignore.incomplete=ignore.incomplete, ...)
-  # args <- list(...)
-  # 
-  # dimensions <- c("MO", "SC", "UA", "PD", "AD")
-  # five.digit <- "state"
-  # 
-  # if(!is.null(args$dimensions)) {dimensions <- args$dimensions}
-  # if(!is.null(args$five.digit)) {five.digit <- args$five.digit}
-  # 
-  # if(all(dimensions %in% names(scores))) {
-  #   scores <- scores[,dimensions]
-  #   colnames(scores) <- c("MO", "SC", "UA", "PD", "AD")
-  # } else if(five.digit %in% tolower(names(scores))) {
-  #   scores <- scores[,five.digit, drop=FALSE]
-  # } else {
-  #   stop("Unable to identify EQ-5D dimensions in data.frame.")
-  # }
-  # 
-  # res <- apply(scores, 1, function(x) {
-  #   eq5d.default(x, version=version, type=type, country=country, ignore.incomplete=ignore.incomplete,...)
-  # })
-  # return(res)
 }
 
 #' @export
@@ -124,109 +82,57 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
   if(!version %in% c("3L", "5L"))
     stop("EQ-5D version not one of 3L or 5L.")
   
-  # if(any(is.na(scores)) | any(is.null(scores))){
-  #   if(ignore.incomplete) {
-  #     return(NA)
-  #   } else {
-  #     stop("Missing/non-numeric dimension found.")
-  #   }
-  # }
-  
-  .nchar = unique(nchar(scores[!is.na(scores)])) #1 or 5 format
-  .length = length(scores) #5 or n
+  .length = length(scores)
   
   if(is.character(scores)){
     .names <- names(scores)
     scores <- suppressWarnings(as.numeric(scores))
     names(scores) <- .names
   }
-  
-  #length 5. Digits in 1:3/5, names MO, UA etc.
-  if(.nchar==1 && .length==5) {
-    #eq5d.numeric
-    res <- .eq5d(scores, version=version, type=type, country=country, ignore.incomplete=ignore.incomplete)
-    return(res)
-  } 
-  
-  if(.length==1) {
-    if(scores %in% .getDimensionCombinations(version)) {
-      scores <- as.numeric(strsplit(as.character(scores[1]), "")[[1]])
-      names(scores) <- c("MO", "SC", "UA", "PD", "AD")
+
+  if(.length>1) {
+    if(.length==5 && all(c("MO", "SC", "UA", "PD", "AD") %in% names(scores))) {
       res <- .eq5d(scores, version=version, type=type, country=country, ignore.incomplete=ignore.incomplete)
     } else {
-      if(ignore.incomplete) {
-        res <- NA
-      } else {
-        stop("Invalid dimension state found.")
-      }
+      res <- sapply(scores, function(x) {
+        eq5d.default(x, version=version, type=type, country=country, ignore.incomplete=ignore.incomplete)
+      })
     }
-    return(res)
+  } else if (.length==1 && scores %in% .getDimensionCombinations(version)) {
+    scores <- as.numeric(strsplit(as.character(scores[1]), "")[[1]])
+    names(scores) <- c("MO", "SC", "UA", "PD", "AD")
+    res <- .eq5d(scores, version=version, type=type, country=country, ignore.incomplete=ignore.incomplete)
+  } else {
+    if(ignore.incomplete) {
+      res <- NA
+    } else {
+      stop("Invalid dimension state found.")
+    }
+  }
+  return(res)
+}
+
+.eq5d <- function(scores,version=version,type=type, country=country, ignore.incomplete, ...){
+  
+  if(any(is.na(scores))) {
+    if(ignore.incomplete) {
+      return(NA)
+    } else {
+      stop("Missing/non-numeric dimension found.")
+    }
   }
   
-  if(.length > 1) {
-    res <- sapply(scores, function(x) {
-      eq5d.default(x, version=version, type=type, country=country, ignore.incomplete=ignore.incomplete)
-    })
-    return(res)
-    #check in .getDimensionCombinations
-    ##ignore incomplete
+  if(version=="3L") {
+    eq5d3l(scores, type=type, country=country)
+  } else {
+    if(!is.null(type) && type=="VT") {
+      eq5d5l(scores, country=country)
+    } else if(!is.null(type) && type=="CW") {
+      eq5dcw(scores, country=country)
+    } else {
+      stop("EQ-5D-5L valueset type not recognised. Must be one of 'VT' or 'CW'.")
+    }
   }
-  
-  # if(.nchar != 1 & .nchar != 5 & .length == 1){ # returns NA if single score. #is this needed here
-  #   if(ignore.incomplete) {
-  #     return(NA)
-  #   } else {
-  #     stop("Missing/non-numeric dimension found.")
-  #   }
-  # }
-  
-
-
-  #length 1 in .getDimensionCombinations
-  #length > 1 use sapply all in .getDimensionCombinations
-  
-  
-  # if(length(.nchar)>1){ #add ignore.incomplete?
-  #   stop("Error: differing vector lengths.")
-  # }
-  
-  # if(.nchar != 1 & .nchar != 5 & .length == 1){ # returns NA if single score. #is this needed here
-  #   if(ignore.incomplete) {
-  #     return(NA)
-  #   } else {
-  #     stop("Missing/non-numeric dimension found.")
-  #   }
-  # }
-  
-  # if(is.character(scores)){
-  #   .names <- names(scores)
-  #   scores <- as.numeric(scores)
-  #   names(scores) <- .names
-  # }
-  # 
-  # if(.nchar == 1 & .length == 5){ #MO, UA etc format single
-  #   res = eq5d.get(scores, version=version, type=type, country=country)
-  #   return(res)
-  # }
-  # 
-  # if(.nchar == 1 & .length != 5){ #return NA if ignore.incomplete
-  #   stop("Error: unrecognised scores format.")
-  # }
-  # 
-  # if(.nchar == 5 & .length == 1){ #single five digit.
-  #   str = strsplit(as.character(scores), "")
-  #   scores = data.frame(matrix(as.numeric(unlist(str)), nrow=length(str), byrow=T))
-  #   names(scores) <- c("MO", "SC", "UA", "PD", "AD")
-  #   res = eq5d.get(scores, version=version, type=type, country=country)
-  #   return(res)
-  # }
-  # 
-  # if(.nchar == 5 & .length > 1){
-  #   res <- sapply(scores, function(x) {
-  #     eq5d.default(x, version=version, type=type, country=country, ignore.incomplete=ignore.incomplete)
-  #   })
-  #   return(res)
-  # }
 }
 
 # 
