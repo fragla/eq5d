@@ -20,4 +20,6 @@ test_that("eq5dds returns correct answer", {
 
 test_that("eq5dds throws error", {
   expect_error(eq5dds(test1.df, version="3L", by="Gender"))
+  expect_error(eq5dds(test1.df, version="7L"))
+  expect_error(eq5dds(test1.df[c("MO","SC","UA","PD")], version="3L"))
 })
