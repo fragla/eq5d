@@ -1,0 +1,23 @@
+context("EQ-5D-DS")
+
+test1.df <- data.frame(MO=c(1,2,3,2,1,2), SC=c(2,3,2,1,2,3), UA=c(3,2,1,2,3,1), PD=c(1,1,2,3,2,1), AD=c(2,2,3,3,1,1), Sex=c("M","F","M","F","M","F"))
+test2.df <- data.frame(MO=c(1,2,3,NA,1,2), SC=c(2,3,2,1,2,3), UA=c("F",2,1,2,3,1), PD=c(1,1,2,3,2,1), AD=c(2,2,3,3,1,1), Sex=c("M","F","M","F","M","F"))
+
+res1.df <- data.frame(MO=c(33.3,50.0,16.7),SC=c(16.7,50.0,33.3),UA=c(33.3,33.3,33.3),PD=c(50.0,33.3,16.7),AD=c(33.3,33.3,33.3))
+res2.df <- data.frame(MO=c(2,3,1),SC=c(1,3,2),UA=c(2,2,2),PD=c(3,2,1),AD=c(2,2,2))
+res3.df <- data.frame(MO=c(25,50,25),SC=c(0,50,50),UA=c(50,25,25),PD=c(50,50,0),AD=c(50,25,25))
+res4.df <- data.frame(MO=c(1,2,1),SC=c(0,2,2),UA=c(2,1,1),PD=c(2,2,0),AD=c(2,1,1))
+res5.df <- list(M=data.frame(MO=c(66.7,0,33.3),SC=c(0,100,0),UA=c(33.3,0,66.7),PD=c(33.3,66.7,0),AD=c(33.3,33.3,33.3)),
+                F=data.frame(MO=c(0,100,0),SC=c(33.3,0,66.7),UA=c(33.3,66.7,0),PD=c(66.7,0,33.3),AD=c(33.3,33.3,33.3)))
+test_that("eq5dds returns correct answer", {
+  expect_equal(eq5dds(test1.df, version="3L"), res1.df)
+  expect_equal(eq5dds(test1.df, version="3L", counts=TRUE), res2.df)
+  expect_equal(eq5dds(test2.df, version="3L"), res3.df)
+  expect_equal(eq5dds(test2.df, version="3L", counts=TRUE), res4.df)
+  expect_equal(eq5dds(test1.df, version="3L", by="Sex")$M, res5.df$M)
+  expect_equal(eq5dds(test1.df, version="3L", by="Sex")$F, res5.df$F)
+})
+
+test_that("eq5dds throws error", {
+  expect_error(eq5dds(test1.df, version="3L", by="Gender"))
+})

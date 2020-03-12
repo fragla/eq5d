@@ -35,9 +35,18 @@ eq5dds <- function(data, version, counts=FALSE, by=NULL) {
     stop("Unable to identify EQ-5D dimensions in scores.")
   }
   
-  if(!is.null(by) && by %in% colnames(data)) {
-    res <- by(data, data[,by], function(x){eq5dds(x, version=version)})
-    return(res)
+  class.check <- sapply(data[c("MO", "SC", "UA", "PD", "AD")], function(x){class(x)!="numeric"})
+  if(any(class.check)) {
+    data[c("MO", "SC", "UA", "PD", "AD")] <- suppressWarnings(sapply(data[c("MO", "SC", "UA", "PD", "AD")],function(x){as.numeric(as.character(x))}))
+  }
+  
+  if(!is.null(by)) {
+    if(by %in% colnames(data)) {
+      res <- by(data, data[,by], function(x){eq5dds(x, version=version)})
+      return(res)
+    } else {
+      stop("Unable to identify by column in data.frame.")
+    }
   }
   else {
   ##remove missing/incorrect
@@ -48,6 +57,10 @@ eq5dds <- function(data, version, counts=FALSE, by=NULL) {
     
     df <- as.data.frame(matrix(0, nrow=max.value, ncol=5))
     colnames(df) <- dimension.cols
+    
+    idx <- apply(data[,c("MO", "SC", "UA", "PD", "AD")], 1, function(x) {all(x %in% 1:max.value)})
+    
+    data <- data[idx,]
     
     for(i in colnames(df)) {
       ctable <- table(data[,i])
