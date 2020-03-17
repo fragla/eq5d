@@ -52,4 +52,6 @@ scores.df2 <- data.frame(
 
 eq5d(scores=scores.df2, type="TTO", version="3L", country="UK", five.digit="state")
 
+eq5d(scores=scores.df2$state, type="TTO", version="3L", country="UK")
+
 }
