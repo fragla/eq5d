@@ -4,6 +4,7 @@
 # eq5d (development version)
 
   - eq5dds function added to summarise EQ-5D descriptive system.
+  - Added getHealthStates and splitHealthStates helper functions.
   - Updated error messages.
 
 # eq5d 0.6.0 (2020-02-03)
