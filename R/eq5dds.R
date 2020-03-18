@@ -10,7 +10,8 @@
 #' FALSE, which shows percentages for each EQ-5D dimension.
 #' @param by character specifying the column in the data.frame by which to 
 #' group the results.
-#' 
+#' @return a data.frame or list of data.frames of counts/percentages. Columns 
+#' contain dimensions names and rows the EQ-5D score.
 #' @examples
 #' dat <- data.frame(
 #'          matrix(

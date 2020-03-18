@@ -18,6 +18,7 @@
 #' @param ... character vectors, specifying "dimensions" column names or 
 #'   "five.digit" column name. Defaults are "MO", "SC", "UA", "PD" and "AD"
 #'   for dimensions and "State" for five.digit.
+#' @return a numeric vector of utility index scores.
 #' @examples
 #' eq5d(scores=c(MO=1,SC=2,UA=3,PD=4,AD=5), type="VT", 
 #'  country="Indonesia", version="5L")

@@ -14,6 +14,9 @@ Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.}
 
 \item{country}{value set country.}
 }
+\value{
+calculated utility index score.
+}
 \description{
 Calculate indices for EQ-5D-3L value sets. Available value sets can be viewed 
   using the function \code{valuesets}.

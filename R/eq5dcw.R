@@ -5,7 +5,8 @@
 #' 
 #' @param scores numeric with names MO, SC, UA, PD and AD representing
 #'   Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.
-#' @param country value set country. 
+#' @param country value set country.
+#' @return calculated utility index score. 
 #' @examples
 #' eq5dcw(scores=c(MO=1,SC=2,UA=5,PD=1,AD=3), country="UK")
 #' eq5dcw(scores=c(MO=3,SC=5,UA=5,PD=2,AD=3), country="Germany")

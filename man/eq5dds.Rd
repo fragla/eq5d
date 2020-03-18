@@ -18,6 +18,10 @@ FALSE, which shows percentages for each EQ-5D dimension.}
 \item{by}{character specifying the column in the data.frame by which to 
 group the results.}
 }
+\value{
+a data.frame or list of data.frames of counts/percentages. Columns 
+contain dimensions names and rows the EQ-5D score.
+}
 \description{
 Analyses the descriptive components of an EQ-5D dataset producing summary 
 information either as counts or as percentages.

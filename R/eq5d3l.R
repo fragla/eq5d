@@ -7,6 +7,7 @@
 #'   Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.
 #' @param type 3L values set type. Either TTO or VAS.
 #' @param country value set country. 
+#' @return calculated utility index score.
 #' @examples
 #' eq5d3l(scores=c(MO=1,SC=2,UA=3,PD=1,AD=3), type="VAS", country="UK")
 #' eq5d3l(scores=c(MO=3,SC=2,UA=3,PD=2,AD=3), type="TTO", country="Germany")

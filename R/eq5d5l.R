@@ -6,6 +6,7 @@
 #' @param scores numeric with names MO, SC, UA, PD and AD representing
 #'   Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.
 #' @param country value set country. 
+#' @return calculated utility index score.
 #' @examples
 #' eq5d5l(scores=c(MO=1,SC=2,UA=3,PD=4,AD=5), country="England")
 #' eq5d5l(scores=c(MO=3,SC=2,UA=5,PD=2,AD=3), country="Netherlands")

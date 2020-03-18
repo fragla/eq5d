@@ -27,6 +27,9 @@ with missing data.}
 "five.digit" column name. Defaults are "MO", "SC", "UA", "PD" and "AD"
 for dimensions and "State" for five.digit.}
 }
+\value{
+a numeric vector of utility index scores.
+}
 \description{
 Wrapper for \code{eq5d3l} and \code{eq5d5l}. Calculate EQ-5D index scores for 
 EQ-5D-3L and EQ-5D-5L. Available value sets can be viewed using the function 
