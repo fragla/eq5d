@@ -117,6 +117,11 @@ scores.df2 <- data.frame(state=c(11111,25532,34241,43332,52141))
 
 eq5d(scores.df2, country="Canada", version="5L", type="VT", five.digit="state")
 #> [1] 0.949 0.362 0.390 0.524 0.431
+
+#or using a vector
+
+eq5d(scores.df2$state, country="Canada", version="5L", type="VT")
+#> [1] 0.949 0.362 0.390 0.524 0.431
 ```
 
 ## Value sets
@@ -162,6 +167,72 @@ valuesets(country="UK")
 #> 1 EQ-5D-3L  TTO      UK
 #> 2 EQ-5D-3L  VAS      UK
 #> 3 EQ-5D-5L   CW      UK
+```
+
+## EQ-5D-DS
+
+The ***eq5dds*** function is an R approximation of the Stata command
+written by [Ramos-Goñi &
+Ramallo-Fariña](https://www.stata-journal.com/article.html?article=st0450).
+The function analyses and summarises the descriptive components of an
+EQ-5D dataset. The “by” argument enables a grouping variable to be
+specified when analysing the data subgroup.
+
+``` r
+
+dat <- data.frame(
+         matrix(
+           sample(1:3,5*12, replace=TRUE),12,5, 
+           dimnames=list(1:12,c("MO","SC","UA","PD","AD"))
+         ),
+         Sex=rep(c("Male", "Female"))
+       )
+
+eq5dds(dat, version="3L")
+#>   MO   SC   UA   PD   AD
+#> 1 25 25.0 33.3 50.0 41.7
+#> 2 25 33.3 16.7 33.3 41.7
+#> 3 50 41.7 50.0 16.7 16.7
+
+eq5dds(dat, version="3L", counts=TRUE)
+#>   MO SC UA PD AD
+#> 1  3  3  4  6  5
+#> 2  3  4  2  4  5
+#> 3  6  5  6  2  2
+
+eq5dds(dat, version="3L", by="Sex")
+#> data[, by]: Female
+#>     MO   SC   UA   PD   AD
+#> 1 16.7 16.7 33.3 50.0 16.7
+#> 2 50.0 50.0 33.3 33.3 66.7
+#> 3 33.3 33.3 33.3 16.7 16.7
+#> ------------------------------------------------------------ 
+#> data[, by]: Male
+#>     MO   SC   UA   PD   AD
+#> 1 33.3 33.3 33.3 50.0 66.7
+#> 2  0.0 16.7  0.0 33.3 16.7
+#> 3 66.7 50.0 66.7 16.7 16.7
+```
+
+## Helper functions
+
+Helper functions are included, which may be useful in the processing of
+EQ-5D data. ***getHealthStates*** returns a vector of all possible five
+digit health states for a specified EQ-5D version.
+***splitHealthStates*** splits a vector of five digit health states into
+a data.frame of their individual components.
+
+``` r
+
+# Get all EQ-5D-3L five digit health states (top 6 returned for brevity).
+head(getHealthStates("3L"))
+#> [1] "11111" "11112" "11113" "11121" "11122" "11123"
+
+# Split five digit health states into their individual components.
+splitHealthStates(c("12345", "54321"), version="5L")
+#>   MO SC UA PD AD
+#> 1  1  2  3  4  5
+#> 2  5  4  3  2  1
 ```
 
 ## Example data
