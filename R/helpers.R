@@ -37,7 +37,6 @@ getHealthStates <- function(version) {
 #' @examples
 #' splitHealthStates(c("12345", "54321")
 #' 
-#' @export
 #'@export
 splitHealthStates <- function(scores, ignore.invalid=TRUE, version="5L") {
   if(ignore.invalid) {
