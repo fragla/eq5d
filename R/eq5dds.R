@@ -18,7 +18,7 @@
 #'            sample(1:3,5*12, replace=TRUE),12,5, 
 #'            dimnames=list(1:12,c("MO","SC","UA","PD","AD"))
 #'          ),
-#'          Sex=rep(c("Male", "Female", 6))
+#'          Sex=rep(c("Male", "Female"))
 #'        )
 #' 
 #' eq5dds(dat, version="3L")
