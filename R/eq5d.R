@@ -49,7 +49,7 @@ eq5d <- function (scores, version, type, country, ignore.incomplete, ...) {
 eq5d.data.frame <- function(scores, version=NULL, type=NULL, country=NULL, ignore.incomplete=FALSE, ...) {
   args <- list(...)
   
-  dimensions <- c("MO", "SC", "UA", "PD", "AD")
+  dimensions <- .getDimensionNames()
   five.digit <- "State"
   
   if(!is.null(args$dimensions)) {dimensions <- args$dimensions}
@@ -57,7 +57,7 @@ eq5d.data.frame <- function(scores, version=NULL, type=NULL, country=NULL, ignor
   
   if(all(dimensions %in% names(scores))) {
     scores <- scores[,dimensions]
-    colnames(scores) <- c("MO", "SC", "UA", "PD", "AD")
+    colnames(scores) <- .getDimensionNames()
   } else if(five.digit %in% tolower(names(scores))) {
     scores <- scores[,five.digit, drop=FALSE]
   } else {
@@ -91,16 +91,16 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
   }
 
   if(.length>1) {
-    if(.length==5 && all(c("MO", "SC", "UA", "PD", "AD") %in% names(scores))) {
+    if(.length==5 && all(.getDimensionNames() %in% names(scores))) {
       res <- .eq5d(scores, version=version, type=type, country=country, ignore.incomplete=ignore.incomplete)
     } else {
       res <- sapply(scores, function(x) {
         eq5d.default(x, version=version, type=type, country=country, ignore.incomplete=ignore.incomplete)
       })
     }
-  } else if (.length==1 && scores %in% .getDimensionCombinations(version)) {
+  } else if (.length==1 && scores %in% getHealthStates(version)) {
     scores <- as.numeric(strsplit(as.character(scores[1]), "")[[1]])
-    names(scores) <- c("MO", "SC", "UA", "PD", "AD")
+    names(scores) <- .getDimensionNames()
     res <- .eq5d(scores, version=version, type=type, country=country, ignore.incomplete=ignore.incomplete)
   } else {
     if(ignore.incomplete) {
@@ -167,11 +167,4 @@ valuesets <- function(type=NULL, version=NULL, country=NULL) {
   if(!is.null(country)) vs <- vs[vs$Country==country,]
   rownames(vs) <- NULL
   return(vs)
-}
-
-.getDimensionCombinations <- function(version) {
-  max.value <- sub("L", "", version)
-  dimensions <- expand.grid(1:max.value, 1:max.value, 1:max.value, 1:max.value, 1:max.value)
-  indexes <- apply(dimensions, 1, function(x){paste(x, collapse="")})
-  return(indexes)
 }

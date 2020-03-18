@@ -13,7 +13,7 @@
 #' @export
 eq5d5l <- function(scores, country="England") {
   
-  if(!all(names(scores) %in% c("MO", "SC", "UA", "PD", "AD")))
+  if(!all(names(scores) %in% .getDimensionNames()))
     stop("Unable to identify EQ-5D dimensions in scores.")
   
   if(!all(scores %in% 1:5))
