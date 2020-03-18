@@ -22,6 +22,6 @@ A data.frame of individual dimension scores.
 Split five digit health states into their individual dimension scores.
 }
 \examples{
-splitHealthStates(c("12345", "54321")
+splitHealthStates(c("12345", "54321"), version="5L")
 
 }

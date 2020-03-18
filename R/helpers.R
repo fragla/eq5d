@@ -35,7 +35,7 @@ getHealthStates <- function(version) {
 #' is FALSE.
 #' @return A data.frame of individual dimension scores.
 #' @examples
-#' splitHealthStates(c("12345", "54321")
+#' splitHealthStates(c("12345", "54321"), version="5L")
 #' 
 #'@export
 splitHealthStates <- function(scores, ignore.invalid=TRUE, version="5L") {
