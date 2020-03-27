@@ -43,14 +43,14 @@ eq5dds <- function(data, version, counts=FALSE, by=NULL) {
   
   if(!is.null(by)) {
     if(by %in% colnames(data)) {
-      res <- by(data, data[,by], function(x){eq5dds(x, version=version)})
+      res <- by(data, data[,by], function(x){eq5dds(x, version=version, counts=counts)})
       return(res)
     } else {
       stop("Unable to identify by column in data.frame.")
     }
   }
   else {
-  ##remove missing/incorrect
+    ##remove missing/incorrect
     dimension.cols <- c("MO", "SC", "UA", "PD", "AD")
     
     max.value <- as.numeric(sub("L", "", version))
