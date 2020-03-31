@@ -51,8 +51,6 @@ eq5dds <- function(data, version, counts=FALSE, by=NULL) {
   }
   else {
     ##remove missing/incorrect
-    ##dimension.cols <- c("MO", "SC", "UA", "PD", "AD")
-    
     max.value <- as.numeric(sub("L", "", version))
     dimensions <- 1:max.value
     
