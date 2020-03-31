@@ -32,13 +32,13 @@ eq5dds <- function(data, version, counts=FALSE, by=NULL) {
   if(!version %in% c("3L", "5L"))
     stop("EQ-5D version not one of 3L or 5L.")
   
-  if(!all(c("MO", "SC", "UA", "PD", "AD") %in% names(data))) {
+  if(!all(.getDimensionNames() %in% names(data))) {
     stop("Unable to identify EQ-5D dimensions in scores.")
   }
   
-  class.check <- sapply(data[c("MO", "SC", "UA", "PD", "AD")], function(x){class(x)!="numeric"})
+  class.check <- sapply(data[.getDimensionNames()], function(x){class(x)!="numeric"})
   if(any(class.check)) {
-    data[c("MO", "SC", "UA", "PD", "AD")] <- suppressWarnings(sapply(data[c("MO", "SC", "UA", "PD", "AD")],function(x){as.numeric(as.character(x))}))
+    data[.getDimensionNames()] <- suppressWarnings(sapply(data[.getDimensionNames()],function(x){as.numeric(as.character(x))}))
   }
   
   if(!is.null(by)) {
@@ -51,15 +51,15 @@ eq5dds <- function(data, version, counts=FALSE, by=NULL) {
   }
   else {
     ##remove missing/incorrect
-    dimension.cols <- c("MO", "SC", "UA", "PD", "AD")
+    ##dimension.cols <- c("MO", "SC", "UA", "PD", "AD")
     
     max.value <- as.numeric(sub("L", "", version))
     dimensions <- 1:max.value
     
     df <- as.data.frame(matrix(0, nrow=max.value, ncol=5))
-    colnames(df) <- dimension.cols
+    colnames(df) <- .getDimensionNames()
     
-    idx <- apply(data[,c("MO", "SC", "UA", "PD", "AD")], 1, function(x) {all(x %in% 1:max.value)})
+    idx <- apply(data[,.getDimensionNames()], 1, function(x) {all(x %in% 1:max.value)})
     
     data <- data[idx,]
     
