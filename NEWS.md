@@ -4,8 +4,15 @@
 # eq5d (development version)
 
   - eq5dds function added to summarise EQ-5D descriptive system.
+
   - Added getHealthStates and splitHealthStates helper functions.
+
   - Updated error messages.
+
+  - Shiny application updated.
+    
+      - Barplot added to display eq5dds info.
+      - Summary eq5dds table added for barplot/radar plot.
 
 # eq5d 0.6.0 (2020-02-03)
 

@@ -189,29 +189,29 @@ dat <- data.frame(
        )
 
 eq5dds(dat, version="3L")
-#>   MO   SC   UA   PD   AD
-#> 1 25 25.0 33.3 50.0 41.7
-#> 2 25 33.3 16.7 33.3 41.7
-#> 3 50 41.7 50.0 16.7 16.7
+#>     MO   SC   UA   PD   AD
+#> 1 41.7 41.7 33.3 16.7 50.0
+#> 2  8.3 33.3 41.7 41.7  8.3
+#> 3 50.0 25.0 25.0 41.7 41.7
 
 eq5dds(dat, version="3L", counts=TRUE)
 #>   MO SC UA PD AD
-#> 1  3  3  4  6  5
-#> 2  3  4  2  4  5
-#> 3  6  5  6  2  2
+#> 1  5  5  4  2  6
+#> 2  1  4  5  5  1
+#> 3  6  3  3  5  5
 
 eq5dds(dat, version="3L", by="Sex")
 #> data[, by]: Female
-#>     MO   SC   UA   PD   AD
-#> 1 16.7 16.7 33.3 50.0 16.7
-#> 2 50.0 50.0 33.3 33.3 66.7
-#> 3 33.3 33.3 33.3 16.7 16.7
+#>     MO   SC   UA PD   AD
+#> 1 33.3 33.3 16.7  0 83.3
+#> 2 16.7 16.7 33.3 50  0.0
+#> 3 50.0 50.0 50.0 50 16.7
 #> ------------------------------------------------------------ 
 #> data[, by]: Male
-#>     MO   SC   UA   PD   AD
-#> 1 33.3 33.3 33.3 50.0 66.7
-#> 2  0.0 16.7  0.0 33.3 16.7
-#> 3 66.7 50.0 66.7 16.7 16.7
+#>   MO SC UA   PD   AD
+#> 1 50 50 50 33.3 16.7
+#> 2  0 50 50 33.3 16.7
+#> 3 50  0  0 33.3 66.7
 ```
 
 ## Helper functions
@@ -288,9 +288,9 @@ Alternatively, it can be accessed without installing R/Shiny/eq5d by
 visiting [shinyapps.io](https://fragla.shinyapps.io/shiny-eq5d).
 
 ![Shiny EQ-5D app main
-screenshot](man/figures/shiny_app_screenshot_main.png)
-
-![Shiny EQ-5D app density plot
+screenshot](man/figures/shiny_app_screenshot_main.png) ![Shiny EQ-5D app
+main screenshot](man/figures/shiny_app_screenshot_barplot.png) ![Shiny
+EQ-5D app density plot
 screenshot](man/figures/shiny_app_screenshot_density.png) ![Shiny EQ-5D
 app ecdf plot screenshot](man/figures/shiny_app_screenshot_ecdf.png)
 ![Shiny EQ-5D app radar plot

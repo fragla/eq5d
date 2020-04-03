@@ -5,9 +5,11 @@ library(readxl)
 library(ggplot2)
 library(ggiraph)
 library(ggiraphExtra)
+library(reshape2)
 library(shinyWidgets)
 library(FSA)
 library(PMCMRplus)
+library(tools)
 
 options(shiny.sanitize.errors = FALSE)
 
@@ -147,6 +149,13 @@ shinyServer(function(input, output) {
                  inline=T)
   })
   
+  output$choose_summary_type <- renderUI({
+    radioButtons("summary_type", "Summary type:",
+                 c("Counts"="counts", "Percentage"="percentage"),
+                 selected="percentage",
+                 inline=T)
+  })
+  
   output$eq5d_table <- DT::renderDataTable({
     if(is.null(input$data) || is.null(input$version) || is.null(input$type) || is.null(input$country))
       return()
@@ -231,6 +240,7 @@ shinyServer(function(input, output) {
     
     idx <- getColumnIndex(dat)
     if(is.null(idx)) {
+      print(head(dat))
       stop("Unable to identify EQ-5D dimensions in the file header.")
     }
     
@@ -308,6 +318,9 @@ shinyServer(function(input, output) {
     if(is.null(input$data) || is.null(input$plot_type) || is.null(input$group))
       return()
     
+    if(input$plot_type=="summary" && is.null(input$summary_type))
+       return()
+    
     if(input$group!="None" && is.null(input$group_member))
       return()
 
@@ -332,7 +345,9 @@ shinyServer(function(input, output) {
     } else if(input$plot_type=="radar") {
       print("Radar")
       code <- radar_plot()
-    }  else {
+    } else if(input$plot_type=="summary") {
+      code <- bar_plot()
+    } else {
       stop("Unable to identify plot type")
     }
     return(code)
@@ -430,7 +445,42 @@ shinyServer(function(input, output) {
     }
     return(p)
   })
-
+  
+  bar_plot <- reactive({
+    if(is.null(input$data) || is.null(input$plot_type) || is.null(input$group) || is.null(input$summary_type))
+      return()
+    
+    data <- getTableDataByGroup()
+    
+    counts <- ifelse(input$summary_type == "counts", TRUE, FALSE)
+    summary_type <- toTitleCase(input$summary_type)
+    
+    if(input$group=="None" || !input$raw) {
+      data <- eq5dds(data, version=input$version, counts=counts)
+      
+    } else {
+      data <- eq5dds(data, version=input$version, counts=counts, by=input$group)
+    }
+    
+    if(input$group=="None") {
+      data <- melt(as.matrix(data))
+      colnames(data) <- c("Score", "Dimension", summary_type)
+      data$Score <- as.factor(data$Score)
+      
+      p <- ggplot(data, aes_string(fill="Score", y=summary_type, x="Dimension", tooltip=summary_type)) + 
+        geom_bar_interactive(position="dodge", stat="identity")
+    } else {
+      data <- lapply(data, function(x){melt(as.matrix(x))})
+      data <- do.call(rbind, unname(Map(cbind, Group = names(data), data)))
+      colnames(data) <- c(input$group, "Score", "Dimension", summary_type)
+      data$Score <- as.factor(data$Score)
+      p <- ggplot(data, aes_string(fill="Score", y=summary_type, x="Dimension", tooltip=summary_type)) + 
+        geom_bar_interactive(position="dodge", stat="identity") + facet_wrap(as.formula(paste("~", input$group)))
+    }
+    
+    return(p)
+  })  
+  
   output$choose_plot_data <- renderUI({
     selectInput("plot_data", "Plot data:",
         c("Index", "MO", "SC", "UA", "PD", "AD")
@@ -439,7 +489,7 @@ shinyServer(function(input, output) {
 
   output$choose_plot_type <- renderUI({
     selectInput("plot_type", "Plot type:",
-        c("Density"="density", "ECDF"="ecdf", "Radar"="radar")
+        c("Summary"="summary", "Density"="density", "ECDF"="ecdf", "Radar"="radar")
     )
   })
 
@@ -480,6 +530,21 @@ shinyServer(function(input, output) {
     )
   })
   
+  getSummary <- reactive({
+    if(is.null(input$data) || is.null(input$plot_type) || is.null(input$summary_type)) {
+      return()
+    }
+    counts <- ifelse(input$summary_type == "counts", TRUE, FALSE)
+
+    data <- getTableDataByGroup()
+    if(input$group=="None" || !input$raw) {
+     data <- eq5dds(data, version=input$version, counts=counts)
+    } else {
+      data <- eq5dds(data, version=input$version, counts=counts, by=input$group)
+    }
+    return(data)
+  })
+  
   getStatistics <- reactive({
     if(is.null(input$group) || input$group=="None") {
       return()
@@ -502,19 +567,41 @@ shinyServer(function(input, output) {
   })
   
   output$statistics <- renderUI({
-    
-    stats <- getStatistics()
-    if(is.null(stats))
-      return("Select a group to perform statistical tests.")
-    
-    taglist <- tagList(
-      h5(stats$method),
-      p(paste("Data", stats$data.name)),
-      p(paste0(names(stats$statistic), " = ", round(stats$statistic,1))),
-      p("p.value = ", round(stats$p.value,5))
-    )
-    if(length(input$group_member) > 2 & stats$p.value < 0.05) {
-      taglist[[length(taglist)+1]] <- actionButton("posthoc","View post hoc tests")
+    if(is.null(input$data) || is.null(input$plot_type))
+      return()
+
+    if(input$plot_type %in% c("radar", "summary")) {
+      summ <- getSummary()
+      if(input$group=="None" || !input$raw) {
+        taglist <- tagList(
+          h5(paste("Descriptive system by", input$summary_type)),
+          renderDT(summ,options = list(searching = FALSE, paging = FALSE, info = FALSE))
+        )
+      } else {
+        if(length(summ)==0)
+          return()
+        
+        taglist <- tagList(
+          h5(paste("Descriptive system by", input$summary_type)),
+          radioButtons("eq5dds", "Group table:", names(summ), selected=ifelse(is.null(input$eq5dds),names(summ)[1],input$eq5dds), inline=T),
+          renderDT(summ[[input$eq5dds]],options = list(searching = FALSE, paging = FALSE, info = FALSE))
+        )
+      }
+    } else {
+      stats <- getStatistics()
+      if(is.null(stats))
+        return("Select a group to perform statistical tests.")
+      
+      taglist <- tagList(
+        h4("Statistical analysis"),
+        p(strong(stats$method)),
+        p(strong(paste("Data:")), paste(stats$data.name)),
+        p(strong(paste0(names(stats$statistic))), paste0(" = ", round(stats$statistic,1)),
+        strong(paste0("p value = ")), paste0(round(stats$p.value,5)))
+      )
+      if(length(input$group_member) > 2 & stats$p.value < 0.05) {
+        taglist[[length(taglist)+1]] <- actionButton("posthoc","View post hoc tests")
+      }
     }
     return(taglist)
   })

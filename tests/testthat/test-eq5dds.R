@@ -9,6 +9,8 @@ res3.df <- data.frame(MO=c(25,50,25),SC=c(0,50,50),UA=c(50,25,25),PD=c(50,50,0),
 res4.df <- data.frame(MO=c(1,2,1),SC=c(0,2,2),UA=c(2,1,1),PD=c(2,2,0),AD=c(2,1,1))
 res5.df <- list(M=data.frame(MO=c(66.7,0,33.3),SC=c(0,100,0),UA=c(33.3,0,66.7),PD=c(33.3,66.7,0),AD=c(33.3,33.3,33.3)),
                 F=data.frame(MO=c(0,100,0),SC=c(33.3,0,66.7),UA=c(33.3,66.7,0),PD=c(66.7,0,33.3),AD=c(33.3,33.3,33.3)))
+res6.df <- list(M=data.frame(MO=c(2,0,1),SC=c(0,3,0),UA=c(1,0,2),PD=c(1,2,0),AD=c(1,1,1)),
+                 F=data.frame(MO=c(0,3,0),SC=c(1,0,2),UA=c(1,2,0),PD=c(2,0,1),AD=c(1,1,1)))
 test_that("eq5dds returns correct answer", {
   expect_equal(eq5dds(test1.df, version="3L"), res1.df)
   expect_equal(eq5dds(test1.df, version="3L", counts=TRUE), res2.df)
@@ -16,6 +18,8 @@ test_that("eq5dds returns correct answer", {
   expect_equal(eq5dds(test2.df, version="3L", counts=TRUE), res4.df)
   expect_equal(eq5dds(test1.df, version="3L", by="Sex")$M, res5.df$M)
   expect_equal(eq5dds(test1.df, version="3L", by="Sex")$F, res5.df$F)
+  expect_equal(eq5dds(test1.df, version="3L", counts=TRUE, by="Sex")$M, res6.df$M)
+  expect_equal(eq5dds(test1.df, version="3L", counts=TRUE, by="Sex")$F, res6.df$F)
 })
 
 test_that("eq5dds throws error", {
