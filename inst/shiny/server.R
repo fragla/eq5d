@@ -9,6 +9,7 @@ library(reshape2)
 library(shinyWidgets)
 library(FSA)
 library(PMCMRplus)
+library(tools)
 
 options(shiny.sanitize.errors = FALSE)
 
@@ -452,6 +453,7 @@ shinyServer(function(input, output) {
     data <- getTableDataByGroup()
     
     counts <- ifelse(input$summary_type == "counts", TRUE, FALSE)
+    summary_type <- toTitleCase(input$summary_type)
     
     if(input$group=="None" || !input$raw) {
       data <- eq5dds(data, version=input$version, counts=counts)
@@ -462,17 +464,17 @@ shinyServer(function(input, output) {
     
     if(input$group=="None") {
       data <- melt(as.matrix(data))
-      colnames(data) <- c("Score", "Dimension", "Value")
+      colnames(data) <- c("Score", "Dimension", summary_type)
       data$Score <- as.factor(data$Score)
       
-      p <- ggplot(data, aes(fill=Score, y=Value, x=Dimension, tooltip=Value)) + 
+      p <- ggplot(data, aes_string(fill="Score", y=summary_type, x="Dimension", tooltip=summary_type)) + 
         geom_bar_interactive(position="dodge", stat="identity")
     } else {
       data <- lapply(data, function(x){melt(as.matrix(x))})
       data <- do.call(rbind, unname(Map(cbind, Group = names(data), data)))
-      colnames(data) <- c(input$group, "Score", "Dimension", "Value")
+      colnames(data) <- c(input$group, "Score", "Dimension", summary_type)
       data$Score <- as.factor(data$Score)
-      p <- ggplot(data, aes(fill=Score, y=Value, x=Dimension, tooltip=Value)) + 
+      p <- ggplot(data, aes_string(fill="Score", y=summary_type, x="Dimension", tooltip=summary_type)) + 
         geom_bar_interactive(position="dodge", stat="identity") + facet_wrap(as.formula(paste("~", input$group)))
     }
     
