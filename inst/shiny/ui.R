@@ -3,9 +3,11 @@ library(shinycssloaders)
 
 shinyUI(
   navbarPage(title="EQ-5D",
+             position="fixed-top",
              header=singleton(tags$head(
-               tags$style(type="text/css", "text {font-family: sans-serif}")
-               )),
+               tags$style(type="text/css", "text {font-family: sans-serif}"),
+               tags$style(type="text/css", "body {padding-top: 70px;}")
+             )),
     
     tabPanel("Data", tags$style(HTML("
               .col-sm-4, .col-sm-8 {margin-top:5px;}")),
