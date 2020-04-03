@@ -40,7 +40,7 @@ shinyUI(
     tabPanel("Analysis",
       sidebarPanel(
         conditionalPanel(
-          condition = "input.plot_type != 'radar'",
+          condition = "input.plot_type != 'radar' && input.plot_type != 'summary'",
           uiOutput("choose_plot_data")
         ),
         uiOutput("choose_plot_type"),
@@ -50,20 +50,32 @@ shinyUI(
           uiOutput("choose_group_members")
         ),
         conditionalPanel(
-          condition = "input.plot_type != 'radar'",
+          condition = "input.plot_type != 'radar' && input.plot_type != 'summary'",
           uiOutput("show_average"),
           uiOutput("choose_average_method")
         ),
-        uiOutput("show_paired")
+        conditionalPanel(
+          condition = "input.plot_type != 'radar' && input.plot_type != 'summary'",
+          uiOutput("show_paired")
+        ),
+        conditionalPanel(
+          condition = "input.plot_type == 'summary'",
+          uiOutput("choose_summary_type")
+        )
       ),
       mainPanel(
-        column(8, 
+        fluidRow(
+          column(8, 
             withSpinner(ggiraphOutput("plot")),
+          ),
+          column(4,  style = "margin-top: 300px;",
             uiOutput("export_plot")
+          )
         ),
-        column(4, 
-            h4("Statistical analysis"),
-            uiOutput("statistics")
+        fluidRow(
+          column(12,
+          wellPanel(uiOutput("statistics"))
+        )
         )
       )
     ),
@@ -105,11 +117,13 @@ shinyUI(
           deselecting the 'Ignore data with incomplete/missing dimension scores' 
           checkbox in the 'Settings' tab."),
         h4("What statistical analyses are performed?"),
-        p("The statistical tests performed depend on the data and the category selected 
-          in the 'Group by' drop down. The statistical tests that can be performed can be
-          seen in the table below. The application will automatically try to determine 
-          whether the data are paired. Paired testing may be switched off using the 'Data 
-          are paired' checkbox."),
+        p("The statistical tests are performed when a density or ECDF plot are present 
+          (for summary barplot and radar plot a summary table is generated). The test 
+          performed depends on the data and the category selected in the 'Group by' 
+          drop down. The statistical tests that can be performed can be seen in the 
+          table below. The application will automatically try to determine whether the 
+          data are paired. Paired testing may be switched off using the 'Data are 
+          paired' checkbox."),
           tableOutput("stats_tests"),
         h4("What does 'Unable to identify EQ-5D dimensions in the file header' mean?"),
         p("This means it's not been possible for the software to find all of the 
