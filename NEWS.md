@@ -5,6 +5,9 @@
 
   - eq5dds function added to summarise EQ-5D descriptive system.
 
+  - eq5d function rewritten to allow a vector of five digit numbers to
+    used. Thanks to @bitowaqr for the initial code.
+
   - Added getHealthStates and splitHealthStates helper functions.
 
   - Updated error messages.
