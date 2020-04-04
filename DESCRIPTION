@@ -42,6 +42,7 @@ Suggests:
     ggiraphExtra,
     shinycssloaders,
     shinyWidgets,
+    tools,
     FSA,
     PMCMRplus,
     knitr,
