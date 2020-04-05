@@ -1,7 +1,7 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-# eq5d (development version)
+# eq5d 0.7.0 (2020-04-05)
 
   - eq5dds function added to summarise EQ-5D descriptive system.
 
