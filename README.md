@@ -189,29 +189,29 @@ dat <- data.frame(
        )
 
 eq5dds(dat, version="3L")
-#>     MO   SC   UA   PD   AD
-#> 1 41.7 41.7 33.3 16.7 50.0
-#> 2  8.3 33.3 41.7 41.7  8.3
-#> 3 50.0 25.0 25.0 41.7 41.7
+#>     MO   SC UA   PD   AD
+#> 1 25.0 50.0 25 16.7 33.3
+#> 2  8.3 41.7 50 41.7 41.7
+#> 3 66.7  8.3 25 41.7 25.0
 
 eq5dds(dat, version="3L", counts=TRUE)
 #>   MO SC UA PD AD
-#> 1  5  5  4  2  6
-#> 2  1  4  5  5  1
-#> 3  6  3  3  5  5
+#> 1  3  6  3  2  4
+#> 2  1  5  6  5  5
+#> 3  8  1  3  5  3
 
 eq5dds(dat, version="3L", by="Sex")
 #> data[, by]: Female
-#>     MO   SC   UA PD   AD
-#> 1 33.3 33.3 16.7  0 83.3
-#> 2 16.7 16.7 33.3 50  0.0
-#> 3 50.0 50.0 50.0 50 16.7
+#>     MO   SC   UA   PD   AD
+#> 1 33.3 33.3 33.3 16.7 50.0
+#> 2 16.7 66.7 50.0 50.0 33.3
+#> 3 50.0  0.0 16.7 33.3 16.7
 #> ------------------------------------------------------------ 
 #> data[, by]: Male
-#>   MO SC UA   PD   AD
-#> 1 50 50 50 33.3 16.7
-#> 2  0 50 50 33.3 16.7
-#> 3 50  0  0 33.3 66.7
+#>     MO   SC   UA   PD   AD
+#> 1 16.7 66.7 16.7 16.7 16.7
+#> 2  0.0 16.7 50.0 33.3 50.0
+#> 3 83.3 16.7 33.3 50.0 33.3
 ```
 
 ## Helper functions
@@ -265,15 +265,19 @@ be performed by upload of a CSV or Excel file using the packaged
 [Shiny](https://shiny.rstudio.com) app. This requires the
 [shiny](https://cran.r-project.org/package=shiny),
 [DT](https://cran.r-project.org/package=DT),
+[FSA](https://cran.r-project.org/package=FSA),
 [ggplot2](https://cran.r-project.org/package=ggplot2),
 [ggiraph](https://cran.r-project.org/package=ggiraph),
 [ggiraphExtra](https://cran.r-project.org/package=ggiraphExtra),
-[mime](https://cran.r-project.org/package=mime) and
-[readxl](https://cran.r-project.org/package=readxl) packages. The
-CSV/Excel headers should be the same as the names of the vector passed
-to the ***eq5d*** function i.e. MO, SC, UA, PD and AD or the column name
-“State” if using the five digit format. Both files below will produce
-the same results.
+[mime](https://cran.r-project.org/package=mime),
+[PMCMRplus](https://cran.r-project.org/package=PMCMRplus),
+[readxl](https://cran.r-project.org/package=readxl),
+[shinycssloaders](https://cran.r-project.org/package=shinycssloaders)
+and [shinyWidgets](https://cran.r-project.org/package=shinyWidgets)
+packages. The CSV/Excel headers should be the same as the names of the
+vector passed to the ***eq5d*** function i.e. MO, SC, UA, PD and AD or
+the column name “State” if using the five digit format. Both files below
+will produce the same results.
 
 ![Shiny EQ-5D app excel data
 formats](man/figures/shiny_app_excel_scores.png)
