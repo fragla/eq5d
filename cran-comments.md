@@ -4,6 +4,7 @@
 * OS X 10.13.3 (on travis-ci), R 3.5.3, R 3.6.3
 * Windows Server 2012 R2 x64 (on appveyor-ci) R 3.5.3, R 3.6.3, devel 
 * Debian Linux, R-devel, GCC, no long double (on R-hub builder)
+* Debian Linux, R-devel, GCC  (on R-hub builder)
 * Fedora Linux, R-devel, clang, gfortran (on R-hub builder)
 
 ## R CMD check results
