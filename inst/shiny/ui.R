@@ -61,7 +61,7 @@ shinyUI(
           uiOutput("show_paired")
         ),
         conditionalPanel(
-          condition = "input.plot_type == 'summary'",
+          condition = "input.plot_type == 'radar' || input.plot_type == 'summary'",
           uiOutput("choose_summary_type")
         )
       ),
