@@ -115,7 +115,7 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
 
 .eq5d <- function(scores,version=version,type=type, country=country, ignore.incomplete, ...){
   
-  if(any(is.na(scores))) {
+  if(!all(.getDimensionNames() %in% names(scores)) || any(!scores %in% 1:sub("L", "", version))) {
     if(ignore.incomplete) {
       return(NA)
     } else {
