@@ -33,7 +33,7 @@ eq5d3l <- function(scores, type="TTO", country="UK") {
   
   survey <- get(type)
   
-  if(!country %in% colnames(survey))
+  if(is.null(country) || !country %in% colnames(survey))
     stop(paste("For EQ-5D-3L", type, "value sets country must be one of:", paste(colnames(survey), collapse=", ")))
   
   survey <- survey[country]

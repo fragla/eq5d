@@ -22,7 +22,7 @@ eq5d5l <- function(scores, country="England") {
   
   survey <- get("VT")
   
-  if(!country %in% colnames(survey))
+  if(is.null(country) || !country %in% colnames(survey))
     stop(paste("Country must be one of:", paste(colnames(survey), collapse=", ")))
   
   survey <- survey[country]
@@ -32,7 +32,8 @@ eq5d5l <- function(scores, country="England") {
               .minOneGreaterThan1(scores,survey),
               .level4Or5(scores, survey),
               .num45sq(scores, survey),
-              .N4(scores,survey))
+              .N4(scores,survey),
+              .N5(scores,survey))
 
     return(round(sum(values, na.rm = TRUE), digits=3))
 }
@@ -68,6 +69,15 @@ eq5d5l <- function(scores, country="England") {
   if(any(scores >= 4) && !is.na(survey["N4",])) {
     value <- survey["N4",]
     names(value) <- "N4"
+    return(value)
+  }
+}
+
+.N5 <- function(scores, survey) {
+  ##at least one mobility, care, activity, pain, anxiety == 5
+  if(any(scores == 5) && !is.na(survey["N5",])) {
+    value <- survey["N5",]
+    names(value) <- "N5"
     return(value)
   }
 }
