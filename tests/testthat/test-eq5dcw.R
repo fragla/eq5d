@@ -87,4 +87,5 @@ test_that("EQ-5D-5L crosswalk throws error for incorrect parameters", {
   expect_error(eq5dcw(c(MD=5,SC=5,UA=5,PD=5,AD=5), "UK"))
   expect_error(eq5dcw(c(MO=1,SC=2,UA=3,PD=4,AD=6), "UK"))
   expect_error(eq5dcw(c(MO=1,SC=2,UA=3,PD=4,AD=5), "Swaziland"))
+  expect_error(eq5dcw(c(3, 4, 5, 4, 3), "UK"))
 })
