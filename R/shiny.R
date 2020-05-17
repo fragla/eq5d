@@ -5,7 +5,7 @@
 #' @param display.mode The display mode to be passed to \link[shiny]{runApp}
 #' @return NULL
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' shiny_eq5d()
 #' shiny_eq5d(display.mode="normal")
 #' }

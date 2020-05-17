@@ -13,7 +13,7 @@ shiny_eq5d(display.mode = "normal")
 \code{shiny_eq5d} launches a shiny interface for browser based EQ-5D calculations.
 }
 \examples{
-\donttest{
+\dontrun{
 shiny_eq5d()
 shiny_eq5d(display.mode="normal")
 }
