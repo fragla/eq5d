@@ -1,6 +1,14 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
+# eq5d (development version)
+
+  - Added Swedish EQ-5D-5L value set.
+
+  - Bug fixed checking for dimension names in vectors.
+
+  - Updates for testing with R-4.0.0.
+
 # eq5d 0.7.0 (2020-04-05)
 
   - eq5dds function added to summarise EQ-5D descriptive system.
