@@ -4,7 +4,9 @@
 \name{CW}
 \alias{CW}
 \title{EQ-5D-5L Crosswalk data}
-\format{An object of class \code{data.frame} with 3125 rows and 10 columns.}
+\format{
+An object of class \code{data.frame} with 3125 rows and 10 columns.
+}
 \source{
 van Hout B, Janssen MF, et al. Interim scoring for the EQ-5D-5L: Mapping the EQ-5D-5L 
   to EQ-5D-3L value sets. Value in Health 2012 Jul-Aug;15(5):708-15. doi: 10.1016/j.jval.2012.02.008. 

@@ -4,7 +4,9 @@
 \name{VAS}
 \alias{VAS}
 \title{EQ-5D-3L VAS value set data}
-\format{An object of class \code{data.frame} with 21 rows and 11 columns.}
+\format{
+An object of class \code{data.frame} with 21 rows and 11 columns.
+}
 \source{
 Oppe, M., Szende, A., & de Charro, F. (2007), Comparative review of Visual Analogue Scale value sets.
   In Szende, A., Oppe, M., & Devlin, N. (Ed.), EQ-5D Value Sets: Inventory, Comparative Review

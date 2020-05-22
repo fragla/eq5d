@@ -4,7 +4,9 @@
 \name{VT}
 \alias{VT}
 \title{EQ-5D-5L VT value set data}
-\format{An object of class \code{data.frame} with 35 rows and 21 columns.}
+\format{
+An object of class \code{data.frame} with 35 rows and 21 columns.
+}
 \source{
 \enumerate{
     \item{\strong{Canada}: Xie F, Pullenayegum E, Gaebel K, Bansback N, Bryan S, Ohinmaa A, Poissant L, Johnson JA. A Time Trade-off-derived Value Set of the EQ-5D-5L for Canada. Med Care. 2016;54(1):98-105. \href{https://www.ncbi.nlm.nih.gov/pubmed/26492214}{PubMed}}
