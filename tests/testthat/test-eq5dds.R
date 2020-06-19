@@ -2,7 +2,8 @@ context("EQ-5D-DS")
 
 test1.df <- data.frame(MO=c(1,2,3,2,1,2), SC=c(2,3,2,1,2,3), UA=c(3,2,1,2,3,1), PD=c(1,1,2,3,2,1), AD=c(2,2,3,3,1,1), Sex=c("M","F","M","F","M","F"))
 test2.df <- data.frame(MO=c(1,2,3,NA,1,2), SC=c(2,3,2,1,2,3), UA=c("F",2,1,2,3,1), PD=c(1,1,2,3,2,1), AD=c(2,2,3,3,1,1), Sex=c("M","F","M","F","M","F"))
-
+test3.df <- data.frame(Mob=c(1,2,3,2,1,2), SCa=c(2,3,2,1,2,3), UAc=c(3,2,1,2,3,1), PaD=c(1,1,2,3,2,1), AaD=c(2,2,3,3,1,1), Sex=c("M","F","M","F","M","F"))
+  
 res1.df <- data.frame(MO=c(33.3,50.0,16.7),SC=c(16.7,50.0,33.3),UA=c(33.3,33.3,33.3),PD=c(50.0,33.3,16.7),AD=c(33.3,33.3,33.3))
 res2.df <- data.frame(MO=c(2,3,1),SC=c(1,3,2),UA=c(2,2,2),PD=c(3,2,1),AD=c(2,2,2))
 res3.df <- data.frame(MO=c(25,50,25),SC=c(0,50,50),UA=c(50,25,25),PD=c(50,50,0),AD=c(50,25,25))
@@ -20,6 +21,7 @@ test_that("eq5dds returns correct answer", {
   expect_equal(eq5dds(test1.df, version="3L", by="Sex")$F, res5.df$F)
   expect_equal(eq5dds(test1.df, version="3L", counts=TRUE, by="Sex")$M, res6.df$M)
   expect_equal(eq5dds(test1.df, version="3L", counts=TRUE, by="Sex")$F, res6.df$F)
+  expect_equal(eq5dds(test3.df, version="3L", dimensions=c("Mob","SCa","UAc","PaD","AaD")), res1.df)
 })
 
 test_that("eq5dds throws error", {

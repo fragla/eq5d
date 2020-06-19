@@ -10,6 +10,8 @@
 #' FALSE, which shows percentages for each EQ-5D dimension.
 #' @param by character specifying the column in the data.frame by which to 
 #' group the results.
+#' @param ... character vector, specifying "dimensions" column names. Defaults 
+#' are "MO", "SC", "UA", "PD" and "AD".
 #' @return a data.frame or list of data.frames of counts/percentages. Columns 
 #' contain dimensions names and rows the EQ-5D score.
 #' @examples
@@ -27,13 +29,20 @@
 #' eq5dds(dat, version="3L", by="Sex")
 #' 
 #' @export
-eq5dds <- function(data, version, counts=FALSE, by=NULL) {
+eq5dds <- function(data, version, counts=FALSE, by=NULL, ...) {
+  args <- list(...)
   
+  dimensions <- .getDimensionNames()
+
+  if(!is.null(args$dimensions)) {dimensions <- args$dimensions}
+
   if(!version %in% c("3L", "5L"))
     stop("EQ-5D version not one of 3L or 5L.")
   
-  if(!all(.getDimensionNames() %in% names(data))) {
-    stop("Unable to identify EQ-5D dimensions in scores.")
+  if(all(dimensions %in% names(data))) {
+    colnames(data)[match(dimensions, colnames(data))] <- .getDimensionNames()
+  } else {
+    stop("Unable to identify EQ-5D dimensions in data.frame.")
   }
   
   class.check <- sapply(data[.getDimensionNames()], function(x){class(x)!="numeric"})
