@@ -4,7 +4,7 @@
 \alias{eq5dds}
 \title{Analyse the descriptive system of an EQ-5D dataset}
 \usage{
-eq5dds(data, version, counts = FALSE, by = NULL)
+eq5dds(data, version, counts = FALSE, by = NULL, ...)
 }
 \arguments{
 \item{data}{data.frame with names MO, SC, UA, PD and AD representing
@@ -17,6 +17,9 @@ FALSE, which shows percentages for each EQ-5D dimension.}
 
 \item{by}{character specifying the column in the data.frame by which to 
 group the results.}
+
+\item{...}{character vector, specifying "dimensions" column names. Defaults 
+are "MO", "SC", "UA", "PD" and "AD".}
 }
 \value{
 a data.frame or list of data.frames of counts/percentages. Columns 
