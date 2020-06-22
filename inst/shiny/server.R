@@ -15,7 +15,7 @@ options(shiny.sanitize.errors = FALSE)
 
 addResourcePath('example-data', system.file("extdata", package="eq5d"))
 
-shinyServer(function(input, output) {
+shinyServer(function(input, output, session) {
   
   # Drop-down selection box for which data set
   output$choose_dimensions <- renderUI({
@@ -225,22 +225,117 @@ shinyServer(function(input, output) {
     }
   )
   
-  rawdata <- reactive({
+  readdata <- reactive({
+    if(is.null(input$data))
+      return()
+    
+    resetColumns(vals)
+
     if(input$data$type %in% c(mimemap["xls"], mimemap["xlsx"])) {
       dat <- read_excel(input$data$datapath, na=c("NA",""))
       dat <- as.data.frame(dat)
     }
     else {
       dat <- read.csv(file=input$data$datapath, header=TRUE, stringsAsFactors=FALSE, na.strings=c("NA",""))
-    }   
+    }
+  })
+  
+  resetColumns <- function(vals) {
+    vals$MO <- vals$SC <- vals$UA <- vals$PD <- vals$AD <- NULL
+  }
+  
+  rawdata <- reactive({
+    dat <- readdata()
+    
+    if(is.null(getColumnIndex(dat))) {
+      showModal(columnModal(dat))
+      return()
+    } 
+    
+    return(dat)
+  })
+  
+  columnModal <- function(dat, failed = FALSE) {
+    select.options <- c("None", colnames(dat))
+    modalDialog(
+      div(h2(tags$b("Select dimension columns:"))),
+      splitLayout(
+        
+        selectInput("mo_col", "MO:", 
+                    choices=select.options, selected=FALSE, selectize = FALSE),
+        selectInput("sc_col", "SC:", 
+                    choices=select.options, selected=FALSE, selectize = FALSE),
+        selectInput("ua_col", "UA:",
+                    choices=select.options, selected=FALSE, selectize = FALSE, width="100px"),
+        selectInput("pd_col", "PD:",
+                    choices=select.options, selected=FALSE, selectize = FALSE, width="100px"),
+        selectInput("ad_col", "AD:",
+                    choices=select.options, selected=FALSE, selectize = FALSE, width="100px")
+      ),
+
+      if (failed)
+        div(tags$b("Invalid column names.", style = "color: red;")),
+      
+      footer = tagList(
+        modalButton("Cancel"),
+        actionButton("ok", "OK")
+      )
+    )
+  }
+  
+  modalDimensions <- reactive({c(input$mo_col, input$sc_col, input$ua_col, input$pd_col, input$ad_col)})
+  
+  observeEvent(modalDimensions(), {
+    dat <- readdata()
+    options <- colnames(dat)
+    updateSelectInput(session, "mo_col", 
+                      choices = c("None", options[!options %in% c(input$sc_col,input$ua_col,input$pd_col,input$ad_col)]),
+                      selected = input$mo_col)
+    updateSelectInput(session, "sc_col", 
+                      choices = c("None", options[!options %in% c(input$mo_col,input$ua_col,input$pd_col,input$ad_col)]),
+                      selected = input$sc_col)
+    updateSelectInput(session, "ua_col", 
+                      choices = c("None", options[!options %in% c(input$mo_col,input$sc_col,input$pd_col,input$ad_col)]),
+                      selected = input$ua_col)
+    updateSelectInput(session, "pd_col", 
+                      choices = c("None", options[!options %in% c(input$mo_col,input$sc_col,input$ua_col,input$ad_col)]),
+                      selected = input$pd_col)
+    updateSelectInput(session, "ad_col", 
+                      choices = c("None", options[!options %in% c(input$mo_col,input$sc_col,input$ua_col,input$pd_col)]),
+                      selected = input$ad_col)
+  })
+  
+  vals <- reactiveValues(MO=NULL, SC=NULL, UA=NULL, PD=NULL, AD=NULL)
+  
+  observeEvent(input$ok, {
+    dat <- readdata()
+    
+    cols <- c(input$mo_col,input$sc_col,input$ua_col,input$pd_col,input$ad_col)
+    is.valid <- all(sapply(cols, function(x){any(dat[,x] %in% 1:sub("L", "", input$version))}))
+    
+    if(is.valid && all(modalDimensions()!="None")) {
+      vals$MO <- input$mo_col
+      vals$SC <- input$sc_col
+      vals$UA <- input$ua_col
+      vals$PD <- input$pd_col
+      vals$AD <- input$ad_col
+
+      removeModal()
+    } else {
+      showModal(columnModal(readdata(), failed = TRUE))
+    }
   })
   
   dataset <- reactive({
     dat <- rawdata()
     
+    if(is.null(dat))
+      return()
+    
     idx <- getColumnIndex(dat)
     if(is.null(idx)) {
       print(head(dat))
+      return()
       stop("Unable to identify EQ-5D dimensions in the file header.")
     }
     
@@ -284,7 +379,7 @@ shinyServer(function(input, output) {
   }
   
   getTableData <- reactive({
-    eq5d <- eq5d(dataset(), version=input$version, type=input$type, country=input$country, ignore.incomplete=ignoreIncomplete())
+    eq5d <- eq5d(dataset(), version=input$version, type=input$type, country=input$country, ignore.incomplete=ignoreIncomplete(), dimensions=getDimensionNames())
     if(input$raw) {
       if(all(getDimensionNames() %in% colnames(rawdata()))) {
         res <- cbind(rawdata(), eq5d)
@@ -456,10 +551,10 @@ shinyServer(function(input, output) {
     summary_type <- toTitleCase(input$summary_type)
     
     if(input$group=="None" || !input$raw) {
-      data <- eq5dds(data, version=input$version, counts=counts)
+      data <- eq5dds(data, version=input$version, counts=counts, dimensions=getDimensionNames())
       
     } else {
-      data <- eq5dds(data, version=input$version, counts=counts, by=input$group)
+      data <- eq5dds(data, version=input$version, counts=counts, by=input$group, dimensions=getDimensionNames())
     }
     
     if(input$group=="None") {
@@ -538,9 +633,9 @@ shinyServer(function(input, output) {
 
     data <- getTableDataByGroup()
     if(input$group=="None" || !input$raw) {
-     data <- eq5dds(data, version=input$version, counts=counts)
+     data <- eq5dds(data, version=input$version, counts=counts, dimensions=getDimensionNames())
     } else {
-      data <- eq5dds(data, version=input$version, counts=counts, by=input$group)
+      data <- eq5dds(data, version=input$version, counts=counts, by=input$group, dimensions=getDimensionNames())
     }
     return(data)
   })
@@ -733,7 +828,12 @@ shinyServer(function(input, output) {
   }
   
   getDimensionNames <- reactive({
-    return(c("MO", "SC", "UA", "PD", "AD"))
+    dimensions <- c(vals$MO, vals$SC, vals$UA, vals$PD, vals$AD)
+    if(all(!is.null(dimensions))) {
+      return(c(vals$MO, vals$SC, vals$UA, vals$PD, vals$AD))
+    } else {
+      return(c("MO", "SC", "UA", "PD", "AD"))
+    }
   })
   
   getReadableCountryNames <- reactive({
