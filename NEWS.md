@@ -1,6 +1,13 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
+# eq5d (development version)
+
+  - Modal dialog box added to Shimy app for column selection.
+
+  - eq5dds dimension columns can now be specified using dimensions
+    argument.
+
 # eq5d 0.7.1 (2020-06-06)
 
   - Added Swedish EQ-5D-5L value set.

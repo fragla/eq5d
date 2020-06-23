@@ -7,6 +7,12 @@ output: github_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+# eq5d (development version)
+
+* Modal dialog box added to Shimy app for column selection.
+
+* eq5dds dimension columns can now be specified using dimensions argument.
+
 # eq5d 0.7.1 (2020-06-06)
 
 * Added Swedish EQ-5D-5L value set.
