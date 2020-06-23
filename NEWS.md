@@ -3,10 +3,12 @@
 
 # eq5d (development version)
 
-  - Modal dialog box added to Shimy app for column selection.
+  - Modal dialog box added to Shiny app for column selection.
 
   - eq5dds dimension columns can now be specified using dimensions
     argument.
+
+  - Bug fixed in Shiny app using EQ-5D-5L with missing data.
 
 # eq5d 0.7.1 (2020-06-06)
 
