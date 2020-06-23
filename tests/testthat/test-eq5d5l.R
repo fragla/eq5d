@@ -163,6 +163,16 @@ test_that("EQ-5D-5L Thailand gives correct answer", {
   expect_equal(eq5d5l(c(MO=5,SC=5,UA=5,PD=5,AD=5), "Thailand"), -0.421)
 })
 
+test_that("EQ-5D-5L Uruguay gives correct answer", {
+  expect_equal(eq5d5l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "Uruguay"), 1)
+  expect_equal(eq5d5l(c(MO=1,SC=1,UA=1,PD=1,AD=2), "Uruguay"), 0.978)
+  expect_equal(eq5d5l(c(MO=3,SC=1,UA=4,PD=1,AD=2), "Uruguay"), 0.827)
+  expect_equal(eq5d5l(c(MO=2,SC=5,UA=4,PD=1,AD=3), "Uruguay"), 0.538)
+  expect_equal(eq5d5l(c(MO=4,SC=4,UA=4,PD=4,AD=4), "Uruguay"), 0.353)
+  expect_equal(eq5d5l(c(MO=5,SC=5,UA=5,PD=1,AD=1), "Uruguay"), 0.184)
+  expect_equal(eq5d5l(c(MO=5,SC=5,UA=5,PD=5,AD=5), "Uruguay"), -0.264)
+})
+
 test_that("EQ-5D-5L USA gives correct answer", {
   expect_equal(eq5d5l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "USA"), 1)
   expect_equal(eq5d5l(c(MO=2,SC=1,UA=1,PD=1,AD=1), "USA"), 0.904)
@@ -174,14 +184,15 @@ test_that("EQ-5D-5L USA gives correct answer", {
   expect_equal(eq5d5l(c(MO=5,SC=5,UA=5,PD=5,AD=5), "USA"), -0.573)
 })
 
-test_that("EQ-5D-5L Uruguay gives correct answer", {
-  expect_equal(eq5d5l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "Uruguay"), 1)
-  expect_equal(eq5d5l(c(MO=1,SC=1,UA=1,PD=1,AD=2), "Uruguay"), 0.978)
-  expect_equal(eq5d5l(c(MO=3,SC=1,UA=4,PD=1,AD=2), "Uruguay"), 0.827)
-  expect_equal(eq5d5l(c(MO=2,SC=5,UA=4,PD=1,AD=3), "Uruguay"), 0.538)
-  expect_equal(eq5d5l(c(MO=4,SC=4,UA=4,PD=4,AD=4), "Uruguay"), 0.353)
-  expect_equal(eq5d5l(c(MO=5,SC=5,UA=5,PD=1,AD=1), "Uruguay"), 0.184)
-  expect_equal(eq5d5l(c(MO=5,SC=5,UA=5,PD=5,AD=5), "Uruguay"), -0.264)
+test_that("EQ-5D-5L Vietnam gives correct answer", {
+  expect_equal(eq5d5l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "Vietnam"), 1)
+  expect_equal(eq5d5l(c(MO=2,SC=1,UA=1,PD=1,AD=1), "Vietnam"), 0.931)
+  expect_equal(eq5d5l(c(MO=1,SC=2,UA=1,PD=1,AD=1), "Vietnam"), 0.957)
+  expect_equal(eq5d5l(c(MO=1,SC=1,UA=2,PD=1,AD=1), "Vietnam"), 0.954)
+  expect_equal(eq5d5l(c(MO=1,SC=1,UA=1,PD=2,AD=1), "Vietnam"), 0.916)
+  expect_equal(eq5d5l(c(MO=1,SC=1,UA=1,PD=1,AD=2), "Vietnam"), 0.936)
+  expect_equal(eq5d5l(c(MO=1,SC=2,UA=3,PD=4,AD=5), "Vietnam"), 0.390)
+  expect_equal(eq5d5l(c(MO=5,SC=5,UA=5,PD=5,AD=5), "Vietnam"), -0.511)
 })
 
 context("EQ-5D-5L Incorrect params")
