@@ -241,7 +241,7 @@ shinyServer(function(input, output, session) {
   })
   
   resetColumns <- function(vals) {
-    vals$MO <- vals$SC <- vals$UA <- vals$PD <- vals$AD <- NULL
+    vals$MO <- vals$SC <- vals$UA <- vals$PD <- vals$AD  <- vals$State <- NULL
   }
   
   rawdata <- reactive({
@@ -272,6 +272,9 @@ shinyServer(function(input, output, session) {
         selectInput("ad_col", "AD:",
                     choices=select.options, selected=FALSE, selectize = FALSE, width="100px")
       ),
+      div(p(tags$b("or:"))),
+      selectInput("state_col", "Five digit:",
+                  choices=select.options, selected=FALSE, selectize = FALSE, width="100px"),
 
       if (failed)
         div(tags$b("Invalid column names.", style = "color: red;")),
@@ -305,21 +308,31 @@ shinyServer(function(input, output, session) {
                       selected = input$ad_col)
   })
   
-  vals <- reactiveValues(MO=NULL, SC=NULL, UA=NULL, PD=NULL, AD=NULL)
+  vals <- reactiveValues(MO=NULL, SC=NULL, UA=NULL, PD=NULL, AD=NULL, State=NULL)
+  
+  dimensionsValid <- reactive({
+    dat <- readdata()
+    cols <- modalDimensions()
+    is.valid <- all(sapply(cols, function(x){any(dat[,x] %in% 1:sub("L", "", input$version))}))
+    return(is.valid)
+  })
+  
+  stateValid <- reactive({
+    dat <- readdata()
+    is.valid <- any(dat[,input$state_col] %in% getHealthStates(input$version))
+    return(is.valid)
+  })
   
   observeEvent(input$ok, {
-    dat <- readdata()
-    
-    cols <- c(input$mo_col,input$sc_col,input$ua_col,input$pd_col,input$ad_col)
-    is.valid <- all(sapply(cols, function(x){any(dat[,x] %in% 1:sub("L", "", input$version))}))
-    
-    if(is.valid && all(modalDimensions()!="None")) {
+    if(all(modalDimensions()!="None") && dimensionsValid()) {
       vals$MO <- input$mo_col
       vals$SC <- input$sc_col
       vals$UA <- input$ua_col
       vals$PD <- input$pd_col
       vals$AD <- input$ad_col
-
+      removeModal()
+    } else if(input$state_col!="None" && stateValid()) {
+      vals$State <- input$state_col
       removeModal()
     } else {
       showModal(columnModal(readdata(), failed = TRUE))
@@ -328,7 +341,6 @@ shinyServer(function(input, output, session) {
   
   dataset <- reactive({
     dat <- rawdata()
-    
     if(is.null(dat))
       return()
     
@@ -364,7 +376,7 @@ shinyServer(function(input, output, session) {
   getColumnIndex <- function(dat) {
     
     short <- getDimensionNames()
-    five.digit <- "State"
+    five.digit <- getStateName()
     
     short.idx <- match(tolower(short), tolower(colnames(dat)))
     five.digit.idx <- match(tolower(five.digit), tolower(colnames(dat)))
@@ -593,7 +605,7 @@ shinyServer(function(input, output, session) {
       return()
     }
     data <- getTableData()
-    data <- data[!tolower(colnames(data)) %in% tolower(c(getDimensionNames(), "State"))]
+    data <- data[!tolower(colnames(data)) %in% tolower(c(getDimensionNames(), getStateName()))]
     data <- data[sapply(data, function(x) is.character(x) || is.logical(x) || is.factor(x))]
     
     groups <- "None"
@@ -833,6 +845,14 @@ shinyServer(function(input, output, session) {
       return(c(vals$MO, vals$SC, vals$UA, vals$PD, vals$AD))
     } else {
       return(c("MO", "SC", "UA", "PD", "AD"))
+    }
+  })
+  
+  getStateName <- reactive({
+    if(!is.null(vals$State)) {
+      return(vals$State)
+    } else {
+      return("State")
     }
   })
   
