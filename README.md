@@ -190,27 +190,27 @@ dat <- data.frame(
 
 eq5dds(dat, version="3L")
 #>     MO   SC   UA   PD   AD
-#> 1 50.0 25.0 33.3 41.7 50.0
-#> 2 33.3 41.7 25.0 33.3 33.3
-#> 3 16.7 33.3 41.7 25.0 16.7
+#> 1 33.3 41.7 16.7 16.7 50.0
+#> 2 41.7 25.0 66.7 41.7 16.7
+#> 3 25.0 33.3 16.7 41.7 33.3
 
 eq5dds(dat, version="3L", counts=TRUE)
 #>   MO SC UA PD AD
-#> 1  6  3  4  5  6
-#> 2  4  5  3  4  4
-#> 3  2  4  5  3  2
+#> 1  4  5  2  2  6
+#> 2  5  3  8  5  2
+#> 3  3  4  2  5  4
 
 eq5dds(dat, version="3L", by="Sex")
 #> data[, by]: Female
-#>     MO   SC   UA   PD AD
-#> 1 50.0 33.3 16.7 50.0 50
-#> 2 33.3 33.3 16.7 33.3 50
-#> 3 16.7 33.3 66.7 16.7  0
+#>     MO   SC   UA   PD   AD
+#> 1 33.3 33.3 16.7 16.7 50.0
+#> 2 33.3 33.3 66.7 33.3 16.7
+#> 3 33.3 33.3 16.7 50.0 33.3
 #> ------------------------------------------------------------ 
 #> data[, by]: Male
 #>     MO   SC   UA   PD   AD
-#> 1 50.0 16.7 50.0 33.3 50.0
-#> 2 33.3 50.0 33.3 33.3 16.7
+#> 1 33.3 50.0 16.7 16.7 50.0
+#> 2 50.0 16.7 66.7 50.0 16.7
 #> 3 16.7 33.3 16.7 33.3 33.3
 ```
 
@@ -274,10 +274,12 @@ be performed by upload of a CSV or Excel file using the packaged
 [readxl](https://cran.r-project.org/package=readxl),
 [shinycssloaders](https://cran.r-project.org/package=shinycssloaders)
 and [shinyWidgets](https://cran.r-project.org/package=shinyWidgets)
-packages. The CSV/Excel headers should be the same as the names of the
-vector passed to the ***eq5d*** function i.e. MO, SC, UA, PD and AD or
-the column name “State” if using the five digit format. Both files below
-will produce the same results.
+packages. Ideally the CSV/Excel headers should be the same as the names
+of the vector passed to the ***eq5d*** function i.e. MO, SC, UA, PD and
+AD or the column name “State” if using the five digit format. However, a
+modal dialog will prompt the user to select the appropriate columns if
+the defaults can not be found. Both files below will produce the same
+results.
 
 ![Shiny EQ-5D app excel data
 formats](man/figures/shiny_app_excel_scores.png)
