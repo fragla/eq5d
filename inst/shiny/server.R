@@ -167,8 +167,8 @@ shinyServer(function(input, output, session) {
       return()
     
     res <- getTableData()
-    
-    if(input$version=="5L" && !any(dataset() >3)) {
+
+    if(input$version=="5L" && !any(dataset() >3, na.rm=TRUE)) {
       message <- "EQ-5D-5L selected, but all dimension scores are 1, 2, or 3. Is this correct?"
       showNotification(message, type="error", duration=15)
     }
