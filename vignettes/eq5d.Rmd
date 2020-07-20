@@ -4,7 +4,7 @@ author: "Fraser Morton and Jagtar Singh Nijjar"
 date: "`r format(Sys.Date(), '%d %B %Y')`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{eq5d}
+  %\VignetteIndexEntry{Calculating EQ-5D indices with eq5d}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -171,7 +171,7 @@ The calculation (and visualisation) of multiple EQ-5D indices can also be perfor
 [ggiraphExtra](https://cran.r-project.org/package=ggiraphExtra), 
 [mime](https://cran.r-project.org/package=mime),  [PMCMRplus](https://cran.r-project.org/package=PMCMRplus), [readxl](https://cran.r-project.org/package=readxl), 
 [shinycssloaders](https://cran.r-project.org/package=shinycssloaders) and
-[shinyWidgets](https://cran.r-project.org/package=shinyWidgets) packages. The CSV/Excel headers should be the same as the names of the vector passed to the ***eq5d*** function i.e. MO, SC, UA, PD and AD or the column name "State" if using the five digit format. 
+[shinyWidgets](https://cran.r-project.org/package=shinyWidgets) packages. Ideally the CSV/Excel headers should be the same as the names of the vector passed to the ***eq5d*** function i.e. MO, SC, UA, PD and AD or the column name "State" if using the five digit format. However, a modal dialog will prompt the user to select the appropriate columns if the defaults can not be found. 
 
 The app is launched using the ***shiny_eq5d*** function.
 

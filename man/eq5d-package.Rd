@@ -22,7 +22,7 @@ EQ-5D is a popular health related quality of life instrument used
     index scores from a subject's dimension scores. 25 TTO and 11 VAS EQ-5D-3L value 
     sets including those for countries in Szende et al (2007) 
     <doi:10.1007/1-4020-5511-0> and Szende et al (2014) 
-    <doi:10.1007/978-94-007-7596-1>, 21 EQ-5D-5L EQ-VT value sets from the EuroQol
+    <doi:10.1007/978-94-007-7596-1>, 22 EQ-5D-5L EQ-VT value sets from the EuroQol
     website, and the EQ-5D-5L crosswalk value sets developed by van Hout et al. (2012) 
     <doi:10.1016/j.jval.2012.02.008> are included. Additionally, a shiny web tool is 
     included to enable the calculation, visualisation and automated statistical 
