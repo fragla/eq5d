@@ -9,8 +9,6 @@ test_that("eq5dcf five digit gives correct answer", {
 
 test_that("eq5dcf five digit throws error", {
   expect_error(eq5dcf(dat, version="3L", ignore.invalid=FALSE))
-  
-  #expect_error(eq5dds(test1.df, version="3L", by="Gender"))
 })
 
 dat.df <- read.csv("../testdata/pre_df.csv")
