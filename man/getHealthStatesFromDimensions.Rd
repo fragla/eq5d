@@ -19,6 +19,9 @@ is FALSE.}
 
 \item{ignore.invalid}{whether to ignore invalid scores. TRUE returns NA, FALSE throws an 
 error.}
+
+\item{dimensions}{character vector specifying "dimensions" column names. Defaults 
+are "MO", "SC", "UA", "PD" and "AD".}
 }
 \value{
 A character vector of individual dimension scores.
@@ -27,6 +30,8 @@ A character vector of individual dimension scores.
 Merge MO, SC, UA, PD and AD dimension scores to get five digit health states.
 }
 \examples{
+scores <- data.frame(MO=c(1,1,1,1,1),SC=c(1,2,1,2,1),
+                     UA=c(1,2,3,2,1),PD=c(3,2,1,2,3),AD=c(3,3,3,3,3))
 getHealthStatesFromDimensions(scores, version="5L")
 
 }
