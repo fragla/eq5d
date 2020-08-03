@@ -17,3 +17,15 @@ test_that("splitHealthStates throws an error", {
   expect_error(splitHealthStates(c("12345", "54321"), ignore.invalid=FALSE, version="3L"))
   expect_error(splitHealthStates(c("12345", "S432l"), ignore.invalid=FALSE))
 })
+
+scores.df <- data.frame(MO=c(1,2,5,2,1), SC=c(2,3,1,3,2), UA=c(3,1,2,NA,3), PD=c(1,1,1,1,1), AD=c(3,3,3,3,9))
+test_that("getHealthStatesFromDimensions gives the correct answer", {
+  expect_equal(getHealthStatesFromDimensions(scores.df, version="3L", ignore.invalid=TRUE), c("12313","23113",NA,NA,NA))
+  expect_equal(getHealthStatesFromDimensions(scores.df, version="5L", ignore.invalid=TRUE), c("12313","23113","51213",NA,NA))
+})
+
+test_that("getHealthStatesFromDimensions throws an error", {
+  expect_error(getHealthStatesFromDimensions(scores.df, version="5L", ignore.invalid=FALSE))
+  expect_error(getHealthStatesFromDimensions(scores.df, version="5L", ignore.invalid=TRUE, dimensions=c("Mob","SC","UA","PD","AD")))
+})
+
