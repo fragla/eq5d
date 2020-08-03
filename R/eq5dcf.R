@@ -53,6 +53,7 @@ eq5dcf.default <- function(data, version, ignore.invalid=TRUE, ...) {
   cum.perc <- round(cum.freq/sum(frequencies)*100,1)
   
   return(data.frame(State=names(frequencies), Frequency=as.numeric(frequencies),
-                    Percentage=percentage, CumulativeFreq=cum.freq, CumulativePerc=cum.perc))
+                    Percentage=percentage, CumulativeFreq=cum.freq, CumulativePerc=cum.perc, 
+                    stringsAsFactors=FALSE))
 }
 
