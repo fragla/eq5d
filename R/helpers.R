@@ -54,3 +54,40 @@ splitHealthStates <- function(scores, ignore.invalid=TRUE, version="5L") {
   return(scores)
 }
 
+#' Get five digit health states from dimension scores
+#' 
+#' Merge MO, SC, UA, PD and AD dimension scores to get five digit health states.
+#' 
+#' @param scores a data.fram containing each dimension in a column
+#' @param ignore.invalid whether to ignore invalid scores. TRUE returns NA, FALSE throws an 
+#' error.
+#' @param version 3L or 5L. Used for validating scores when ignore.invalid 
+#' is FALSE.
+#' @return A character vector of individual dimension scores.
+#' @examples
+#' getHealthStatesFromDimensions(scores, version="5L")
+#' 
+#'@export
+getHealthStatesFromDimensions <- function(scores, version="5L", ignore.invalid=TRUE, dimensions=.getDimensionNames()) {
+  if(all(dimensions %in% names(scores))) {
+    scores <- scores[,dimensions]
+    colnames(scores) <- .getDimensionNames()
+  } else {
+    stop("Unable to identify EQ-5D dimensions in data.frame.")
+  }
+  
+  states <- paste0(scores$MO, scores$SC, scores$UA, scores$PD, scores$AD)
+  
+  invalid.idx <- which(!states %in% getHealthStates(version))
+
+  if(length(invalid.idx) > 0) {
+    if(ignore.invalid) {
+      states[invalid.idx] <- NA
+    } else {
+      stop("Invalid dimension state(s) found.")
+    }
+  } 
+  
+  return(states)
+}
+
