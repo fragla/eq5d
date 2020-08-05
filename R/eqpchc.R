@@ -57,23 +57,6 @@ pchc <- function(pre, post, version="5L", no.problems=TRUE, totals=TRUE, by.dime
       stop("Missing/non-numeric dimension found.")
     }
   }
-  # if(any(!unlist(pre) %in% 1:sub("L", "", version))) {
-  #   if(ignore.invalid) {
-  #     pre <- apply(post, 2, function(x) ifelse(x %in% 1:sub("L", "", version), NA, x))
-  #   } else {
-  #     stop("Missing/non-numeric dimension found in pre.")
-  #   }
-  # }
-  # 
-  # if(any(!unlist(post) %in% 1:sub("L", "", version))) {
-  #   if(ignore.invalid) {
-  #     post <- apply(post, 2, function(x) ifelse(x %in% 1:sub("L", "", version), NA, x))
-  #   } else {
-  #     stop("Missing/non-numeric dimension found in post.")
-  #   }
-  # }
-  
-  ##check lengths
   
   if(!by.dimension) {
     res <- .pchc(pre, post, no.problems, totals)
