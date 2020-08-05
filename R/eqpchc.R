@@ -42,6 +42,10 @@ pchc <- function(pre, post, version="5L", no.problems=TRUE, totals=TRUE, by.dime
     stop("Unable to identify EQ-5D dimensions in data.frames.")
   }
   
+  if(nrow(pre)!=nrow(post)) {
+    stop("Different numbers of health states in pre and post.")
+  }
+  
   pre.idx <- which(apply(pre, 1, function(x) { any(!x%in% 1:sub("L", "", version))}))
   post.idx <- which(apply(post, 1, function(x) { any(!x%in% 1:sub("L", "", version))}))
   
@@ -96,13 +100,15 @@ pchc <- function(pre, post, version="5L", no.problems=TRUE, totals=TRUE, by.dime
 
 .total.no.problems <- function(res, totals=TRUE) {
   res <- table(res)
-  res.df <- data.frame(row.names=c("No change", "Improve", "Worsen", "Mixed change", 
-                                "Total with problems", "No problems"),
-                    Number=rep(0,6), Percent=rep(0,6))
+  res.df <- data.frame(row.names=c("No change", "Improve", "Worsen", "Mixed change", "No problems"),
+                    Number=rep(0,5), Percent=rep(0,5))
   idx <- match(names(res), rownames(res.df))
   res.df$Number[idx] <- res
   
   if(totals) {
+    res.df["Total with problems",] <- 0
+    res.df <- res.df[c("No change", "Improve", "Worsen", "Mixed change", "Total with problems", "No problems"),]
+    
     problem.idx <- match(c("No change", "Improve", "Worsen", "Mixed change"), rownames(res.df))
     totals.idx <- match(c("Total with problems", "No problems"), rownames(res.df))
     
