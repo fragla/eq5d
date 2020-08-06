@@ -9,13 +9,13 @@ test_that("getHealthStates gives returns an error", {
   expect_error(getHealthStates("10L"))
 })
 
-test_that("splitHealthStates gives correct answer", {
-  expect_equal(splitHealthStates(c("12345", "54321")), data.frame(MO=c(1,5),SC=c(2,4),UA=c(3,3),PD=c(4,2),AD=c(5,1)))
+test_that("getDimensionsFromHealthStates gives correct answer", {
+  expect_equal(getDimensionsFromHealthStates(c("12345", "54321")), data.frame(MO=c(1,5),SC=c(2,4),UA=c(3,3),PD=c(4,2),AD=c(5,1)))
 })
 
-test_that("splitHealthStates throws an error", {
-  expect_error(splitHealthStates(c("12345", "54321"), ignore.invalid=FALSE, version="3L"))
-  expect_error(splitHealthStates(c("12345", "S432l"), ignore.invalid=FALSE))
+test_that("getDimensionsFromHealthStates throws an error", {
+  expect_error(getDimensionsFromHealthStates(c("12345", "54321"), ignore.invalid=FALSE, version="3L"))
+  expect_error(getDimensionsFromHealthStates(c("12345", "S432l"), ignore.invalid=FALSE))
 })
 
 scores.df <- data.frame(MO=c(1,2,5,2,1), SC=c(2,3,1,3,2), UA=c(3,1,2,NA,3), PD=c(1,1,1,1,1), AD=c(3,3,3,3,9))

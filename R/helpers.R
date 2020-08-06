@@ -24,9 +24,9 @@ getHealthStates <- function(version) {
   return(indexes)
 }
 
-#' Split five digit health states
+#' Get individual dimension scores from their five digit health states
 #' 
-#' Split five digit health states into their individual dimension scores.
+#' Get a data.frame of individual dimension scores from their five digit health states.
 #' 
 #' @param scores a vector of five digit scores
 #' @param ignore.invalid whether to ignore invalid scores. TRUE returns NA, FALSE throws an 
@@ -34,11 +34,12 @@ getHealthStates <- function(version) {
 #' @param version 3L or 5L. Used for validating scores when ignore.invalid 
 #' is FALSE.
 #' @return A data.frame of individual dimension scores.
+#' @aliases splitHealthStates
 #' @examples
-#' splitHealthStates(c("12345", "54321"), version="5L")
+#' getDimensionsFromHealthStates(c("12345", "54321"), version="5L")
 #' 
-#'@export
-splitHealthStates <- function(scores, ignore.invalid=TRUE, version="5L") {
+#'@export getDimensionsFromHealthStates splitHealthStates
+getDimensionsFromHealthStates <- function(scores, ignore.invalid=TRUE, version="5L") {
   if(ignore.invalid) {
     idx <- which(!scores %in% getHealthStates(version))
     scores[idx] <- NA
@@ -53,6 +54,7 @@ splitHealthStates <- function(scores, ignore.invalid=TRUE, version="5L") {
   names(scores) <- .getDimensionNames()
   return(scores)
 }
+splitHealthStates = getDimensionsFromHealthStates 
 
 #' Get five digit health states from dimension scores
 #' 
