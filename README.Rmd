@@ -27,9 +27,9 @@ For the description component a subject self-rates their health in terms of five
 
 The evaluation component requires a patient to record their overall health status using a visual analogue scale (EQ-VAS).
 
-Following assessment the scores from the descriptive component can be reported as a five digit number ranging from 11111 (full health) to 33333/55555 (worst health). However, frequently the scores on these five dimensions are converted to a single utility index using country specific value sets, which can be used in the clinical and economic evaluation of health care as well as in population health surveys.
+Following assessment the scores from the descriptive component can be reported as a five digit number ranging from 11111 (full health) to 33333/55555 (worst health). A number of methods exist for analysing these five digit profiles. However, frequently they are converted to a single utility index using country specific value sets, which can be used in the clinical and economic evaluation of health care as well as in population health surveys.
 
-The eq5d package provides methods to calculate index scores from a subject's dimension scores, for both EQ-5D-3L and EQ-5D-5L value sets. Additionally, a [Shiny](https://shiny.rstudio.com) app is included to enable the calculation, visualisation and automated statistical analysis of multiple EQ-5D index values via a web browser using EQ-5D dimension scores stored in CSV or Excel files.  
+The eq5d package provides methods for the cross-sectional and longitudinal analysis of EQ-5D profiles and also the calculation of utility index scores from a subject's dimension scores. Additionally, a [Shiny](https://shiny.rstudio.com) app is included to enable the calculation, visualisation and automated statistical analysis of multiple EQ-5D index values via a web browser using EQ-5D dimension scores stored in CSV or Excel files.
 
 Value sets for EQ-5D-3L are available for many countries and have been produced using the time trade-off (TTO) valuation technique or the visual analogue scale (VAS) valuation technique.  Some countries have TTO and VAS value sets for EQ-5D-3L.
 
@@ -37,7 +37,7 @@ For EQ-5D-5L, a standardised valuation study protocol (EQ-VT) was developed by t
 
 The EQ-5D-5L "crosswalk" value sets published by [van Hout *et al*](https://www.ncbi.nlm.nih.gov/pubmed/22867780) are also included. The crosswalk value sets enable index values to be calculated for EQ-5D-5L data where no value set is available by mapping between the EQ-5D-5L and EQ-5D-3L descriptive systems.
 
-Additional information on EQ-5D can be found on the [EuroQol](https://www.euroqol.org) website as well as in [Szende *et al* (2007)]( https://www.doi.org/10.1007/1-4020-5511-0) and [Szende 
+Additional information on EQ-5D can be found on the [EuroQol](https://www.euroqol.org) website as well as in [Szende *et al* (2007)](https://www.doi.org/10.1007/1-4020-5511-0) and [Szende 
     *et al* (2014)](https://www.doi.org/10.1007/978-94-007-7596-1). Advice on [choosing a value set](https://euroqol.org/eq-5d-instruments/eq-5d-3l-about/valuation/choosing-a-value-set/
 ) can also be found on the EuroQol website.
 
@@ -110,7 +110,59 @@ head(valuesets(version="5L"))
 valuesets(country="UK")
 ```
 
-## EQ-5D-DS
+## Analysis of EQ-5D Profiles
+
+A number of methods have been published that enable the analysis of EQ-5D profiles, most recently in the open access book Methods for Analysing and Reporting EQ-5D Data by [Devlin, Janssen and Parkin](https://www.springer.com/gp/book/9783030476212). The eq5d package includes R implentations of some of the methods from this book and from other sources that may be of use in analysing EQ-5D data.
+
+### Cumulative frequency analysis
+
+The ***eq5dcf*** function calculates the frequency, percentage, cumulative frequency and cumulative percentage for each five digit profile in an EQ-5D dataset. Either a vector of five digit profiles or a data.frame of indiviual dimensions can be passed to this function in order to summarise data in this way.
+
+```{r eq5dcf}
+library(readxl)
+
+#load example data
+data <- read_excel(system.file("extdata", "eq5d3l_example.xlsx", package="eq5d"))
+
+#run eq5dcf function on a data.frame
+res <- eq5dcf(data, "3L")
+
+# Return data.frame of cumulative frequency stats (top 6 returned for brevity).
+head(res)
+
+```
+
+### Paretian Classification of Health Change
+
+The Paretian Classification of Health Change (PCHC) was developed by [Devlin et al](https://pubmed.ncbi.nlm.nih.gov/20623685) in 2010 and is used to compare changes in individuals over time. PCHC classifies the change in an individual's health state as better (improvement in at least one dimension), worse (a deterioration in at least one dimension), mixed (improvements and deteriorations in dimensions) or there being no change in the health state. Those classified in the No change group with the 11111 health state can be separated into their own "No problems" group. PCHC can be calculated using the ***pchc*** function.
+
+```{r pchc}
+library(readxl)
+
+#load example data
+data <- read_excel(system.file("extdata", "eq5d3l_example.xlsx", package="eq5d"))
+
+#use first 50 entries of each group as pre/post
+pre <- data[data$Group=="Group1",][1:50,]
+post <- data[data$Group=="Group2",][1:50,]
+
+#run eq5dcf function on a data.frames
+
+#Show no change, improve, worse, mixed without totals
+res1 <- pchc(pre, post, version="3L", no.problems=FALSE, totals=FALSE)
+res1
+
+#Show totals, but not those with no problems
+res2 <- pchc(pre, post, version="3L", no.problems=FALSE, totals=TRUE)
+res2
+
+#Show totals and no problems for each dimension
+res3 <- pchc(pre, post, version="3L", no.problems=TRUE, totals=TRUE, by.dimension=TRUE)
+res3
+
+```
+
+### EQ-5D-DS
 
 The ***eq5dds*** function is an R approximation of the Stata command written by [Ramos-Goñi & Ramallo-Fariña](https://www.stata-journal.com/article.html?article=st0450). The function analyses and summarises the descriptive components of an EQ-5D dataset. The "by" argument enables a grouping variable to be specified when analysing the data subgroup.
 
@@ -134,7 +186,7 @@ eq5dds(dat, version="3L", by="Sex")
 
 ## Helper functions
 
-Helper functions are included, which may be useful in the processing of EQ-5D data. ***getHealthStates*** returns a vector of all possible five digit health states for a specified EQ-5D version. ***splitHealthStates*** splits a vector of five digit health states into a data.frame of their individual components.
+Helper functions are included, which may be useful in the processing of EQ-5D data. ***getHealthStates*** returns a vector of all possible five digit health states for a specified EQ-5D version. ***getDimensionsFromHealthStates*** splits a vector of five digit health states into a data.frame of their individual components and ***getHealthStatesFromDimensions*** combines indiviual dimensions in a data.frame into five digit health states.
 
 ```{r helper}
 
@@ -142,7 +194,7 @@ Helper functions are included, which may be useful in the processing of EQ-5D da
 head(getHealthStates("3L"))
 
 # Split five digit health states into their individual components.
-splitHealthStates(c("12345", "54321"), version="5L")
+getDimensionsFromHealthStates(c("12345", "54321"), version="5L")
 
 ```
 

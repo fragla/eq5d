@@ -31,16 +31,18 @@ health status using a visual analogue scale (EQ-VAS).
 
 Following assessment the scores from the descriptive component can be
 reported as a five digit number ranging from 11111 (full health) to
-33333/55555 (worst health). However, frequently the scores on these five
-dimensions are converted to a single utility index using country
-specific value sets, which can be used in the clinical and economic
-evaluation of health care as well as in population health surveys.
+33333/55555 (worst health). A number of methods exist for analysing
+these five digit profiles. However, frequently they are converted to a
+single utility index using country specific value sets, which can be
+used in the clinical and economic evaluation of health care as well as
+in population health surveys.
 
-The eq5d package provides methods to calculate index scores from a
-subject’s dimension scores, for both EQ-5D-3L and EQ-5D-5L value sets.
-Additionally, a [Shiny](https://shiny.rstudio.com) app is included to
-enable the calculation, visualisation and automated statistical analysis
-of multiple EQ-5D index values via a web browser using EQ-5D dimension
+The eq5d package provides methods for the cross-sectional and
+longitudinal analysis of EQ-5D profiles and also the calculation of
+utility index scores from a subject’s dimension scores. Additionally, a
+[Shiny](https://shiny.rstudio.com) app is included to enable the
+calculation, visualisation and automated statistical analysis of
+multiple EQ-5D index values via a web browser using EQ-5D dimension
 scores stored in CSV or Excel files.
 
 Value sets for EQ-5D-3L are available for many countries and have been
@@ -169,7 +171,136 @@ valuesets(country="UK")
 #> 3 EQ-5D-5L   CW      UK
 ```
 
-## EQ-5D-DS
+## Analysis of EQ-5D Profiles
+
+A number of methods have been published that enable the analysis of
+EQ-5D profiles, most recently in the open access book Methods for
+Analysing and Reporting EQ-5D Data by [Devlin, Janssen and
+Parkin](https://www.springer.com/gp/book/9783030476212). The eq5d
+package includes R implentations of some of the methods from this book
+and from other sources that may be of use in analysing EQ-5D data.
+
+### Cumulative frequency analysis
+
+The ***eq5dcf*** function calculates the frequency, percentage,
+cumulative frequency and cumulative percentage for each five digit
+profile in an EQ-5D dataset. Either a vector of five digit profiles or a
+data.frame of indiviual dimensions can be passed to this function in
+order to summarise data in this way.
+
+``` r
+library(readxl)
+
+#load example data
+data <- read_excel(system.file("extdata", "eq5d3l_example.xlsx", package="eq5d"))
+
+#run eq5dcf function on a data.frame
+res <- eq5dcf(data, "3L")
+
+# Return data.frame of cumulative frequency stats (top 6 returned for brevity).
+head(res)
+#>   State Frequency Percentage CumulativeFreq CumulativePerc
+#> 1 11121        36       18.0             36           18.0
+#> 2 11111        24       12.0             60           30.0
+#> 3 22222        21       10.5             81           40.5
+#> 4 22221        18        9.0             99           49.5
+#> 5 11221        12        6.0            111           55.5
+#> 6 21221        11        5.5            122           61.0
+```
+
+### Paretian Classification of Health Change
+
+The Paretian Classification of Health Change (PCHC) was developed by
+[Devlin et al](https://pubmed.ncbi.nlm.nih.gov/20623685) in 2010 and is
+used to compare changes in individuals over time. PCHC classifies the
+change in an individual’s health state as better (improvement in at
+least one dimension), worse (a deterioration in at least one dimension),
+mixed (improvements and deteriorations in dimensions) or there being no
+change in the health state. Those classified in the No change group with
+the 11111 health state can be separated into their own “No problems”
+group. PCHC can be calculated using the ***pchc*** function.
+
+``` r
+library(readxl)
+
+#load example data
+data <- read_excel(system.file("extdata", "eq5d3l_example.xlsx", package="eq5d"))
+
+#use first 50 entries of each group as pre/post
+pre <- data[data$Group=="Group1",][1:50,]
+post <- data[data$Group=="Group2",][1:50,]
+
+#run eq5dcf function on a data.frames
+
+#Show no change, improve, worse, mixed without totals
+res1 <- pchc(pre, post, version="3L", no.problems=FALSE, totals=FALSE)
+res1
+#>              Number Percent
+#> No change         5      10
+#> Improve          32      64
+#> Worsen           10      20
+#> Mixed change      3       6
+
+#Show totals, but not those with no problems
+res2 <- pchc(pre, post, version="3L", no.problems=FALSE, totals=TRUE)
+res2
+#>              Number Percent
+#> No change         5      10
+#> Improve          32      64
+#> Worsen           10      20
+#> Mixed change      3       6
+#> Total            50     100
+
+#Show totals and no problems for each dimension
+res3 <- pchc(pre, post, version="3L", no.problems=TRUE, totals=TRUE, by.dimension=TRUE)
+res3
+#> $MO
+#>                     Number Percent
+#> No change               16    57.1
+#> Improve                 11    39.3
+#> Worsen                   1     3.6
+#> Mixed change             0     0.0
+#> Total with problems     28    56.0
+#> No problems             22    44.0
+#> 
+#> $SC
+#>                     Number Percent
+#> No change               10    37.0
+#> Improve                 14    51.9
+#> Worsen                   3    11.1
+#> Mixed change             0     0.0
+#> Total with problems     27    54.0
+#> No problems             23    46.0
+#> 
+#> $UA
+#>                     Number Percent
+#> No change               10      25
+#> Improve                 26      65
+#> Worsen                   4      10
+#> Mixed change             0       0
+#> Total with problems     40      80
+#> No problems             10      20
+#> 
+#> $PD
+#>                     Number Percent
+#> No change               27    57.4
+#> Improve                 19    40.4
+#> Worsen                   1     2.1
+#> Mixed change             0     0.0
+#> Total with problems     47    94.0
+#> No problems              3     6.0
+#> 
+#> $AD
+#>                     Number Percent
+#> No change                7    30.4
+#> Improve                  9    39.1
+#> Worsen                   7    30.4
+#> Mixed change             0     0.0
+#> Total with problems     23    46.0
+#> No problems             27    54.0
+```
+
+### EQ-5D-DS
 
 The ***eq5dds*** function is an R approximation of the Stata command
 written by [Ramos-Goñi &
@@ -189,29 +320,29 @@ dat <- data.frame(
        )
 
 eq5dds(dat, version="3L")
-#>     MO   SC   UA   PD   AD
-#> 1 58.3 25.0 25.0 25.0  8.3
-#> 2 41.7 41.7 41.7 41.7 41.7
-#> 3  0.0 33.3 33.3 33.3 50.0
+#>     MO SC   UA   PD   AD
+#> 1 58.3 25 33.3 25.0 41.7
+#> 2 25.0 25  8.3 33.3  8.3
+#> 3 16.7 50 58.3 41.7 50.0
 
 eq5dds(dat, version="3L", counts=TRUE)
 #>   MO SC UA PD AD
-#> 1  7  3  3  3  1
-#> 2  5  5  5  5  5
-#> 3  0  4  4  4  6
+#> 1  7  3  4  3  5
+#> 2  3  3  1  4  1
+#> 3  2  6  7  5  6
 
 eq5dds(dat, version="3L", by="Sex")
 #> data[, by]: Female
-#>     MO   SC   UA   PD   AD
-#> 1 33.3 33.3 33.3 33.3 16.7
-#> 2 66.7 33.3  0.0 16.7 50.0
-#> 3  0.0 33.3 66.7 50.0 33.3
+#>     MO   SC UA   PD AD
+#> 1 66.7 33.3 50 33.3 50
+#> 2 16.7 16.7  0 33.3  0
+#> 3 16.7 50.0 50 33.3 50
 #> ------------------------------------------------------------ 
 #> data[, by]: Male
 #>     MO   SC   UA   PD   AD
-#> 1 83.3 16.7 16.7 16.7  0.0
-#> 2 16.7 50.0 83.3 66.7 33.3
-#> 3  0.0 33.3  0.0 16.7 66.7
+#> 1 50.0 16.7 16.7 16.7 33.3
+#> 2 33.3 33.3 16.7 33.3 16.7
+#> 3 16.7 50.0 66.7 50.0 50.0
 ```
 
 ## Helper functions
@@ -219,8 +350,10 @@ eq5dds(dat, version="3L", by="Sex")
 Helper functions are included, which may be useful in the processing of
 EQ-5D data. ***getHealthStates*** returns a vector of all possible five
 digit health states for a specified EQ-5D version.
-***splitHealthStates*** splits a vector of five digit health states into
-a data.frame of their individual components.
+***getDimensionsFromHealthStates*** splits a vector of five digit health
+states into a data.frame of their individual components and
+***getHealthStatesFromDimensions*** combines indiviual dimensions in a
+data.frame into five digit health states.
 
 ``` r
 
@@ -229,7 +362,7 @@ head(getHealthStates("3L"))
 #> [1] "11111" "11112" "11113" "11121" "11122" "11123"
 
 # Split five digit health states into their individual components.
-splitHealthStates(c("12345", "54321"), version="5L")
+getDimensionsFromHealthStates(c("12345", "54321"), version="5L")
 #>   MO SC UA PD AD
 #> 1  1  2  3  4  5
 #> 2  5  4  3  2  1
