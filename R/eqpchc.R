@@ -26,11 +26,11 @@
 pchc <- function(pre, post, version="5L", no.problems=TRUE, totals=TRUE, by.dimension=FALSE, ignore.invalid=TRUE, dimensions=.getDimensionNames()) {
   
   if(is.character(pre) || is.numeric(pre)) {
-    pre <- splitHealthStates(pre, version=version, ignore.invalid=ignore.invalid)
+    pre <- getDimensionsFromHealthStates(pre, version=version, ignore.invalid=ignore.invalid)
   }
 
   if(is.character(post) || is.numeric(post)) {
-    post <- splitHealthStates(post, version=version, ignore.invalid=ignore.invalid)
+    post <- getDimensionsFromHealthStates(post, version=version, ignore.invalid=ignore.invalid)
   }
 
   if(all(dimensions %in% names(pre)) && all(dimensions %in% names(post))) {
