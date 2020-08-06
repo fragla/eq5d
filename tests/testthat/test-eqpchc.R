@@ -24,6 +24,10 @@ test_that("eqpchc five digit gives correct answer", {
   expect_equal(pchc(pre, post, version="3L", no.problems=FALSE, totals=TRUE, by.dimension=TRUE)$MO, res4.mo)
 })
 
+test_that("eqpchc data.frame throws error", {
+  expect_error(pchc(pre[-1,], post, version="3L", ignore.invalid=FALSE))
+})
+
 pre.df <- read.csv("../testdata/pre_df.csv")
 post.df <- read.csv("../testdata/post_df.csv")
 
@@ -37,5 +41,6 @@ test_that("eqpchc data.frame gives correct answer", {
 test_that("eqpchc data.frame throws error", {
   expect_error(pchc(pre.df, post.df, version="3L", dimensions=c("M0","SC","UA","PD","AD")))
   expect_error(pchc(pre.df, post.df, version="3L", ignore.invalid=FALSE))
+  expect_error(pchc(pre.df[-1,], post.df, version="3L", ignore.invalid=FALSE))
 })
 
