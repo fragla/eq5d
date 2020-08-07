@@ -72,7 +72,7 @@ pchc <- function(pre, post, version="5L", no.problems=TRUE, totals=TRUE, by.dime
 
 .pchc <- function(pre, post, no.problems, totals) {
   res <- sapply(1:nrow(pre), function(x) {
-    if(is.na(pre[x,])||is.na(post[x,]))
+    if(any(is.na(pre[x,]))||any(is.na(post[x,])))
       return(NA)
     .classif(pre[x,], post[x,], no.problems=no.problems)
   })
