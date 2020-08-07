@@ -4,7 +4,7 @@ Title: Methods for Calculating 'EQ-5D' Utility Index Scores
 Version: 0.7.2.9000
 Authors@R: c(
     person("Fraser", "Morton", email = "fraser.morton@glasgow.ac.uk", role = c("aut", "cre")),
-    person(c("Jagtar", "Singh"), "Nijjar", email = "jsn33@medschl.cam.ac.uk", role = "aut"))
+    person(c("Jagtar", "Singh"), "Nijjar", role = "aut"))
 Description: EQ-5D is a popular health related quality of life instrument used 
     in the clinical and economic evaluation of health care. Developed by the 
     EuroQol group <https://www.euroqol.org>, the instrument consists of two 

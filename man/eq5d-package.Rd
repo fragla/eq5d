@@ -42,7 +42,7 @@ Useful links:
 
 Authors:
 \itemize{
-  \item Jagtar Singh Nijjar \email{jsn33@medschl.cam.ac.uk}
+  \item Jagtar Singh Nijjar
 }
 
 }
