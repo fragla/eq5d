@@ -259,7 +259,6 @@ res3
 #> No change               16    57.1
 #> Improve                 11    39.3
 #> Worsen                   1     3.6
-#> Mixed change             0     0.0
 #> Total with problems     28    56.0
 #> No problems             22    44.0
 #> 
@@ -268,7 +267,6 @@ res3
 #> No change               10    37.0
 #> Improve                 14    51.9
 #> Worsen                   3    11.1
-#> Mixed change             0     0.0
 #> Total with problems     27    54.0
 #> No problems             23    46.0
 #> 
@@ -277,7 +275,6 @@ res3
 #> No change               10      25
 #> Improve                 26      65
 #> Worsen                   4      10
-#> Mixed change             0       0
 #> Total with problems     40      80
 #> No problems             10      20
 #> 
@@ -286,7 +283,6 @@ res3
 #> No change               27    57.4
 #> Improve                 19    40.4
 #> Worsen                   1     2.1
-#> Mixed change             0     0.0
 #> Total with problems     47    94.0
 #> No problems              3     6.0
 #> 
@@ -295,7 +291,6 @@ res3
 #> No change                7    30.4
 #> Improve                  9    39.1
 #> Worsen                   7    30.4
-#> Mixed change             0     0.0
 #> Total with problems     23    46.0
 #> No problems             27    54.0
 ```
@@ -320,29 +315,29 @@ dat <- data.frame(
        )
 
 eq5dds(dat, version="3L")
-#>     MO SC   UA   PD   AD
-#> 1 58.3 25 33.3 25.0 41.7
-#> 2 25.0 25  8.3 33.3  8.3
-#> 3 16.7 50 58.3 41.7 50.0
+#>     MO   SC   UA   PD   AD
+#> 1 50.0 16.7 41.7 66.7 25.0
+#> 2 33.3 66.7 41.7 25.0 33.3
+#> 3 16.7 16.7 16.7  8.3 41.7
 
 eq5dds(dat, version="3L", counts=TRUE)
 #>   MO SC UA PD AD
-#> 1  7  3  4  3  5
-#> 2  3  3  1  4  1
-#> 3  2  6  7  5  6
+#> 1  6  2  5  8  3
+#> 2  4  8  5  3  4
+#> 3  2  2  2  1  5
 
 eq5dds(dat, version="3L", by="Sex")
 #> data[, by]: Female
-#>     MO   SC UA   PD AD
-#> 1 66.7 33.3 50 33.3 50
-#> 2 16.7 16.7  0 33.3  0
-#> 3 16.7 50.0 50 33.3 50
+#>     MO   SC   UA   PD   AD
+#> 1 50.0 16.7 33.3 83.3 50.0
+#> 2 33.3 66.7 33.3 16.7 16.7
+#> 3 16.7 16.7 33.3  0.0 33.3
 #> ------------------------------------------------------------ 
 #> data[, by]: Male
-#>     MO   SC   UA   PD   AD
-#> 1 50.0 16.7 16.7 16.7 33.3
-#> 2 33.3 33.3 16.7 33.3 16.7
-#> 3 16.7 50.0 66.7 50.0 50.0
+#>     MO   SC UA   PD AD
+#> 1 50.0 16.7 50 50.0  0
+#> 2 33.3 66.7 50 33.3 50
+#> 3 16.7 16.7  0 16.7 50
 ```
 
 ## Helper functions

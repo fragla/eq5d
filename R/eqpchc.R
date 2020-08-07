@@ -51,8 +51,8 @@ pchc <- function(pre, post, version="5L", no.problems=TRUE, totals=TRUE, by.dime
   
   if(length(pre.idx)>0 || length(post.idx)>0) {
     if(ignore.invalid) {
-      pre <- pre[-c(pre.idx,post.idx),]
-      post <- post[-c(pre.idx,post.idx),]
+      pre[c(pre.idx,post.idx),] <- NA
+      post[c(pre.idx,post.idx),] <- NA
     } else {
       stop("Missing/non-numeric dimension found.")
     }
@@ -62,7 +62,8 @@ pchc <- function(pre, post, version="5L", no.problems=TRUE, totals=TRUE, by.dime
     res <- .pchc(pre, post, no.problems, totals)
   } else {
     res <- lapply(.getDimensionNames(), function(x) {
-      .pchc(pre[,x, drop=FALSE], post[,x, drop=FALSE], no.problems, totals)
+      dim.pchc <- .pchc(pre[,x, drop=FALSE], post[,x, drop=FALSE], no.problems, totals)
+      dim.pchc <- dim.pchc[!rownames(dim.pchc) %in% "Mixed change",]
     })
     names(res) <- .getDimensionNames()
   }
@@ -71,6 +72,8 @@ pchc <- function(pre, post, version="5L", no.problems=TRUE, totals=TRUE, by.dime
 
 .pchc <- function(pre, post, no.problems, totals) {
   res <- sapply(1:nrow(pre), function(x) {
+    if(is.na(pre[x,])||is.na(post[x,]))
+      return(NA)
     .classif(pre[x,], post[x,], no.problems=no.problems)
   })
   
