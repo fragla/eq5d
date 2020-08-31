@@ -5,7 +5,7 @@
 \alias{VT}
 \title{EQ-5D-5L VT value set data}
 \format{
-An object of class \code{data.frame} with 35 rows and 22 columns.
+An object of class \code{data.frame} with 35 rows and 25 columns.
 }
 \source{
 \enumerate{
@@ -21,6 +21,7 @@ An object of class \code{data.frame} with 35 rows and 22 columns.
     \item{\strong{Japan}: Shiroiwa T, Ikeda S, Noto S, Igarashi A, Fukuda T, Saito S, Shimozuma K. Comparison of Value Set Based on DCE and/or TTO Data: Scoring for EQ-5D-5L Health States in Japan. Value in Health. 2016 Jul-Aug;19(5):648-54. \href{https://www.ncbi.nlm.nih.gov/pubmed/27565282}{PubMed}}
     \item{\strong{Malaysia}: Shafie AA; Vasan Thakumar A; Lim CJ;Luo N; Rand-Hendriksen K; Yusof FA. EQ-5D-5L Valuation for the Malaysian Population. PharmacoEconomics. 2019 May;37(5):715-725. doi: 10.1007/s40273-018-0758-7. \href{https://www.ncbi.nlm.nih.gov/pubmed/30535779}{PubMed}}
     \item{\strong{Netherlands} Versteegh MM, Vermeulen KM, Evers SM, de Wit GA, Prenger R, Stolk EA. Dutch Tariff for the Five-Level Version of EQ-5D. Value in Health. 2016 Jun;19(4):343-52.  doi: 10.1016/j.jval.2016.01.003. \href{https://www.ncbi.nlm.nih.gov/pubmed/27325326}{PubMed}}
+    \item{\strong{Peru} Augustovski F, Belizán M, Gibbons L, Reyes N, Stolk E, Craig BM, Tejada RA. Peruvian Valuation of the EQ-5D-5L: A Direct Comparison of Time Trade-Off and Discrete Choice Experiments. Value Health. 2020;23(7):880-888. doi:10.1016/j.jval.2020.05.004. \href{https://www.ncbi.nlm.nih.gov/pubmed/32762989}{PubMed}}
     \item{\strong{Poland} Golicki D, Jakubczyk M, Niewada M, Wrona W, Busschbach JJ. Valuation of EQ-5D health states in Poland: first TTO-based social value set in Central and Eastern Europe. Value Health. 2010 Mar-Apr;13(2):289-97. doi: 10.1111/j.1524-4733.2009.00596.x. \href{https://www.ncbi.nlm.nih.gov/pubmed/19744296}{PubMed}}
     \item{\strong{Portugal} Ferreira PL, Antunes P, Ferreira LN, Pereira LN, Ramos-Goñi JM. A hybrid modelling approach for eliciting health state preferences: the Portuguese EQ-5D-5L value set. Qual Life Res. 2019 Jun 14. doi: 10.1007/s11136-019-02226-5. \href{https://www.ncbi.nlm.nih.gov/pubmed/31201730}{PubMed}}
     \item{\strong{South Korea} Kim SH, Ahn J, Ock M, Shin S, Park J, Luo N, Jo MW. The EQ-5D-5L valuation study in Korea. Qual Life Res. 2016 Jul;25(7):1845-52. doi: 10.1007/s11136-015-1205-2. \href{https://www.ncbi.nlm.nih.gov/pubmed/26961008}{PubMed}}
@@ -30,7 +31,7 @@ An object of class \code{data.frame} with 35 rows and 22 columns.
     \item{\strong{Thailand} Pattanaphesaj J, Thavorncharoensap M, Ramos-Goñi JM, Tongsiri S, Ingsrisawang L, Teerawattananon Y. The EQ-5D-5L Valuation study in Thailand. Expert Review of Pharmacoeconomics & Outcomes Research. 2018 Oct;18(5):551-558. doi: 10.1080/14737167.2018.1494574 \href{https://www.ncbi.nlm.nih.gov/pubmed/29958008}{PubMed}}
     \item{\strong{Uruguay}: Augustovski F, Rey-Ares L, Irazola V, Garay OU, Gianneo O, Fernández G, Morales M, Gibbons L, Ramos-Goñi JM. An EQ-5D-5L value set based on Uruguayan population preferences. Qual Life Res. 2016 Feb;25(2):323-33. doi: 10.1007/s11136-015-1086-4. \href{https://www.ncbi.nlm.nih.gov/pubmed/26242249}{PubMed}}
     \item{\strong{USA}: Pickard AS, Law EH, Jiang R, Pullenayegum E, Shaw JW, Xie F, Oppe M, Boye KS, Chapman RH, Gong CL, Balch A, Busschbach JJV. United States Valuation of EQ-5D-5L Health States Using an International Protocol. Value in Health. 2019 Aug;22(8):931-941. doi: 10.1016/j.jval.2019.02.009. \href{https://www.ncbi.nlm.nih.gov/pubmed/31426935}{PubMed}}
-    \item{\strong{Vietnam}: Mai VQ, Sun S, Minh HV, et al. An EQ-5D-5L Value Set for Vietnam. Qual Life Res. 2020;29(7):1923-1933. doi:10.1007/s11136-020-02469-7. \href{https://www.ncbi.nlm.nih.gov/pubmed/32221805}{PubMed}}
+    \item{\strong{Vietnam}: Mai VQ, Sun S, Minh HV, Luo N, Giang KB, Lindholm L, Sahlen KG. An EQ-5D-5L Value Set for Vietnam. Qual Life Res. 2020;29(7):1923-1933. doi:10.1007/s11136-020-02469-7. \href{https://www.ncbi.nlm.nih.gov/pubmed/32221805}{PubMed}}
   }
 }
 \usage{
