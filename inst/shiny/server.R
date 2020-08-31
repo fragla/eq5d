@@ -860,7 +860,7 @@ shinyServer(function(input, output, session) {
     countries <- sort(unique(as.character(valuesets(version=input$version)$Country)))
     countries.list <- as.list(countries)
     countries <- gsub("_", " ", countries)
-    countries <- unlist(lapply(strsplit(gsub("([[:lower:]])([[:upper:]])", "\\1 \\2", countries), " "), function(x){paste(x, collapse=" ")}))
+    countries <- unlist(lapply(strsplit(gsub("([[:lower:]][[:lower:]])([[:upper:]])", "\\1 \\2", countries), " "), function(x){paste(x, collapse=" ")}))
     names(countries.list) <- countries
     return(countries.list)
   })
