@@ -2,12 +2,12 @@
 % Please edit documentation in R/eq5dlfs.R
 \name{lfs}
 \alias{lfs}
-\title{Calculate the Level frequency Score for an EQ-5D profile}
+\title{Calculate the Level Freqeuncy Score for an EQ-5D profile}
 \usage{
-lfs(data, version, ignore.invalid, ...)
+lfs(scores, version, ignore.invalid, ...)
 }
 \arguments{
-\item{data}{data.frame with names MO, SC, UA, PD and AD representing
+\item{scores}{data.frame with names MO, SC, UA, PD and AD representing
 Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.}
 
 \item{version}{string of value "3L" or "5L" to indicate instrument version.}
@@ -23,5 +23,5 @@ a data.frame or list of data.frames of counts/percentages. Columns
 contain dimensions names and rows the EQ-5D score.
 }
 \description{
-Calculate the Levels frequency Score for a single or number of EQ-5D profiles
+Calculate the Levels Frequency Score for a single or number of EQ-5D profiles
 }

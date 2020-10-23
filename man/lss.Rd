@@ -4,10 +4,10 @@
 \alias{lss}
 \title{Calculate the Level Sum Score for an EQ-5D profile}
 \usage{
-lss(data, version, ignore.invalid, ...)
+lss(scores, version, ignore.invalid, ...)
 }
 \arguments{
-\item{data}{data.frame with names MO, SC, UA, PD and AD representing
+\item{scores}{data.frame with names MO, SC, UA, PD and AD representing
 Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.}
 
 \item{version}{string of value "3L" or "5L" to indicate instrument version.}
