@@ -208,6 +208,44 @@ head(res)
 #> 6 21221        11        5.5            122           61.0
 ```
 
+### Summarising the Severity of EQ-5D Profiles
+
+The eq5d package includes methods for summarising the severity of EQ-5D
+health state. The Level Sum Score (LSS) treats each dimension’s level as
+a number rather than a category. Each number is added up to produce a
+score between 5 and 15 for EQ-5D-3L and 5 and 25 for EQ-5D-5L.
+
+``` r
+lss(c(MO=1,SC=2,UA=3,PD=2,AD=1), version="3L")
+#> [1] 9
+
+lss(55555, version="5L")
+#> [1] 25
+
+lss(c(11111,12345, 55555), version="5L")
+#> [1]  5 15 25
+```
+
+The Level Frequency Score (LFS) is an alternative method of summarising
+profile data developed by [Oppe and de
+Charro](https://pubmed.ncbi.nlm.nih.gov/11189116). Here the frequency of
+the levels for each health state are characterised. As described in
+Devlin, Janssen and Parkin’s book, the full health profile 11111 for
+EQ-5D-5L has 5, 1 s, no level 2, 3, 4 and 5s, so the LFS is 50000; the
+health profile 55555 is 00005; profiles such as 31524 and 53412 would be
+11111.
+
+``` r
+lfs(c(MO=1,SC=2,UA=3,PD=2,AD=1), version="3L")
+#> [1] "221"
+
+lfs(55555, version="5L")
+#> [1] "00005"
+
+lfs(c(11111,12345, 55555), version="5L")
+#> [1] "50000" "11111" "00005"
+```
+
 ### Paretian Classification of Health Change
 
 The Paretian Classification of Health Change (PCHC) was developed by
@@ -230,7 +268,7 @@ data <- read_excel(system.file("extdata", "eq5d3l_example.xlsx", package="eq5d")
 pre <- data[data$Group=="Group1",][1:50,]
 post <- data[data$Group=="Group2",][1:50,]
 
-#run eq5dcf function on a data.frames
+#run pchc function on data.frames
 
 #Show no change, improve, worse, mixed without totals
 res1 <- pchc(pre, post, version="3L", no.problems=FALSE, totals=FALSE)
@@ -316,28 +354,28 @@ dat <- data.frame(
 
 eq5dds(dat, version="3L")
 #>     MO   SC   UA   PD   AD
-#> 1 50.0 16.7 41.7 66.7 25.0
-#> 2 33.3 66.7 41.7 25.0 33.3
-#> 3 16.7 16.7 16.7  8.3 41.7
+#> 1 33.3 33.3 41.7 41.7  0.0
+#> 2 41.7 25.0 33.3 33.3 41.7
+#> 3 25.0 41.7 25.0 25.0 58.3
 
 eq5dds(dat, version="3L", counts=TRUE)
 #>   MO SC UA PD AD
-#> 1  6  2  5  8  3
-#> 2  4  8  5  3  4
-#> 3  2  2  2  1  5
+#> 1  4  4  5  5  0
+#> 2  5  3  4  4  5
+#> 3  3  5  3  3  7
 
 eq5dds(dat, version="3L", by="Sex")
 #> data[, by]: Female
 #>     MO   SC   UA   PD   AD
-#> 1 50.0 16.7 33.3 83.3 50.0
-#> 2 33.3 66.7 33.3 16.7 16.7
-#> 3 16.7 16.7 33.3  0.0 33.3
+#> 1 16.7 16.7 50.0 50.0  0.0
+#> 2 33.3 16.7 33.3 33.3 66.7
+#> 3 50.0 66.7 16.7 16.7 33.3
 #> ------------------------------------------------------------ 
 #> data[, by]: Male
-#>     MO   SC UA   PD AD
-#> 1 50.0 16.7 50 50.0  0
-#> 2 33.3 66.7 50 33.3 50
-#> 3 16.7 16.7  0 16.7 50
+#>   MO   SC   UA   PD   AD
+#> 1 50 50.0 33.3 33.3  0.0
+#> 2 50 33.3 33.3 33.3 16.7
+#> 3  0 16.7 33.3 33.3 83.3
 ```
 
 ## Helper functions
