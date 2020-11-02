@@ -19,6 +19,7 @@ shinyUI(
         conditionalPanel(
           condition = "input.multi == 'multiple'",
           uiOutput("choose_dataset"),
+          uiOutput("include_severity_scores"),
           uiOutput("include_raw_data"),
           hr(),
           h5("Example data"),

@@ -102,6 +102,18 @@ shinyServer(function(input, output, session) {
     
   })
   
+  output$include_severity_scores <- renderUI({
+    calculations <- c("Level Sum Score" = "lss",
+                      "Level Frequency Score" = "lfs")
+    
+    checkboxGroupInput("severity_scores", "Include severity scores:", calculations)
+    
+  })
+  
+  output$include_raw_data <- renderUI({
+    checkboxInput("raw", "Include all submitted data in table", TRUE)
+  })
+  
   output$include_raw_data <- renderUI({
     checkboxInput("raw", "Include all submitted data in table", TRUE)
   })
@@ -402,6 +414,15 @@ shinyServer(function(input, output, session) {
       res <- cbind(dataset(), eq5d)
     }
     colnames(res)[ncol(res)] <- "Index"
+    
+    if("lss" %in% input$severity_scores) {
+      res$LSS <- lss(dataset(), version=input$version)
+    }
+    
+    if("lfs" %in% input$severity_scores) {
+      res$LFS <- lfs(dataset(), version=input$version)
+    }
+    
     return(res)
   })
   
@@ -490,7 +511,11 @@ shinyServer(function(input, output, session) {
         }   
       }
   
-      if(input$plot_data != "Index") {
+      # if(input$plot_data == "LFS") {
+      #   p <- p + scale_x_continuous(labels = function(x) formatC(x, width = sub("L", "", input$version), format = "d", flag = "0"))
+      # }
+      
+      if(input$plot_data %in% c("MO", "SC", "UA", "PD", "AD")) {
         p <- p + scale_x_continuous(breaks= 1:sub("L", "", input$version), labels = 1:sub("L", "", input$version))
       }
   
@@ -589,8 +614,18 @@ shinyServer(function(input, output, session) {
   })  
   
   output$choose_plot_data <- renderUI({
+    options <- "Index"
+    
+    if("lss" %in% input$severity_scores) {
+      options <- c(options, "LSS")
+    }
+    
+    # if("lfs" %in% input$severity_scores) {
+    #   options <- c(options, "LFS")
+    # }
+    
     selectInput("plot_data", "Plot data:",
-        c("Index", "MO", "SC", "UA", "PD", "AD")
+        c(options, "MO", "SC", "UA", "PD", "AD")
     )
   })
 
@@ -605,7 +640,7 @@ shinyServer(function(input, output, session) {
       return()
     }
     data <- getTableData()
-    data <- data[!tolower(colnames(data)) %in% tolower(c(getDimensionNames(), getStateName()))]
+    data <- data[!tolower(colnames(data)) %in% tolower(c(getDimensionNames(), getStateName(), "LFS"))]
     data <- data[sapply(data, function(x) is.character(x) || is.logical(x) || is.factor(x))]
     
     groups <- "None"
