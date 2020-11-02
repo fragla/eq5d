@@ -35,7 +35,7 @@ test_that("lfs throws error for incorrect parameters", {
   expect_error(lfs(12345, version="3L", ignore.invalid=FALSE))
   expect_error(lfs(c(MO=1,SC=7,UA=3,PD=2,AD=1), version="3L", ignore.invalid=FALSE))
   expect_error(lfs(data.frame(five.digit=c(11111,12345, 55555)), version="5L"))
-  expect_error(lfs(data.frame(five.digit=c(11111,12345, 55555)), version="7L"))
+  expect_error(lfs(c(11111,12345, 55555), version="7L"))
   expect_error(lss(data.frame(five.digit=c(11111,12345, 55555)), version="5L", dimensions=c("M","S","U","P","A")))
   
 })
