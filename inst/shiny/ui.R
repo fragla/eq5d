@@ -85,7 +85,7 @@ shinyUI(
     tabPanel("Settings",
              div(style="padding-left:20%;padding-right:20%;",
                  h3("Error handling"),
-                 uiOutput("ignore_incomplete")
+                 uiOutput("ignore_invalid")
              )
     ),
     tabPanel("Help/FAQs",
@@ -115,9 +115,9 @@ shinyUI(
           plots page. This information will also be used in the automated statistical 
           analysis. "),
         h4("My EQ-5D data is missing/incomplete. What should I do?"),
-        p("The application will automatically skip missing/incomplete EQ-5D data. If 
+        p("The application will automatically skip invalid/incomplete/missing EQ-5D data. If 
           you wish to turn this feature off (and receive an error) you can do so by 
-          deselecting the 'Ignore data with incomplete/missing dimension scores' 
+          deselecting the 'Ignore data with invalid/incomplete/missing dimension scores' 
           checkbox in the 'Settings' tab."),
         h4("What statistical analyses are performed?"),
         p("The statistical tests are performed when a density or ECDF plot are present 

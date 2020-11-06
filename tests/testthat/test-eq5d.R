@@ -33,19 +33,19 @@ test_that("Wrapper function gives correct answer", {
   expect_error(eq5d(test.df, version="3L", type="TTO", country="USA", dimensions=c("Mob", "Self", "Active", "Pain", "Anx")))
 })
 
-test_that("when ignore.incomplete flag is TRUE the correct answer is returned", {
-  expect_equal(eq5d(c(MO=1,SC=2,UA=3,PD=2,AD=1), type="TTO", version="3L", country="UK", ignore.incomplete=TRUE), 0.329)
-  expect_equal(eq5d(c(MO=1,SC=2,UA=3,PD=NA,AD=1), type="TTO", version="3L", country="UK", ignore.incomplete=TRUE), NA)
-  expect_equal(eq5d(12321, type="TTO", version="3L", country="UK", ignore.incomplete=TRUE), 0.329)
-  expect_equal(eq5d(1232, type="TTO", version="3L", country="UK", ignore.incomplete=TRUE), NA)
-  expect_equal(eq5d(NA_integer_, type="TTO", version="3L", country="UK", ignore.incomplete=TRUE), NA)
-  expect_equal(eq5d(test.char2, type="TTO", version="3L", country="UK", ignore.incomplete=TRUE), c(0.883, 0.329, NA, NA, NA))
+test_that("when ignore.invalid flag is TRUE the correct answer is returned", {
+  expect_equal(eq5d(c(MO=1,SC=2,UA=3,PD=2,AD=1), type="TTO", version="3L", country="UK", ignore.invalid=TRUE), 0.329)
+  expect_equal(eq5d(c(MO=1,SC=2,UA=3,PD=NA,AD=1), type="TTO", version="3L", country="UK", ignore.invalid=TRUE), NA)
+  expect_equal(eq5d(12321, type="TTO", version="3L", country="UK", ignore.invalid=TRUE), 0.329)
+  expect_equal(eq5d(1232, type="TTO", version="3L", country="UK", ignore.invalid=TRUE), NA)
+  expect_equal(eq5d(NA_integer_, type="TTO", version="3L", country="UK", ignore.invalid=TRUE), NA)
+  expect_equal(eq5d(test.char2, type="TTO", version="3L", country="UK", ignore.invalid=TRUE), c(0.883, 0.329, NA, NA, NA))
 })
 
-test_that("when ignore.incomplete flag is FALSE the correct answer is returned", {
-  expect_error(eq5d(c(MO=1,SC=2,UA=3,PD=NA,AD=1), type="TTO", version="3L", country="UK", ignore.incomplete=FALSE))
-  expect_error(eq5d(1232, type="TTO", version="3L", country="UK", ignore.incomplete=FALSE))
-  expect_error(eq5d(NA_integer_, type="TTO", version="3L", country="UK", ignore.incomplete=FALSE))
-  expect_error(eq5d(test.char2, type="TTO", version="3L", country="UK", ignore.incomplete=FALSE))
+test_that("when ignore.invalid flag is FALSE the correct answer is returned", {
+  expect_error(eq5d(c(MO=1,SC=2,UA=3,PD=NA,AD=1), type="TTO", version="3L", country="UK", ignore.invalid=FALSE))
+  expect_error(eq5d(1232, type="TTO", version="3L", country="UK", ignore.invalid=FALSE))
+  expect_error(eq5d(NA_integer_, type="TTO", version="3L", country="UK", ignore.invalid=FALSE))
+  expect_error(eq5d(test.char2, type="TTO", version="3L", country="UK", ignore.invalid=FALSE))
 })
 

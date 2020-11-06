@@ -4,7 +4,7 @@
 \alias{eq5d}
 \title{Calculate EQ-5D index scores}
 \usage{
-eq5d(scores, version, type, country, ignore.incomplete, ...)
+eq5d(scores, version, type, country, ignore.invalid, ...)
 }
 \arguments{
 \item{scores}{numeric or data.frame with names/colnames MO, SC, UA, PD and AD
@@ -20,8 +20,8 @@ crosswalk conversion valuesets.}
 
 \item{country}{string of value set country name used.}
 
-\item{ignore.incomplete}{logical to indicate whether to ignore dimension 
-with missing data.}
+\item{ignore.invalid}{logical to indicate whether to ignore dimension data 
+with invalid, incomplete or missing data.}
 
 \item{...}{character vectors, specifying "dimensions" column names or 
 "five.digit" column name. Defaults are "MO", "SC", "UA", "PD" and "AD"
@@ -45,7 +45,7 @@ scores.df <- data.frame(
   MO=c(1,2,3,4,5), SC=c(1,5,4,3,2),
   UA=c(1,5,2,3,1), PD=c(1,3,4,3,4), AD=c(1,2,NA,2,1)
   )
-eq5d(scores.df, country="Canada", version="5L", type="VT", ignore.incomplete=TRUE)
+eq5d(scores.df, country="Canada", version="5L", type="VT", ignore.invalid=TRUE)
 
 eq5d(scores=12321, type="TTO", version="3L", country="UK")
 

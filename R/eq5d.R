@@ -13,8 +13,8 @@
 #'   Options are TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L or CW for EQ-5D-5L 
 #'   crosswalk conversion valuesets.
 #' @param country string of value set country name used.
-#' @param ignore.incomplete logical to indicate whether to ignore dimension 
-#'   with missing data.
+#' @param ignore.invalid logical to indicate whether to ignore dimension data 
+#'   with invalid, incomplete or missing data.
 #' @param ... character vectors, specifying "dimensions" column names or 
 #'   "five.digit" column name. Defaults are "MO", "SC", "UA", "PD" and "AD"
 #'   for dimensions and "State" for five.digit.
@@ -29,7 +29,7 @@
 #'   MO=c(1,2,3,4,5), SC=c(1,5,4,3,2),
 #'   UA=c(1,5,2,3,1), PD=c(1,3,4,3,4), AD=c(1,2,NA,2,1)
 #'   )
-#' eq5d(scores.df, country="Canada", version="5L", type="VT", ignore.incomplete=TRUE)
+#' eq5d(scores.df, country="Canada", version="5L", type="VT", ignore.invalid=TRUE)
 #'
 #' eq5d(scores=12321, type="TTO", version="3L", country="UK")
 #'
@@ -42,12 +42,12 @@
 #' eq5d(scores=scores.df2$state, type="TTO", version="3L", country="UK")
 #'
 #' @export
-eq5d <- function (scores, version, type, country, ignore.incomplete, ...) {
+eq5d <- function (scores, version, type, country, ignore.invalid, ...) {
   UseMethod("eq5d", scores)
 }
 
 #' @export
-eq5d.data.frame <- function(scores, version=NULL, type=NULL, country=NULL, ignore.incomplete=FALSE, ...) {
+eq5d.data.frame <- function(scores, version=NULL, type=NULL, country=NULL, ignore.invalid=FALSE, ...) {
   args <- list(...)
   
   dimensions <- .getDimensionNames()
@@ -66,19 +66,19 @@ eq5d.data.frame <- function(scores, version=NULL, type=NULL, country=NULL, ignor
   }
   
   res <- apply(scores, 1, function(x) {
-    eq5d.default(x, version=version, type=type, country=country, ignore.incomplete=ignore.incomplete,...)
+    eq5d.default(x, version=version, type=type, country=country, ignore.invalid=ignore.invalid,...)
   })
   return(res)
 }
 
 #' @export
-eq5d.matrix <- function(scores, version=NULL, type=NULL, country=NULL, ignore.incomplete=FALSE, ...) {
+eq5d.matrix <- function(scores, version=NULL, type=NULL, country=NULL, ignore.invalid=FALSE, ...) {
   scores <- as.data.frame(scores)
-  eq5d.data.frame(scores, version=version, type=type, country=country, ignore.incomplete=ignore.incomplete, ...)
+  eq5d.data.frame(scores, version=version, type=type, country=country, ignore.invalid=ignore.invalid, ...)
 }
 
 #' @export
-eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.incomplete=FALSE, ...){
+eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.invalid=FALSE, ...){
   
   if(!version %in% c("3L", "5L"))
     stop("EQ-5D version not one of 3L or 5L.")
@@ -93,18 +93,18 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
 
   if(.length>1) {
     if(.length==5 && all(.getDimensionNames() %in% names(scores))) {
-      res <- .eq5d(scores, version=version, type=type, country=country, ignore.incomplete=ignore.incomplete)
+      res <- .eq5d(scores, version=version, type=type, country=country, ignore.invalid=ignore.invalid)
     } else {
       res <- sapply(scores, function(x) {
-        eq5d.default(x, version=version, type=type, country=country, ignore.incomplete=ignore.incomplete)
+        eq5d.default(x, version=version, type=type, country=country, ignore.invalid=ignore.invalid)
       })
     }
   } else if (.length==1 && scores %in% getHealthStates(version)) {
     scores <- as.numeric(strsplit(as.character(scores[1]), "")[[1]])
     names(scores) <- .getDimensionNames()
-    res <- .eq5d(scores, version=version, type=type, country=country, ignore.incomplete=ignore.incomplete)
+    res <- .eq5d(scores, version=version, type=type, country=country, ignore.invalid=ignore.invalid)
   } else {
-    if(ignore.incomplete) {
+    if(ignore.invalid) {
       res <- NA
     } else {
       stop("Invalid dimension state found.")
@@ -113,10 +113,10 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
   return(res)
 }
 
-.eq5d <- function(scores,version=version,type=type, country=country, ignore.incomplete, ...){
+.eq5d <- function(scores,version=version,type=type, country=country, ignore.invalid, ...){
   
   if(!all(.getDimensionNames() %in% names(scores)) || any(!scores %in% 1:sub("L", "", version))) {
-    if(ignore.incomplete) {
+    if(ignore.invalid) {
       return(NA)
     } else {
       stop("Missing/non-numeric dimension found.")
