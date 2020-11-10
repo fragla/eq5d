@@ -38,7 +38,9 @@
 #' \strong{Chile}: Zarate V, Kind P, Valenzuela P, Vignau A, Olivares-Tirado P, Munoz A. Social valuation of EQ-5D health states: the Chilean case. Value in Health. 2011 Dec;14(8):1135-41. \href{https://www.ncbi.nlm.nih.gov/pubmed/22152184}{PubMed}
 #' 
 #' \strong{China}: Liu GG, Wu H, Li M, Gao C, Luo N. Chinese time trade-off values for EQ-5D health states. Value Health. 2014 Jul;17(5):597-604. doi: 10.1016/j.jval.2014.05.007. Epub 2014 Jul 23. \href{https://www.ncbi.nlm.nih.gov/pubmed/25128053}{PubMed}
-#' 
+#'
+#' \strong{Hungary}: Rencz F, Brodszky V, Gulácsi L, Golicki D, Ruzsa G, Pickard AS, Law EH, Péntek M. Parallel Valuation of the EQ-5D-3L and EQ-5D-5L by Time Trade-Off in Hungary. Value Health. 2020 Sep;23(9):1235-1245. doi: 10.1016/j.jval.2020.03.019. Epub 2020 Aug 12. \href{https://www.ncbi.nlm.nih.gov/pubmed/32940242}{PubMed}
+#'   
 #' \strong{Poland}: Golicki D, Jakubczyk M, Niewada M, Wrona W, Busschbach JJ. Valuation of EQ-5D health states in Poland: first TTO-based social value set in Central and Eastern Europe. Value in Health. 2010;13(2):289-97. \href{https://www.ncbi.nlm.nih.gov/pubmed/19744296}{PubMed}
 #' 
 #' \strong{Portugal}: Ferreira LN, Ferreira PL, Pereira LN, Oppe M. The valuation of the EQ-5D in Portugal. Qual Life Res. 2014 Mar;23(2):413-23. doi: 10.1007/s11136-013-0448-z. Epub 2013 Jun 8. \href{https://www.ncbi.nlm.nih.gov/pubmed/23748906}{PubMed}
@@ -89,6 +91,7 @@
 #'     \item{\strong{France}: Andrade LF, Ludwig K, Goni JMR, Oppe M, de Pouvourville G. A French Value Set for the EQ-5D-5L. Pharmacoeconomics. 2020 Jan 8. doi: 10.1007/s40273-019-00876-4. \href{https://www.ncbi.nlm.nih.gov/pubmed/31912325}{PubMed}}
 #'     \item{\strong{Germany}: Ludwig K, Graf von der Schulenburg JM, Greiner W. German Value Set for the EQ-5D-5L. Pharmacoeconomics. 2018 Feb;36(6):663-674. doi: 10.1007/s40273-018-0615-8. \href{https://www.ncbi.nlm.nih.gov/pubmed/29460066}{PubMed}}
 #'     \item{\strong{HongKong}: Wong ELY, Ramos-Goñi JM, Cheung AWL, Wong AYK, Rivero-Arias O. Assessing the Use of a Feedback Module to Model EQ-5D-5L Health States Values in Hong Kong. Patient. 2018 Apr;11(2):235-247. doi: 10.1007/s40271-017-0278-0. \href{https://www.ncbi.nlm.nih.gov/pubmed/29019161}{PubMed}}
+#'     \item{\strong{Hungary}: Rencz F, Brodszky V, Gulácsi L, Golicki D, Ruzsa G, Pickard AS, Law EH, Péntek M. Parallel Valuation of the EQ-5D-3L and EQ-5D-5L by Time Trade-Off in Hungary. Value Health. 2020 Sep;23(9):1235-1245. doi: 10.1016/j.jval.2020.03.019. Epub 2020 Aug 12. \href{https://www.ncbi.nlm.nih.gov/pubmed/32940242}{PubMed}}
 #'     \item{\strong{Indonesia}: Purba FD, Hunfeld JAM, Iskandarsyah A, Fitriana TS, Sadarjoen SS, Ramos-Goñi JM, Passchier J, Busschbach JJ. The Indonesian EQ-5D-5L Value Set. PharmacoEconomics. 2017 Nov;35(11)1153-1165. doi: 10.1007/s40273-017-0538-9. \href{https://www.ncbi.nlm.nih.gov/pubmed/28695543}{PubMed}}
 #'     \item{\strong{Ireland}: Hobbins A, Barry L, Kelleher D, Shah K, Devlin N, Ramos Goñi JM, O’Neill C. Utility Values for Health States in Ireland: A Value Set for the EQ-5D-5L. PharmacoEconomics. 2018 Nov;36(11):1345-1353. doi: 10.1007/s40273-018-0690-x. \href{https://www.ncbi.nlm.nih.gov/pubmed/30051267}{PubMed}}
 #'     \item{\strong{Japan}: Shiroiwa T, Ikeda S, Noto S, Igarashi A, Fukuda T, Saito S, Shimozuma K. Comparison of Value Set Based on DCE and/or TTO Data: Scoring for EQ-5D-5L Health States in Japan. Value in Health. 2016 Jul-Aug;19(5):648-54. \href{https://www.ncbi.nlm.nih.gov/pubmed/27565282}{PubMed}}
