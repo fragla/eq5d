@@ -7,6 +7,18 @@ output: github_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+# eq5d 0.8.0 (2020-11-10)
+
+* New analysis methods from Devlin, Janssen and Parkin's new books added. Cumulative frequency, Level Sum Score (LSS), Level Frequency Score (LFS) and Paretian Classification of Health Change (PCHC).
+
+* Hungarian EQ-5D-3L and EQ-5D-5L value sets added.
+
+* Peruvian cTTO and DCE EQ-5D-5L value sets added.
+
+* Option to calculate LSS/LFS added to Shiny app.
+
+* ignore.incomplete in eq5d.R function and associated documents changed to ignore.invalid for consistency across package.
+
 # eq5d 0.7.2 (2020-07-20)
 
 * Added Vietnamese EQ-5D-5L value set.
