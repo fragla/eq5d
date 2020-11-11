@@ -1,7 +1,7 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-# eq5d 0.8.0 (2020-11-10)
+# eq5d 0.8.0 (2020-11-11)
 
   - New analysis methods from Devlin, Janssen and Parkin’s new books
     added. Cumulative frequency, Level Sum Score (LSS), Level Frequency
