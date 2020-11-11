@@ -8,13 +8,13 @@
 \description{
 EQ-5D is a popular health related quality of life instrument used 
     in the clinical and economic evaluation of health care. Developed by the 
-    EuroQol group <https://www.euroqol.org>, the instrument consists of two 
+    EuroQol group <https://euroqol.org/>, the instrument consists of two 
     components: health state description and evaluation. For the description 
     component a subject self-rates their health in terms of five dimensions; 
     mobility, self-care, usual activities, pain/discomfort, and 
     anxiety/depression using either a three-level (EQ-5D-3L,
-    <https://www.euroqol.org/eq-5d-instruments/eq-5d-3l-about>) or a five-level
-    (EQ-5D-5L, <https://www.euroqol.org/eq-5d-instruments/eq-5d-5l-about>) 
+    <https://euroqol.org/eq-5d-instruments/eq-5d-3l-about/>) or a five-level
+    (EQ-5D-5L, <https://euroqol.org/eq-5d-instruments/eq-5d-5l-about/>) 
     scale. Frequently the scores on these five dimensions are converted to a 
     single utility index using country specific value sets, which can be used
     in the clinical and economic evaluation of health care as well as in 

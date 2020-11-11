@@ -12,9 +12,9 @@ Oppe, M., Szende, A., & de Charro, F. (2007), Comparative review of Visual Analo
   In Szende, A., Oppe, M., & Devlin, N. (Ed.), EQ-5D Value Sets: Inventory, Comparative Review
   and User Guide (pp. 37-38). Dordrecht, The Netherlands: Springer.  
   
-\strong{Iran}: Goudarzi R, Zeraati H, Akbari Sari A, Rashidian A, Mohammad K. Population-Based Preference Weights for the EQ-5D Health States Using the Visual Analogue Scale (VAS) in Iran. Iran Red Crescent Med J. 2016 Feb 13;18(2):e21584. doi: 10.5812/ircmj.21584. \href{https://www.ncbi.nlm.nih.gov/pubmed/27186384}{PubMed}
+\strong{Iran}: Goudarzi R, Zeraati H, Akbari Sari A, Rashidian A, Mohammad K. Population-Based Preference Weights for the EQ-5D Health States Using the Visual Analogue Scale (VAS) in Iran. Iran Red Crescent Med J. 2016 Feb 13;18(2):e21584. doi: 10.5812/ircmj.21584. \href{https://pubmed.ncbi.nlm.nih.gov/27186384/}{PubMed}
 
-\strong{Malaysia}: Yusof FA, Goh A, Azmi S. Estimating an EQ-5D value set for Malaysia using time trade-off and visual analogue scale methods. Value Health. 2012 Jan-Feb;15(1 Suppl):S85-90. doi: 10.1016/j.jval.2011.11.024. \href{https://www.ncbi.nlm.nih.gov/pubmed/22265073}{PubMed}
+\strong{Malaysia}: Yusof FA, Goh A, Azmi S. Estimating an EQ-5D value set for Malaysia using time trade-off and visual analogue scale methods. Value Health. 2012 Jan-Feb;15(1 Suppl):S85-90. doi: 10.1016/j.jval.2011.11.024. \href{https://pubmed.ncbi.nlm.nih.gov/22265073/}{PubMed}
 }
 \usage{
 VAS

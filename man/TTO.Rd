@@ -16,33 +16,33 @@ Janssen, B., Szende, A., & Ramos-Goñi JM. (2014), Data and Methods.
   Szende, A., Janssen, B., & Cabasés, J. (Ed.), In Self-Reported Population Health: An 
   International Perspective based on EQ-5D (p 13). Dordrecht, The Netherlands: Springer.
 
-\strong{Australia}: Viney R, Norman R, King MT, Cronin P, Street DJ, Knox S, Ratcliffe J. Time trade-off derived EQ-5D weights for Australia. Value Health. 2011 Sep-Oct;14(6):928-36. doi: 10.1016/j.jval.2011.04.009. \href{https://www.ncbi.nlm.nih.gov/pubmed/21914515}{PubMed}
+\strong{Australia}: Viney R, Norman R, King MT, Cronin P, Street DJ, Knox S, Ratcliffe J. Time trade-off derived EQ-5D weights for Australia. Value Health. 2011 Sep-Oct;14(6):928-36. doi: 10.1016/j.jval.2011.04.009. \href{https://pubmed.ncbi.nlm.nih.gov/21914515/}{PubMed}
 
-\strong{Brazil}: Viegas Andrade M, Noronha K, Kind P, Maia AC, Miranda de Menezes R, De Barros Reis C, Nepomuceno Souza M, Martins D, Gomes L, Nichele D, Calazans J, Mascarenhas T, Carvalho L, Lins C. Societal Preferences for EQ-5D Health States from a Brazilian Population Survey. Value in Health Regional Issues 2013;2(3):405–412. \href{https://www.ncbi.nlm.nih.gov/pubmed/29702778}{PubMed}  
+\strong{Brazil}: Viegas Andrade M, Noronha K, Kind P, Maia AC, Miranda de Menezes R, De Barros Reis C, Nepomuceno Souza M, Martins D, Gomes L, Nichele D, Calazans J, Mascarenhas T, Carvalho L, Lins C. Societal Preferences for EQ-5D Health States from a Brazilian Population Survey. Value in Health Regional Issues 2013;2(3):405–412. \href{https://pubmed.ncbi.nlm.nih.gov/29702778/}{PubMed}  
 
-\strong{Canada}: Bansback N, Tsuchiya A, Brazier J, Anis A. Canadian valuation of EQ-5D health states: preliminary value set and considerations for future valuation studies. PLoS One. 2012;7(2):e31115. \href{https://www.ncbi.nlm.nih.gov/pubmed/22328929}{PubMed}
+\strong{Canada}: Bansback N, Tsuchiya A, Brazier J, Anis A. Canadian valuation of EQ-5D health states: preliminary value set and considerations for future valuation studies. PLoS One. 2012;7(2):e31115. \href{https://pubmed.ncbi.nlm.nih.gov/22328929/}{PubMed}
 
-\strong{Chile}: Zarate V, Kind P, Valenzuela P, Vignau A, Olivares-Tirado P, Munoz A. Social valuation of EQ-5D health states: the Chilean case. Value in Health. 2011 Dec;14(8):1135-41. \href{https://www.ncbi.nlm.nih.gov/pubmed/22152184}{PubMed}
+\strong{Chile}: Zarate V, Kind P, Valenzuela P, Vignau A, Olivares-Tirado P, Munoz A. Social valuation of EQ-5D health states: the Chilean case. Value in Health. 2011 Dec;14(8):1135-41. \href{https://pubmed.ncbi.nlm.nih.gov/22152184/}{PubMed}
 
-\strong{China}: Liu GG, Wu H, Li M, Gao C, Luo N. Chinese time trade-off values for EQ-5D health states. Value Health. 2014 Jul;17(5):597-604. doi: 10.1016/j.jval.2014.05.007. Epub 2014 Jul 23. \href{https://www.ncbi.nlm.nih.gov/pubmed/25128053}{PubMed}
+\strong{China}: Liu GG, Wu H, Li M, Gao C, Luo N. Chinese time trade-off values for EQ-5D health states. Value Health. 2014 Jul;17(5):597-604. doi: 10.1016/j.jval.2014.05.007. Epub 2014 Jul 23. \href{https://pubmed.ncbi.nlm.nih.gov/25128053/}{PubMed}
 
-\strong{Hungary}: Rencz F, Brodszky V, Gulácsi L, Golicki D, Ruzsa G, Pickard AS, Law EH, Péntek M. Parallel Valuation of the EQ-5D-3L and EQ-5D-5L by Time Trade-Off in Hungary. Value Health. 2020 Sep;23(9):1235-1245. doi: 10.1016/j.jval.2020.03.019. Epub 2020 Aug 12. \href{https://www.ncbi.nlm.nih.gov/pubmed/32940242}{PubMed}
+\strong{Hungary}: Rencz F, Brodszky V, Gulácsi L, Golicki D, Ruzsa G, Pickard AS, Law EH, Péntek M. Parallel Valuation of the EQ-5D-3L and EQ-5D-5L by Time Trade-Off in Hungary. Value Health. 2020 Sep;23(9):1235-1245. doi: 10.1016/j.jval.2020.03.019. Epub 2020 Aug 12. \href{https://pubmed.ncbi.nlm.nih.gov/32940242/}{PubMed}
   
-\strong{Poland}: Golicki D, Jakubczyk M, Niewada M, Wrona W, Busschbach JJ. Valuation of EQ-5D health states in Poland: first TTO-based social value set in Central and Eastern Europe. Value in Health. 2010;13(2):289-97. \href{https://www.ncbi.nlm.nih.gov/pubmed/19744296}{PubMed}
+\strong{Poland}: Golicki D, Jakubczyk M, Niewada M, Wrona W, Busschbach JJ. Valuation of EQ-5D health states in Poland: first TTO-based social value set in Central and Eastern Europe. Value in Health. 2010;13(2):289-97. \href{https://pubmed.ncbi.nlm.nih.gov/19744296/}{PubMed}
 
-\strong{Portugal}: Ferreira LN, Ferreira PL, Pereira LN, Oppe M. The valuation of the EQ-5D in Portugal. Qual Life Res. 2014 Mar;23(2):413-23. doi: 10.1007/s11136-013-0448-z. Epub 2013 Jun 8. \href{https://www.ncbi.nlm.nih.gov/pubmed/23748906}{PubMed}
+\strong{Portugal}: Ferreira LN, Ferreira PL, Pereira LN, Oppe M. The valuation of the EQ-5D in Portugal. Qual Life Res. 2014 Mar;23(2):413-23. doi: 10.1007/s11136-013-0448-z. Epub 2013 Jun 8. \href{https://pubmed.ncbi.nlm.nih.gov/23748906/}{PubMed}
 
-\strong{Singapore}: Luo N, Wang P, Thumboo J, Lim YW, Vrijhoef HJ. Valuation of EQ-5D-3L health states in Singapore: modeling of time trade-off values for 80 empirically observed health states. Pharmacoeconomics. 2014 May;32(5):495-507. doi: 10.1007/s40273-014-0142-1. \href{https://www.ncbi.nlm.nih.gov/pubmed/24519603}{PubMed}
+\strong{Singapore}: Luo N, Wang P, Thumboo J, Lim YW, Vrijhoef HJ. Valuation of EQ-5D-3L health states in Singapore: modeling of time trade-off values for 80 empirically observed health states. Pharmacoeconomics. 2014 May;32(5):495-507. doi: 10.1007/s40273-014-0142-1. \href{https://pubmed.ncbi.nlm.nih.gov/24519603/}{PubMed}
 
-\strong{Sri Lanka}: Kularatna S, Whitty JA, Johnson NW, Jayasinghe R, Scuffham PA. Valuing EQ-5D health states for Sri Lanka. Qual Life Res. 2015 Jul;24(7):1785-93. doi:10.1007/s11136-014-0906-2. Epub 2014 Dec 28. PubMed PMID: \href{https://www.ncbi.nlm.nih.gov/pubmed/25543271}{PubMed}
+\strong{Sri Lanka}: Kularatna S, Whitty JA, Johnson NW, Jayasinghe R, Scuffham PA. Valuing EQ-5D health states for Sri Lanka. Qual Life Res. 2015 Jul;24(7):1785-93. doi:10.1007/s11136-014-0906-2. Epub 2014 Dec 28. PubMed PMID: \href{https://pubmed.ncbi.nlm.nih.gov/25543271/}{PubMed}
 
-\strong{Sweden}: Burström K, Sun S, Gerdtham UG, Henriksson M, Johannesson M, Levin LÅ, Zethraeus N. Swedish experience-based value sets for EQ-5D health states. Qual Life Res. 2014 Mar;23(2):431-42. doi: 10.1007/s11136-013-0496-4. \href{https://www.ncbi.nlm.nih.gov/pubmed/23975375}{PubMed}
+\strong{Sweden}: Burström K, Sun S, Gerdtham UG, Henriksson M, Johannesson M, Levin LÅ, Zethraeus N. Swedish experience-based value sets for EQ-5D health states. Qual Life Res. 2014 Mar;23(2):431-42. doi: 10.1007/s11136-013-0496-4. \href{https://pubmed.ncbi.nlm.nih.gov/23975375/}{PubMed}
 
-\strong{Taiwan}: Lee HY, Hung MC, Hu FC, Chang YY, Hsieh CL, Wang JD. Estimating quality weights for EQ-5D (EuroQol-5 dimensions) health states with the time trade-off method in Taiwan. J Formos Med Assoc. 2013;112(11):699-706. \href{https://www.ncbi.nlm.nih.gov/pubmed/24183199}{PubMed}
+\strong{Taiwan}: Lee HY, Hung MC, Hu FC, Chang YY, Hsieh CL, Wang JD. Estimating quality weights for EQ-5D (EuroQol-5 dimensions) health states with the time trade-off method in Taiwan. J Formos Med Assoc. 2013;112(11):699-706. \href{https://pubmed.ncbi.nlm.nih.gov/24183199/}{PubMed}
 
-\strong{Thailand}: Tongsiri S, Cairns J. Estimating population-based values for EQ-5D health states in Thailand. Value Health. 2011 Dec;14(8):1142-5. doi: 10.1016/j.jval.2011.06.005. \href{https://www.ncbi.nlm.nih.gov/pubmed/22152185}{PubMed}
+\strong{Thailand}: Tongsiri S, Cairns J. Estimating population-based values for EQ-5D health states in Thailand. Value Health. 2011 Dec;14(8):1142-5. doi: 10.1016/j.jval.2011.06.005. \href{https://pubmed.ncbi.nlm.nih.gov/22152185/}{PubMed}
 
-\strong{Trinidad and Tobago}: Bailey H, Stolk E, Kind P. Toward Explicit Prioritization for the Caribbean: An EQ-5D Value Set for Trinidad and Tobago. Value Health Reg Issues. 2016 Dec;11:60-67. doi: 10.1016/j.vhri.2016.07.010. \href{https://www.ncbi.nlm.nih.gov/pubmed/27986200}{PubMed}
+\strong{Trinidad and Tobago}: Bailey H, Stolk E, Kind P. Toward Explicit Prioritization for the Caribbean: An EQ-5D Value Set for Trinidad and Tobago. Value Health Reg Issues. 2016 Dec;11:60-67. doi: 10.1016/j.vhri.2016.07.010. \href{https://pubmed.ncbi.nlm.nih.gov/27986200/}{PubMed}
 }
 \usage{
 TTO
