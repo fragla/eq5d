@@ -1,3 +1,12 @@
+## Resubmission
+This is a resubmission. In this version I have:
+
+* Updated the pubmed URLs to use the new format.
+* Added the trailing '/' to euroqol.org URLs
+
+Tested on Windows Server 2012, R-devel, Rtools4.0, 32/64 bit (experimental)
+
+
 ## Test environments
 * local OS X install, R 4.0.3
 * Ubuntu 16.04.6 LTS (on travis-ci), R 3.6.3, R 4.0.2, devel
