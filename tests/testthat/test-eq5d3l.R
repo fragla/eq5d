@@ -196,6 +196,14 @@ test_that("EQ-5D-3L Trinidad and Tobago TTO gives correct answer", {
   expect_equal(eq5d3l(c(MO=3,SC=3,UA=3,PD=3,AD=3), "TTO", "Trinidad_and_Tobago"), -0.163)
 })
 
+test_that("EQ-5D-3L Tunisia TTO gives correct answer", {
+  expect_equal(eq5d3l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "TTO", "Tunisia"), 1)
+  expect_equal(eq5d3l(c(MO=1,SC=1,UA=1,PD=2,AD=1), "TTO", "Tunisia"), 0.943)
+  expect_equal(eq5d3l(c(MO=1,SC=1,UA=2,PD=2,AD=3), "TTO", "Tunisia"), 0.533)
+  expect_equal(eq5d3l(c(MO=3,SC=2,UA=1,PD=3,AD=2), "TTO", "Tunisia"), -0.133)
+  expect_equal(eq5d3l(c(MO=3,SC=3,UA=3,PD=3,AD=3), "TTO", "Tunisia"), -0.796)
+})
+
 test_that("EQ-5D-3L UK TTO gives correct answer", {
   expect_equal(eq5d3l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "TTO", "UK"), 1)
   expect_equal(eq5d3l(c(MO=1,SC=1,UA=2,PD=2,AD=1), "TTO", "UK"), 0.760)

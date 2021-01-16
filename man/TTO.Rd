@@ -5,7 +5,7 @@
 \alias{TTO}
 \title{EQ-5D-3L TTO value set data}
 \format{
-An object of class \code{data.frame} with 63 rows and 26 columns.
+An object of class \code{data.frame} with 63 rows and 27 columns.
 }
 \source{
 Szende, A., Oppe, M., & de Charro, F. (2007), Comparative review of Time Trade-Off value sets. 
