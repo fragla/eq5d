@@ -9,6 +9,7 @@ r:
 os:
   - linux
   - osx
+  osx_image: xcode11.3
 matrix:
   exclude:
     - r: devel
