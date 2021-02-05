@@ -4,8 +4,8 @@
 ^README\.Rmd$
 ^cran-comments\.md$
 ^NEWS\.Rmd$
-^\.travis\.yml$
 ^LICENSE\.md$
 ^appveyor\.yml$
 ^codecov\.yml$
 ^CRAN-RELEASE$
+^\.github$

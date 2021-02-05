@@ -3,8 +3,8 @@
 
 <!-- badges: start -->
 
-[![Travis build
-status](https://travis-ci.org/fragla/eq5d.svg?branch=master)](https://travis-ci.org/fragla/eq5d)
+[![R build
+status](https://github.com/fragla/eq5d/workflows/R-CMD-check/badge.svg)](https://github.com/fragla/eq5d/actions)
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/fragla/eq5d?branch=master&svg=true)](https://ci.appveyor.com/project/fragla/eq5d)
 [![Codecov test
@@ -158,10 +158,10 @@ head(valuesets(version="5L"))
 #>    Version Type  Country
 #> 1 EQ-5D-5L   VT   Canada
 #> 2 EQ-5D-5L   VT    China
-#> 3 EQ-5D-5L   VT  England
-#> 4 EQ-5D-5L   VT Ethiopia
-#> 5 EQ-5D-5L   VT   France
-#> 6 EQ-5D-5L   VT  Germany
+#> 3 EQ-5D-5L   VT  Denmark
+#> 4 EQ-5D-5L   VT  England
+#> 5 EQ-5D-5L   VT Ethiopia
+#> 6 EQ-5D-5L   VT   France
 
 # Return all UK value sets.
 valuesets(country="UK")
@@ -354,28 +354,28 @@ dat <- data.frame(
 
 eq5dds(dat, version="3L")
 #>     MO   SC   UA   PD   AD
-#> 1 16.7 33.3 25.0 25.0 33.3
-#> 2 50.0 33.3  8.3 33.3 33.3
-#> 3 33.3 33.3 66.7 41.7 33.3
+#> 1 41.7 16.7 33.3 41.7 25.0
+#> 2 41.7 58.3 25.0 16.7 41.7
+#> 3 16.7 25.0 41.7 41.7 33.3
 
 eq5dds(dat, version="3L", counts=TRUE)
 #>   MO SC UA PD AD
-#> 1  2  4  3  3  4
-#> 2  6  4  1  4  4
-#> 3  4  4  8  5  4
+#> 1  5  2  4  5  3
+#> 2  5  7  3  2  5
+#> 3  2  3  5  5  4
 
 eq5dds(dat, version="3L", by="Sex")
 #> data[, by]: Female
 #>     MO   SC   UA   PD   AD
-#> 1 33.3 33.3 16.7 33.3 33.3
-#> 2 66.7 33.3 16.7 50.0 50.0
-#> 3  0.0 33.3 66.7 16.7 16.7
+#> 1 16.7 33.3 33.3 33.3 50.0
+#> 2 66.7 33.3  0.0 16.7 33.3
+#> 3 16.7 33.3 66.7 50.0 16.7
 #> ------------------------------------------------------------ 
 #> data[, by]: Male
-#>     MO   SC   UA   PD   AD
-#> 1  0.0 33.3 33.3 16.7 33.3
-#> 2 33.3 33.3  0.0 16.7 16.7
-#> 3 66.7 33.3 66.7 66.7 50.0
+#>     MO   SC   UA   PD AD
+#> 1 66.7  0.0 33.3 50.0  0
+#> 2 16.7 83.3 50.0 16.7 50
+#> 3 16.7 16.7 16.7 33.3 50
 ```
 
 ## Helper functions
