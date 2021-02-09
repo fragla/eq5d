@@ -1,6 +1,12 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
+# eq5d 0.8.1 (2021-02-09)
+
+  - Tunisian EQ-5D-3L value set added.
+
+  - Danish EQ-5D-5L value set added.
+
 # eq5d 0.8.0 (2020-11-11)
 
   - New analysis methods from Devlin, Janssen and Parkin’s new books

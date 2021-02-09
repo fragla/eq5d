@@ -7,6 +7,12 @@ output: github_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+# eq5d 0.8.1 (2021-02-09)
+
+* Tunisian EQ-5D-3L value set added.
+
+* Danish EQ-5D-5L value set added.
+
 # eq5d 0.8.0 (2020-11-11)
 
 * New analysis methods from Devlin, Janssen and Parkin's new books added. Cumulative frequency, Level Sum Score (LSS), Level Frequency Score (LFS) and Paretian Classification of Health Change (PCHC).
