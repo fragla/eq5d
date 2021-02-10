@@ -1,0 +1,13 @@
+context("EQ-5D-Y")
+
+test_that("EQ-5D-Y Slovenia gives correct answer", {
+  expect_equal(eq5dy(c(MO=1,SC=1,UA=1,PD=1,AD=1), "Slovenia"), 1)
+  expect_equal(eq5dy(c(MO=1,SC=1,UA=1,PD=1,AD=2), "Slovenia"), 0.883)
+  expect_equal(eq5dy(c(MO=1,SC=2,UA=3,PD=2,AD=1), "Slovenia"), 0.469, tolerance = .0011)
+  expect_equal(eq5dy(c(MO=2,SC=1,UA=2,PD=1,AD=2), "Slovenia"), 0.694)
+  expect_equal(eq5dy(c(MO=2,SC=2,UA=2,PD=2,AD=2), "Slovenia"), 0.485, tolerance = .0011)
+  expect_equal(eq5dy(c(MO=2,SC=3,UA=2,PD=3,AD=2), "Slovenia"), 0.010)
+  expect_equal(eq5dy(c(MO=3,SC=1,UA=1,PD=3,AD=3), "Slovenia"), -0.148)
+  expect_equal(eq5dy(c(MO=3,SC=3,UA=3,PD=2,AD=2), "Slovenia"), -0.128, tolerance = .0011)
+  expect_equal(eq5dy(c(MO=3,SC=3,UA=3,PD=3,AD=3), "Slovenia"), -0.691)
+})
