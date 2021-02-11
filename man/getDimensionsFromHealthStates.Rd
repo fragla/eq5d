@@ -13,7 +13,7 @@ getDimensionsFromHealthStates(scores, ignore.invalid = TRUE, version = "5L")
 \item{ignore.invalid}{whether to ignore invalid scores. TRUE returns NA, FALSE throws an 
 error.}
 
-\item{version}{3L or 5L. Used for validating scores when ignore.invalid 
+\item{version}{3L, 5L or Y. Used for validating scores when ignore.invalid 
 is FALSE.}
 }
 \value{

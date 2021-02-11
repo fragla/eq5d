@@ -14,7 +14,7 @@ getHealthStatesFromDimensions(
 \arguments{
 \item{scores}{a data.fram containing each dimension in a column}
 
-\item{version}{3L or 5L. Used for validating scores when ignore.invalid 
+\item{version}{3L, 5L or Y. Used for validating scores when ignore.invalid 
 is FALSE.}
 
 \item{ignore.invalid}{whether to ignore invalid scores. TRUE returns NA, FALSE throws an 

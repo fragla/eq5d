@@ -12,7 +12,8 @@ representing Mobility, Self-care, Usual activities, Pain/discomfort and
 Anxiety/depression. Alternatively an EQ-5D  score can be provided in 
 five digit format e.g. 12321.}
 
-\item{version}{string of value "3L" or "5L" to indicate instrument version.}
+\item{version}{string of value "3L", "5L" or "Y" to indicate instrument 
+version.}
 
 \item{type}{string specifying method type used in deriving value set scores. 
 Options are TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L or CW for EQ-5D-5L 

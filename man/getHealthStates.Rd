@@ -13,10 +13,12 @@ getHealthStates(version)
 A character vector of five digit health states.
 }
 \description{
-Get all five digit health state scores for either EQ-5D-3L or EQ-5D-5L.
+Get all five digit health state scores for either EQ-5D-3L, EQ-5D-5L or
+EQ-5D-Y
 }
 \examples{
 getHealthStates("3L")
 getHealthStates("5L")
+getHealthStates("Y")
 
 }

@@ -18,7 +18,7 @@
 #' Coefficients for the estimation of the EQ-5D-3L index values based on TTO valuation studies
 #'   for Argentina, Australia, Brazil, Canada, Chile, China, Denmark, France, Germany, Italy, Japan, 
 #'   Netherlands, Poland, Portugal, Singapore, South Korea, Spain, Sri Lanka, Sweden, Taiwan, 
-#'   Thailand, Trinidad and Tobago, UK, USA and Zimbabwe.
+#'   Thailand, Trinidad and Tobago, Tunisia, UK, USA and Zimbabwe.
 #'      
 #' @source
 #' Szende, A., Oppe, M., & de Charro, F. (2007), Comparative review of Time Trade-Off value sets. 
@@ -56,6 +56,8 @@
 #' \strong{Thailand}: Tongsiri S, Cairns J. Estimating population-based values for EQ-5D health states in Thailand. Value Health. 2011 Dec;14(8):1142-5. doi: 10.1016/j.jval.2011.06.005. \href{https://pubmed.ncbi.nlm.nih.gov/22152185/}{PubMed}
 #' 
 #' \strong{Trinidad and Tobago}: Bailey H, Stolk E, Kind P. Toward Explicit Prioritization for the Caribbean: An EQ-5D Value Set for Trinidad and Tobago. Value Health Reg Issues. 2016 Dec;11:60-67. doi: 10.1016/j.vhri.2016.07.010. \href{https://pubmed.ncbi.nlm.nih.gov/27986200/}{PubMed}
+#' 
+#' \strong{Tunisia}: Chemli J, Drira C, Felfel H, Roudijk B, Al Sayah F, Kouki M, Kooli A, Razgallah Khrouf M. Valuing health-related quality of life using a hybrid approach: Tunisian value set for the EQ-5D-3L. Qual Life Res. 2021 Jan 14. doi: 10.1007/s11136-020-02730-z. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/33447958/}{PubMed}
 "TTO"
 
 #' EQ-5D-3L VAS value set data
@@ -77,9 +79,10 @@
 
 #' EQ-5D-5L VT value set data
 #'
-#' EQ-5D-5L VT value set calculation data for Canada, China, England, France,
-#'   Germany, Hong Kong, Indonesia, Ireland, Japan, Malaysia, Netherlands, 
-#'   Poland, Portugal, South Korea, Spain, Taiwan, Thailand, Uruguay and USA.
+#' EQ-5D-5L VT value set calculation data for Canada, China, Denmark, England, 
+#'   France, Germany, Hong Kong, Hungary, Indonesia, Ireland, Japan, Malaysia, 
+#'   Netherlands, Peru, Poland, Portugal, South Korea, Spain, Taiwan, Thailand, 
+#'   Uruguay, Vietnam and USA.
 #'
 #' @source 
 #'   \enumerate{
@@ -110,3 +113,13 @@
 #'     \item{\strong{Vietnam}: Mai VQ, Sun S, Minh HV, Luo N, Giang KB, Lindholm L, Sahlen KG. An EQ-5D-5L Value Set for Vietnam. Qual Life Res. 2020;29(7):1923-1933. doi:10.1007/s11136-020-02469-7. \href{https://pubmed.ncbi.nlm.nih.gov/32221805/}{PubMed}}
 #'   }
 "VT"
+
+#' EQ-5D-Y value set data
+#'
+#' EQ-5D-Y value set calculation data for Slovenia.
+#'
+#' @source 
+#'   \enumerate{
+#'     \item{\strong{Slovenia}: Prevolnik Rupel V, Ogorevc M; IMPACT HTA HRQoL Group. EQ-5D-Y Value Set for Slovenia. Pharmacoeconomics. 2021 Feb 10. doi: 10.1007/s40273-020-00994-4. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/33565048/}{PubMed}}
+#'   }
+"Y"

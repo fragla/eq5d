@@ -23,12 +23,13 @@ EQ-5D is a popular health related quality of life instrument used
     value sets including those for countries in Szende et al (2007) 
     <doi:10.1007/1-4020-5511-0> and Szende et al (2014) 
     <doi:10.1007/978-94-007-7596-1>, 26 EQ-5D-5L EQ-VT value sets from the 
-    EuroQol website, and the EQ-5D-5L crosswalk value sets developed by 
-    van Hout et al. (2012) <doi:10.1016/j.jval.2012.02.008> are included. 
-    Methods are also included for the analysis of EQ-5D profiles along with a 
-    shiny web tool to enable the calculation, visualisation and automated 
-    statistical analysis of EQ-5D data via a web browser using EQ-5D dimension 
-    scores stored in CSV or Excel files.
+    EuroQol website, the EQ-5D-5L crosswalk value sets developed by 
+    van Hout et al. (2012) <doi:10.1016/j.jval.2012.02.008> and the single 
+    Slovenian EQ-5D-Y value set are included. Methods are also included for 
+    the analysis of EQ-5D profiles along with a shiny web tool to enable the 
+    calculation, visualisation and automated statistical analysis of EQ-5D 
+    data via a web browser using EQ-5D dimension scores stored in CSV or 
+    Excel files.
 }
 \seealso{
 Useful links:
