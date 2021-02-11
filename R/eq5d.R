@@ -8,7 +8,8 @@
 #'   representing Mobility, Self-care, Usual activities, Pain/discomfort and 
 #'   Anxiety/depression. Alternatively an EQ-5D  score can be provided in 
 #'   five digit format e.g. 12321.
-#' @param version string of value "3L" or "5L" to indicate instrument version. 
+#' @param version string of value "3L", "5L" or "Y" to indicate instrument 
+#'   version. 
 #' @param type string specifying method type used in deriving value set scores. 
 #'   Options are TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L or CW for EQ-5D-5L 
 #'   crosswalk conversion valuesets.
@@ -80,8 +81,8 @@ eq5d.matrix <- function(scores, version=NULL, type=NULL, country=NULL, ignore.in
 #' @export
 eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.invalid=FALSE, ...){
   
-  if(!version %in% c("3L", "5L"))
-    stop("EQ-5D version not one of 3L or 5L.")
+  if(!version %in% c("3L", "5L", "Y"))
+    stop("EQ-5D version not one of 3L, 5L or Y.")
   
   .length = length(scores)
   
@@ -115,7 +116,9 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
 
 .eq5d <- function(scores,version=version,type=type, country=country, ignore.invalid, ...){
   
-  if(!all(.getDimensionNames() %in% names(scores)) || any(!scores %in% 1:sub("L", "", version))) {
+  num.dims <- ifelse(version=="Y", 3, sub("L", "", version))
+  
+  if(!all(.getDimensionNames() %in% names(scores)) || any(!scores %in% 1:num.dims)) {
     if(ignore.invalid) {
       return(NA)
     } else {
@@ -125,7 +128,10 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
   
   if(version=="3L") {
     eq5d3l(scores, type=type, country=country)
-  } else {
+  } else if (version=="Y") {
+    eq5dy(scores, country=country)
+  }
+  else {
     if(!is.null(type) && type=="VT") {
       eq5d5l(scores, country=country)
     } else if(!is.null(type) && type=="CW") {
@@ -161,7 +167,8 @@ valuesets <- function(type=NULL, version=NULL, country=NULL) {
   vas <- data.frame(Version="EQ-5D-3L", Type="VAS", Country=colnames(get("VAS")))
   vt <- data.frame(Version="EQ-5D-5L", Type="VT", Country=colnames(get("VT")))
   cw <- data.frame(Version="EQ-5D-5L", Type="CW", Country=colnames(get("CW")))
-  vs <- rbind(tto, vas, vt, cw)
+  y <- data.frame(Version="EQ-5D-Y", Type=NA, Country=colnames(get("Y")))
+  vs <- rbind(tto, vas, vt, cw, y)
   
   if(!is.null(type)) vs <- vs[vs$Type==type,]
   if(!is.null(version)) vs <- vs[vs$Version==version,]

@@ -4,18 +4,23 @@
 
 #' Get all five digit health state scores
 #' 
-#' Get all five digit health state scores for either EQ-5D-3L or EQ-5D-5L.
+#' Get all five digit health state scores for either EQ-5D-3L, EQ-5D-5L or
+#' EQ-5D-Y
 #' 
 #' @param version the EQ-5D version. Either 3L or 5L.
 #' @return A character vector of five digit health states.
 #' @examples
 #' getHealthStates("3L")
 #' getHealthStates("5L")
+#' getHealthStates("Y")
 #' 
 #' @export
 getHealthStates <- function(version) {
-  if(!version %in% c("3L", "5L"))
-    stop("Version must be either 3L or 5L.")
+  if(!version %in% c("3L", "5L", "Y"))
+    stop("Version must be either 3L, 5L or Y.")
+  
+  if(version=="Y")
+    version <- "3L"
   
   max.value <- sub("L", "", version)
   dimensions <- expand.grid(1:max.value, 1:max.value, 1:max.value, 1:max.value, 1:max.value)
@@ -31,7 +36,7 @@ getHealthStates <- function(version) {
 #' @param scores a vector of five digit scores
 #' @param ignore.invalid whether to ignore invalid scores. TRUE returns NA, FALSE throws an 
 #' error.
-#' @param version 3L or 5L. Used for validating scores when ignore.invalid 
+#' @param version 3L, 5L or Y. Used for validating scores when ignore.invalid 
 #' is FALSE.
 #' @return A data.frame of individual dimension scores.
 #' @aliases splitHealthStates
@@ -63,7 +68,7 @@ splitHealthStates = getDimensionsFromHealthStates
 #' @param scores a data.fram containing each dimension in a column
 #' @param ignore.invalid whether to ignore invalid scores. TRUE returns NA, FALSE throws an 
 #' error.
-#' @param version 3L or 5L. Used for validating scores when ignore.invalid 
+#' @param version 3L, 5L or Y. Used for validating scores when ignore.invalid 
 #' is FALSE.
 #' @param dimensions character vector specifying "dimensions" column names. Defaults 
 #' are "MO", "SC", "UA", "PD" and "AD".
