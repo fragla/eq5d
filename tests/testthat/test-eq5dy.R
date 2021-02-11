@@ -11,3 +11,11 @@ test_that("EQ-5D-Y Slovenia gives correct answer", {
   expect_equal(eq5dy(c(MO=3,SC=3,UA=3,PD=2,AD=2), "Slovenia"), -0.128, tolerance = .0011)
   expect_equal(eq5dy(c(MO=3,SC=3,UA=3,PD=3,AD=3), "Slovenia"), -0.691)
 })
+
+context("EQ-5D-Y Incorrect params")
+
+test_that("EQ-5D-Y throws error for incorrect parameters", {
+  expect_error(eq5dy(c(MO=1,SC=2,UA=5,PD=2,AD=1), "Slovenia"))
+  expect_error(eq5dy(c(M0=1,SC=2,UA=5,PD=2,AD=1), "Slovenia"))
+  expect_error(eq5dy(c(MO=1,SC=2,UA=3,PD=2,AD=1), "Liechtenstein"))
+})

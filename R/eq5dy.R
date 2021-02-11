@@ -17,7 +17,7 @@ eq5dy <- function(scores, country=NULL) {
     stop("Unable to identify EQ-5D dimensions in scores.")
   
   if(!all(scores %in% 1:3)) {
-    message <- "Scores must be coded as 1, 2 or 3 for EQ-5D-3L."
+    message <- "Scores must be coded as 1, 2 or 3 for EQ-5D-Y."
     if(all(scores %in% 1:5)) {
       message <- paste(message, "Are you using EQ-5D-5L?")
     }
