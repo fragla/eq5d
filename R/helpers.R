@@ -2,6 +2,15 @@
   return(c("MO", "SC", "UA", "PD", "AD"))
 }
 
+.getNumberLevels <- function(version) {
+  if(!version %in% c("3L", "5L", "Y"))
+    stop("Version must be either 3L, 5L or Y.")
+  
+  levels <- ifelse(version=="Y", 3, as.numeric(sub("L", "", version)))
+  
+  return(levels)
+}
+
 #' Get all five digit health state scores
 #' 
 #' Get all five digit health state scores for either EQ-5D-3L, EQ-5D-5L or
@@ -22,7 +31,7 @@ getHealthStates <- function(version) {
   if(version=="Y")
     version <- "3L"
   
-  max.value <- sub("L", "", version)
+  max.value <- .getNumberLevels(version)
   dimensions <- expand.grid(1:max.value, 1:max.value, 1:max.value, 1:max.value, 1:max.value)
   indexes <- apply(dimensions, 1, function(x){paste(x, collapse="")})
   indexes <- sort(indexes)

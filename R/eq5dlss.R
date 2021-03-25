@@ -50,8 +50,8 @@ lss.matrix <- function(scores, version=NULL, ignore.invalid=FALSE, ...) {
 #' @export
 lss.default <- function(scores, version=NULL, ignore.invalid=FALSE, ...){
   
-  if(!version %in% c("3L", "5L"))
-    stop("EQ-5D version not one of 3L or 5L.")
+  if(!version %in% c("3L", "5L", "Y"))
+    stop("EQ-5D version not one of 3L, 5L or Y.")
   
   .length = length(scores)
   
@@ -84,7 +84,7 @@ lss.default <- function(scores, version=NULL, ignore.invalid=FALSE, ...){
 }
 
 .lss <- function(scores, version, ignore.invalid) {
-  if(!all(.getDimensionNames() %in% names(scores)) || any(!scores %in% 1:sub("L", "", version))) {
+  if(!all(.getDimensionNames() %in% names(scores)) || any(!scores %in% 1:.getNumberLevels(version))) {
     if(ignore.invalid) {
       res <- NA
     } else {

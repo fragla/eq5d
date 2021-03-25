@@ -46,8 +46,8 @@ pchc <- function(pre, post, version="5L", no.problems=TRUE, totals=TRUE, by.dime
     stop("Different numbers of health states in pre and post.")
   }
   
-  pre.idx <- which(apply(pre, 1, function(x) { any(!x%in% 1:sub("L", "", version))}))
-  post.idx <- which(apply(post, 1, function(x) { any(!x%in% 1:sub("L", "", version))}))
+  pre.idx <- which(apply(pre, 1, function(x) { any(!x%in% 1:.getNumberLevels(version))}))
+  post.idx <- which(apply(post, 1, function(x) { any(!x%in% 1:.getNumberLevels(version))}))
   
   if(length(pre.idx)>0 || length(post.idx)>0) {
     if(ignore.invalid) {

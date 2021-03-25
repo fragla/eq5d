@@ -4,7 +4,7 @@
 #' 
 #' @param scores data.frame with names MO, SC, UA, PD and AD representing
 #'   Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.
-#' @param version string of value "3L" or "5L" to indicate instrument version.
+#' @param version string of value "3L", "5L" or "Y" to indicate instrument version.
 #' @param ignore.invalid whether to ignore invalid scores. TRUE returns NA, FALSE throws an 
 #' error.
 #' @param ... character vector, specifying "dimensions" column names. Defaults 
@@ -50,8 +50,8 @@ lfs.matrix <- function(scores, version=NULL, ignore.invalid=FALSE, ...) {
 #' @export
 lfs.default <- function(scores, version=NULL, ignore.invalid=FALSE, ...){
   
-  if(!version %in% c("3L", "5L"))
-    stop("EQ-5D version not one of 3L or 5L.")
+  if(!version %in% c("3L", "5L", "Y"))
+    stop("EQ-5D version not one of 3L, 5L or Y.")
   
   .length = length(scores)
   
@@ -97,7 +97,7 @@ lfs.default <- function(scores, version=NULL, ignore.invalid=FALSE, ...){
 
 
 .lfs <- function(scores, version, ignore.invalid) {
-  if(!all(.getDimensionNames() %in% names(scores)) || any(!scores %in% 1:sub("L", "", version))) {
+  if(!all(.getDimensionNames() %in% names(scores)) || any(!scores %in% 1:.getNumberLevels(version))) {
     if(ignore.invalid) {
       res <- NA
     } else {
@@ -105,8 +105,8 @@ lfs.default <- function(scores, version=NULL, ignore.invalid=FALSE, ...){
     }
   } else {
     freq <- table(scores)
-    score <- rep(0,sub("L", "", version))
-    names(score) <- 1:sub("L", "", version)
+    score <- rep(0,.getNumberLevels(version))
+    names(score) <- 1:.getNumberLevels(version)
     score[match(names(freq), names(score))] <- freq
     score <- paste(score, collapse="")
     return(score)

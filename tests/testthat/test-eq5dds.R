@@ -22,6 +22,8 @@ test_that("eq5dds returns correct answer", {
   expect_equal(eq5dds(test1.df, version="3L", counts=TRUE, by="Sex")$M, res6.df$M)
   expect_equal(eq5dds(test1.df, version="3L", counts=TRUE, by="Sex")$F, res6.df$F)
   expect_equal(eq5dds(test3.df, version="3L", dimensions=c("Mob","SCa","UAc","PaD","AaD")), res1.df)
+  expect_equal(eq5dds(test1.df, version="Y"), res1.df)
+  expect_equal(eq5dds(test1.df, version="Y", counts=TRUE), res2.df)
 })
 
 test_that("eq5dds throws error", {

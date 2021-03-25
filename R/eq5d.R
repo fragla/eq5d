@@ -116,9 +116,9 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
 
 .eq5d <- function(scores,version=version,type=type, country=country, ignore.invalid, ...){
   
-  num.dims <- ifelse(version=="Y", 3, sub("L", "", version))
+  #num.dims <- ifelse(version=="Y", 3, sub("L", "", version))
   
-  if(!all(.getDimensionNames() %in% names(scores)) || any(!scores %in% 1:num.dims)) {
+  if(!all(.getDimensionNames() %in% names(scores)) || any(!scores %in% 1:.getNumberLevels(version))) {
     if(ignore.invalid) {
       return(NA)
     } else {
@@ -167,7 +167,7 @@ valuesets <- function(type=NULL, version=NULL, country=NULL) {
   vas <- data.frame(Version="EQ-5D-3L", Type="VAS", Country=colnames(get("VAS")))
   vt <- data.frame(Version="EQ-5D-5L", Type="VT", Country=colnames(get("VT")))
   cw <- data.frame(Version="EQ-5D-5L", Type="CW", Country=colnames(get("CW")))
-  y <- data.frame(Version="EQ-5D-Y", Type=NA, Country=colnames(get("Y")))
+  y <- data.frame(Version="EQ-5D-Y", Type="cTTO", Country=colnames(get("Y")))
   vs <- rbind(tto, vas, vt, cw, y)
   
   if(!is.null(type)) vs <- vs[vs$Type==type,]

@@ -22,6 +22,7 @@ test_that("eqpchc five digit gives correct answer", {
   expect_equal(pchc(pre, post, version="3L", no.problems=TRUE, totals=FALSE, by.dimension=TRUE)$MO, res2.mo)
   expect_equal(pchc(pre, post, version="3L", no.problems=FALSE, totals=FALSE, by.dimension=TRUE)$MO, res3.mo)
   expect_equal(pchc(pre, post, version="3L", no.problems=FALSE, totals=TRUE, by.dimension=TRUE)$MO, res4.mo)
+  expect_equal(pchc(pre, post, version="Y", no.problems=TRUE, totals=TRUE), res1)
 })
 
 test_that("eqpchc data.frame throws error", {

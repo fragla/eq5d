@@ -36,8 +36,8 @@ eq5dds <- function(data, version, counts=FALSE, by=NULL, ...) {
 
   if(!is.null(args$dimensions)) {dimensions <- args$dimensions}
 
-  if(!version %in% c("3L", "5L"))
-    stop("EQ-5D version not one of 3L or 5L.")
+  if(!version %in% c("3L", "5L", "Y"))
+    stop("EQ-5D version not one of 3L, 5L or Y.")
   
   if(all(dimensions %in% names(data))) {
     colnames(data)[match(dimensions, colnames(data))] <- .getDimensionNames()
@@ -60,9 +60,8 @@ eq5dds <- function(data, version, counts=FALSE, by=NULL, ...) {
   }
   else {
     ##remove missing/incorrect
-    max.value <- as.numeric(sub("L", "", version))
-    dimensions <- 1:max.value
-    
+    max.value <- .getNumberLevels(version)
+
     df <- as.data.frame(matrix(0, nrow=max.value, ncol=5))
     colnames(df) <- .getDimensionNames()
     
