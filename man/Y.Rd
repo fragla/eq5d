@@ -5,10 +5,11 @@
 \alias{Y}
 \title{EQ-5D-Y value set data}
 \format{
-An object of class \code{data.frame} with 11 rows and 1 columns.
+An object of class \code{data.frame} with 12 rows and 2 columns.
 }
 \source{
 \enumerate{
+    \item{\strong{Japan}: Shiroiwa T, Ikeda S, Noto S, Fukuda T, Stolk E. Valuation Survey of EQ-5D-Y Based on the International Common Protocol: Development of a Value Set in Japan. Med Decis Making. 2021 Mar 23:272989X211001859. doi: 10.1177/0272989X211001859. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/33754886/}{PubMed}}
     \item{\strong{Slovenia}: Prevolnik Rupel V, Ogorevc M; IMPACT HTA HRQoL Group. EQ-5D-Y Value Set for Slovenia. Pharmacoeconomics. 2021 Feb 10. doi: 10.1007/s40273-020-00994-4. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/33565048/}{PubMed}}
   }
 }
