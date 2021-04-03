@@ -32,7 +32,16 @@ eq5dy <- function(scores, country=NULL) {
   survey <- survey[country]
   
   values <- c(survey["FullHealth",],
-              .dimensionScores(scores, survey))
+              .intercept(scores, survey), .dimensionScores(scores, survey))
   
   return(round(sum(values, na.rm = TRUE), digits=3))
+}
+
+.intercept <- function(scores, survey) {
+  ##at least one mobility, care, activity, pain, anxiety > 1
+  if(sum(scores) > 5 && !is.na(survey["Intercept",])) {
+    value <- survey["Intercept",]
+    names(value) <- "Intercept"
+    return(value) ##At least one 2 or 3 (constant)
+  }
 }
