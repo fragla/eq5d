@@ -21,7 +21,8 @@ components: health state description and evaluation.
 For the description component a subject self-rates their health in terms
 of five dimensions; mobility, self-care, usual activities,
 pain/discomfort, and anxiety/depression using either a three-level
-([EQ-5D-3L](https://euroqol.org/eq-5d-instruments/eq-5d-3l-about/)) or a
+([EQ-5D-3L](https://euroqol.org/eq-5d-instruments/eq-5d-3l-about/) and
+[EQ-5D-Y](https://euroqol.org/eq-5d-instruments/eq-5d-y-about/)) or a
 five-level
 ([EQ-5D-5L](https://euroqol.org/eq-5d-instruments/eq-5d-5l-about/))
 scale.
@@ -354,28 +355,28 @@ dat <- data.frame(
 
 eq5dds(dat, version="3L")
 #>     MO   SC   UA   PD   AD
-#> 1 41.7 16.7 33.3 41.7 25.0
-#> 2 41.7 58.3 25.0 16.7 41.7
-#> 3 16.7 25.0 41.7 41.7 33.3
+#> 1 33.3 33.3  8.3 50.0 16.7
+#> 2 58.3  0.0 50.0 16.7 50.0
+#> 3  8.3 66.7 41.7 33.3 33.3
 
 eq5dds(dat, version="3L", counts=TRUE)
 #>   MO SC UA PD AD
-#> 1  5  2  4  5  3
-#> 2  5  7  3  2  5
-#> 3  2  3  5  5  4
+#> 1  4  4  1  6  2
+#> 2  7  0  6  2  6
+#> 3  1  8  5  4  4
 
 eq5dds(dat, version="3L", by="Sex")
 #> data[, by]: Female
 #>     MO   SC   UA   PD   AD
-#> 1 16.7 33.3 33.3 33.3 50.0
-#> 2 66.7 33.3  0.0 16.7 33.3
-#> 3 16.7 33.3 66.7 50.0 16.7
+#> 1 50.0 33.3 16.7 50.0 16.7
+#> 2 33.3  0.0 16.7 16.7 50.0
+#> 3 16.7 66.7 66.7 33.3 33.3
 #> ------------------------------------------------------------ 
 #> data[, by]: Male
-#>     MO   SC   UA   PD AD
-#> 1 66.7  0.0 33.3 50.0  0
-#> 2 16.7 83.3 50.0 16.7 50
-#> 3 16.7 16.7 16.7 33.3 50
+#>     MO   SC   UA   PD   AD
+#> 1 16.7 33.3  0.0 50.0 16.7
+#> 2 83.3  0.0 83.3 16.7 50.0
+#> 3  0.0 66.7 16.7 33.3 33.3
 ```
 
 ## Helper functions
