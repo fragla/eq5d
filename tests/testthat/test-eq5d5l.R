@@ -19,6 +19,13 @@ test_that("EQ-5D-5L Denmark gives correct answer", {
   expect_equal(eq5d5l(c(MO=5,SC=5,UA=5,PD=5,AD=5), "Denmark"), -0.758)
 })
 
+test_that("EQ-5D-5L Egypt gives correct answer", {
+  expect_equal(eq5d5l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "Egypt"), 1)
+  expect_equal(eq5d5l(c(MO=1,SC=1,UA=2,PD=1,AD=1), "Egypt"), 0.953)
+  expect_equal(eq5d5l(c(MO=1,SC=1,UA=1,PD=2,AD=1), "Egypt"), 0.953)
+  expect_equal(round(eq5d5l(c(MO=5,SC=5,UA=5,PD=5,AD=5), "Egypt"),2), -0.93)
+})
+
 test_that("EQ-5D-5L England gives correct answer", {
   expect_equal(eq5d5l(c(MO=2,SC=3,UA=2,PD=4,AD=5), "England"), 0.247)
   expect_equal(eq5d5l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "England"), 1)
