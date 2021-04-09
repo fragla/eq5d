@@ -32,6 +32,8 @@ Janssen, B., Szende, A., & Ramos-Goñi JM. (2014), Data and Methods.
 
 \strong{Portugal}: Ferreira LN, Ferreira PL, Pereira LN, Oppe M. The valuation of the EQ-5D in Portugal. Qual Life Res. 2014 Mar;23(2):413-23. doi: 10.1007/s11136-013-0448-z. Epub 2013 Jun 8. \href{https://pubmed.ncbi.nlm.nih.gov/23748906/}{PubMed}
 
+\strong{Russia}: Omelyanovskiy V, Musina N, Ratushnyak S, Bezdenezhnykh T, Fediaeva V, Roudijk B, Purba FD. Valuation of the EQ-5D-3L in Russia. Qual Life Res. 2021 Mar 13. doi: 10.1007/s11136-021-02804-6. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/33713323/}{PubMed}
+
 \strong{Singapore}: Luo N, Wang P, Thumboo J, Lim YW, Vrijhoef HJ. Valuation of EQ-5D-3L health states in Singapore: modeling of time trade-off values for 80 empirically observed health states. Pharmacoeconomics. 2014 May;32(5):495-507. doi: 10.1007/s40273-014-0142-1. \href{https://pubmed.ncbi.nlm.nih.gov/24519603/}{PubMed}
 
 \strong{Sri Lanka}: Kularatna S, Whitty JA, Johnson NW, Jayasinghe R, Scuffham PA. Valuing EQ-5D health states for Sri Lanka. Qual Life Res. 2015 Jul;24(7):1785-93. doi:10.1007/s11136-014-0906-2. Epub 2014 Dec 28. PubMed PMID: \href{https://pubmed.ncbi.nlm.nih.gov/25543271/}{PubMed}
@@ -51,8 +53,8 @@ TTO
 }
 \description{
 Coefficients for the estimation of the EQ-5D-3L index values based on TTO valuation studies
-  for Argentina, Australia, Brazil, Canada, Chile, China, Denmark, France, Germany, Italy, Japan, 
-  Netherlands, Poland, Portugal, Singapore, South Korea, Spain, Sri Lanka, Sweden, Taiwan, 
-  Thailand, Trinidad and Tobago, Tunisia, UK, USA and Zimbabwe.
+  for Argentina, Australia, Brazil, Canada, Chile, China, Denmark, France, Germany, Hungary, 
+  Italy, Japan, Netherlands, Poland, Portugal, Russia, Singapore, South Korea, Spain, 
+  Sri Lanka, Sweden, Taiwan, Thailand, Trinidad and Tobago, Tunisia, UK, USA and Zimbabwe.
 }
 \keyword{datasets}

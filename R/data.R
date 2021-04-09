@@ -1,13 +1,18 @@
 #' EQ-5D-5L Crosswalk data
 #'
 #' Crosswalk index value calculation table to calculate EQ-5D-3L indices from EQ-5D-5L data
-#'   for Denmark, France, Germany, Japan, Netherlands, Spain, Thailand, UK, USA 
+#'   for Denmark, France, Germany, Japan, Netherlands, Russia, Spain, Thailand, UK, USA 
 #'   and Zimbabwe.
 #'      
 #' @source
 #' van Hout B, Janssen MF, et al. Interim scoring for the EQ-5D-5L: Mapping the EQ-5D-5L 
 #'   to EQ-5D-3L value sets. Value in Health 2012 Jul-Aug;15(5):708-15. doi: 10.1016/j.jval.2012.02.008. 
 #'   \href{https://pubmed.ncbi.nlm.nih.gov/22867780/}{PubMed}
+#'   
+#' Omelyanovskiy V, Musina N, Ratushnyak S, Bezdenezhnykh T, Fediaeva V, Roudijk B, 
+#' Purba FD. Valuation of the EQ-5D-3L in Russia. Qual Life Res. 2021 Mar 13. 
+#' doi: 10.1007/s11136-021-02804-6. Epub ahead of print. 
+#' \href{https://pubmed.ncbi.nlm.nih.gov/33713323/}{PubMed}.
 #'
 #' \href{https://euroqol.org/wp-content/uploads/2018/02/EQ-5D-5L_Crosswalk_Index_Value_Calculator_v2.xls}{EQ-5D-5L Crosswalk Index Value Calculator}
 #'   
@@ -16,9 +21,9 @@
 #' EQ-5D-3L TTO value set data
 #'
 #' Coefficients for the estimation of the EQ-5D-3L index values based on TTO valuation studies
-#'   for Argentina, Australia, Brazil, Canada, Chile, China, Denmark, France, Germany, Italy, Japan, 
-#'   Netherlands, Poland, Portugal, Singapore, South Korea, Spain, Sri Lanka, Sweden, Taiwan, 
-#'   Thailand, Trinidad and Tobago, Tunisia, UK, USA and Zimbabwe.
+#'   for Argentina, Australia, Brazil, Canada, Chile, China, Denmark, France, Germany, Hungary, 
+#'   Italy, Japan, Netherlands, Poland, Portugal, Russia, Singapore, South Korea, Spain, 
+#'   Sri Lanka, Sweden, Taiwan, Thailand, Trinidad and Tobago, Tunisia, UK, USA and Zimbabwe.
 #'      
 #' @source
 #' Szende, A., Oppe, M., & de Charro, F. (2007), Comparative review of Time Trade-Off value sets. 
@@ -44,6 +49,8 @@
 #' \strong{Poland}: Golicki D, Jakubczyk M, Niewada M, Wrona W, Busschbach JJ. Valuation of EQ-5D health states in Poland: first TTO-based social value set in Central and Eastern Europe. Value in Health. 2010;13(2):289-97. \href{https://pubmed.ncbi.nlm.nih.gov/19744296/}{PubMed}
 #' 
 #' \strong{Portugal}: Ferreira LN, Ferreira PL, Pereira LN, Oppe M. The valuation of the EQ-5D in Portugal. Qual Life Res. 2014 Mar;23(2):413-23. doi: 10.1007/s11136-013-0448-z. Epub 2013 Jun 8. \href{https://pubmed.ncbi.nlm.nih.gov/23748906/}{PubMed}
+#' 
+#' \strong{Russia}: Omelyanovskiy V, Musina N, Ratushnyak S, Bezdenezhnykh T, Fediaeva V, Roudijk B, Purba FD. Valuation of the EQ-5D-3L in Russia. Qual Life Res. 2021 Mar 13. doi: 10.1007/s11136-021-02804-6. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/33713323/}{PubMed}
 #' 
 #' \strong{Singapore}: Luo N, Wang P, Thumboo J, Lim YW, Vrijhoef HJ. Valuation of EQ-5D-3L health states in Singapore: modeling of time trade-off values for 80 empirically observed health states. Pharmacoeconomics. 2014 May;32(5):495-507. doi: 10.1007/s40273-014-0142-1. \href{https://pubmed.ncbi.nlm.nih.gov/24519603/}{PubMed}
 #' 
@@ -79,7 +86,7 @@
 
 #' EQ-5D-5L VT value set data
 #'
-#' EQ-5D-5L VT value set calculation data for Canada, China, Denmark, England, 
+#' EQ-5D-5L VT value set calculation data for Canada, China, Denmark, Egypt, England, 
 #'   France, Germany, Hong Kong, Hungary, Indonesia, Ireland, Japan, Malaysia, 
 #'   Netherlands, Peru, Poland, Portugal, South Korea, Spain, Taiwan, Thailand, 
 #'   Uruguay, Vietnam and USA.

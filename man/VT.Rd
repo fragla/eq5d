@@ -41,7 +41,7 @@ An object of class \code{data.frame} with 35 rows and 27 columns.
 VT
 }
 \description{
-EQ-5D-5L VT value set calculation data for Canada, China, Denmark, England, 
+EQ-5D-5L VT value set calculation data for Canada, China, Denmark, Egypt, England, 
   France, Germany, Hong Kong, Hungary, Indonesia, Ireland, Japan, Malaysia, 
   Netherlands, Peru, Poland, Portugal, South Korea, Spain, Taiwan, Thailand, 
   Uruguay, Vietnam and USA.
