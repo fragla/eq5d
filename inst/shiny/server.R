@@ -22,7 +22,7 @@ shinyServer(function(input, output, session) {
     if(is.null(input$version))
       return()
     
-    if(input$version=="3L") {
+    if(input$version %in% c("3L", "Y")) {
       levels <- 1:3
     } else {
       levels <- 1:5
@@ -61,7 +61,7 @@ shinyServer(function(input, output, session) {
   
   output$choose_version <- renderUI({
     radioButtons("version", "EQ-5D version:",
-                 c("EQ-5D-3L"="3L", "EQ-5D-5L"="5L"),
+                 c("EQ-5D-3L"="3L", "EQ-5D-5L"="5L", "EQ-5D-Y"="Y"),
                  selected="3L",
                  inline=T)
   })
@@ -87,7 +87,10 @@ shinyServer(function(input, output, session) {
         if(input$country %in% colnames(VAS))
           type <-c(type, "VAS")
         
-    } else {
+    } else if(input$version=="Y") {
+      type <-c(type, "cTTO")
+    }
+    else {
       
         if(input$country %in% colnames(VT))
           type <-c(type, "VT")
@@ -322,10 +325,20 @@ shinyServer(function(input, output, session) {
   
   vals <- reactiveValues(MO=NULL, SC=NULL, UA=NULL, PD=NULL, AD=NULL, State=NULL)
   
+  getMaxLevels <- reactive({
+    if(input$version %in% c("3L", "Y")) {
+      return(3)
+    } else if(input$version=="5L") {
+      return(5)
+    } else {
+      stop("Invalid EQ-5D version.")
+    }
+  })
+  
   dimensionsValid <- reactive({
     dat <- readdata()
     cols <- modalDimensions()
-    is.valid <- all(sapply(cols, function(x){any(dat[,x] %in% 1:sub("L", "", input$version))}))
+    is.valid <- all(sapply(cols, function(x){any(dat[,x] %in% 1:getMaxLevels())}))
     return(is.valid)
   })
   
@@ -516,7 +529,7 @@ shinyServer(function(input, output, session) {
       # }
       
       if(input$plot_data %in% c("MO", "SC", "UA", "PD", "AD")) {
-        p <- p + scale_x_continuous(breaks= 1:sub("L", "", input$version), labels = 1:sub("L", "", input$version))
+        p <- p + scale_x_continuous(breaks= 1:getMaxLevels(), labels = 1:getMaxLevels())
       }
   
       return(p)
