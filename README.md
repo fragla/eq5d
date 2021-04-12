@@ -58,10 +58,10 @@ developed by the EuroQol group based on the composite time trade-off
 where available.
 
 The EQ-5D-5L “crosswalk” value sets published by [van Hout *et
-al*](https://pubmed.ncbi.nlm.nih.gov/22867780/) are also included. The
-crosswalk value sets enable index values to be calculated for EQ-5D-5L
-data where no value set is available by mapping between the EQ-5D-5L and
-EQ-5D-3L descriptive systems.
+al*](https://pubmed.ncbi.nlm.nih.gov/22867780/) as well as that for
+Russia are also included. The crosswalk value sets enable index values
+to be calculated for EQ-5D-5L data where no value set is available by
+mapping between the EQ-5D-5L and EQ-5D-3L descriptive systems.
 
 Additional information on EQ-5D can be found on the
 [EuroQol](https://euroqol.org/) website as well as in [Szende *et al*
@@ -104,6 +104,10 @@ eq5d(scores=scores, country="UK", version="3L", type="TTO")
 #Using five digit format
 eq5d(scores=12321, country="UK", version="3L", type="TTO")
 #> [1] 0.329
+
+#EQ-5D-Y using the Slovenian cTTO value set
+eq5d(scores=13321, country="Slovenia", version="Y", type="cTTO")
+#> [1] 0.295
 
 #multiple calculations using the Canadian VT value set
 
@@ -160,9 +164,9 @@ head(valuesets(version="5L"))
 #> 1 EQ-5D-5L   VT   Canada
 #> 2 EQ-5D-5L   VT    China
 #> 3 EQ-5D-5L   VT  Denmark
-#> 4 EQ-5D-5L   VT  England
-#> 5 EQ-5D-5L   VT Ethiopia
-#> 6 EQ-5D-5L   VT   France
+#> 4 EQ-5D-5L   VT    Egypt
+#> 5 EQ-5D-5L   VT  England
+#> 6 EQ-5D-5L   VT Ethiopia
 
 # Return all UK value sets.
 valuesets(country="UK")
@@ -354,29 +358,29 @@ dat <- data.frame(
        )
 
 eq5dds(dat, version="3L")
-#>     MO   SC   UA   PD   AD
-#> 1 33.3 33.3  8.3 50.0 16.7
-#> 2 58.3  0.0 50.0 16.7 50.0
-#> 3  8.3 66.7 41.7 33.3 33.3
+#>     MO   SC UA PD   AD
+#> 1 33.3 25.0 25 25 16.7
+#> 2 33.3 58.3 50 50 41.7
+#> 3 33.3 16.7 25 25 41.7
 
 eq5dds(dat, version="3L", counts=TRUE)
 #>   MO SC UA PD AD
-#> 1  4  4  1  6  2
-#> 2  7  0  6  2  6
-#> 3  1  8  5  4  4
+#> 1  4  3  3  3  2
+#> 2  4  7  6  6  5
+#> 3  4  2  3  3  5
 
 eq5dds(dat, version="3L", by="Sex")
 #> data[, by]: Female
 #>     MO   SC   UA   PD   AD
-#> 1 50.0 33.3 16.7 50.0 16.7
-#> 2 33.3  0.0 16.7 16.7 50.0
-#> 3 16.7 66.7 66.7 33.3 33.3
+#> 1 33.3 33.3 33.3 33.3 16.7
+#> 2 33.3 66.7 33.3 50.0 50.0
+#> 3 33.3  0.0 33.3 16.7 33.3
 #> ------------------------------------------------------------ 
 #> data[, by]: Male
 #>     MO   SC   UA   PD   AD
-#> 1 16.7 33.3  0.0 50.0 16.7
-#> 2 83.3  0.0 83.3 16.7 50.0
-#> 3  0.0 66.7 16.7 33.3 33.3
+#> 1 33.3 16.7 16.7 16.7 16.7
+#> 2 33.3 50.0 66.7 50.0 33.3
+#> 3 33.3 33.3 16.7 33.3 50.0
 ```
 
 ## Helper functions

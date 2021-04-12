@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 
 EQ-5D is a popular health related quality of life instrument used in the clinical and economic evaluation of health care. Developed by the [EuroQol](https://euroqol.org/) group, the instrument consists of two components: health state description and evaluation. 
 
-For the description component a subject self-rates their health in terms of five dimensions; mobility, self-care, usual activities, pain/discomfort, and anxiety/depression using either a three-level ([EQ-5D-3L](https://euroqol.org/eq-5d-instruments/eq-5d-3l-about/)) or a five-level ([EQ-5D-5L](https://euroqol.org/eq-5d-instruments/eq-5d-5l-about/)) scale. 
+For the description component a subject self-rates their health in terms of five dimensions; mobility, self-care, usual activities, pain/discomfort, and anxiety/depression using either a three-level ([EQ-5D-3L](https://euroqol.org/eq-5d-instruments/eq-5d-3l-about/) and [EQ-5D-Y](https://euroqol.org/eq-5d-instruments/eq-5d-y-about/)) or a five-level ([EQ-5D-5L](https://euroqol.org/eq-5d-instruments/eq-5d-5l-about/)) scale. 
 
 The evaluation component requires a patient to record their overall health status using a visual analogue scale (EQ-VAS).
 
@@ -32,7 +32,7 @@ Value sets for EQ-5D-3L are available for many countries and have been produced 
 
 For EQ-5D-5L, a standardised valuation study protocol (EQ-VT) was developed by the EuroQol group based on the composite time trade-off (cTTO) valuation technique supplemented by a discrete choice experiment (DCE).  The EuroQol group recommends users to use a standard value set where available.
 
-The EQ-5D-5L "crosswalk" value sets published by [van Hout *et al*](https://pubmed.ncbi.nlm.nih.gov/22867780/) are also included. The crosswalk value sets enable index values to be calculated for EQ-5D-5L data where no value set is available by mapping between the EQ-5D-5L and EQ-5D-3L descriptive systems.
+The EQ-5D-5L "crosswalk" value sets published by [van Hout *et al*](https://pubmed.ncbi.nlm.nih.gov/22867780/) as well as that for Russia are also included. The crosswalk value sets enable index values to be calculated for EQ-5D-5L data where no value set is available by mapping between the EQ-5D-5L and EQ-5D-3L descriptive systems.
 
 Additional information on EQ-5D can be found on the [EuroQol](https://euroqol.org/) website as well as in [Szende *et al* (2007)](https://www.doi.org/10.1007/1-4020-5511-0) and [Szende 
     *et al* (2014)](https://www.doi.org/10.1007/978-94-007-7596-1). Advice on [choosing a value set](https://euroqol.org/eq-5d-instruments/eq-5d-3l-about/valuation/choosing-a-value-set/
@@ -68,6 +68,9 @@ eq5d(scores=scores, country="UK", version="3L", type="TTO")
 
 #Using five digit format
 eq5d(scores=12321, country="UK", version="3L", type="TTO")
+
+#EQ-5D-Y using the Slovenian cTTO value set
+eq5d(scores=13321, country="Slovenia", version="Y", type="cTTO")
 
 #multiple calculations using the Canadian VT value set
 
@@ -167,7 +170,7 @@ data <- read_excel(system.file("extdata", "eq5d3l_example.xlsx", package="eq5d")
 pre <- data[data$Group=="Group1",][1:50,]
 post <- data[data$Group=="Group2",][1:50,]
 
-#run eq5dcf function on a data.frames
+#run pchc function on data.frames
 
 #Show no change, improve, worse, mixed without totals
 res1 <- pchc(pre, post, version="3L", no.problems=FALSE, totals=FALSE)
@@ -207,7 +210,7 @@ eq5dds(dat, version="3L", by="Sex")
 
 ## Helper functions
 
-Helper functions are included, which may be useful in the processing of EQ-5D data. ***getHealthStates*** returns a vector of all possible five digit health states for a specified EQ-5D version. ***getDimensionsFromHealthStates*** splits a vector of five digit health states into a data.frame of their individual components and ***getHealthStatesFromDimensions*** combines indiviual dimensions in a data.frame into five digit health states..
+Helper functions are included, which may be useful in the processing of EQ-5D data. ***getHealthStates*** returns a vector of all possible five digit health states for a specified EQ-5D version. ***getDimensionsFromHealthStates*** splits a vector of five digit health states into a data.frame of their individual components and ***getHealthStatesFromDimensions*** combines indiviual dimensions in a data.frame into five digit health states.
 
 ```{r helper}
 
