@@ -1,7 +1,7 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-# eq5d 0.8.2 (2021-04-12)
+# eq5d 0.9.0 (2021-04-12)
 
   - Slovenian and Japanese EQ-5D-Y value sets now available.
 
