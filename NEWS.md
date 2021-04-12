@@ -1,6 +1,14 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
+# eq5d 0.8.2 (2021-04-12)
+
+  - Slovenian and Japanese EQ-5D-Y value sets now available.
+
+  - Russian EQ-5D-3L value set added.
+
+  - Egyptian EQ-5D-5L and Russian EQ-5D-5L crosswalk value sets added.
+
 # eq5d 0.8.1 (2021-02-09)
 
   - Tunisian EQ-5D-3L value set added.
