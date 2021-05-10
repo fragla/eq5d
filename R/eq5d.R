@@ -108,7 +108,7 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
     if(ignore.invalid) {
       res <- NA
     } else {
-      stop("Invalid dimension state found.")
+      stop("Invalid dimension state found. Add 'ignore.invalid=TRUE' parameter to return NA for invalid scores.")
     }
   }
   return(res)
