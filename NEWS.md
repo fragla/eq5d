@@ -5,6 +5,9 @@
 
   - Belgian and Mexican EQ-5D-5L value sets added.
 
+  - Egyptian EQ-5D-5L removed due to article being retracted - see
+    [PubMed](https://pubmed.ncbi.nlm.nih.gov/34129227/).
+
   - Clearer messaging about ‘ignore.invalid’ parameter error message.
 
 # eq5d 0.9.0 (2021-04-12)
