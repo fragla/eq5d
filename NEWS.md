@@ -1,6 +1,12 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
+# eq5d (development version)
+
+  - Belgian and Mexican EQ-5D-5L value sets added.
+
+  - Clearer messaging about ‘ignore.invalid’ parameter error message.
+
 # eq5d 0.9.0 (2021-04-12)
 
   - Slovenian and Japanese EQ-5D-Y value sets now available.
