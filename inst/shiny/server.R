@@ -87,6 +87,9 @@ shinyServer(function(input, output, session) {
         if(input$country %in% colnames(VAS))
           type <-c(type, "VAS")
         
+        if(input$country %in% colnames(RCW))
+          type <-c(type, "RCW")
+        
     } else if(input$version=="Y") {
       type <-c(type, "cTTO")
     }
