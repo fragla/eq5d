@@ -28,7 +28,7 @@ Following assessment the scores from the descriptive component can be reported a
 
 The eq5d package provides methods for the cross-sectional and longitudinal analysis of EQ-5D profiles and also the calculation of utility index scores from a subject's dimension scores. Additionally, a [Shiny](https://shiny.rstudio.com) app is included to enable the calculation, visualisation and automated statistical analysis of multiple EQ-5D index values via a web browser using EQ-5D dimension scores stored in CSV or Excel files.
 
-Value sets for EQ-5D-3L are available for many countries and have been produced using the time trade-off (TTO) valuation technique or the visual analogue scale (VAS) valuation technique.  Some countries have TTO and VAS value sets for EQ-5D-3L.
+Value sets for EQ-5D-3L are available for many countries and have been produced using the time trade-off (TTO) valuation technique or the visual analogue scale (VAS) valuation technique.  Some countries have TTO and VAS value sets for EQ-5D-3L. Additionally, EQ-5D-3L "reverse crosswalk" value sets published on the [EuroQol](https://euroqol.org/support/tools/analysis-tools/cross-walk-reverse-cross-walk/) website that enable EQ-5D-3L data to be mapped to EQ-5D-5L value sets are included.
 
 For EQ-5D-5L, a standardised valuation study protocol (EQ-VT) was developed by the EuroQol group based on the composite time trade-off (cTTO) valuation technique supplemented by a discrete choice experiment (DCE).  The EuroQol group recommends users to use a standard value set where available.
 
