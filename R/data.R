@@ -18,6 +18,17 @@
 #'   
 "CW"
 
+#' EQ-5D-3L Reverse Crosswalk data
+#'
+#' Reverse Crosswalk index value table to calculate EQ-5D-5L indices from EQ-5D-3L data
+#'   for England, Germany, Netherlands and USA. Table uses the values of van Hout et al
+#'   from the EuroQol website.
+#'      
+#' @source
+#' \href{https://euroqol.org/support/tools/analysis-tools/cross-walk-reverse-cross-walk/}{Reverse crosswalk datasets}
+#'   
+"RCW"
+
 #' EQ-5D-3L TTO value set data
 #'
 #' Coefficients for the estimation of the EQ-5D-3L index values based on TTO valuation studies
