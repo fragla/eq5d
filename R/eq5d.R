@@ -127,7 +127,13 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
   }
   
   if(version=="3L") {
-    eq5d3l(scores, type=type, country=country)
+    if(!is.null(type) && type %in% c("TTO", "VAS")) {
+      eq5d3l(scores, type=type, country=country)
+    } else if(!is.null(type) && type=="RCW") {
+      eq5drcw(scores, country=country)
+    } else {
+      stop("EQ-5D-3L valueset type not recognised. Must be one of 'TTO', 'VAS' or 'RCW'.")
+    }
   } else if (version=="Y") {
     eq5dy(scores, country=country)
   }
@@ -165,10 +171,11 @@ valuesets <- function(type=NULL, version=NULL, country=NULL) {
   
   tto <- data.frame(Version="EQ-5D-3L", Type="TTO", Country=colnames(get("TTO")))
   vas <- data.frame(Version="EQ-5D-3L", Type="VAS", Country=colnames(get("VAS")))
+  rcw <- data.frame(Version="EQ-5D-3L", Type="RCW", Country=colnames(get("RCW")))
   vt <- data.frame(Version="EQ-5D-5L", Type="VT", Country=colnames(get("VT")))
   cw <- data.frame(Version="EQ-5D-5L", Type="CW", Country=colnames(get("CW")))
   y <- data.frame(Version="EQ-5D-Y", Type="cTTO", Country=colnames(get("Y")))
-  vs <- rbind(tto, vas, vt, cw, y)
+  vs <- rbind(tto, vas, rcw, vt, cw, y)
   
   if(!is.null(type)) vs <- vs[vs$Type==type,]
   if(!is.null(version)) vs <- vs[vs$Version==version,]

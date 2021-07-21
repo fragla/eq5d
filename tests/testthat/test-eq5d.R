@@ -29,6 +29,7 @@ test_that("Wrapper function gives correct answer", {
   expect_equal(eq5d(test.df2, country="England", version="5L", type="VT", five.digit="state"), c(1.000,0.393,0.434,0.488,0.400))
   expect_equal(eq5d(as.matrix(test.df), country="Canada", version="5L", type="VT"), c(0.949,0.362,0.39,0.524,0.431))
   expect_equal(eq5d(c(MO=1,SC=2,UA=3,PD=2,AD=1), type="CW", version="5L", country="Denmark"), 0.736)
+  expect_equal(eq5d(c(MO=3,SC=3,UA=3,PD=3,AD=3), type="RCW", version="3L", country="Netherlands"), -0.312)
   expect_equal(eq5d(12345, country="Indonesia", version="5L", type="VT"), 0.240)
   expect_equal(eq5d(33333, country="Slovenia", version="Y"), -0.691)
   expect_equal(eq5d(test.char, country="UK", version="3L", type="TTO"), c(0.329, -0.090, -0.127))
