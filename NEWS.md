@@ -8,6 +8,8 @@
   - EQ-5D-3L reverse crosswalk value sets added for England, Germany,
     Netherlands and USA.
 
+  - Ecuadorian EQ-5D-3L value set added.
+
   - Egyptian EQ-5D-5L removed due to article being retracted - see
     [PubMed](https://pubmed.ncbi.nlm.nih.gov/34129227/).
 
