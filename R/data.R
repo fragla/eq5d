@@ -55,6 +55,8 @@
 #' 
 #' \strong{China}: Liu GG, Wu H, Li M, Gao C, Luo N. Chinese time trade-off values for EQ-5D health states. Value Health. 2014 Jul;17(5):597-604. doi: 10.1016/j.jval.2014.05.007. Epub 2014 Jul 23. \href{https://pubmed.ncbi.nlm.nih.gov/25128053/}{PubMed}
 #'
+#' \strong{Ecuador}: Lucio R, Flores V,  Granja M, Mata G. Resultados de la encuesta de valoración social de los estados de salud de lAños de vida ajustados por calidad (QALY'S). 2019. \href{www.researchgate.net/publication/335840590_QALYs_FINAL_Ecuador.dig}{Link}
+#'
 #' \strong{Hungary}: Rencz F, Brodszky V, Gulácsi L, Golicki D, Ruzsa G, Pickard AS, Law EH, Péntek M. Parallel Valuation of the EQ-5D-3L and EQ-5D-5L by Time Trade-Off in Hungary. Value Health. 2020 Sep;23(9):1235-1245. doi: 10.1016/j.jval.2020.03.019. Epub 2020 Aug 12. \href{https://pubmed.ncbi.nlm.nih.gov/32940242/}{PubMed}
 #'   
 #' \strong{Poland}: Golicki D, Jakubczyk M, Niewada M, Wrona W, Busschbach JJ. Valuation of EQ-5D health states in Poland: first TTO-based social value set in Central and Eastern Europe. Value in Health. 2010;13(2):289-97. \href{https://pubmed.ncbi.nlm.nih.gov/19744296/}{PubMed}
