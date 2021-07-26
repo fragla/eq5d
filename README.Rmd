@@ -75,6 +75,12 @@ eq5d(scores=12321, country="UK", version="3L", type="TTO")
 #EQ-5D-Y using the Slovenian cTTO value set
 eq5d(scores=13321, country="Slovenia", version="Y", type="cTTO")
 
+#EQ-5D-5L crosswalk
+eq5d(scores=55555, country="Spain", version="5L", type="CW")
+
+#EQ-5D-3L reverse crosswalk
+eq5d(scores=33333, country="Germany", version="3L", type="RCW")
+
 #multiple calculations using the Canadian VT value set
 
 #data.frame with individual dimensions

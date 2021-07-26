@@ -113,6 +113,14 @@ eq5d(scores=12321, country="UK", version="3L", type="TTO")
 eq5d(scores=13321, country="Slovenia", version="Y", type="cTTO")
 #> [1] 0.295
 
+#EQ-5D-5L crosswalk
+eq5d(scores=55555, country="Spain", version="5L", type="CW")
+#> [1] -0.654
+
+#EQ-5D-3L reverse crosswalk
+eq5d(scores=33333, country="Germany", version="3L", type="RCW")
+#> [1] -0.329
+
 #multiple calculations using the Canadian VT value set
 
 #data.frame with individual dimensions
@@ -362,29 +370,29 @@ dat <- data.frame(
        )
 
 eq5dds(dat, version="3L")
-#>     MO   SC   UA PD AD
-#> 1  8.3 25.0 16.7 25 50
-#> 2 25.0 41.7 50.0 25 25
-#> 3 66.7 33.3 33.3 50 25
+#>     MO   SC   UA   PD AD
+#> 1 41.7 25.0 16.7 41.7 25
+#> 2 41.7 33.3 58.3 16.7 25
+#> 3 16.7 41.7 25.0 41.7 50
 
 eq5dds(dat, version="3L", counts=TRUE)
 #>   MO SC UA PD AD
-#> 1  1  3  2  3  6
-#> 2  3  5  6  3  3
-#> 3  8  4  4  6  3
+#> 1  5  3  2  5  3
+#> 2  5  4  7  2  3
+#> 3  2  5  3  5  6
 
 eq5dds(dat, version="3L", by="Sex")
 #> data[, by]: Female
-#>   MO SC   UA   PD   AD
-#> 1  0 50 33.3 16.7 50.0
-#> 2 50 50 33.3 33.3 33.3
-#> 3 50  0 33.3 50.0 16.7
+#>   MO   SC   UA   PD   AD
+#> 1 50 16.7 16.7 50.0 33.3
+#> 2 50 33.3 66.7 16.7 16.7
+#> 3  0 50.0 16.7 33.3 50.0
 #> ------------------------------------------------------------ 
 #> data[, by]: Male
 #>     MO   SC   UA   PD   AD
-#> 1 16.7  0.0  0.0 33.3 50.0
-#> 2  0.0 33.3 66.7 16.7 16.7
-#> 3 83.3 66.7 33.3 50.0 33.3
+#> 1 33.3 33.3 16.7 33.3 16.7
+#> 2 33.3 33.3 50.0 16.7 33.3
+#> 3 33.3 33.3 33.3 50.0 50.0
 ```
 
 ## Helper functions
