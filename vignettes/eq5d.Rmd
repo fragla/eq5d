@@ -34,8 +34,8 @@ For EQ-5D-5L, a standardised valuation study protocol (EQ-VT) was developed by t
 
 The EQ-5D-5L "crosswalk" value sets published by [van Hout *et al*](https://pubmed.ncbi.nlm.nih.gov/22867780/) as well as that for Russia are also included. The crosswalk value sets enable index values to be calculated for EQ-5D-5L data where no value set is available by mapping between the EQ-5D-5L and EQ-5D-3L descriptive systems.
 
-Additional information on EQ-5D can be found on the [EuroQol](https://euroqol.org/) website as well as in [Szende *et al* (2007)](https://www.doi.org/10.1007/1-4020-5511-0) and [Szende 
-    *et al* (2014)](https://www.doi.org/10.1007/978-94-007-7596-1). Advice on [choosing a value set](https://euroqol.org/eq-5d-instruments/eq-5d-3l-about/valuation/choosing-a-value-set/
+Additional information on EQ-5D can be found on the [EuroQol](https://euroqol.org/) website as well as in [Szende *et al* (2007)](https://doi.org/10.1007/1-4020-5511-0) and [Szende 
+    *et al* (2014)](https://doi.org/10.1007/978-94-007-7596-1). Advice on [choosing a value set](https://euroqol.org/eq-5d-instruments/eq-5d-3l-about/valuation/choosing-a-value-set/
 ) can also be found on the EuroQol website.
 
 ## Installation

@@ -69,9 +69,9 @@ mapping between the EQ-5D-5L and EQ-5D-3L descriptive systems.
 
 Additional information on EQ-5D can be found on the
 [EuroQol](https://euroqol.org/) website as well as in [Szende *et al*
-(2007)](https://www.doi.org/10.1007/1-4020-5511-0) and [Szende *et al*
-(2014)](https://www.doi.org/10.1007/978-94-007-7596-1). Advice on
-[choosing a value
+(2007)](https://doi.org/10.1007/1-4020-5511-0) and [Szende *et al*
+(2014)](https://doi.org/10.1007/978-94-007-7596-1). Advice on [choosing
+a value
 set](https://euroqol.org/eq-5d-instruments/eq-5d-3l-about/valuation/choosing-a-value-set/)
 can also be found on the EuroQol website.
 
@@ -370,29 +370,29 @@ dat <- data.frame(
        )
 
 eq5dds(dat, version="3L")
-#>     MO   SC   UA   PD AD
-#> 1 41.7 25.0 16.7 41.7 25
-#> 2 41.7 33.3 58.3 16.7 25
-#> 3 16.7 41.7 25.0 41.7 50
+#>     MO   SC   UA   PD   AD
+#> 1 58.3 33.3 33.3 33.3 16.7
+#> 2 16.7 25.0 50.0 50.0 50.0
+#> 3 25.0 41.7 16.7 16.7 33.3
 
 eq5dds(dat, version="3L", counts=TRUE)
 #>   MO SC UA PD AD
-#> 1  5  3  2  5  3
-#> 2  5  4  7  2  3
-#> 3  2  5  3  5  6
+#> 1  7  4  4  4  2
+#> 2  2  3  6  6  6
+#> 3  3  5  2  2  4
 
 eq5dds(dat, version="3L", by="Sex")
 #> data[, by]: Female
-#>   MO   SC   UA   PD   AD
-#> 1 50 16.7 16.7 50.0 33.3
-#> 2 50 33.3 66.7 16.7 16.7
-#> 3  0 50.0 16.7 33.3 50.0
+#>     MO   SC   UA   PD   AD
+#> 1 66.7 33.3 33.3 33.3 33.3
+#> 2 16.7 16.7 66.7 50.0 50.0
+#> 3 16.7 50.0  0.0 16.7 16.7
 #> ------------------------------------------------------------ 
 #> data[, by]: Male
-#>     MO   SC   UA   PD   AD
-#> 1 33.3 33.3 16.7 33.3 16.7
-#> 2 33.3 33.3 50.0 16.7 33.3
-#> 3 33.3 33.3 33.3 50.0 50.0
+#>     MO   SC   UA   PD AD
+#> 1 50.0 33.3 33.3 33.3  0
+#> 2 16.7 33.3 33.3 50.0 50
+#> 3 33.3 33.3 33.3 16.7 50
 ```
 
 ## Helper functions
