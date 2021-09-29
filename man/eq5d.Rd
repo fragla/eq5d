@@ -8,23 +8,23 @@ eq5d(scores, version, type, country, ignore.invalid, ...)
 }
 \arguments{
 \item{scores}{numeric or data.frame with names/colnames MO, SC, UA, PD and AD
-representing Mobility, Self-care, Usual activities, Pain/discomfort and 
-Anxiety/depression. Alternatively an EQ-5D  score can be provided in 
+representing Mobility, Self-care, Usual activities, Pain/discomfort and
+Anxiety/depression. Alternatively an EQ-5D  score can be provided in
 five digit format e.g. 12321.}
 
-\item{version}{string of value "3L", "5L" or "Y" to indicate instrument 
+\item{version}{string of value "3L", "5L" or "Y" to indicate instrument
 version.}
 
-\item{type}{string specifying method type used in deriving value set scores. 
-Options are TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L or CW for EQ-5D-5L 
+\item{type}{string specifying method type used in deriving value set scores.
+Options are TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L or CW for EQ-5D-5L
 crosswalk conversion valuesets.}
 
 \item{country}{string of value set country name used.}
 
-\item{ignore.invalid}{logical to indicate whether to ignore dimension data 
+\item{ignore.invalid}{logical to indicate whether to ignore dimension data
 with invalid, incomplete or missing data.}
 
-\item{...}{character vectors, specifying "dimensions" column names or 
+\item{...}{character vectors, specifying "dimensions" column names or
 "five.digit" column name. Defaults are "MO", "SC", "UA", "PD" and "AD"
 for dimensions and "State" for five.digit.}
 }
@@ -32,14 +32,14 @@ for dimensions and "State" for five.digit.}
 a numeric vector of utility index scores.
 }
 \description{
-Wrapper for \code{eq5d3l} and \code{eq5d5l}. Calculate EQ-5D index scores for 
-EQ-5D-3L and EQ-5D-5L. Available value sets can be viewed using the function 
+Wrapper for \code{eq5d3l} and \code{eq5d5l}. Calculate EQ-5D index scores for
+EQ-5D-3L and EQ-5D-5L. Available value sets can be viewed using the function
 \code{valuesets}.
 }
 \examples{
-eq5d(scores=c(MO=1,SC=2,UA=3,PD=4,AD=5), type="VT", 
+eq5d(scores=c(MO=1,SC=2,UA=3,PD=4,AD=5), type="VT",
  country="Indonesia", version="5L")
-eq5d(scores=c(MO=3,SC=2,UA=3,PD=2,AD=3), 
+eq5d(scores=c(MO=3,SC=2,UA=3,PD=2,AD=3),
  type="TTO", version="3L", country="Germany")
 
 scores.df <- data.frame(

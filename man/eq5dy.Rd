@@ -16,7 +16,7 @@ Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.}
 calculated utility index score.
 }
 \description{
-Calculate indices for EQ-5D-Y value sets. Available value sets can be viewed 
+Calculate indices for EQ-5D-Y value sets. Available value sets can be viewed
   using the function \code{valuesets}.
 }
 \examples{
