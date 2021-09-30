@@ -1,21 +1,21 @@
 #' Calculate EQ-5D-Y index scores
-#' 
-#' Calculate indices for EQ-5D-Y value sets. Available value sets can be viewed 
+#'
+#' Calculate indices for EQ-5D-Y value sets. Available value sets can be viewed
 #'   using the function \code{valuesets}.
-#' 
+#'
 #' @param scores numeric with names MO, SC, UA, PD and AD representing
 #'   Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.
-#' @param country value set country. 
+#' @param country value set country.
 #' @return calculated utility index score.
 #' @examples
 #' eq5dy(scores=c(MO=3,SC=3,UA=3,PD=3,AD=3), country="Slovenia")
-#' 
+#'
 #' @export
 eq5dy <- function(scores, country=NULL) {
-  
+
   if(!all(.getDimensionNames() %in% names(scores)))
     stop("Unable to identify EQ-5D dimensions in scores.")
-  
+
   if(!all(scores %in% 1:3)) {
     message <- "Scores must be coded as 1, 2 or 3 for EQ-5D-Y."
     if(all(scores %in% 1:5)) {
@@ -23,17 +23,17 @@ eq5dy <- function(scores, country=NULL) {
     }
     stop(message)
   }
-  
-  survey <- get("Y")
-  
+
+  survey <- Y
+
   if(is.null(country) || !country %in% colnames(survey))
     stop(paste("Country must be one of:", paste(colnames(survey), collapse=", ")))
-  
+
   survey <- survey[country]
-  
+
   values <- c(survey["FullHealth",],
               .intercept(scores, survey), .dimensionScores(scores, survey))
-  
+
   return(round(sum(values, na.rm = TRUE), digits=3))
 }
 
