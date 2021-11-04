@@ -1,6 +1,14 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
+# eq5d (development version)
+
+  - Italian EQ-5D-5L value sets added.
+
+  - Value set data now internalised to enable functions to work without
+    loading the whole package. Thanks to @TimTaylor for implementing
+    this.
+
 # eq5d 0.10.0 (2021-07-27)
 
   - Belgian and Mexican EQ-5D-5L value sets added.
