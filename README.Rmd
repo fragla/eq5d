@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 [![R build status](https://github.com/fragla/eq5d/workflows/R-CMD-check/badge.svg)](https://github.com/fragla/eq5d/actions)
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/fragla/eq5d?branch=master&svg=true)](https://ci.appveyor.com/project/fragla/eq5d)
-[![Codecov test coverage](https://codecov.io/gh/fragla/eq5d/branch/master/graph/badge.svg)](https://codecov.io/gh/fragla/eq5d?branch=master)
+[![Codecov test coverage](https://codecov.io/gh/fragla/eq5d/branch/master/graph/badge.svg)](https://app.codecov.io/gh/fragla/eq5d?branch=master)
 <!-- badges: end -->
 
 # EQ-5D

@@ -8,7 +8,7 @@ status](https://github.com/fragla/eq5d/workflows/R-CMD-check/badge.svg)](https:/
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/fragla/eq5d?branch=master&svg=true)](https://ci.appveyor.com/project/fragla/eq5d)
 [![Codecov test
-coverage](https://codecov.io/gh/fragla/eq5d/branch/master/graph/badge.svg)](https://codecov.io/gh/fragla/eq5d?branch=master)
+coverage](https://codecov.io/gh/fragla/eq5d/branch/master/graph/badge.svg)](https://app.codecov.io/gh/fragla/eq5d?branch=master)
 <!-- badges: end -->
 
 # EQ-5D
@@ -371,28 +371,28 @@ dat <- data.frame(
 
 eq5dds(dat, version="3L")
 #>     MO   SC   UA   PD   AD
-#> 1 58.3 33.3 33.3 33.3 16.7
-#> 2 16.7 25.0 50.0 50.0 50.0
-#> 3 25.0 41.7 16.7 16.7 33.3
+#> 1 33.3 33.3 33.3 33.3 50.0
+#> 2 16.7 41.7  8.3  0.0  8.3
+#> 3 50.0 25.0 58.3 66.7 41.7
 
 eq5dds(dat, version="3L", counts=TRUE)
 #>   MO SC UA PD AD
-#> 1  7  4  4  4  2
-#> 2  2  3  6  6  6
-#> 3  3  5  2  2  4
+#> 1  4  4  4  4  6
+#> 2  2  5  1  0  1
+#> 3  6  3  7  8  5
 
 eq5dds(dat, version="3L", by="Sex")
 #> data[, by]: Female
-#>     MO   SC   UA   PD   AD
-#> 1 66.7 33.3 33.3 33.3 33.3
-#> 2 16.7 16.7 66.7 50.0 50.0
-#> 3 16.7 50.0  0.0 16.7 16.7
+#>     MO   SC   UA PD   AD
+#> 1 16.7 33.3 16.7 50 66.7
+#> 2 16.7 33.3  0.0  0  0.0
+#> 3 66.7 33.3 83.3 50 33.3
 #> ------------------------------------------------------------ 
 #> data[, by]: Male
-#>     MO   SC   UA   PD AD
-#> 1 50.0 33.3 33.3 33.3  0
-#> 2 16.7 33.3 33.3 50.0 50
-#> 3 33.3 33.3 33.3 16.7 50
+#>     MO   SC   UA   PD   AD
+#> 1 50.0 33.3 50.0 16.7 33.3
+#> 2 16.7 50.0 16.7  0.0 16.7
+#> 3 33.3 16.7 33.3 83.3 50.0
 ```
 
 ## Helper functions
