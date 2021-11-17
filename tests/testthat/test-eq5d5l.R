@@ -257,6 +257,14 @@ test_that("EQ-5D-5L Vietnam gives correct answer", {
   expect_equal(eq5d5l(c(MO=5,SC=5,UA=5,PD=5,AD=5), "Vietnam"), -0.511)
 })
 
+test_that("EQ-5D-5L WePP gives correct answer", {
+  expect_equal(eq5d5l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "WePP"), 1)
+  expect_equal(eq5d5l(c(MO=2,SC=2,UA=2,PD=2,AD=2), "WePP"), 0.74)
+  expect_equal(eq5d5l(c(MO=3,SC=3,UA=3,PD=3,AD=3), "WePP"), 0.57)
+  expect_equal(eq5d5l(c(MO=4,SC=4,UA=4,PD=4,AD=4), "WePP"), -0.03)
+  expect_equal(eq5d5l(c(MO=5,SC=5,UA=5,PD=5,AD=5), "WePP"), -0.24)
+})
+
 context("EQ-5D-5L Incorrect params")
 
 test_that("EQ-5D-5L throws error for incorrect parameters", {
