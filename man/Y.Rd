@@ -17,6 +17,6 @@ An object of class \code{data.frame} with 12 rows and 2 columns.
 Y
 }
 \description{
-EQ-5D-Y value set calculation data for Slovenia.
+EQ-5D-Y value set calculation data for Japan and Slovenia.
 }
 \keyword{datasets}

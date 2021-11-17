@@ -5,7 +5,7 @@
 \alias{VT}
 \title{EQ-5D-5L VT value set data}
 \format{
-An object of class \code{data.frame} with 35 rows and 29 columns.
+An object of class \code{data.frame} with 35 rows and 30 columns.
 }
 \source{
 \enumerate{
@@ -37,15 +37,17 @@ An object of class \code{data.frame} with 35 rows and 29 columns.
     \item{\strong{Uruguay}: Augustovski F, Rey-Ares L, Irazola V, Garay OU, Gianneo O, Fernández G, Morales M, Gibbons L, Ramos-Goñi JM. An EQ-5D-5L value set based on Uruguayan population preferences. Qual Life Res. 2016 Feb;25(2):323-33. doi: 10.1007/s11136-015-1086-4. \href{https://pubmed.ncbi.nlm.nih.gov/26242249/}{PubMed}}
     \item{\strong{USA}: Pickard AS, Law EH, Jiang R, Pullenayegum E, Shaw JW, Xie F, Oppe M, Boye KS, Chapman RH, Gong CL, Balch A, Busschbach JJV. United States Valuation of EQ-5D-5L Health States Using an International Protocol. Value in Health. 2019 Aug;22(8):931-941. doi: 10.1016/j.jval.2019.02.009. \href{https://pubmed.ncbi.nlm.nih.gov/31426935/}{PubMed}}
     \item{\strong{Vietnam}: Mai VQ, Sun S, Minh HV, Luo N, Giang KB, Lindholm L, Sahlen KG. An EQ-5D-5L Value Set for Vietnam. Qual Life Res. 2020;29(7):1923-1933. doi:10.1007/s11136-020-02469-7. \href{https://pubmed.ncbi.nlm.nih.gov/32221805/}{PubMed}}
+    \item{\strong{WePP}: Olsen JA, Lamu AN, Cairns J. In search of a common currency: A comparison of seven EQ-5D-5L value sets. Health Econ. 2018 Jan;27(1):39-49. doi: 10.1002/hec.3606. Epub 2017 Oct 24. \href{https://pubmed.ncbi.nlm.nih.gov/29063633/}{PubMed}}.
   }
 }
 \usage{
 VT
 }
 \description{
-EQ-5D-5L VT value set calculation data for Canada, China, Denmark, Egypt, England, 
-  France, Germany, Hong Kong, Hungary, Indonesia, Ireland, Japan, Malaysia, 
-  Netherlands, Peru, Poland, Portugal, South Korea, Spain, Taiwan, Thailand, 
-  Uruguay, Vietnam and USA.
+EQ-5D-5L VT value set calculation data for Belgium, Canada, China, Denmark, 
+  England, Ethiopia, France, Germany, Hong Kong, Hungary, Indonesia, Ireland, 
+  Italy, Japan, Malaysia, Mexico, Netherlands, Peru, Poland, Portugal, 
+  South Korea, Spain, Sweden, Taiwan, Thailand, Uruguay, USA, Vietnam, USA and
+  Western Preference Pattern (WePP).
 }
 \keyword{datasets}
