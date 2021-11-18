@@ -25,9 +25,9 @@ eq5d5l <- function(scores, country="England") {
   if(is.null(country) || !country %in% colnames(survey))
     stop(paste("Country must be one of:", paste(colnames(survey), collapse=", ")))
 
-  survey <- survey[country]
+  survey <- setNames(survey[[country]], rownames(survey))
 
-  values <- c(survey["StartValue",],
+  values <- c(survey["StartValue"],
               .dimensionScores(scores, survey),
               .minOneGreaterThan1(scores,survey),
               .level4Or5(scores, survey),
@@ -41,43 +41,34 @@ eq5d5l <- function(scores, country="England") {
 .level4Or5 <- function(scores, survey) {
   if(any(scores %in% c(4,5))) {
     idx <- which(scores %in% c(4,5))
-    values <- survey[paste0(names(scores)[idx], "45"),]
-    names(values) <- paste0(names(scores)[idx], "45")
-
-    return(values)
+    survey[paste0(names(scores)[idx], "45")]
   }
 }
 
 .num45sq <- function(scores, survey) {
   if(any(scores %in% c(4,5))) {
     idx <- which(scores %in% c(4,5))
-    (length(idx) - 1)^2 * survey["Num45sq",]
+    (length(idx) - 1)^2 * survey["Num45sq"]
   }
 }
 
 .minOneGreaterThan1 <- function(scores, survey) {
   ##at least one mobility, care, activity, pain, anxiety > 1
-  if(sum(scores) > 5 && !is.na(survey["Intercept",])) {
-    value <- survey["Intercept",]
-    names(value) <- "Intercept"
-    return(value) ##At least one 2 or 3 (constant)
+  if(sum(scores) > 5 && !is.na(survey["Intercept"])) {
+    survey["Intercept"] ##At least one 2 or 3 (constant)
   }
 }
 
 .N4 <- function(scores, survey) {
   ##at least one mobility, care, activity, pain, anxiety >= 4
-  if(any(scores >= 4) && !is.na(survey["N4",])) {
-    value <- survey["N4",]
-    names(value) <- "N4"
-    return(value)
+  if(any(scores >= 4) && !is.na(survey["N4"])) {
+    survey["N4"]
   }
 }
 
 .N5 <- function(scores, survey) {
   ##at least one mobility, care, activity, pain, anxiety == 5
-  if(any(scores == 5) && !is.na(survey["N5",])) {
-    value <- survey["N5",]
-    names(value) <- "N5"
-    return(value)
+  if(any(scores == 5) && !is.na(survey["N5"])) {
+    survey["N5"]
   }
 }
