@@ -1,6 +1,13 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
+# eq5d (development version)
+
+  - Western Preference Pattern (WePP) EQ-5D-5L value set added.
+
+  - Code speed up in eq5d5l, eq5d3l and eq5d3y. Thanks to @TimTaylor for
+    implementing this.
+
 # eq5d 0.10.1 (2021-11-12)
 
   - Italian EQ-5D-5L value sets added.
