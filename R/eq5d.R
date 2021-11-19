@@ -118,7 +118,7 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
 
   #num.dims <- ifelse(version=="Y", 3, sub("L", "", version))
 
-  if(!all(.getDimensionNames() %in% names(scores)) || any(!scores %in% 1:.getNumberLevels(version))) {
+  if(any(!scores %in% 1:.getNumberLevels(version))) {
     if(ignore.invalid) {
       return(NA)
     } else {
