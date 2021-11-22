@@ -169,15 +169,10 @@ eq5d3l <- function(scores, type="TTO", country="UK") {
 
 .O2 <- function(scores){
   if (setequal(scores, c(1,2)) || all(scores==2)) 1 else 0
-
 }
 
 .O3 <- function(scores){
-  x <- 0
-  if(isTRUE(all.equal(unique(sort(scores)), c(1,3))) || isTRUE(all.equal(unique(sort(scores)),3))) {
-    x <- 1
-  }
-  return(x)
+  if (setequal(scores, c(1,3)) || all(scores==3)) 1 else 0
 }
 
 .X5 <- function(scores) {
