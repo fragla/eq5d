@@ -1,0 +1,2 @@
+#' @importFrom stats setNames
+NULL
