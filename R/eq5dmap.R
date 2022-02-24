@@ -40,10 +40,7 @@ eq5dmap <- function(scores, country, version, age, sex, bwidth=0) {
     }
   } else if (is.double(scores)) {
     range <- range(survey[[country]])
-    print(range)
-    print(scores)
     if(!(scores >= range[1] && scores <= range[2])) {
-      print(range)
       stop(paste0("Index scores must be in the range ", range[1], " to ", range[2], " for ", country, " EQ-5D-", version,"."))
     }
   }
