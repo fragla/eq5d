@@ -44,6 +44,8 @@ eq5dmap <- function(scores, country, version, age, sex, bwidth=0) {
     stop(paste0("For mapping from EQ-5D-", version," country must be one of:", paste(colnames(survey), collapse=", ")))
   
   age.grp <- .getAgeGroup(age)
+  sex <- .getSex(sex)
+  
   if(all(.getDimensionNames() %in% names(scores))) {
     state <- paste(scores, collapse = "")
     idx <- which(survey$State==state & survey$Age==age.grp & survey$Sex==sex)
@@ -85,5 +87,16 @@ eq5dmap <- function(scores, country, version, age, sex, bwidth=0) {
     return(age.groups[as.double(age)])
   } else {
     return(NA)
+  }
+}
+
+.getSex <-function(sex) {
+  sex <- tolower(sex)
+  if(sex %in% c("m","male")) {
+    return("male")
+  } else if (sex %in% c("f","female")) {
+    return("female")
+  } else {
+    stop("Sex not recognised.")
   }
 }
