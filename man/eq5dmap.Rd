@@ -4,13 +4,15 @@
 \alias{eq5dmap}
 \title{Calculate utility index scores by mapping between EQ-5D-3L and EQ-5D-5L}
 \usage{
-eq5dmap(scores, country, version, age, sex, summary, bwidth = 0)
+eq5dmap(scores, country, version, age, sex, bwidth = 0)
 }
 \arguments{
 \item{scores}{numeric with names MO, SC, UA, PD and AD representing
 Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.}
 
 \item{country}{value set country.}
+
+\item{version}{string of value "3L" or "5L" to indicate starting instrument version.}
 
 \item{age}{age in years (18-100), or age category (1: 18-34, 2: 35-44, 3: 45-54, 4: 55-64, 5: 65-100)}
 

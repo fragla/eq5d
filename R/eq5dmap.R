@@ -10,6 +10,7 @@
 #' @param scores numeric with names MO, SC, UA, PD and AD representing
 #'   Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.
 #' @param country value set country.
+#' @param version string of value "3L" or "5L" to indicate starting instrument version.
 #' @param age age in years (18-100), or age category (1: 18-34, 2: 35-44, 3: 45-54, 4: 55-64, 5: 65-100)
 #' @param sex Male or Female
 #' @param bwidth bandwith score
@@ -20,7 +21,7 @@
 #' eq5dmap(0.715, "UK", "5L", 50, "male", bwidth = 0.0001)
 #'
 #' @export
-eq5dmap <- function(scores, country, version, age, sex, summary, bwidth=0) {
+eq5dmap <- function(scores, country, version, age, sex, bwidth=0) {
   #if(!all(.getDimensionNames() %in% names(scores))) {
   #  stop("Unable to identify EQ-5D dimensions in scores.")
   #}
