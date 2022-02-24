@@ -8,8 +8,9 @@
 #' Available value sets can be viewed using the function \code{valuesets}.
 #'
 #' @param scores numeric with names MO, SC, UA, PD and AD representing
-#'   Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.
-#' @param country value set country.
+#'   Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression. 
+#'   or a utility index score
+#' @param country value set country
 #' @param version string of value "3L" or "5L" to indicate starting instrument version.
 #' @param age age in years (18-100), or age category (1: 18-34, 2: 35-44, 3: 45-54, 4: 55-64, 5: 65-100)
 #' @param sex Male or Female
