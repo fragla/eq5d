@@ -22,16 +22,7 @@
 #'
 #' @export
 eq5dmap <- function(scores, country, version, age, sex, bwidth=0) {
-  #if(!all(.getDimensionNames() %in% names(scores))) {
-  #  stop("Unable to identify EQ-5D dimensions in scores.")
-  #}
-  
-  # if(!all(scores %in% 1:3)) {
-  #   message <- "Scores must be coded as 1, 2 or 3 for EQ-5D-3L."
-  #   
-  #   stop(message)
-  # }
-  
+
   if(version=="3L") {
     survey <- get("DSU3L")
   } else if(version=="5L") {
@@ -42,6 +33,20 @@ eq5dmap <- function(scores, country, version, age, sex, bwidth=0) {
 
   if(is.null(country) || !country %in% colnames(survey))
     stop(paste0("For mapping from EQ-5D-", version," country must be one of:", paste(colnames(survey), collapse=", ")))
+  
+  if(all(.getDimensionNames() %in% names(scores))) {
+    if(!all(scores %in% 1:.getNumberLevels(version))) {
+      stop(paste0("Scores must be in the range 1 to ", .getNumberLevels(version), " for EQ-5D-", version,"."))
+    }
+  } else if (is.double(scores)) {
+    range <- range(survey[[country]])
+    print(range)
+    print(scores)
+    if(!(scores >= range[1] && scores <= range[2])) {
+      print(range)
+      stop(paste0("Index scores must be in the range ", range[1], " to ", range[2], " for ", country, " EQ-5D-", version,"."))
+    }
+  }
   
   age.grp <- .getAgeGroup(age)
   sex <- .getSex(sex)
