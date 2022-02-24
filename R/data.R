@@ -18,6 +18,14 @@
 #'   
 "CW"
 
+#' DSU EQ-5D-3L to EQ-5D-5L
+#' 
+"DSU3L"
+
+#' DSU EQ-5D-5L to EQ-5D-3L
+#' 
+"DSU5L"
+
 #' EQ-5D-3L Reverse Crosswalk data
 #'
 #' Reverse Crosswalk index value table to calculate EQ-5D-5L indices from EQ-5D-3L data
