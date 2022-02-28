@@ -53,15 +53,23 @@ eq5d.data.frame <- function(scores, version=NULL, type=NULL, country=NULL, ignor
 
   dimensions <- .getDimensionNames()
   five.digit <- "State"
+  utility <- "Utility"
+  sex <- "Sex"
+  age <- "Age"
 
   if(!is.null(args$dimensions)) {dimensions <- args$dimensions}
   if(!is.null(args$five.digit)) {five.digit <- args$five.digit}
+  if(!is.null(args$utility)) {utility <- args$utility}
+  if(!is.null(args$sex)) {sex <- args$sex}
+  if(!is.null(args$age)) {age <- args$age}
 
   if(all(dimensions %in% names(scores))) {
     scores <- scores[,dimensions]
     colnames(scores) <- .getDimensionNames()
   } else if(five.digit %in% tolower(names(scores))) {
     scores <- scores[,five.digit, drop=FALSE]
+  } else if(utility %in% tolower(names(scores))) {
+    scores <- scores[,utility, drop=FALSE]
   } else {
     stop("Unable to identify EQ-5D dimensions in data.frame.")
   }
@@ -91,19 +99,21 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
     scores <- suppressWarnings(as.numeric(scores))
     names(scores) <- .names
   }
-
+  
   if(.length>1) {
     if(.length==5 && all(.getDimensionNames() %in% names(scores))) {
-      res <- .eq5d(scores, version=version, type=type, country=country, ignore.invalid=ignore.invalid)
+      res <- .eq5d(scores, version=version, type=type, country=country, ignore.invalid=ignore.invalid, ...)
     } else {
       res <- sapply(scores, function(x) {
-        eq5d.default(x, version=version, type=type, country=country, ignore.invalid=ignore.invalid)
+        eq5d.default(x, version=version, type=type, country=country, ignore.invalid=ignore.invalid, ...)
       })
     }
   } else if (.length==1 && scores %in% getHealthStates(version)) {
     scores <- as.numeric(strsplit(as.character(scores[1]), "")[[1]])
     names(scores) <- .getDimensionNames()
-    res <- .eq5d(scores, version=version, type=type, country=country, ignore.invalid=ignore.invalid)
+    res <- .eq5d(scores, version=version, type=type, country=country, ignore.invalid=ignore.invalid, ...)
+  } else if(.length==1 && !is.na(scores) && scores <= 1) {
+    res <- .eq5d(scores, version=version, type=type, country=country, ignore.invalid=ignore.invalid, ...) #sex=sex, age=age, bwidth=bwidth)
   } else {
     if(ignore.invalid) {
       res <- NA
@@ -115,14 +125,28 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
 }
 
 .eq5d <- function(scores,version=version,type=type, country=country, ignore.invalid, ...){
+  args <- list(...)
 
-  #num.dims <- ifelse(version=="Y", 3, sub("L", "", version))
-
-  if(any(!scores %in% 1:.getNumberLevels(version))) {
+  bwidth <- ifelse(!is.null(args$bwidth), args$bwidth, 0)
+  
+  .length <- length(scores)
+  if(.length==5 && any(!scores %in% 1:.getNumberLevels(version))) { #if length==5
     if(ignore.invalid) {
       return(NA)
     } else {
       stop("Missing/non-numeric dimension found.")
+    }
+  }
+  
+  ## if length ==1 and utility score...
+  if(.length==1) {
+    range <- .getDSURange(country, version)
+    if(!(scores >= range[1] && scores <= range[2])) {
+      if(ignore.invalid) {
+      return(NA)
+      } else {
+        stop("Invalid utility score.")
+      }
     }
   }
 
@@ -131,6 +155,8 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
       eq5d3l(scores, type=type, country=country)
     } else if(!is.null(type) && type=="RCW") {
       eq5drcw(scores, country=country)
+    } else if(!is.null(type) && type=="DSU") {
+      eq5dmap(scores, country, version, args$age, args$sex, bwidth)
     } else {
       stop("EQ-5D-3L valueset type not recognised. Must be one of 'TTO', 'VAS' or 'RCW'.")
     }
@@ -142,6 +168,8 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
       eq5d5l(scores, country=country)
     } else if(!is.null(type) && type=="CW") {
       eq5dcw(scores, country=country)
+    } else if(!is.null(type) && type=="DSU") {
+      eq5dmap(scores, country, version, args$age, args$sex, bwidth)
     } else {
       stop("EQ-5D-5L valueset type not recognised. Must be one of 'VT' or 'CW'.")
     }

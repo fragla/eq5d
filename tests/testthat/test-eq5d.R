@@ -33,6 +33,10 @@ test_that("Wrapper function gives correct answer", {
   expect_equal(eq5d(12345, country="Indonesia", version="5L", type="VT"), 0.240)
   expect_equal(eq5d(33333, country="Slovenia", version="Y"), -0.691)
   expect_equal(eq5d(test.char, country="UK", version="3L", type="TTO"), c(0.329, -0.090, -0.127))
+  expect_equal(eq5d(c(MO=1,SC=2,UA=3,PD=4,AD=5), country="UK", version="5L", type="DSU", age=30, sex="female"), 0.067)
+  expect_equal(eq5d(0.922, country="UK", version="5L", type="DSU", age=18, sex="male"), 0.893)
+  expect_equal(eq5d(0.435, country="UK", version="5L", type="DSU", age=30, sex="female", bwidth = 0.0001), 0.302)
+  expect_equal(eq5d(0.922, country="UK", version="5L", type="DSU", age=18, sex="male"), 0.893)
   expect_error(eq5d(test.df, version="3L", type="TTO", country="USA", dimensions=c("Mob", "Self", "Active", "Pain", "Anx")))
 })
 

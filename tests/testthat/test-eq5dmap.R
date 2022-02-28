@@ -9,11 +9,11 @@ test_that("EQ-5D-5 to EQ-5D-3L age/sex mapping by dimensions gives correct answe
 , 0.609)
 })
 
-test_that("EQ-5D-5 to EQ-5D-3L age/sex mapping by exact index gives correct answer", {
+test_that("EQ-5D-5L to EQ-5D-3L age/sex mapping by exact index gives correct answer", {
   expect_equal(eq5dmap(0.922, "UK", "5L", 18, "male"), 0.893)
 })
 
-test_that("EQ-5D-5 to EQ-5D-3L age/sex mapping by summary index gives correct answer", {
+test_that("EQ-5D-5L to EQ-5D-3L age/sex mapping by summary index gives correct answer", {
   expect_equal(eq5dmap(0.715, "UK", "5L", 50, "male", bwidth = 0.0001), 0.670)
   expect_equal(eq5dmap(0.435, "UK", "5L", 30, "female", bwidth = 0.0001), 0.302)
   expect_equal(eq5dmap(0.95, "UK", "5L", 70, "male", bwidth = 0.0001), 0.935)

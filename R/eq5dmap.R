@@ -40,7 +40,7 @@ eq5dmap <- function(scores, country, version, age, sex, bwidth=0) {
       stop(paste0("Scores must be in the range 1 to ", .getNumberLevels(version), " for EQ-5D-", version,"."))
     }
   } else if (is.double(scores)) {
-    range <- range(survey[[country]])
+    range <- .getDSURange(country, version)
     if(!(scores >= range[1] && scores <= range[2])) {
       stop(paste0("Index scores must be in the range ", range[1], " to ", range[2], " for ", country, " EQ-5D-", version,"."))
     }
@@ -102,4 +102,10 @@ eq5dmap <- function(scores, country, version, age, sex, bwidth=0) {
   } else {
     stop("Sex not recognised.")
   }
+}
+
+.getDSURange <- function(country, version) {
+  survey <- get(paste0("DSU",version))
+  range <- range(survey[[country]])
+  return(range)
 }

@@ -8,9 +8,10 @@ eq5dmap(scores, country, version, age, sex, bwidth = 0)
 }
 \arguments{
 \item{scores}{numeric with names MO, SC, UA, PD and AD representing
-Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.}
+Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression. 
+or a utility index score}
 
-\item{country}{value set country.}
+\item{country}{value set country}
 
 \item{version}{string of value "3L" or "5L" to indicate starting instrument version.}
 
