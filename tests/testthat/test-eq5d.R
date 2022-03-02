@@ -56,3 +56,7 @@ test_that("when ignore.invalid flag is FALSE the correct answer is returned", {
   expect_error(eq5d(test.char2, type="TTO", version="3L", country="UK", ignore.invalid=FALSE))
 })
 
+##eq5dmap tests
+##tests for invalid utility scores when bwidth==0.
+##test for invalid dimensions/utility score outside range/age/sex.
+##test for data.frames/matrices of dimensions/five digit/utility scores.

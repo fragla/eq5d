@@ -22,3 +22,6 @@ test_that("EQ-5D-5L to EQ-5D-3L age/sex mapping by summary index gives correct a
   expect_equal(eq5dmap(0.95, "UK", "5L", 70, "male", bwidth = 0.1), 0.844)
 
 })
+
+##tests for invalid utility scores when bwidth==0
+##test for invalid dimensions/utility score outside range/age/sex

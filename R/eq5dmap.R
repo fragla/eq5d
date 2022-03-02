@@ -57,7 +57,11 @@ eq5dmap <- function(scores, country, version, age, sex, bwidth=0) {
   } else if (is.numeric(scores)) {
     if(bwidth==0) {
       idx <- which(survey[[country]]==scores & survey$Age==age.grp & survey$Sex==sex)
-      m <- round(mean(survey[idx, paste0(country,"Copula"), drop=TRUE]),3)
+      if(length(idx)==0) {
+        m <- NA ## change to stop?
+      } else {
+        m <- round(mean(survey[idx, paste0(country,"Copula"), drop=TRUE]),3)
+      }
       return(m)
     } else {
       idx <- which(survey$Age==age.grp & survey$Sex==sex)
