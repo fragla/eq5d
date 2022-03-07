@@ -32,8 +32,10 @@ eq5dmap <- function(scores, country, version, age, sex, bwidth=0) {
     stop("Version must be either 3L or 5L.")
   }
 
-  if(is.null(country) || !country %in% colnames(survey))
-    stop(paste0("For mapping from EQ-5D-", version," country must be one of:", paste(colnames(survey), collapse=", ")))
+  if(is.null(country) || !country %in% colnames(survey)) {
+    countries <- sub("Copula", "", grep("Copula", sort(colnames(survey)), value=TRUE))
+    stop(paste0("For mapping from EQ-5D-", version," country must be one of: ", paste(countries, collapse=", ")))
+  }
   
   if(all(.getDimensionNames() %in% names(scores))) {
     if(!all(scores %in% 1:.getNumberLevels(version))) {
@@ -44,10 +46,19 @@ eq5dmap <- function(scores, country, version, age, sex, bwidth=0) {
     if(!(scores >= range[1] && scores <= range[2])) {
       stop(paste0("Index scores must be in the range ", range[1], " to ", range[2], " for ", country, " EQ-5D-", version,"."))
     }
+  } else {
+    stop("Invalid EQ-5D score.")
   }
   
   age.grp <- .getAgeGroup(age)
+  if(is.na(age.grp)) {
+    stop("Age must be between 18 and 100, or an age category between 1 and 5.")
+  }
+  
   sex <- .getSex(sex)
+  if(is.na(sex)) {
+    stop("Sex must be Male, Female, M or F (case insensitive).")
+  }
   
   if(all(.getDimensionNames() %in% names(scores))) {
     state <- paste(scores, collapse = "")
@@ -58,7 +69,7 @@ eq5dmap <- function(scores, country, version, age, sex, bwidth=0) {
     if(bwidth==0) {
       idx <- which(survey[[country]]==scores & survey$Age==age.grp & survey$Sex==sex)
       if(length(idx)==0) {
-        m <- NA ## change to stop?
+        stop("Invalid utility score provided. If approximate score please supply bwidth value")
       } else {
         m <- round(mean(survey[idx, paste0(country,"Copula"), drop=TRUE]),3)
       }
@@ -104,7 +115,7 @@ eq5dmap <- function(scores, country, version, age, sex, bwidth=0) {
   } else if (sex %in% c("f","female")) {
     return("female")
   } else {
-    stop("Sex not recognised.")
+    return(NA)
   }
 }
 
@@ -112,4 +123,10 @@ eq5dmap <- function(scores, country, version, age, sex, bwidth=0) {
   survey <- get(paste0("DSU",version))
   range <- range(survey[[country]])
   return(range)
+}
+
+.isValidUtility <- function(scores, country, version, age, sex) {
+  survey <- get(paste0("DSU",version))
+  idx <- which(survey[[country]]==scores & survey$Age==.getAgeGroup(age) & survey$Sex==sex)
+  return(length(idx)>0)
 }
