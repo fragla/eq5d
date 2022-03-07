@@ -47,6 +47,12 @@ test_that("when ignore.invalid flag is TRUE the correct answer is returned", {
   expect_equal(eq5d(1232, type="TTO", version="3L", country="UK", ignore.invalid=TRUE), NA)
   expect_equal(eq5d(NA_integer_, type="TTO", version="3L", country="UK", ignore.invalid=TRUE), NA)
   expect_equal(eq5d(test.char2, type="TTO", version="3L", country="UK", ignore.invalid=TRUE), c(0.883, 0.329, NA, NA, NA))
+  expect_equal(eq5d(0.923, country="UK", version="5L", type="DSU", age=50, sex="male", bwidth=0, ignore.invalid=TRUE), NA)
+  expect_error(eq5d(c(MO=1,SC=2,UA=3,PD=2,AD=6), version="5L", type="DSU", country="UK", age=23, sex="male", ignore.invalid=TRUE), NA)
+  expect_error(eq5d(c(MO=1,SC=2,UA=3,PD=2,AD=6), version="3L", type="DSU", country="UK", age=23, sex="male", ignore.invalid=TRUE), NA)
+  expect_error(eq5d(c(MO=1,SC=2,UA=3,PD=2,AD=5), version="5L", type="DSU", country="Germany", age=110, sex="female", ignore.invalid=TRUE), NA)
+  expect_error(eq5d(c(MO=1,SC=2,UA=3,PD=2,AD=5), version="5L", type="DSU", country="Germany", age=60, sex="None", ignore.invalid=TRUE), NA)
+  expect_error(eq5d(c(MO=1,SC=2,UA=3,PD=4,AD=NA), country="Germany", type="DSU", version="5L", age=50, "female", ignore.invalid=TRUE), NA)
 })
 
 test_that("when ignore.invalid flag is FALSE the correct answer is returned", {
@@ -57,6 +63,4 @@ test_that("when ignore.invalid flag is FALSE the correct answer is returned", {
 })
 
 ##eq5dmap tests
-##tests for invalid utility scores when bwidth==0.
-##test for invalid dimensions/utility score outside range/age/sex.
 ##test for data.frames/matrices of dimensions/five digit/utility scores.

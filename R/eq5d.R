@@ -11,20 +11,26 @@
 #' @param version string of value "3L", "5L" or "Y" to indicate instrument
 #'   version.
 #' @param type string specifying method type used in deriving value set scores.
-#'   Options are TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L or CW for EQ-5D-5L
-#'   crosswalk conversion valuesets.
+#'   Options are TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L, CW for EQ-5D-5L
+#'   crosswalk conversion valuesets, RCW for EQ-5D-3L reverse crosswalk 
+#'   conversion valuesets and DSU for the NICE Decision Support Unit age-sex
+#'   based EQ-5D-3L to EQ-5D-5L and EQ-5D-5L to EQ-5D-3L mappings
 #' @param country string of value set country name used.
 #' @param ignore.invalid logical to indicate whether to ignore dimension data
 #'   with invalid, incomplete or missing data.
 #' @param ... character vectors, specifying "dimensions" column names or
 #'   "five.digit" column name. Defaults are "MO", "SC", "UA", "PD" and "AD"
-#'   for dimensions and "State" for five.digit.
+#'   for dimensions, "State" for five.digit and "Utility" for DSU utility 
+#'   index scores.
 #' @return a numeric vector of utility index scores.
 #' @examples
 #' eq5d(scores=c(MO=1,SC=2,UA=3,PD=4,AD=5), type="VT",
 #'  country="Indonesia", version="5L")
 #' eq5d(scores=c(MO=3,SC=2,UA=3,PD=2,AD=3),
 #'  type="TTO", version="3L", country="Germany")
+#'  
+#' eq5d(0.922, country="UK", version="5L", type="DSU", 
+#'  age=18, sex="male")
 #'
 #' scores.df <- data.frame(
 #'   MO=c(1,2,3,4,5), SC=c(1,5,4,3,2),
@@ -56,13 +62,14 @@ eq5d.data.frame <- function(scores, version=NULL, type=NULL, country=NULL, ignor
   utility <- "Utility"
   sex <- "Sex"
   age <- "Age"
+  bwidth <- "bwidth"
 
   if(!is.null(args$dimensions)) {dimensions <- args$dimensions}
   if(!is.null(args$five.digit)) {five.digit <- args$five.digit}
   if(!is.null(args$utility)) {utility <- args$utility}
   if(!is.null(args$sex)) {sex <- args$sex}
   if(!is.null(args$age)) {age <- args$age}
-
+  if(!is.null(args$bwidth)) {bwidth <- args$bwidth}
   # if(all(dimensions %in% names(scores))) {
   #   scores <- scores[,dimensions]
   #   colnames(scores) <- .getDimensionNames()
@@ -88,9 +95,17 @@ eq5d.data.frame <- function(scores, version=NULL, type=NULL, country=NULL, ignor
     stop("Unable to identify EQ-5D dimensions in data.frame.")
   }
   
+  if(!bwidth %in% names(scores)) {
+    bwidth <- NULL
+  }
+  
   res <- apply(scores, 1, function(x) {
     if(type=="DSU") {
-      eq5d.default(x[eq5d.columns], version=version, type=type, country=country, ignore.invalid=ignore.invalid, age=x[age], sex=x[sex])
+      if(is.null(bwidth)) {
+        eq5d.default(x[eq5d.columns], version=version, type=type, country=country, ignore.invalid=ignore.invalid, age=x[age], sex=x[sex])
+      } else {
+        eq5d.default(x[eq5d.columns], version=version, type=type, country=country, ignore.invalid=ignore.invalid, age=x[age], sex=x[sex], x[bwidth])
+      }
     } else {
       eq5d.default(x[eq5d.columns], version=version, type=type, country=country, ignore.invalid=ignore.invalid, ...)
     }
@@ -151,6 +166,22 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
 
   bwidth <- ifelse(!is.null(args$bwidth), args$bwidth, 0)
   
+  if(!is.null(args$age) && is.na(.getAgeGroup(args$age))) {
+    if(ignore.invalid) {
+      return(NA)
+    } else {
+      stop("Age must be between 18 and 100, or an age category between 1 and 5.")
+    }
+  }
+  
+  if(!is.null(args$sex) && is.na(.getSex(args$sex))) {
+    if(ignore.invalid) {
+      return(NA)
+    } else {
+      stop("Sex must be Male, Female, M or F (case insensitive).")
+    }
+  }
+  
   .length <- length(scores)
   if(.length==5 && any(!scores %in% 1:.getNumberLevels(version))) { #if length==5
     if(ignore.invalid) {
@@ -165,9 +196,19 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
     range <- .getDSURange(country, version)
     if(!(scores >= range[1] && scores <= range[2])) {
       if(ignore.invalid) {
-      return(NA)
+        return(NA)
       } else {
-        stop("Invalid utility score.")
+        stop(paste0("Index scores must be in the range ", range[1], " to ", range[2], " for ", country, " EQ-5D-", version,"."))
+      }
+    }
+    
+    survey <- get(paste0("DSU",version))
+    idx <- which(survey[[country]]==scores & survey$Age==args$age & survey$Sex==args$sex)
+    if(!.isValidUtility(scores, country, version, args$age, args$sex)) {
+      if(ignore.invalid) {
+        return(NA)
+      } else {
+        stop("Invalid utility score provided. If approximate score please supply bwidth value")
       }
     }
   }
