@@ -91,6 +91,7 @@ eq5dmap <- function(scores, country, version, age, sex, bwidth=0) {
 
 .getAgeGroup <- function(age) {
   age.groups <- c("18-34","35-44","45-54","55-64","65+")
+  age <- as.numeric(age)
   if(age >= 18 & age < 35) {
     return(age.groups[1])
   } else if(age >= 35 & age < 45) {
@@ -102,7 +103,7 @@ eq5dmap <- function(scores, country, version, age, sex, bwidth=0) {
   } else if(age >= 65 & age <= 100) {
     return(age.groups[5])
   } else if(age >= 1 & age <= 5) {
-    return(age.groups[as.double(age)])
+    return(age.groups[age])
   } else {
     return(NA)
   }
