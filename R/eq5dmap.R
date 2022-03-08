@@ -25,9 +25,9 @@
 eq5dmap <- function(scores, country, version, age, sex, bwidth=0) {
 
   if(version=="3L") {
-    survey <- get("DSU3L")
+    survey <- DSU3L
   } else if(version=="5L") {
-    survey <- get("DSU5L")
+    survey <- DSU5L
   } else {
     stop("Version must be either 3L or 5L.")
   }
