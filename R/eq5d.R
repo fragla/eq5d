@@ -70,26 +70,14 @@ eq5d.data.frame <- function(scores, version=NULL, type=NULL, country=NULL, ignor
   if(!is.null(args$sex)) {sex <- args$sex}
   if(!is.null(args$age)) {age <- args$age}
   if(!is.null(args$bwidth)) {bwidth <- args$bwidth}
-  # if(all(dimensions %in% names(scores))) {
-  #   scores <- scores[,dimensions]
-  #   colnames(scores) <- .getDimensionNames()
-  # } else if(five.digit %in% tolower(names(scores))) {
-  #   scores <- scores[,five.digit, drop=FALSE]
-  # } else if(utility %in% tolower(names(scores))) {
-  #   scores <- scores[,utility, drop=FALSE]
-  # } else {
-  #   stop("Unable to identify EQ-5D dimensions in data.frame.")
-  # }
+  
   eq5d.columns <- NULL
   if(all(dimensions %in% names(scores))) {
-    #scores <- scores[,dimensions]
     colnames(scores)[match(dimensions, colnames(scores))] <- .getDimensionNames()
     eq5d.columns <- .getDimensionNames()
   } else if(five.digit %in% names(scores)) {
-    #scores <- scores[,five.digit, drop=FALSE]
     eq5d.columns <- five.digit
   } else if(utility %in% names(scores)) {
-    #scores <- scores[,utility, drop=FALSE]
     eq5d.columns <- utility
   } else {
     stop("Unable to identify EQ-5D dimensions in data.frame.")
@@ -150,7 +138,6 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
     res <- .eq5d(scores, version=version, type=type, country=country, ignore.invalid=ignore.invalid, ...)
   } else if(.length==1 && !is.na(scores) && exists(".range") && scores >= .range[1] && scores <= .range[2]) {
     res <- .eq5d(scores, version=version, type=type, country=country, ignore.invalid=ignore.invalid, ...) #sex=sex, age=age, bwidth=bwidth)
-    ###add checks for valid value if bwidth=0
   } else {
     if(ignore.invalid) {
       res <- NA
@@ -202,8 +189,6 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
       }
     }
     
-    survey <- get(paste0("DSU",version))
-    idx <- which(survey[[country]]==scores & survey$Age==args$age & survey$Sex==args$sex)
     if(!.isValidUtility(scores, country, version, args$age, args$sex)) {
       if(ignore.invalid) {
         return(NA)
