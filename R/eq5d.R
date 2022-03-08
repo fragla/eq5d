@@ -92,7 +92,7 @@ eq5d.data.frame <- function(scores, version=NULL, type=NULL, country=NULL, ignor
       if(is.null(bwidth)) {
         eq5d.default(x[eq5d.columns], version=version, type=type, country=country, ignore.invalid=ignore.invalid, age=x[age], sex=x[sex])
       } else {
-        eq5d.default(x[eq5d.columns], version=version, type=type, country=country, ignore.invalid=ignore.invalid, age=x[age], sex=x[sex], x[bwidth])
+        eq5d.default(x[eq5d.columns], version=version, type=type, country=country, ignore.invalid=ignore.invalid, age=x[age], sex=x[sex], bwidth=x[bwidth])
       }
     } else {
       eq5d.default(x[eq5d.columns], version=version, type=type, country=country, ignore.invalid=ignore.invalid, ...)
@@ -150,9 +150,19 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
 
 .eq5d <- function(scores,version=version,type=type, country=country, ignore.invalid, ...){
   args <- list(...)
+  if(!is.null(args$bwidth)) {
+    bwidth <- suppressWarnings(as.numeric(args$bwidth))
+    if(is.na(bwidth)) {
+      if(ignore.invalid) {
+        return(NA)
+      } else {
+        stop("bwidth must be a number >= 0.")
+      }
+    }
+  } else {
+    bwidth <- 0
+  }
 
-  bwidth <- ifelse(!is.null(args$bwidth), args$bwidth, 0)
-  
   if(!is.null(args$age) && is.na(.getAgeGroup(args$age))) {
     if(ignore.invalid) {
       return(NA)
