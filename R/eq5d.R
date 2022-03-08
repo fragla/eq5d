@@ -240,8 +240,9 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
 #' \code{valuesets} returns a data.frame of the available EQ-5D value sets
 #'     in the \code{eq5d} package.
 #'
-#' @param type string EQ-5D value set type. TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L or
-#'   CW for EQ-5D-5L crosswalk conversion dataset.
+#' @param type string EQ-5D value set type. TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L,
+#'   CW for EQ-5D-5L crosswalk conversion dataset, or DSU for NICE Decision Support
+#'   Unit's EQ-5D-5L to EQ-5D-3L and EQ-5D-3L to EQ-5D-5L mappings.
 #' @param version string either 3L or 5L.
 #' @param country string one of the countries for which there is a value set.
 #'
@@ -261,7 +262,9 @@ valuesets <- function(type=NULL, version=NULL, country=NULL) {
   vt <- data.frame(Version="EQ-5D-5L", Type="VT", Country=colnames(VT))
   cw <- data.frame(Version="EQ-5D-5L", Type="CW", Country=colnames(CW))
   y <- data.frame(Version="EQ-5D-Y", Type="cTTO", Country=colnames(Y))
-  vs <- rbind(tto, vas, rcw, vt, cw, y)
+  dsu3l <- data.frame(Version="EQ-5D-3L", Type="DSU", Country=sub("Copula", "", grep("Copula", sort(colnames(DSU3L)), value=TRUE)))
+  dsu5l <- data.frame(Version="EQ-5D-5L", Type="DSU", Country=sub("Copula", "", grep("Copula", sort(colnames(DSU5L)), value=TRUE)))
+  vs <- rbind(tto, vas, rcw, vt, cw, y, dsu3l, dsu5l)
 
   if(!is.null(type)) vs <- vs[vs$Type==type,]
   if(!is.null(version)) vs <- vs[vs$Version==version,]
