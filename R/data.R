@@ -33,7 +33,7 @@
 #'   from the EuroQol analysis tools webpage.
 #'      
 #' @source
-#' \href{https://euroqol.org/support/tools/analysis-tools/}{Reverse crosswalk datasets}
+#' \href{https://euroqol.org/support/analysis-tools/}{Reverse crosswalk datasets}
 #'   
 "RCW"
 
