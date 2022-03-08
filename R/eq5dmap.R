@@ -3,7 +3,8 @@
 #' Conditional prediction of the utility values of 5L scores onto 3L value 
 #' sets and 3L scores onto 5L value sets from observed or specified values 
 #' conditional on age and gender using the NICE Decision Support Unit's 
-#' models.
+#' models (see [DSU's](https://nicedsu.sites.sheffield.ac.uk/methods-development/mapping-eq-5d-5l-to-3l)
+#' for more information.
 #'
 #' Available value sets can be viewed using the function \code{valuesets}.
 #'
@@ -14,7 +15,7 @@
 #' @param version string of value "3L" or "5L" to indicate starting instrument version.
 #' @param age age in years (18-100), or age category (1: 18-34, 2: 35-44, 3: 45-54, 4: 55-64, 5: 65-100)
 #' @param sex Male or Female
-#' @param bwidth bandwith score
+#' @param bwidth bandwith score for approximate scores (< 0.8: 0.2, 0.8-0.951: 0.1, 0.951-1: small, but large enough to include 1)
 #' @return calculated utility index score.
 #' @examples
 #' eq5dmap(c(MO=1,SC=2,UA=3,PD=4,AD=5), "UK", "5L", 30, "female")
