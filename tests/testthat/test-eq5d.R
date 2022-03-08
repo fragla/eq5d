@@ -12,7 +12,9 @@ test_that("eq5d throws error for incorrect parameters", {
 test.df <- data.frame(MO=c(1,2,3,4,5),SC=c(1,5,4,3,2),UA=c(1,5,2,3,1),PD=c(1,3,4,3,4),AD=c(1,2,1,2,1))
 test.df2 <- data.frame(state=c(11111,25532,34241,43332,52141))
 test.df3 <- data.frame(Mobility=c(1,2,3,4,5),Care=c(1,5,4,3,2),Activities=c(1,5,2,3,1),Pain=c(1,3,4,3,4),Anxiety=c(1,2,1,2,1))
-
+test.df4 <- data.frame(MO=c(1,2,2),SC=c(2,4,3),UA=c(3,1,4),PD=c(4,1,2),AD=c(5,2,1),age=c(30,50,5),sex=c("f","f","m"))
+test.df5 <- data.frame(Utility=c(0.922,0.590,-0.226,0.435), Age=c(18,36,71,30), Sex=c("m","f","f","f"), bandwidth=c(0,0,0,0.1))
+test.df6 <- data.frame(Utility=c(-0.226,0.922), Age=c(18,30), Sex=c("male","female"), bwidth=c(0,""))
 test.char <- c(12321, 23132, 32123)
 test.char2 <- c(11211, "12321", NA, "abcd", "")
 
@@ -37,6 +39,9 @@ test_that("Wrapper function gives correct answer", {
   expect_equal(eq5d(0.922, country="UK", version="5L", type="DSU", age=18, sex="male"), 0.893)
   expect_equal(eq5d(0.435, country="UK", version="5L", type="DSU", age=30, sex="female", bwidth = 0.0001), 0.302)
   expect_equal(eq5d(0.922, country="UK", version="5L", type="DSU", age=18, sex="male"), 0.893)
+  expect_equal(eq5d(test.df4,version="5L", type="DSU", country="UK", age="age", sex="sex"), c(0.067,0.761,0.609))
+  expect_equal(eq5d(test.df5,version="5L", type="DSU", country="UK", bwidth="bandwidth"), c(0.893,0.353,-0.409,0.297))
+  expect_equal(eq5d(test.df6,version="5L", type="DSU", country="UK", ignore.invalid = TRUE), c(-0.427,NA))
   expect_error(eq5d(test.df, version="3L", type="TTO", country="USA", dimensions=c("Mob", "Self", "Active", "Pain", "Anx")))
 })
 
