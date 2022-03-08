@@ -51,9 +51,8 @@ produced using the time trade-off (TTO) valuation technique or the
 visual analogue scale (VAS) valuation technique. Some countries have TTO
 and VAS value sets for EQ-5D-3L. Additionally, EQ-5D-3L “reverse
 crosswalk” value sets published on the
-[EuroQol](https://euroqol.org/support/tools/analysis-tools/cross-walk-reverse-cross-walk/)
-website that enable EQ-5D-3L data to be mapped to EQ-5D-5L value sets
-are included.
+[EuroQol](https://euroqol.org/support/analysis-tools/) website that
+enable EQ-5D-3L data to be mapped to EQ-5D-5L value sets are included.
 
 For EQ-5D-5L, a standardised valuation study protocol (EQ-VT) was
 developed by the EuroQol group based on the composite time trade-off
@@ -172,13 +171,13 @@ head(valuesets(type="VAS"))
 
 # Return EQ-5D-5L value sets (top 6 returned for brevity).
 head(valuesets(version="5L"))
-#>    Version Type  Country
-#> 1 EQ-5D-5L   VT  Belgium
-#> 2 EQ-5D-5L   VT   Canada
-#> 3 EQ-5D-5L   VT    China
-#> 4 EQ-5D-5L   VT  Denmark
-#> 5 EQ-5D-5L   VT  England
-#> 6 EQ-5D-5L   VT Ethiopia
+#>    Version Type Country
+#> 1 EQ-5D-5L   VT Belgium
+#> 2 EQ-5D-5L   VT  Canada
+#> 3 EQ-5D-5L   VT   China
+#> 4 EQ-5D-5L   VT Denmark
+#> 5 EQ-5D-5L   VT   Egypt
+#> 6 EQ-5D-5L   VT England
 
 # Return all UK value sets.
 valuesets(country="UK")
@@ -370,29 +369,29 @@ dat <- data.frame(
        )
 
 eq5dds(dat, version="3L")
-#>     MO   SC   UA   PD   AD
-#> 1 33.3 33.3 33.3 33.3 50.0
-#> 2 16.7 41.7  8.3  0.0  8.3
-#> 3 50.0 25.0 58.3 66.7 41.7
+#>     MO   SC UA   PD   AD
+#> 1 16.7 25.0 50  8.3  8.3
+#> 2 50.0 41.7 25 50.0 41.7
+#> 3 33.3 33.3 25 41.7 50.0
 
 eq5dds(dat, version="3L", counts=TRUE)
 #>   MO SC UA PD AD
-#> 1  4  4  4  4  6
-#> 2  2  5  1  0  1
-#> 3  6  3  7  8  5
+#> 1  2  3  6  1  1
+#> 2  6  5  3  6  5
+#> 3  4  4  3  5  6
 
 eq5dds(dat, version="3L", by="Sex")
 #> data[, by]: Female
-#>     MO   SC   UA PD   AD
-#> 1 16.7 33.3 16.7 50 66.7
-#> 2 16.7 33.3  0.0  0  0.0
-#> 3 66.7 33.3 83.3 50 33.3
+#>     MO   SC   UA   PD AD
+#> 1 16.7 16.7 50.0 16.7  0
+#> 2 50.0 33.3 33.3 66.7 50
+#> 3 33.3 50.0 16.7 16.7 50
 #> ------------------------------------------------------------ 
 #> data[, by]: Male
 #>     MO   SC   UA   PD   AD
-#> 1 50.0 33.3 50.0 16.7 33.3
-#> 2 16.7 50.0 16.7  0.0 16.7
-#> 3 33.3 16.7 33.3 83.3 50.0
+#> 1 16.7 33.3 50.0  0.0 16.7
+#> 2 50.0 50.0 16.7 33.3 33.3
+#> 3 33.3 16.7 33.3 66.7 50.0
 ```
 
 ## Helper functions
