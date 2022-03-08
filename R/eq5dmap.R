@@ -91,7 +91,7 @@ eq5dmap <- function(scores, country, version, age, sex, bwidth=0) {
 
 .getAgeGroup <- function(age) {
   age.groups <- c("18-34","35-44","45-54","55-64","65+")
-  age <- as.numeric(age)
+  age <- suppressWarnings(as.numeric(age))
   if(age >= 18 & age < 35) {
     return(age.groups[1])
   } else if(age >= 35 & age < 45) {
@@ -128,6 +128,6 @@ eq5dmap <- function(scores, country, version, age, sex, bwidth=0) {
 
 .isValidUtility <- function(scores, country, version, age, sex) {
   survey <- get(paste0("DSU",version))
-  idx <- which(survey[[country]]==scores & survey$Age==.getAgeGroup(age) & survey$Sex==sex)
+  idx <- which(survey[[country]]==scores & survey$Age==.getAgeGroup(age) & survey$Sex==.getSex(sex))
   return(length(idx)>0)
 }
