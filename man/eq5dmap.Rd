@@ -19,7 +19,7 @@ or a utility index score}
 
 \item{sex}{Male or Female}
 
-\item{bwidth}{bandwith score}
+\item{bwidth}{bandwith score for approximate scores (< 0.8: 0.2, 0.8-0.951: 0.1, 0.951-1: small, but large enough to include 1)}
 }
 \value{
 calculated utility index score.
@@ -28,7 +28,8 @@ calculated utility index score.
 Conditional prediction of the utility values of 5L scores onto 3L value 
 sets and 3L scores onto 5L value sets from observed or specified values 
 conditional on age and gender using the NICE Decision Support Unit's 
-models.
+models (see [DSU's](https://nicedsu.sites.sheffield.ac.uk/methods-development/mapping-eq-5d-5l-to-3l)
+for more information.
 }
 \details{
 Available value sets can be viewed using the function \code{valuesets}.

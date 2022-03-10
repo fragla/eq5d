@@ -7,8 +7,9 @@
 valuesets(type = NULL, version = NULL, country = NULL)
 }
 \arguments{
-\item{type}{string EQ-5D value set type. TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L or
-CW for EQ-5D-5L crosswalk conversion dataset.}
+\item{type}{string EQ-5D value set type. TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L,
+CW for EQ-5D-5L crosswalk conversion dataset, or DSU for NICE Decision Support
+Unit's EQ-5D-5L to EQ-5D-3L and EQ-5D-3L to EQ-5D-5L mappings.}
 
 \item{version}{string either 3L or 5L.}
 
