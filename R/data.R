@@ -18,11 +18,35 @@
 #'   
 "CW"
 
-#' DSU EQ-5D-3L to EQ-5D-5L
+#' DSU mapping from EQ-5D-3L to EQ-5D-5L
+#' 
+#' Data for age and sex based mapping from EQ-5D-3L dimensions or utility index 
+#' score to EQ-5D-5L for China, Germany, Japan, Netherlands, South Korea, Spain 
+#' and UK.
+#' 
+#' @source 
+#' 
+#' Hernández Alava M, Pudney S, Wailoo A. Estimating the Relationship Between EQ-5D-5L and EQ-5D-3L: Results From an English Population Study [EEPRU Report]. University of Sheffield & University of York. \href{https://eepru.sites.sheffield.ac.uk/projects/estimating-the-relationship-between-eq-5d-5l-and-eq-5d-3l}{Article}
+#' 
+#' Hernández-Alava M, Pudney S. Econometric modelling of multiple self-reports of health states: The switch from EQ-5D-3L to EQ-5D-5L in evaluating drug therapies for rheumatoid arthritis. J Health Econ. 2017 Sep;55:139-152. doi: 10.1016/j.jhealeco.2017.06.013. Epub 2017 Jul 4. \href{https://pubmed.ncbi.nlm.nih.gov/28778350}{PubMed}.
+#' 
+#' \href{https://nicedsu.sites.sheffield.ac.uk/methods-development/mapping-eq-5d-5l-to-3l}{NICE DSU mapping website}.
 #' 
 "DSU3L"
 
-#' DSU EQ-5D-5L to EQ-5D-3L
+#' DSU mapping from EQ-5D-5L to EQ-5D-3L
+#' 
+#' Data for age and sex based mapping from EQ-5D-5L dimensions or utility index 
+#' score to EQ-5D-3L for China, Germany, Japan, Netherlands, South Korea, Spain 
+#' and UK.
+#' 
+#' @source 
+#' 
+#' Hernández Alava M, Pudney S, Wailoo A. Estimating the Relationship Between EQ-5D-5L and EQ-5D-3L: Results From an English Population Study [EEPRU Report]. University of Sheffield & University of York. \href{https://eepru.sites.sheffield.ac.uk/projects/estimating-the-relationship-between-eq-5d-5l-and-eq-5d-3l}{Article}
+#' 
+#' Hernández-Alava M, Pudney S. Econometric modelling of multiple self-reports of health states: The switch from EQ-5D-3L to EQ-5D-5L in evaluating drug therapies for rheumatoid arthritis. J Health Econ. 2017 Sep;55:139-152. doi: 10.1016/j.jhealeco.2017.06.013. Epub 2017 Jul 4. \href{https://pubmed.ncbi.nlm.nih.gov/28778350}{PubMed}.
+#' 
+#' \href{https://nicedsu.sites.sheffield.ac.uk/methods-development/mapping-eq-5d-5l-to-3l}{NICE DSU mapping website}.
 #' 
 "DSU5L"
 
