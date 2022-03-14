@@ -65,6 +65,10 @@ test_that("when ignore.invalid flag is FALSE the correct answer is returned", {
   expect_error(eq5d(1232, type="TTO", version="3L", country="UK", ignore.invalid=FALSE))
   expect_error(eq5d(NA_integer_, type="TTO", version="3L", country="UK", ignore.invalid=FALSE))
   expect_error(eq5d(test.char2, type="TTO", version="3L", country="UK", ignore.invalid=FALSE))
+  expect_error(eq5d(3.5, country="UK", version="5L", type="DSU", age=50, sex="male", bwidth=0.00001))
+  expect_error(eq5d(c(MO=1,SC=2,UA=3,PD=2,AD=5), version="5L", type="DSU", country="Germany", age=37, sex="None"))
+  expect_error(eq5d(c(MO=1,SC=2,UA=3,PD=2,AD=5), version="5L", type="DSU", country="Japan", age=205, sex="m"))
+  
 })
 
 ##eq5dmap tests

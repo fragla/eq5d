@@ -61,6 +61,11 @@ eq5dmap <- function(scores, country, version, age, sex, bwidth=0) {
     stop("Sex must be Male, Female, M or F (case insensitive).")
   }
   
+  bwidth <- as.numeric(bwidth)
+  if(is.na(bwidth) || bwidth < 0) {
+    stop("bwidth must be a number >= 0.")
+  }
+  
   if(all(.getDimensionNames() %in% names(scores))) {
     state <- paste(scores, collapse = "")
     idx <- which(survey$State==state & survey$Age==age.grp & survey$Sex==sex)

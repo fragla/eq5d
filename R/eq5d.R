@@ -152,7 +152,7 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
   args <- list(...)
   if(!is.null(args$bwidth)) {
     bwidth <- suppressWarnings(as.numeric(args$bwidth))
-    if(is.na(bwidth)) {
+    if(is.na(bwidth) || bwidth < 0) {
       if(ignore.invalid) {
         return(NA)
       } else {
