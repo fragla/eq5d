@@ -34,6 +34,8 @@ For EQ-5D-5L, a standardised valuation study protocol (EQ-VT) was developed by t
 
 The EQ-5D-5L "crosswalk" value sets published by [van Hout *et al*](https://pubmed.ncbi.nlm.nih.gov/22867780/) as well as that for Russia are also included. The crosswalk value sets enable index values to be calculated for EQ-5D-5L data where no value set is available by mapping between the EQ-5D-5L and EQ-5D-3L descriptive systems.
 
+The recently published age and sex conditional based mapping data by the [NICE Decision Support Unit](https://nicedsu.sites.sheffield.ac.uk/methods-development/mapping-eq-5d-5l-to-3l) are also now part of the package. These enable age-sex based EQ-5D-3L to EQ-5D-5L and EQ-5D-5L to EQ-5D-3L mappings from dimensions and exact or approximate utility index scores. 
+
 Additional information on EQ-5D can be found on the [EuroQol](https://euroqol.org/) website as well as in [Szende *et al* (2007)](https://doi.org/10.1007/1-4020-5511-0) and [Szende 
     *et al* (2014)](https://doi.org/10.1007/978-94-007-7596-1). Advice on [choosing a value set](https://euroqol.org/eq-5d-instruments/eq-5d-3l-about/valuation/choosing-a-value-set/
 ) can also be found on the EuroQol website.
@@ -78,6 +80,17 @@ eq5d(scores=55555, country="Spain", version="5L", type="CW")
 #EQ-5D-3L reverse crosswalk
 eq5d(scores=33333, country="Germany", version="3L", type="RCW")
 
+#EQ-5D-5L to EQ-5D-3L NICE DSU mapping
+
+#Using dimensions
+eq5d(c(MO=1,SC=2,UA=3,PD=4,AD=5), version="5L", type="DSU", country="UK", age=23, sex="male")
+
+#Using exact utility score
+eq5d(0.922, country="UK", version="5L", type="DSU", age=18, sex="male")
+
+#Using approximate utility score
+eq5d(0.435, country="UK", version="5L", type="DSU", age=30, sex="female", bwidth=0.0001)
+
 #multiple calculations using the Canadian VT value set
 
 #data.frame with individual dimensions
@@ -114,6 +127,10 @@ head(valuesets(version="5L"))
 
 # Return all UK value sets.
 valuesets(country="UK")
+
+# Return all EQ-5D-5L to EQ-5D-3L DSU value sets.
+valuesets(type="DSU", version="5L")
+
 ```
 
 ## Analysis of EQ-5D Profiles
