@@ -218,7 +218,7 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
     } else if(!is.null(type) && type=="DSU") {
       eq5dmap(scores, country, version, args$age, args$sex, bwidth)
     } else {
-      stop("EQ-5D-3L valueset type not recognised. Must be one of 'TTO', 'VAS' or 'RCW'.")
+      stop("EQ-5D-3L valueset type not recognised. Must be one of 'TTO', 'VAS', 'RCW' or 'DSU'.")
     }
   } else if (version=="Y") {
     eq5dy(scores, country=country)
@@ -231,7 +231,7 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
     } else if(!is.null(type) && type=="DSU") {
       eq5dmap(scores, country, version, as.numeric(args$age), args$sex, bwidth)
     } else {
-      stop("EQ-5D-5L valueset type not recognised. Must be one of 'VT' or 'CW'.")
+      stop("EQ-5D-5L valueset type not recognised. Must be one of 'VT', 'CW' or 'DSU'.")
     }
   }
 }
