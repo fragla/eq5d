@@ -4,11 +4,13 @@
 # eq5d (development version)
 
   - NICE DSU age and sex based mapping from EQ-5D-5L to EQ-5D-3L and
-    EQ-5D-3L to EQ-5D-5L for China, Germany, Japan, Netherlands,
-    SouthKorea, Spain and UK added.
+    EQ-5D-3L to EQ-5D-5L for China, Germany, Japan, Netherlands, South
+    Korea, Spain and UK added.
 
-  - Egyptian, Ugandan and Western Preference Pattern (WePP) EQ-5D-5L
-    value sets added.
+  - Egyptian, New Zealand, Ugandan and Western Preference Pattern (WePP)
+    EQ-5D-5L value sets added.
+
+  - Spanish EQ-5D-Y value set added.
 
   - Code speed up in eq5d5l, eq5d3l and eq5d3y. Thanks to @TimTaylor for
     implementing this.
