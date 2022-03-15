@@ -7,6 +7,7 @@ test_that("eq5d throws error for incorrect parameters", {
   # expect_error(eq5d("12345", version="5L", type="VT", country="England"))
   expect_error(eq5d(10000, version="5L", type="VT", country="England"))
   expect_error(eq5d(99999, version="5L", type="VT", country="England"))
+  expect_error(eq5d(0.375, country="UK", version="5L", type="DSU", age=50, sex="male", bwidth=-0.00001))
 })
 
 test.df <- data.frame(MO=c(1,2,3,4,5),SC=c(1,5,4,3,2),UA=c(1,5,2,3,1),PD=c(1,3,4,3,4),AD=c(1,2,1,2,1))
@@ -40,7 +41,7 @@ test_that("Wrapper function gives correct answer", {
   expect_equal(eq5d(0.435, country="UK", version="5L", type="DSU", age=30, sex="female", bwidth = 0.0001), 0.302)
   expect_equal(eq5d(0.922, country="UK", version="5L", type="DSU", age=18, sex="male"), 0.893)
   expect_equal(eq5d(test.df4,version="5L", type="DSU", country="UK", age="age", sex="sex"), c(0.067,0.761,0.609))
-  expect_equal(eq5d(test.df5,version="5L", type="DSU", country="UK", bwidth="bandwidth"), c(0.893,0.353,-0.409,0.297))
+  expect_equal(eq5d(test.df5,version="5L", type="DSU", country="UK", bwidth="bandwidth", utility="Utility"), c(0.893,0.353,-0.409,0.297))
   expect_equal(eq5d(test.df6,version="5L", type="DSU", country="UK", ignore.invalid = TRUE), c(-0.427,NA))
   expect_error(eq5d(test.df, version="3L", type="TTO", country="USA", dimensions=c("Mob", "Self", "Active", "Pain", "Anx")))
 })
@@ -68,6 +69,7 @@ test_that("when ignore.invalid flag is FALSE the correct answer is returned", {
   expect_error(eq5d(3.5, country="UK", version="5L", type="DSU", age=50, sex="male", bwidth=0.00001))
   expect_error(eq5d(c(MO=1,SC=2,UA=3,PD=2,AD=5), version="5L", type="DSU", country="Germany", age=37, sex="None"))
   expect_error(eq5d(c(MO=1,SC=2,UA=3,PD=2,AD=5), version="5L", type="DSU", country="Japan", age=205, sex="m"))
+  expect_error(eq5d(c(MO=1,SC=2,UA=3,PD=2,AD=1), version="3L", type="ABC", country="Germany"))
   
 })
 

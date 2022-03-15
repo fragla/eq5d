@@ -142,7 +142,7 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
     if(ignore.invalid) {
       res <- NA
     } else {
-      stop("Invalid dimension state found. Add 'ignore.invalid=TRUE' parameter to return NA for invalid scores.")
+      stop("Invalid dimension state/utility score found. Add 'ignore.invalid=TRUE' parameter to return NA for invalid scores.")
     }
   }
   return(res)
@@ -190,14 +190,16 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
   
   ## if length ==1 and utility score...
   if(.length==1) {
-    range <- .getDSURange(country, version)
-    if(!(scores >= range[1] && scores <= range[2])) {
-      if(ignore.invalid) {
-        return(NA)
-      } else {
-        stop(paste0("Index scores must be in the range ", range[1], " to ", range[2], " for ", country, " EQ-5D-", version,"."))
-      }
-    }
+    # print(scores)
+    # range <- .getDSURange(country, version)
+    # print(!(scores >= range[1] && scores <= range[2]))
+    # if(!(scores >= range[1] && scores <= range[2])) {
+    #   if(ignore.invalid) {
+    #     return(NA)
+    #   } else {
+    #     stop(paste0("Index scores must be in the range ", range[1], " to ", range[2], " for ", country, " EQ-5D-", version,"."))
+    #   }
+    # }
     
     if(!.isValidUtility(scores, country, version, args$age, args$sex)) {
       if(ignore.invalid) {
