@@ -54,4 +54,5 @@ test_that("eq5dmap throws error for incorrect parameters", {
   expect_error(eq5dmap(2, "UK", "5L", 50, "male", bwidth=0))
   expect_error(eq5dmap(2, "Japan", "3L", 50, "female", bwidth=0))
   expect_error(eq5dmap(0.100, "UK", "5L", "Twenty", "female", bwidth=0.1))
+  expect_error(eq5dmap("Five", "UK", "5L", "20", "female", bwidth=0.1))
 })
