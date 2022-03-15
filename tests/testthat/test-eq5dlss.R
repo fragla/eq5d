@@ -40,3 +40,8 @@ test_that("lss throws error for incorrect parameters", {
   expect_error(lss(c(11111,12345, 55555), version="7L"))
   expect_error(lss(data.frame(five.digit=c(11111,12345, 55555)), version="5L", dimensions=c("M","S","U","P","A")))
 })
+
+test_that("lss returns NA for incorrect parameters when ignore.invalid=TRUE", {
+  expect_equal(lss(12345, version="3L", ignore.invalid=TRUE),NA)
+  expect_equal(lss(c(MO=1,SC=7,UA=3,PD=2,AD=1), version="3L", ignore.invalid=TRUE), NA)
+})
