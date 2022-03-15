@@ -31,6 +31,7 @@ test_that("EQ-5D-5L USA Crosswalk gives correct answer", {
 context("EQ-5D-3L Reverse Crosswalk Incorrect params")
 
 test_that("EQ-5D-3L crosswalk throws error for incorrect parameters", {
-  expect_error(eq5drcw(c(MD=5,SC=5,UA=5,PD=5,AD=5), "Germany"))
+  expect_error(eq5drcw(c(MD=1,SC=2,UA=3,PD=2,AD=1), "Germany"))
   expect_error(eq5drcw(c(MO=1,SC=1,UA=1,PD=1,AD=1), "Swaziland"))
+  expect_error(eq5drcw(c(MO=6,SC=1,UA=1,PD=1,AD=1), "Netherlands"))
 })
