@@ -8,7 +8,7 @@
 An object of class \code{data.frame} with 243 rows and 4 columns.
 }
 \source{
-\href{https://euroqol.org/support/tools/analysis-tools/cross-walk-reverse-cross-walk/}{Reverse crosswalk datasets}
+\href{https://euroqol.org/support/analysis-tools/}{Reverse crosswalk datasets}
 }
 \usage{
 RCW
@@ -16,6 +16,6 @@ RCW
 \description{
 Reverse Crosswalk index value table to calculate EQ-5D-5L indices from EQ-5D-3L data
   for England, Germany, Netherlands and USA. Table uses the values of van Hout et al
-  from the EuroQol website.
+  from the EuroQol analysis tools webpage.
 }
 \keyword{datasets}

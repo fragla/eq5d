@@ -16,8 +16,10 @@ five digit format e.g. 12321.}
 version.}
 
 \item{type}{string specifying method type used in deriving value set scores.
-Options are TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L or CW for EQ-5D-5L
-crosswalk conversion valuesets.}
+Options are TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L, CW for EQ-5D-5L
+crosswalk conversion valuesets, RCW for EQ-5D-3L reverse crosswalk 
+conversion valuesets and DSU for the NICE Decision Support Unit age-sex
+based EQ-5D-3L to EQ-5D-5L and EQ-5D-5L to EQ-5D-3L mappings}
 
 \item{country}{string of value set country name used.}
 
@@ -26,7 +28,8 @@ with invalid, incomplete or missing data.}
 
 \item{...}{character vectors, specifying "dimensions" column names or
 "five.digit" column name. Defaults are "MO", "SC", "UA", "PD" and "AD"
-for dimensions and "State" for five.digit.}
+for dimensions, "State" for five.digit and "Utility" for DSU utility 
+index scores.}
 }
 \value{
 a numeric vector of utility index scores.
@@ -41,6 +44,9 @@ eq5d(scores=c(MO=1,SC=2,UA=3,PD=4,AD=5), type="VT",
  country="Indonesia", version="5L")
 eq5d(scores=c(MO=3,SC=2,UA=3,PD=2,AD=3),
  type="TTO", version="3L", country="Germany")
+ 
+eq5d(0.922, country="UK", version="5L", type="DSU", 
+ age=18, sex="male")
 
 scores.df <- data.frame(
   MO=c(1,2,3,4,5), SC=c(1,5,4,3,2),
