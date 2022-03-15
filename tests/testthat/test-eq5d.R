@@ -70,7 +70,7 @@ test_that("when ignore.invalid flag is FALSE the correct answer is returned", {
   expect_error(eq5d(c(MO=1,SC=2,UA=3,PD=2,AD=5), version="5L", type="DSU", country="Germany", age=37, sex="None"))
   expect_error(eq5d(c(MO=1,SC=2,UA=3,PD=2,AD=5), version="5L", type="DSU", country="Japan", age=205, sex="m"))
   expect_error(eq5d(c(MO=1,SC=2,UA=3,PD=2,AD=1), version="3L", type="ABC", country="Germany"))
-  
+  expect_error(eq5d(0.923, country="UK", version="5L", type="DSU", age=50, sex="male", bwidth=0))
 })
 
 ##eq5dmap tests
