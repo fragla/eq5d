@@ -201,7 +201,7 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
     #   }
     # }
     
-    if(!.isValidUtility(scores, country, version, args$age, args$sex)) {
+    if(bwidth==0 && !.isValidUtility(scores, country, version, args$age, args$sex)) {
       if(ignore.invalid) {
         return(NA)
       } else {

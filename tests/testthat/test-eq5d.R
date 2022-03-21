@@ -41,6 +41,7 @@ test_that("Wrapper function gives correct answer", {
   expect_equal(eq5d(0.435, country="UK", version="5L", type="DSU", age=30, sex="female", bwidth = 0.0001), 0.302)
   expect_equal(eq5d(0.922, country="UK", version="5L", type="DSU", age=18, sex="male"), 0.893)
   expect_equal(eq5d(-0.594, country="UK", version="3L", type="DSU", age=95, sex="female"), -0.209)
+  expect_equal(eq5d(-0.002, country="UK", version="3L", type="DSU", age=50, sex="male", bwidth=0.1), 0.312)
   expect_equal(eq5d(test.df4,version="5L", type="DSU", country="UK", age="age", sex="sex"), c(0.067,0.761,0.609))
   expect_equal(eq5d(test.df5,version="5L", type="DSU", country="UK", bwidth="bandwidth", utility="Utility"), c(0.893,0.353,-0.409,0.297))
   expect_equal(eq5d(test.df6,version="5L", type="DSU", country="UK", ignore.invalid = TRUE), c(-0.427,NA))
