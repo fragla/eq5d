@@ -28,14 +28,19 @@ getHealthStates <- function(version) {
   if(!version %in% c("3L", "5L", "Y"))
     stop("Version must be either 3L, 5L or Y.")
   
-  if(version=="Y")
-    version <- "3L"
-  
-  max.value <- .getNumberLevels(version)
-  dimensions <- expand.grid(1:max.value, 1:max.value, 1:max.value, 1:max.value, 1:max.value)
-  indexes <- apply(dimensions, 1, function(x){paste(x, collapse="")})
-  indexes <- sort(indexes)
-  return(indexes)
+  if(version %in% c("3L", "Y")) {
+    return(STATES[["3L"]])
+  } else {
+    return(STATES[["5L"]])
+  }
+  # if(version=="Y")
+  #   version <- "3L"
+  # 
+  # max.value <- .getNumberLevels(version)
+  # dimensions <- expand.grid(1:max.value, 1:max.value, 1:max.value, 1:max.value, 1:max.value)
+  # indexes <- apply(dimensions, 1, function(x){paste(x, collapse="")})
+  # indexes <- sort(indexes)
+  # return(indexes)
 }
 
 #' Get individual dimension scores from their five digit health states
