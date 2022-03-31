@@ -188,20 +188,8 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
     }
   }
   
-  ## if length ==1 and utility score...
   if(.length==1) {
-    # print(scores)
-    # range <- .getDSURange(country, version)
-    # print(!(scores >= range[1] && scores <= range[2]))
-    # if(!(scores >= range[1] && scores <= range[2])) {
-    #   if(ignore.invalid) {
-    #     return(NA)
-    #   } else {
-    #     stop(paste0("Index scores must be in the range ", range[1], " to ", range[2], " for ", country, " EQ-5D-", version,"."))
-    #   }
-    # }
-    
-    if(bwidth==0 && !.isValidUtility(scores, country, version, args$age, args$sex)) {
+    if(bwidth==0 && !.isValidUtility(scores, country, version)) {
       if(ignore.invalid) {
         return(NA)
       } else {

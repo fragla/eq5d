@@ -73,7 +73,7 @@ eq5dmap <- function(scores, country, version, age, sex, bwidth=0) {
     return(index)
   } else if (is.numeric(scores)) {
     if(bwidth==0) {
-      idx <- which(survey[[country]]==scores & survey$Age==age.grp & survey$Sex==sex)
+      idx <- which(survey[[country]]==scores & survey[["Age"]]==age.grp & survey[["Sex"]]==sex)
       if(length(idx)==0) {
         stop("Invalid utility score provided. If approximate score please supply bwidth value")
       } else {
@@ -127,13 +127,21 @@ eq5dmap <- function(scores, country, version, age, sex, bwidth=0) {
 }
 
 .getDSURange <- function(country, version) {
-  survey <- get(paste0("DSU",version))
-  range <- range(survey[[country]])
-  return(range)
+  if(!version %in% c("3L", "5L"))
+    stop("Version must be either 3L or 5L.")
+  
+  if(version=="3L") {
+    return(DSU3LRANGE[[country]])
+  } else {
+    return(DSU5LRANGE[[country]])
+  }
+  # survey <- get(paste0("DSU",version))
+  # range <- range(survey[[country]])
+  # return(range)
 }
 
-.isValidUtility <- function(scores, country, version, age, sex) {
+.isValidUtility <- function(scores, country, version) {
   survey <- get(paste0("DSU",version))
-  idx <- which(survey[[country]]==scores & survey$Age==.getAgeGroup(age) & survey$Sex==.getSex(sex))
+  idx <- which(survey[[country]]==scores)
   return(length(idx)>0)
 }
