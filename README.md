@@ -226,9 +226,9 @@ valuesets(type="DSU", version="5L")
 A number of methods have been published that enable the analysis of
 EQ-5D profiles, most recently in the open access book Methods for
 Analysing and Reporting EQ-5D Data by [Devlin, Janssen and
-Parkin](https://www.springer.com/gp/book/9783030476212). The eq5d
-package includes R implentations of some of the methods from this book
-and from other sources that may be of use in analysing EQ-5D data.
+Parkin](https://link.springer.com/book/10.1007/978-3-030-47622-9). The
+eq5d package includes R implentations of some of the methods from this
+book and from other sources that may be of use in analysing EQ-5D data.
 
 ### Cumulative frequency analysis
 
@@ -403,29 +403,29 @@ dat <- data.frame(
        )
 
 eq5dds(dat, version="3L")
-#>     MO   SC   UA PD   AD
-#> 1 33.3 16.7 58.3 50 41.7
-#> 2 25.0 33.3 33.3 25 25.0
-#> 3 41.7 50.0  8.3 25 33.3
+#>     MO SC   UA   PD   AD
+#> 1 33.3 25 16.7 25.0 58.3
+#> 2 50.0 50 50.0 16.7 25.0
+#> 3 16.7 25 33.3 58.3 16.7
 
 eq5dds(dat, version="3L", counts=TRUE)
 #>   MO SC UA PD AD
-#> 1  4  2  7  6  5
-#> 2  3  4  4  3  3
-#> 3  5  6  1  3  4
+#> 1  4  3  2  3  7
+#> 2  6  6  6  2  3
+#> 3  2  3  4  7  2
 
 eq5dds(dat, version="3L", by="Sex")
 #> data[, by]: Female
-#>     MO   SC   UA PD   AD
-#> 1 16.7 16.7 50.0 50 16.7
-#> 2 16.7 50.0 33.3 50 33.3
-#> 3 66.7 33.3 16.7  0 50.0
+#>     MO   SC   UA   PD  AD
+#> 1  0.0 33.3 33.3 16.7 100
+#> 2 66.7 50.0 16.7 16.7   0
+#> 3 33.3 16.7 50.0 66.7   0
 #> ------------------------------------------------------------ 
 #> data[, by]: Male
-#>     MO   SC   UA PD   AD
-#> 1 50.0 16.7 66.7 50 66.7
-#> 2 33.3 16.7 33.3  0 16.7
-#> 3 16.7 66.7  0.0 50 16.7
+#>     MO   SC   UA   PD   AD
+#> 1 66.7 16.7  0.0 33.3 16.7
+#> 2 33.3 50.0 83.3 16.7 50.0
+#> 3  0.0 33.3 16.7 50.0 33.3
 ```
 
 ## Helper functions

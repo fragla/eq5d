@@ -138,7 +138,7 @@ valuesets(type="DSU", version="5L")
 
 ## Analysis of EQ-5D Profiles
 
-A number of methods have been published that enable the analysis of EQ-5D profiles, most recently in the open access book Methods for Analysing and Reporting EQ-5D Data by [Devlin, Janssen and Parkin](https://www.springer.com/gp/book/9783030476212). The eq5d package includes R implentations of some of the methods from this book and from other sources that may be of use in analysing EQ-5D data.
+A number of methods have been published that enable the analysis of EQ-5D profiles, most recently in the open access book Methods for Analysing and Reporting EQ-5D Data by [Devlin, Janssen and Parkin](https://link.springer.com/book/10.1007/978-3-030-47622-9). The eq5d package includes R implentations of some of the methods from this book and from other sources that may be of use in analysing EQ-5D data.
 
 ### Cumulative frequency analysis
 
