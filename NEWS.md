@@ -1,7 +1,7 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-# eq5d (development version)
+# eq5d 0.11.0 (2022-04-05)
 
   - NICE DSU age and sex based mapping from EQ-5D-5L to EQ-5D-3L and
     EQ-5D-3L to EQ-5D-5L for China, Germany, Japan, Netherlands, South
