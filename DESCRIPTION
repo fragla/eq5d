@@ -1,7 +1,7 @@
 Package: eq5d
 Type: Package
 Title: Methods for Analysing 'EQ-5D' Data and Calculating 'EQ-5D' Index Scores
-Version: 0.10.1.9000
+Version: 0.11.0
 Authors@R: c(
     person("Fraser", "Morton", email = "fraser.morton@glasgow.ac.uk", role = c("aut", "cre")),
     person(c("Jagtar", "Singh"), "Nijjar", role = "aut"))
@@ -25,7 +25,7 @@ Description: EQ-5D is a popular health related quality of life instrument used
     EuroQol website, the EQ-5D-5L crosswalk value sets developed by 
     van Hout et al. (2012) <doi:10.1016/j.jval.2012.02.008>, the
     crosswalk value set for Russia and reverse crosswalk value sets. Three 
-    EQ-5D-Y value sets are also included as are the NICE DSU age-sex
+    EQ-5D-Y value sets are also included as are the NICE 'DSU' age-sex
     based EQ-5D-3L to EQ-5D-5L and EQ-5D-5L to EQ-5D-3L mappings. Methods are 
     also included for the analysis of EQ-5D profiles along with a shiny web 
     tool to enable the calculation, visualisation and automated statistical 
@@ -33,7 +33,7 @@ Description: EQ-5D is a popular health related quality of life instrument used
     stored in CSV or Excel files. 
 License: MIT + file LICENSE
 Encoding: UTF-8
-LazyData: true
+LazyData: false
 Depends: R (>= 3.5.0)
 Suggests: 
     testthat,
