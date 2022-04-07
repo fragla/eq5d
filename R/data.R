@@ -15,7 +15,9 @@
 #' \href{https://pubmed.ncbi.nlm.nih.gov/33713323/}{PubMed}.
 #'
 #' \href{https://euroqol.org/wp-content/uploads/2018/02/EQ-5D-5L_Crosswalk_Index_Value_Calculator_v2.xls}{EQ-5D-5L Crosswalk Index Value Calculator}
-#'   
+#'
+#' @name CW
+#' @export   
 "CW"
 
 #' DSU mapping from EQ-5D-3L to EQ-5D-5L
@@ -31,7 +33,9 @@
 #' Hernández-Alava M, Pudney S. Econometric modelling of multiple self-reports of health states: The switch from EQ-5D-3L to EQ-5D-5L in evaluating drug therapies for rheumatoid arthritis. J Health Econ. 2017 Sep;55:139-152. doi: 10.1016/j.jhealeco.2017.06.013. Epub 2017 Jul 4. \href{https://pubmed.ncbi.nlm.nih.gov/28778350}{PubMed}.
 #' 
 #' \href{https://nicedsu.sites.sheffield.ac.uk/methods-development/mapping-eq-5d-5l-to-3l}{NICE DSU mapping website}.
-#' 
+#'
+#' @name DSU3L
+#' @export 
 "DSU3L"
 
 #' DSU mapping from EQ-5D-5L to EQ-5D-3L
@@ -48,6 +52,8 @@
 #' 
 #' \href{https://nicedsu.sites.sheffield.ac.uk/methods-development/mapping-eq-5d-5l-to-3l}{NICE DSU mapping website}.
 #' 
+#' @name DSU5L
+#' @export
 "DSU5L"
 
 #' EQ-5D-3L Reverse Crosswalk data
@@ -58,7 +64,9 @@
 #'      
 #' @source
 #' \href{https://euroqol.org/support/analysis-tools/}{Reverse crosswalk datasets}
-#'   
+#' 
+#' @name RCW
+#' @export       
 "RCW"
 
 #' EQ-5D-3L TTO value set data
@@ -111,6 +119,9 @@
 #' \strong{Trinidad and Tobago}: Bailey H, Stolk E, Kind P. Toward Explicit Prioritization for the Caribbean: An EQ-5D Value Set for Trinidad and Tobago. Value Health Reg Issues. 2016 Dec;11:60-67. doi: 10.1016/j.vhri.2016.07.010. \href{https://pubmed.ncbi.nlm.nih.gov/27986200/}{PubMed}
 #' 
 #' \strong{Tunisia}: Chemli J, Drira C, Felfel H, Roudijk B, Al Sayah F, Kouki M, Kooli A, Razgallah Khrouf M. Valuing health-related quality of life using a hybrid approach: Tunisian value set for the EQ-5D-3L. Qual Life Res. 2021 Jan 14. doi: 10.1007/s11136-020-02730-z. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/33447958/}{PubMed}
+#'
+#' @name TTO
+#' @export
 "TTO"
 
 #' EQ-5D-3L VAS value set data
@@ -128,6 +139,8 @@
 #' 
 #' \strong{Malaysia}: Yusof FA, Goh A, Azmi S. Estimating an EQ-5D value set for Malaysia using time trade-off and visual analogue scale methods. Value Health. 2012 Jan-Feb;15(1 Suppl):S85-90. doi: 10.1016/j.jval.2011.11.024. \href{https://pubmed.ncbi.nlm.nih.gov/22265073/}{PubMed}
 #' 
+#' @name VAS
+#' @export
 "VAS"
 
 #' EQ-5D-5L VT value set data
@@ -173,6 +186,9 @@
 #'     \item{\strong{Vietnam}: Mai VQ, Sun S, Minh HV, Luo N, Giang KB, Lindholm L, Sahlen KG. An EQ-5D-5L Value Set for Vietnam. Qual Life Res. 2020;29(7):1923-1933. doi:10.1007/s11136-020-02469-7. \href{https://pubmed.ncbi.nlm.nih.gov/32221805/}{PubMed}}
 #'     \item{\strong{WePP}: Olsen JA, Lamu AN, Cairns J. In search of a common currency: A comparison of seven EQ-5D-5L value sets. Health Econ. 2018 Jan;27(1):39-49. doi: 10.1002/hec.3606. Epub 2017 Oct 24. \href{https://pubmed.ncbi.nlm.nih.gov/29063633/}{PubMed}}.
 #'   }
+#'   
+#' @name VT
+#' @export
 "VT"
 
 #' EQ-5D-Y value set data
@@ -185,4 +201,7 @@
 #'     \item{\strong{Slovenia}: Prevolnik Rupel V, Ogorevc M; IMPACT HTA HRQoL Group. EQ-5D-Y Value Set for Slovenia. Pharmacoeconomics. 2021 Feb 10. doi: 10.1007/s40273-020-00994-4. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/33565048/}{PubMed}}
 #'     \item{\strong{Spain}: Ramos-Goñi JM, Oppe M, Estévez-Carrillo A, Rivero-Arias O; IMPACT HTA HRQoL Group. Accounting for Unobservable Preference Heterogeneity and Evaluating Alternative Anchoring Approaches to Estimate Country-Specific EQ-5D-Y Value Sets: A Case Study Using Spanish Preference Data. Value in Health. 2021 Dec 04. doi: 10.1016/j.jval.2021.10.013.}
 #'   }
+#'   
+#' @name Y
+#' @export
 "Y"
