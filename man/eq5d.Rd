@@ -26,10 +26,12 @@ based EQ-5D-3L to EQ-5D-5L and EQ-5D-5L to EQ-5D-3L mappings}
 \item{ignore.invalid}{logical to indicate whether to ignore dimension data
 with invalid, incomplete or missing data.}
 
-\item{...}{character vectors, specifying "dimensions" column names or
-"five.digit" column name. Defaults are "MO", "SC", "UA", "PD" and "AD"
-for dimensions, "State" for five.digit and "Utility" for DSU utility 
-index scores.}
+\item{...}{character vectors for column names when using a data.frame. Use 
+"dimensions" (default c("MO", "SC", "UA", "PD" and "AD")), "five.digit" 
+(default "State") or "utility", "age", "sex" and "bwidth" (defaults 
+"Utility", "Age", "Sex" and "bwidth") for NICE DSU mapping. When a single 
+NICE DSU score is being calculated "age", "sex" and "bwidth" are also 
+used. See \code{\link{eq5dmap}} for valid options.}
 }
 \value{
 a numeric vector of utility index scores.
