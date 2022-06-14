@@ -8,6 +8,8 @@
 
   - Incorrect MO3 value for German EQ-5D-3L TTO fixed.
 
+  - Changed Japanese EQ-5D-5L value set to TTO instead of DCE.
+
 # eq5d 0.11.0 (2022-04-05)
 
   - NICE DSU age and sex based mapping from EQ-5D-5L to EQ-5D-3L and
