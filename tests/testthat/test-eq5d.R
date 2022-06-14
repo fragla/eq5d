@@ -11,7 +11,7 @@ test.char2 <- c(11211, "12321", NA, "abcd", "")
 
 test_that("Wrapper function gives correct answer", {
   expect_equal(eq5d(c(MO=1,SC=2,UA=3,PD=2,AD=1), type="TTO", version="3L", country="UK"), 0.329)
-  expect_equal(eq5d(c(MO=3,SC=2,UA=3,PD=2,AD=3), type="TTO", version="3L", country="Germany"), 0.083)
+  expect_equal(eq5d(c(MO=3,SC=2,UA=3,PD=2,AD=3), type="TTO", version="3L", country="Germany"), 0.085)
   expect_equal(eq5d(c(MO=1,SC=1,UA=1,PD=1,AD=1), country="Canada", version="5L", type="VT"), 0.949)
   expect_equal(eq5d(c(MO=1,SC=2,UA=3,PD=4,AD=5), country="Indonesia", version="5L", type="VT"), 0.240)
   expect_equal(eq5d(c(MO=3,SC=3,UA=3,PD=3,AD=3), country="Slovenia", version="Y"), -0.691)
