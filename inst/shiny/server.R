@@ -295,7 +295,7 @@ shinyServer(function(input, output, session) {
                   choices=select.options, selected=FALSE, selectize = FALSE, width="100px"),
 
       if (failed)
-        div(tags$b("Invalid column names.", style = "color: red;")),
+        div(tags$b("Invalid column names. Columns may contain non-valid data.", style = "color: red;")),
       
       footer = tagList(
         modalButton("Cancel"),
