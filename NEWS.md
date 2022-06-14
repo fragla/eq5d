@@ -1,6 +1,13 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
+# eq5d (development version)
+
+  - Bug in Shiny app fixed. App was unable to see value sets for index
+    score calculation.
+
+  - Incorrect MO3 value for German EQ-5D-3L TTO fixed.
+
 # eq5d 0.11.0 (2022-04-05)
 
   - NICE DSU age and sex based mapping from EQ-5D-5L to EQ-5D-3L and
