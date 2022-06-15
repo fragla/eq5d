@@ -5,14 +5,14 @@
 \alias{VT}
 \title{EQ-5D-5L VT value set data}
 \format{
-An object of class \code{data.frame} with 35 rows and 33 columns.
+An object of class \code{data.frame} with 35 rows and 34 columns.
 }
 \source{
 \enumerate{
     \item{\strong{Belgium}: Bouckaert N, Gerkens S, Devriese S, Cleemput I. An EQ-5D-5L value set for Belgium – How to value health- related quality of life? Health Services Research (HSR) Brussels: Belgian Health Care Knowledge Centre (KCE). 2021. KCE Reports 342. D/2021/10.273/19. \href{https://www.kce.fgov.be/sites/default/files/atoms/files/KCE_342_EQ-5D-5L_value_set_for_Belgium_Report_1.pdf}{PDF}}
     \item{\strong{Canada}: Xie F, Pullenayegum E, Gaebel K, Bansback N, Bryan S, Ohinmaa A, Poissant L, Johnson JA. A Time Trade-off-derived Value Set of the EQ-5D-5L for Canada. Med Care. 2016;54(1):98-105. \href{https://pubmed.ncbi.nlm.nih.gov/26492214/}{PubMed}}
     \item{\strong{China}: Luo N, Liu G, Li M, Guan H, Jin X, Rand-Hendriksen K. Estimating an EQ-5D-5L Value Set for China. Value in Health. 2017 Apr;20(4):662-669. doi: 10.1016/j.jval.2016.11.016. Epub 2017 Feb 9. \href{https://pubmed.ncbi.nlm.nih.gov/28408009/}{PubMed}}
-    \item{\strong{Denmark)}: Jensen CE, Sørensen SS, Gudex C, Jensen MB, Pedersen KM, Ehlers LH. The Danish EQ-5D-5L Value Set: A Hybrid Model Using cTTO and DCE Data. Appl Health Econ Health Policy. 2021 Feb 2. doi: 10.1007/s40258-021-00639-3. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/33527304/}{PubMed}}
+    \item{\strong{Denmark}: Jensen CE, Sørensen SS, Gudex C, Jensen MB, Pedersen KM, Ehlers LH. The Danish EQ-5D-5L Value Set: A Hybrid Model Using cTTO and DCE Data. Appl Health Econ Health Policy. 2021 Feb 2. doi: 10.1007/s40258-021-00639-3. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/33527304/}{PubMed}}
     \item{\strong{England}: Devlin N, Shah K, Feng Y, Mulhern B, van Hout B. Valuing health-related quality of Life: An EQ-5D-5L Value Set for England. Health Economics. 2018 Jan;27(1):1-22 \href{https://pubmed.ncbi.nlm.nih.gov/28833869/}{PubMed}}
     \item{\strong{Egypt}: Al Shabasy S, Abbassi M, Finch A, Roudijk B, Baines D, Farid S. The EQ-5D-5L Valuation Study in Egypt. Pharmacoeconomics. 2021 Nov 17:1–15. doi: 10.1007/s40273-021-01100-y. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/34786590/}{PubMed}}
     \item{\strong{Ethiopia}: Welie AG, Gebretekle GB, Stolk E, Mukuria C, Krahn MD, Enquoselassie F, Fenta TG. Valuing Health State: An EQ-5D-5L Value Set for Ethiopians. Value Health Reg Issues. 2019 Nov 1;22:7-14. doi: 10.1016/j.vhri.2019.08.475. \href{https://pubmed.ncbi.nlm.nih.gov/31683254/}{PubMed}}
@@ -29,6 +29,7 @@ An object of class \code{data.frame} with 35 rows and 33 columns.
     \item{\strong{Netherlands}: Versteegh MM, Vermeulen KM, Evers SM, de Wit GA, Prenger R, Stolk EA. Dutch Tariff for the Five-Level Version of EQ-5D. Value in Health. 2016 Jun;19(4):343-52.  doi: 10.1016/j.jval.2016.01.003. \href{https://pubmed.ncbi.nlm.nih.gov/27325326/}{PubMed}}
     \item{\strong{New Zealand}: Sullivan T, Hansen P, Ombler F, Derrett S, Devlin N. A new tool for creating personal and social EQ-5D-5L value sets, including valuing 'dead'. Soc Sci Med. 2020 Feb;246:112707. doi: 10.1016/j.socscimed.2019.112707. Epub 2019 Nov 30. \href{https://pubmed.ncbi.nlm.nih.gov/31945596/}{PubMed}}
     \item{\strong{Peru} Augustovski F, Belizán M, Gibbons L, Reyes N, Stolk E, Craig BM, Tejada RA. Peruvian Valuation of the EQ-5D-5L: A Direct Comparison of Time Trade-Off and Discrete Choice Experiments. Value Health. 2020;23(7):880-888. doi:10.1016/j.jval.2020.05.004. \href{https://pubmed.ncbi.nlm.nih.gov/32762989/}{PubMed}}
+    \item{\strong{Philippines} Miguel RTD, Rivera AS, Cheng KJG, Rand K, Purba FD, Luo N, Zarsuelo MA, Genuino-Marfori AJ, Florentino-Fariñas I, Guerrero AM, Lam HY. Estimating the EQ-5D-5L value set for the Philippines. Qual Life Res. 2022 May 9. doi: 10.1007/s11136-022-03143-w. \href{https://pubmed.ncbi.nlm.nih.gov/35532835/}{PubMed}}
     \item{\strong{Poland} Golicki D, Jakubczyk M, Niewada M, Wrona W, Busschbach JJ. Valuation of EQ-5D health states in Poland: first TTO-based social value set in Central and Eastern Europe. Value Health. 2010 Mar-Apr;13(2):289-97. doi: 10.1111/j.1524-4733.2009.00596.x. \href{https://pubmed.ncbi.nlm.nih.gov/19744296/}{PubMed}}
     \item{\strong{Portugal} Ferreira PL, Antunes P, Ferreira LN, Pereira LN, Ramos-Goñi JM. A hybrid modelling approach for eliciting health state preferences: the Portuguese EQ-5D-5L value set. Qual Life Res. 2019 Jun 14. doi: 10.1007/s11136-019-02226-5. \href{https://pubmed.ncbi.nlm.nih.gov/31201730/}{PubMed}}
     \item{\strong{South Korea} Kim SH, Ahn J, Ock M, Shin S, Park J, Luo N, Jo MW. The EQ-5D-5L valuation study in Korea. Qual Life Res. 2016 Jul;25(7):1845-52. doi: 10.1007/s11136-015-1205-2. \href{https://pubmed.ncbi.nlm.nih.gov/26961008/}{PubMed}}
