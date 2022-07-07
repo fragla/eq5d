@@ -146,10 +146,10 @@
 #' EQ-5D-5L VT value set data
 #'
 #' EQ-5D-5L VT value set calculation data for Belgium, Canada, China, Denmark, 
-#'   England, Ethiopia, France, Germany, Hong Kong, Hungary, Indonesia, Ireland, 
-#'   Italy, Japan, Malaysia, Mexico, Netherlands, Peru, Poland, Portugal, 
-#'   South Korea, Spain, Sweden, Taiwan, Thailand, Uruguay, USA, Vietnam, USA and
-#'   Western Preference Pattern (WePP).
+#'   England, Ethiopia, France, Germany, Hong Kong, Hungary, India, Indonesia, 
+#'   Ireland, #'   Italy, Japan, Malaysia, Mexico, Netherlands, Peru, Poland, 
+#'   Portugal, South Korea, Spain, Sweden, Taiwan, Thailand, Uruguay, USA, 
+#'   Vietnam, USA and Western Preference Pattern (WePP).
 #'
 #' @source 
 #'   \enumerate{
@@ -164,6 +164,7 @@
 #'     \item{\strong{Germany}: Ludwig K, Graf von der Schulenburg JM, Greiner W. German Value Set for the EQ-5D-5L. Pharmacoeconomics. 2018 Feb;36(6):663-674. doi: 10.1007/s40273-018-0615-8. \href{https://pubmed.ncbi.nlm.nih.gov/29460066/}{PubMed}}
 #'     \item{\strong{HongKong}: Wong ELY, Ramos-Goñi JM, Cheung AWL, Wong AYK, Rivero-Arias O. Assessing the Use of a Feedback Module to Model EQ-5D-5L Health States Values in Hong Kong. Patient. 2018 Apr;11(2):235-247. doi: 10.1007/s40271-017-0278-0. \href{https://pubmed.ncbi.nlm.nih.gov/29019161/}{PubMed}}
 #'     \item{\strong{Hungary}: Rencz F, Brodszky V, Gulácsi L, Golicki D, Ruzsa G, Pickard AS, Law EH, Péntek M. Parallel Valuation of the EQ-5D-3L and EQ-5D-5L by Time Trade-Off in Hungary. Value Health. 2020 Sep;23(9):1235-1245. doi: 10.1016/j.jval.2020.03.019. Epub 2020 Aug 12. \href{https://pubmed.ncbi.nlm.nih.gov/32940242/}{PubMed}}
+#'     \item{\strong{India}: Jyani G, Sharma A, Prinja S, Kar SS, Trivedi M, Patro BK, Goyal A, Purba FD, Finch AP, Rajsekar K, Raman S, Stolk E, Kaur M. Development of an EQ-5D Value Set for India Using an Extended Design (DEVINE) Study: The Indian 5-Level Version EQ-5D Value Set. Value Health. 2022 Jul;25(7):1218-1226. doi: 10.1016/j.jval.2021.11.1370. Epub 2022 Jan 5. \href{https://pubmed.ncbi.nlm.nih.gov/35779943/}{PubMed}}
 #'     \item{\strong{Indonesia}: Purba FD, Hunfeld JAM, Iskandarsyah A, Fitriana TS, Sadarjoen SS, Ramos-Goñi JM, Passchier J, Busschbach JJ. The Indonesian EQ-5D-5L Value Set. PharmacoEconomics. 2017 Nov;35(11)1153-1165. doi: 10.1007/s40273-017-0538-9. \href{https://pubmed.ncbi.nlm.nih.gov/28695543/}{PubMed}}
 #'     \item{\strong{Ireland}: Hobbins A, Barry L, Kelleher D, Shah K, Devlin N, Ramos Goñi JM, O’Neill C. Utility Values for Health States in Ireland: A Value Set for the EQ-5D-5L. PharmacoEconomics. 2018 Nov;36(11):1345-1353. doi: 10.1007/s40273-018-0690-x. \href{https://pubmed.ncbi.nlm.nih.gov/30051267/}{PubMed}}
 #'     \item{\strong{Italy}: Finch AP, Meregaglia M, Ciani O, Roudijk B, Jommi C. An EQ-5D-5L value set for Italy using videoconferencing interviews and feasibility of a new mode of administration. Social Science & Medicine. 2021 Oct. doi: 10.1016/j.socscimed.2021.114519. \href{https://www.sciencedirect.com/science/article/pii/S0277953621008510}{Journal}}
