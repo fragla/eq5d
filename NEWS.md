@@ -3,7 +3,7 @@
 
 # eq5d (development version)
 
-  - Philippines EQ-5D-5L value set added.
+  - Philippine, Romanian and Indian EQ-5D-5L value sets added.
 
   - Bug in Shiny app fixed. App was unable to see value sets for index
     score calculation.
