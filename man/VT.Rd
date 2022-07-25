@@ -52,7 +52,7 @@ VT
 \description{
 EQ-5D-5L VT value set calculation data for Belgium, Canada, China, Denmark, 
   England, Ethiopia, France, Germany, Hong Kong, Hungary, India, Indonesia, 
-  Ireland, #'   Italy, Japan, Malaysia, Mexico, Netherlands, Peru, Poland, 
+  Ireland, Italy, Japan, Malaysia, Mexico, Netherlands, Peru, Poland, 
   Portugal, South Korea, Spain, Sweden, Taiwan, Thailand, Uruguay, USA, 
   Vietnam, USA and Western Preference Pattern (WePP).
 }
