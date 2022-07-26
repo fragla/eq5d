@@ -1,7 +1,7 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-# eq5d (development version)
+# eq5d 0.12.0 (2022-07-26)
 
   - Philippine, Romanian and Indian EQ-5D-5L value sets added.
 
