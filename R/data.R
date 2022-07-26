@@ -1,57 +1,57 @@
 #' EQ-5D-5L Crosswalk data
 #'
 #' Crosswalk index value calculation table to calculate EQ-5D-3L indices from EQ-5D-5L data
-#'   for Denmark, France, Germany, Japan, Netherlands, Russia, Spain, Thailand, UK, USA 
+#'   for Denmark, France, Germany, Japan, Netherlands, Russia, Spain, Thailand, UK, USA
 #'   and Zimbabwe.
-#'      
+#'
 #' @source
-#' van Hout B, Janssen MF, et al. Interim scoring for the EQ-5D-5L: Mapping the EQ-5D-5L 
-#'   to EQ-5D-3L value sets. Value in Health 2012 Jul-Aug;15(5):708-15. doi: 10.1016/j.jval.2012.02.008. 
+#' van Hout B, Janssen MF, et al. Interim scoring for the EQ-5D-5L: Mapping the EQ-5D-5L
+#'   to EQ-5D-3L value sets. Value in Health 2012 Jul-Aug;15(5):708-15. doi: 10.1016/j.jval.2012.02.008.
 #'   \href{https://pubmed.ncbi.nlm.nih.gov/22867780/}{PubMed}
-#'   
-#' Omelyanovskiy V, Musina N, Ratushnyak S, Bezdenezhnykh T, Fediaeva V, Roudijk B, 
-#' Purba FD. Valuation of the EQ-5D-3L in Russia. Qual Life Res. 2021 Mar 13. 
-#' doi: 10.1007/s11136-021-02804-6. Epub ahead of print. 
+#'
+#' Omelyanovskiy V, Musina N, Ratushnyak S, Bezdenezhnykh T, Fediaeva V, Roudijk B,
+#' Purba FD. Valuation of the EQ-5D-3L in Russia. Qual Life Res. 2021 Mar 13.
+#' doi: 10.1007/s11136-021-02804-6. Epub ahead of print.
 #' \href{https://pubmed.ncbi.nlm.nih.gov/33713323/}{PubMed}.
 #'
 #' \href{https://euroqol.org/wp-content/uploads/2018/02/EQ-5D-5L_Crosswalk_Index_Value_Calculator_v2.xls}{EQ-5D-5L Crosswalk Index Value Calculator}
 #'
 #' @name CW
-#' @export   
+#' @export
 "CW"
 
 #' DSU mapping from EQ-5D-3L to EQ-5D-5L
-#' 
-#' Data for age and sex based mapping from EQ-5D-3L dimensions or utility index 
-#' score to EQ-5D-5L for China, Germany, Japan, Netherlands, South Korea, Spain 
+#'
+#' Data for age and sex based mapping from EQ-5D-3L dimensions or utility index
+#' score to EQ-5D-5L for China, Germany, Japan, Netherlands, South Korea, Spain
 #' and UK.
-#' 
-#' @source 
-#' 
+#'
+#' @source
+#'
 #' Hernández Alava M, Pudney S, Wailoo A. Estimating the Relationship Between EQ-5D-5L and EQ-5D-3L: Results From an English Population Study [EEPRU Report]. University of Sheffield & University of York. \href{https://eepru.sites.sheffield.ac.uk/projects/estimating-the-relationship-between-eq-5d-5l-and-eq-5d-3l}{Article}
-#' 
+#'
 #' Hernández-Alava M, Pudney S. Econometric modelling of multiple self-reports of health states: The switch from EQ-5D-3L to EQ-5D-5L in evaluating drug therapies for rheumatoid arthritis. J Health Econ. 2017 Sep;55:139-152. doi: 10.1016/j.jhealeco.2017.06.013. Epub 2017 Jul 4. \href{https://pubmed.ncbi.nlm.nih.gov/28778350}{PubMed}.
-#' 
+#'
 #' \href{https://nicedsu.sites.sheffield.ac.uk/methods-development/mapping-eq-5d-5l-to-3l}{NICE DSU mapping website}.
 #'
 #' @name DSU3L
-#' @export 
+#' @export
 "DSU3L"
 
 #' DSU mapping from EQ-5D-5L to EQ-5D-3L
-#' 
-#' Data for age and sex based mapping from EQ-5D-5L dimensions or utility index 
-#' score to EQ-5D-3L for China, Germany, Japan, Netherlands, South Korea, Spain 
+#'
+#' Data for age and sex based mapping from EQ-5D-5L dimensions or utility index
+#' score to EQ-5D-3L for China, Germany, Japan, Netherlands, South Korea, Spain
 #' and UK.
-#' 
-#' @source 
-#' 
+#'
+#' @source
+#'
 #' Hernández Alava M, Pudney S, Wailoo A. Estimating the Relationship Between EQ-5D-5L and EQ-5D-3L: Results From an English Population Study [EEPRU Report]. University of Sheffield & University of York. \href{https://eepru.sites.sheffield.ac.uk/projects/estimating-the-relationship-between-eq-5d-5l-and-eq-5d-3l}{Article}
-#' 
+#'
 #' Hernández-Alava M, Pudney S. Econometric modelling of multiple self-reports of health states: The switch from EQ-5D-3L to EQ-5D-5L in evaluating drug therapies for rheumatoid arthritis. J Health Econ. 2017 Sep;55:139-152. doi: 10.1016/j.jhealeco.2017.06.013. Epub 2017 Jul 4. \href{https://pubmed.ncbi.nlm.nih.gov/28778350}{PubMed}.
-#' 
+#'
 #' \href{https://nicedsu.sites.sheffield.ac.uk/methods-development/mapping-eq-5d-5l-to-3l}{NICE DSU mapping website}.
-#' 
+#'
 #' @name DSU5L
 #' @export
 "DSU5L"
@@ -61,63 +61,63 @@
 #' Reverse Crosswalk index value table to calculate EQ-5D-5L indices from EQ-5D-3L data
 #'   for England, Germany, Netherlands and USA. Table uses the values of van Hout et al
 #'   from the EuroQol analysis tools webpage.
-#'      
+#'
 #' @source
 #' \href{https://euroqol.org/support/analysis-tools/}{Reverse crosswalk datasets}
-#' 
+#'
 #' @name RCW
-#' @export       
+#' @export
 "RCW"
 
 #' EQ-5D-3L TTO value set data
 #'
 #' Coefficients for the estimation of the EQ-5D-3L index values based on TTO valuation studies
-#'   for Argentina, Australia, Brazil, Canada, Chile, China, Denmark, Ecuador, France, 
-#'   Germany, Hungary, Italy, Japan, Netherlands, Poland, Portugal, Russia, Singapore, 
+#'   for Argentina, Australia, Brazil, Canada, Chile, China, Denmark, Ecuador, France,
+#'   Germany, Hungary, Italy, Japan, Netherlands, Poland, Portugal, Russia, Singapore,
 #'   South Korea, Spain, Sri Lanka, Sweden, Taiwan, Thailand, Trinidad and Tobago, Tunisia,
 #'   UK, USA and Zimbabwe.
-#'      
+#'
 #' @source
-#' Szende, A., Oppe, M., & de Charro, F. (2007), Comparative review of Time Trade-Off value sets. 
+#' Szende, A., Oppe, M., & de Charro, F. (2007), Comparative review of Time Trade-Off value sets.
 #'   In Szende, A., Oppe, M., & Devlin, N. (Ed.), EQ-5D Value Sets: Inventory, Comparative Review
 #'   and User Guide (pp. 27-28). Dordrecht, The Netherlands: Springer.
-#'   
+#'
 #' Janssen, B., Szende, A., & Ramos-Goñi JM. (2014), Data and Methods.
-#'   Szende, A., Janssen, B., & Cabasés, J. (Ed.), In Self-Reported Population Health: An 
+#'   Szende, A., Janssen, B., & Cabasés, J. (Ed.), In Self-Reported Population Health: An
 #'   International Perspective based on EQ-5D (p 13). Dordrecht, The Netherlands: Springer.
-#' 
+#'
 #' \strong{Australia}: Viney R, Norman R, King MT, Cronin P, Street DJ, Knox S, Ratcliffe J. Time trade-off derived EQ-5D weights for Australia. Value Health. 2011 Sep-Oct;14(6):928-36. doi: 10.1016/j.jval.2011.04.009. \href{https://pubmed.ncbi.nlm.nih.gov/21914515/}{PubMed}
-#' 
-#' \strong{Brazil}: Viegas Andrade M, Noronha K, Kind P, Maia AC, Miranda de Menezes R, De Barros Reis C, Nepomuceno Souza M, Martins D, Gomes L, Nichele D, Calazans J, Mascarenhas T, Carvalho L, Lins C. Societal Preferences for EQ-5D Health States from a Brazilian Population Survey. Value in Health Regional Issues 2013;2(3):405–412. \href{https://pubmed.ncbi.nlm.nih.gov/29702778/}{PubMed}  
-#' 
+#'
+#' \strong{Brazil}: Viegas Andrade M, Noronha K, Kind P, Maia AC, Miranda de Menezes R, De Barros Reis C, Nepomuceno Souza M, Martins D, Gomes L, Nichele D, Calazans J, Mascarenhas T, Carvalho L, Lins C. Societal Preferences for EQ-5D Health States from a Brazilian Population Survey. Value in Health Regional Issues 2013;2(3):405–412. \href{https://pubmed.ncbi.nlm.nih.gov/29702778/}{PubMed}
+#'
 #' \strong{Canada}: Bansback N, Tsuchiya A, Brazier J, Anis A. Canadian valuation of EQ-5D health states: preliminary value set and considerations for future valuation studies. PLoS One. 2012;7(2):e31115. \href{https://pubmed.ncbi.nlm.nih.gov/22328929/}{PubMed}
-#' 
+#'
 #' \strong{Chile}: Zarate V, Kind P, Valenzuela P, Vignau A, Olivares-Tirado P, Munoz A. Social valuation of EQ-5D health states: the Chilean case. Value in Health. 2011 Dec;14(8):1135-41. \href{https://pubmed.ncbi.nlm.nih.gov/22152184/}{PubMed}
-#' 
+#'
 #' \strong{China}: Liu GG, Wu H, Li M, Gao C, Luo N. Chinese time trade-off values for EQ-5D health states. Value Health. 2014 Jul;17(5):597-604. doi: 10.1016/j.jval.2014.05.007. Epub 2014 Jul 23. \href{https://pubmed.ncbi.nlm.nih.gov/25128053/}{PubMed}
 #'
 #' \strong{Ecuador}: Lucio R, Flores V,  Granja M, Mata G. Resultados de la encuesta de valoración social de los estados de salud de lAños de vida ajustados por calidad (QALY'S). 2019. \href{https://www.salud.gob.ec/wp-content/uploads/2019/08/resultados_encuesta_valoracion_estados_salud.pdf}{Link}
 #'
 #' \strong{Hungary}: Rencz F, Brodszky V, Gulácsi L, Golicki D, Ruzsa G, Pickard AS, Law EH, Péntek M. Parallel Valuation of the EQ-5D-3L and EQ-5D-5L by Time Trade-Off in Hungary. Value Health. 2020 Sep;23(9):1235-1245. doi: 10.1016/j.jval.2020.03.019. Epub 2020 Aug 12. \href{https://pubmed.ncbi.nlm.nih.gov/32940242/}{PubMed}
-#'   
+#'
 #' \strong{Poland}: Golicki D, Jakubczyk M, Niewada M, Wrona W, Busschbach JJ. Valuation of EQ-5D health states in Poland: first TTO-based social value set in Central and Eastern Europe. Value in Health. 2010;13(2):289-97. \href{https://pubmed.ncbi.nlm.nih.gov/19744296/}{PubMed}
-#' 
+#'
 #' \strong{Portugal}: Ferreira LN, Ferreira PL, Pereira LN, Oppe M. The valuation of the EQ-5D in Portugal. Qual Life Res. 2014 Mar;23(2):413-23. doi: 10.1007/s11136-013-0448-z. Epub 2013 Jun 8. \href{https://pubmed.ncbi.nlm.nih.gov/23748906/}{PubMed}
-#' 
+#'
 #' \strong{Russia}: Omelyanovskiy V, Musina N, Ratushnyak S, Bezdenezhnykh T, Fediaeva V, Roudijk B, Purba FD. Valuation of the EQ-5D-3L in Russia. Qual Life Res. 2021 Mar 13. doi: 10.1007/s11136-021-02804-6. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/33713323/}{PubMed}
-#' 
+#'
 #' \strong{Singapore}: Luo N, Wang P, Thumboo J, Lim YW, Vrijhoef HJ. Valuation of EQ-5D-3L health states in Singapore: modeling of time trade-off values for 80 empirically observed health states. Pharmacoeconomics. 2014 May;32(5):495-507. doi: 10.1007/s40273-014-0142-1. \href{https://pubmed.ncbi.nlm.nih.gov/24519603/}{PubMed}
-#' 
+#'
 #' \strong{Sri Lanka}: Kularatna S, Whitty JA, Johnson NW, Jayasinghe R, Scuffham PA. Valuing EQ-5D health states for Sri Lanka. Qual Life Res. 2015 Jul;24(7):1785-93. doi:10.1007/s11136-014-0906-2. Epub 2014 Dec 28. PubMed PMID: \href{https://pubmed.ncbi.nlm.nih.gov/25543271/}{PubMed}
-#' 
+#'
 #' \strong{Sweden}: Burström K, Sun S, Gerdtham UG, Henriksson M, Johannesson M, Levin LÅ, Zethraeus N. Swedish experience-based value sets for EQ-5D health states. Qual Life Res. 2014 Mar;23(2):431-42. doi: 10.1007/s11136-013-0496-4. \href{https://pubmed.ncbi.nlm.nih.gov/23975375/}{PubMed}
-#' 
+#'
 #' \strong{Taiwan}: Lee HY, Hung MC, Hu FC, Chang YY, Hsieh CL, Wang JD. Estimating quality weights for EQ-5D (EuroQol-5 dimensions) health states with the time trade-off method in Taiwan. J Formos Med Assoc. 2013;112(11):699-706. \href{https://pubmed.ncbi.nlm.nih.gov/24183199/}{PubMed}
-#' 
+#'
 #' \strong{Thailand}: Tongsiri S, Cairns J. Estimating population-based values for EQ-5D health states in Thailand. Value Health. 2011 Dec;14(8):1142-5. doi: 10.1016/j.jval.2011.06.005. \href{https://pubmed.ncbi.nlm.nih.gov/22152185/}{PubMed}
-#' 
+#'
 #' \strong{Trinidad and Tobago}: Bailey H, Stolk E, Kind P. Toward Explicit Prioritization for the Caribbean: An EQ-5D Value Set for Trinidad and Tobago. Value Health Reg Issues. 2016 Dec;11:60-67. doi: 10.1016/j.vhri.2016.07.010. \href{https://pubmed.ncbi.nlm.nih.gov/27986200/}{PubMed}
-#' 
+#'
 #' \strong{Tunisia}: Chemli J, Drira C, Felfel H, Roudijk B, Al Sayah F, Kouki M, Kooli A, Razgallah Khrouf M. Valuing health-related quality of life using a hybrid approach: Tunisian value set for the EQ-5D-3L. Qual Life Res. 2021 Jan 14. doi: 10.1007/s11136-020-02730-z. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/33447958/}{PubMed}
 #'
 #' @name TTO
@@ -127,31 +127,31 @@
 #' EQ-5D-3L VAS value set data
 #'
 #' Coefficients for the estimation of the EQ-5D-3L index values based on VAS valuation studies
-#'  for Belgium, Denmark, Europe, Finland, Germany, Iran, Malaysia, New Zealand, 
+#'  for Belgium, Denmark, Europe, Finland, Germany, Iran, Malaysia, New Zealand,
 #'  Slovenia, Spain and UK.
-#' 
-#' @source 
+#'
+#' @source
 #' Oppe, M., Szende, A., & de Charro, F. (2007), Comparative review of Visual Analogue Scale value sets.
 #'   In Szende, A., Oppe, M., & Devlin, N. (Ed.), EQ-5D Value Sets: Inventory, Comparative Review
-#'   and User Guide (pp. 37-38). Dordrecht, The Netherlands: Springer.  
-#'   
+#'   and User Guide (pp. 37-38). Dordrecht, The Netherlands: Springer.
+#'
 #' \strong{Iran}: Goudarzi R, Zeraati H, Akbari Sari A, Rashidian A, Mohammad K. Population-Based Preference Weights for the EQ-5D Health States Using the Visual Analogue Scale (VAS) in Iran. Iran Red Crescent Med J. 2016 Feb 13;18(2):e21584. doi: 10.5812/ircmj.21584. \href{https://pubmed.ncbi.nlm.nih.gov/27186384/}{PubMed}
-#' 
+#'
 #' \strong{Malaysia}: Yusof FA, Goh A, Azmi S. Estimating an EQ-5D value set for Malaysia using time trade-off and visual analogue scale methods. Value Health. 2012 Jan-Feb;15(1 Suppl):S85-90. doi: 10.1016/j.jval.2011.11.024. \href{https://pubmed.ncbi.nlm.nih.gov/22265073/}{PubMed}
-#' 
+#'
 #' @name VAS
 #' @export
 "VAS"
 
 #' EQ-5D-5L VT value set data
 #'
-#' EQ-5D-5L VT value set calculation data for Belgium, Canada, China, Denmark, 
-#'   Egypt, England, Ethiopia, France, Germany, Hong Kong, Hungary, India, 
-#'   Indonesia, Ireland, Italy, Japan, Malaysia, Mexico, Netherlands, 
-#'   New Zealand, Peru, Poland, Portugal, South Korea, Spain, Sweden, Taiwan, 
+#' EQ-5D-5L VT value set calculation data for Belgium, Canada, China, Denmark,
+#'   Egypt, England, Ethiopia, France, Germany, Hong Kong, Hungary, India,
+#'   Indonesia, Ireland, Italy, Japan, Malaysia, Mexico, Netherlands,
+#'   New Zealand, Peru, Poland, Portugal, South Korea, Spain, Sweden, Taiwan,
 #'   Thailand, Uganda, Uruguay, USA, Vietnam and Western Preference Pattern (WePP).
 #'
-#' @source 
+#' @source
 #'   \enumerate{
 #'     \item{\strong{Belgium}: Bouckaert N, Gerkens S, Devriese S, Cleemput I. An EQ-5D-5L value set for Belgium – How to value health- related quality of life? Health Services Research (HSR) Brussels: Belgian Health Care Knowledge Centre (KCE). 2021. KCE Reports 342. D/2021/10.273/19. \href{https://www.kce.fgov.be/sites/default/files/2021-11/KCE_342_EQ-5D-5L_value_set_for_Belgium_Report_1.pdf}{PDF}}
 #'     \item{\strong{Canada}: Xie F, Pullenayegum E, Gaebel K, Bansback N, Bryan S, Ohinmaa A, Poissant L, Johnson JA. A Time Trade-off-derived Value Set of the EQ-5D-5L for Canada. Med Care. 2016;54(1):98-105. \href{https://pubmed.ncbi.nlm.nih.gov/26492214/}{PubMed}}
@@ -189,7 +189,7 @@
 #'     \item{\strong{Vietnam}: Mai VQ, Sun S, Minh HV, Luo N, Giang KB, Lindholm L, Sahlen KG. An EQ-5D-5L Value Set for Vietnam. Qual Life Res. 2020;29(7):1923-1933. doi:10.1007/s11136-020-02469-7. \href{https://pubmed.ncbi.nlm.nih.gov/32221805/}{PubMed}}
 #'     \item{\strong{WePP}: Olsen JA, Lamu AN, Cairns J. In search of a common currency: A comparison of seven EQ-5D-5L value sets. Health Econ. 2018 Jan;27(1):39-49. doi: 10.1002/hec.3606. Epub 2017 Oct 24. \href{https://pubmed.ncbi.nlm.nih.gov/29063633/}{PubMed}}.
 #'   }
-#'   
+#'
 #' @name VT
 #' @export
 "VT"
@@ -198,14 +198,14 @@
 #'
 #' EQ-5D-Y value set calculation data for Japan and Slovenia.
 #'
-#' @source 
+#' @source
 #'   \enumerate{
 #'     \item{\strong{Germany}: Kreimeier S, Mott D, Ludwig K, Greiner W; IMPACT HTA HRQoL Group. EQ-5D-Y Value Set for Germany. Pharmacoeconomics. 2022 May 23:1–13. doi: 10.1007/s40273-022-01143-9. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/35604633/}{PubMed}}
 #'     \item{\strong{Japan}: Shiroiwa T, Ikeda S, Noto S, Fukuda T, Stolk E. Valuation Survey of EQ-5D-Y Based on the International Common Protocol: Development of a Value Set in Japan. Med Decis Making. 2021 Mar 23:272989X211001859. doi: 10.1177/0272989X211001859. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/33754886/}{PubMed}}
 #'     \item{\strong{Slovenia}: Prevolnik Rupel V, Ogorevc M; IMPACT HTA HRQoL Group. EQ-5D-Y Value Set for Slovenia. Pharmacoeconomics. 2021 Feb 10. doi: 10.1007/s40273-020-00994-4. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/33565048/}{PubMed}}
 #'     \item{\strong{Spain}: Ramos-Goñi JM, Oppe M, Estévez-Carrillo A, Rivero-Arias O; IMPACT HTA HRQoL Group. Accounting for Unobservable Preference Heterogeneity and Evaluating Alternative Anchoring Approaches to Estimate Country-Specific EQ-5D-Y Value Sets: A Case Study Using Spanish Preference Data. Value in Health. 2021 Dec 04. doi: 10.1016/j.jval.2021.10.013.}
 #'   }
-#'   
+#'
 #' @name Y
 #' @export
 "Y"
