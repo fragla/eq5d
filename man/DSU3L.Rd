@@ -18,8 +18,8 @@ Hernández-Alava M, Pudney S. Econometric modelling of multiple self-reports of 
 DSU3L
 }
 \description{
-Data for age and sex based mapping from EQ-5D-3L dimensions or utility index 
-score to EQ-5D-5L for China, Germany, Japan, Netherlands, South Korea, Spain 
+Data for age and sex based mapping from EQ-5D-3L dimensions or utility index
+score to EQ-5D-5L for China, Germany, Japan, Netherlands, South Korea, Spain
 and UK.
 }
 \keyword{datasets}

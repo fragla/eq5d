@@ -53,6 +53,6 @@ Suggests:
     covr
 URL: https://github.com/fragla/eq5d
 BugReports: https://github.com/fragla/eq5d/issues
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1
 VignetteBuilder: knitr
 Language: en-GB
