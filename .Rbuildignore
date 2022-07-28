@@ -10,3 +10,4 @@
 ^CRAN-RELEASE$
 ^\.github$
 ^data$
+^data-raw$
