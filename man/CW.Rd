@@ -8,13 +8,13 @@
 An object of class \code{data.frame} with 3125 rows and 11 columns.
 }
 \source{
-van Hout B, Janssen MF, et al. Interim scoring for the EQ-5D-5L: Mapping the EQ-5D-5L 
-  to EQ-5D-3L value sets. Value in Health 2012 Jul-Aug;15(5):708-15. doi: 10.1016/j.jval.2012.02.008. 
+van Hout B, Janssen MF, et al. Interim scoring for the EQ-5D-5L: Mapping the EQ-5D-5L
+  to EQ-5D-3L value sets. Value in Health 2012 Jul-Aug;15(5):708-15. doi: 10.1016/j.jval.2012.02.008.
   \href{https://pubmed.ncbi.nlm.nih.gov/22867780/}{PubMed}
-  
-Omelyanovskiy V, Musina N, Ratushnyak S, Bezdenezhnykh T, Fediaeva V, Roudijk B, 
-Purba FD. Valuation of the EQ-5D-3L in Russia. Qual Life Res. 2021 Mar 13. 
-doi: 10.1007/s11136-021-02804-6. Epub ahead of print. 
+
+Omelyanovskiy V, Musina N, Ratushnyak S, Bezdenezhnykh T, Fediaeva V, Roudijk B,
+Purba FD. Valuation of the EQ-5D-3L in Russia. Qual Life Res. 2021 Mar 13.
+doi: 10.1007/s11136-021-02804-6. Epub ahead of print.
 \href{https://pubmed.ncbi.nlm.nih.gov/33713323/}{PubMed}.
 
 \href{https://euroqol.org/wp-content/uploads/2018/02/EQ-5D-5L_Crosswalk_Index_Value_Calculator_v2.xls}{EQ-5D-5L Crosswalk Index Value Calculator}
@@ -24,7 +24,7 @@ CW
 }
 \description{
 Crosswalk index value calculation table to calculate EQ-5D-3L indices from EQ-5D-5L data
-  for Denmark, France, Germany, Japan, Netherlands, Russia, Spain, Thailand, UK, USA 
+  for Denmark, France, Germany, Japan, Netherlands, Russia, Spain, Thailand, UK, USA
   and Zimbabwe.
 }
 \keyword{datasets}

@@ -1,6 +1,5 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
 <!-- badges: start -->
 
 [![R build
@@ -172,53 +171,53 @@ or by country.
 ``` r
 # Return all value sets (top 6 returned for brevity).
 head(valuesets())
-#>    Version Type   Country
-#> 1 EQ-5D-3L  TTO Argentina
-#> 2 EQ-5D-3L  TTO Australia
-#> 3 EQ-5D-3L  TTO    Brazil
-#> 4 EQ-5D-3L  TTO    Canada
-#> 5 EQ-5D-3L  TTO     Chile
-#> 6 EQ-5D-3L  TTO     China
+#>    Version Type     Country PubMed  DOI
+#> 1 EQ-5D-3L  DSU       China     NA <NA>
+#> 2 EQ-5D-3L  DSU     Germany     NA <NA>
+#> 3 EQ-5D-3L  DSU       Japan     NA <NA>
+#> 4 EQ-5D-3L  DSU Netherlands     NA <NA>
+#> 5 EQ-5D-3L  DSU  SouthKorea     NA <NA>
+#> 6 EQ-5D-3L  DSU       Spain     NA <NA>
 
 # Return VAS based value sets (top 6 returned for brevity).
 head(valuesets(type="VAS"))
-#>    Version Type Country
-#> 1 EQ-5D-3L  VAS Belgium
-#> 2 EQ-5D-3L  VAS Denmark
-#> 3 EQ-5D-3L  VAS  Europe
-#> 4 EQ-5D-3L  VAS Finland
-#> 5 EQ-5D-3L  VAS Germany
-#> 6 EQ-5D-3L  VAS    Iran
+#>    Version Type Country   PubMed                       DOI
+#> 1 EQ-5D-3L  VAS Belgium 19582490 10.1007/s10198-009-0167-0
+#> 2 EQ-5D-3L  VAS Denmark       NA                      <NA>
+#> 3 EQ-5D-3L  VAS  Europe       NA                      <NA>
+#> 4 EQ-5D-3L  VAS Finland       NA                      <NA>
+#> 5 EQ-5D-3L  VAS Germany       NA                      <NA>
+#> 6 EQ-5D-3L  VAS    Iran 27186384       10.5812/ircmj.21584
 
 # Return EQ-5D-5L value sets (top 6 returned for brevity).
 head(valuesets(version="5L"))
-#>    Version Type Country
-#> 1 EQ-5D-5L   VT Belgium
-#> 2 EQ-5D-5L   VT  Canada
-#> 3 EQ-5D-5L   VT   China
-#> 4 EQ-5D-5L   VT Denmark
-#> 5 EQ-5D-5L   VT   Egypt
-#> 6 EQ-5D-5L   VT England
+#>    Version Type     Country   PubMed                        DOI
+#> 1 EQ-5D-5L   CW     Denmark 22867780 10.1016/j.jval.2012.02.008
+#> 2 EQ-5D-5L   CW      France 22867780 10.1016/j.jval.2012.02.008
+#> 3 EQ-5D-5L   CW     Germany 22867780 10.1016/j.jval.2012.02.008
+#> 4 EQ-5D-5L   CW       Japan 22867780 10.1016/j.jval.2012.02.008
+#> 5 EQ-5D-5L   CW Netherlands 22867780 10.1016/j.jval.2012.02.008
+#> 6 EQ-5D-5L   CW      Russia 33713323 10.1007/s11136-021-02804-6
 
 # Return all UK value sets.
 valuesets(country="UK")
-#>    Version Type Country
-#> 1 EQ-5D-3L  TTO      UK
-#> 2 EQ-5D-3L  VAS      UK
-#> 3 EQ-5D-5L   CW      UK
-#> 4 EQ-5D-3L  DSU      UK
-#> 5 EQ-5D-5L  DSU      UK
+#>    Version Type Country   PubMed                              DOI
+#> 1 EQ-5D-3L  DSU      UK       NA                             <NA>
+#> 2 EQ-5D-3L  TTO      UK  9366889 10.1097/00005650-199711000-00002
+#> 3 EQ-5D-3L  VAS      UK       NA                             <NA>
+#> 4 EQ-5D-5L   CW      UK 22867780       10.1016/j.jval.2012.02.008
+#> 5 EQ-5D-5L  DSU      UK       NA                             <NA>
 
 # Return all EQ-5D-5L to EQ-5D-3L DSU value sets.
 valuesets(type="DSU", version="5L")
-#>    Version Type     Country
-#> 1 EQ-5D-5L  DSU       China
-#> 2 EQ-5D-5L  DSU     Germany
-#> 3 EQ-5D-5L  DSU       Japan
-#> 4 EQ-5D-5L  DSU Netherlands
-#> 5 EQ-5D-5L  DSU  SouthKorea
-#> 6 EQ-5D-5L  DSU       Spain
-#> 7 EQ-5D-5L  DSU          UK
+#>    Version Type     Country PubMed  DOI
+#> 1 EQ-5D-5L  DSU       China     NA <NA>
+#> 2 EQ-5D-5L  DSU     Germany     NA <NA>
+#> 3 EQ-5D-5L  DSU       Japan     NA <NA>
+#> 4 EQ-5D-5L  DSU Netherlands     NA <NA>
+#> 5 EQ-5D-5L  DSU  SouthKorea     NA <NA>
+#> 6 EQ-5D-5L  DSU       Spain     NA <NA>
+#> 7 EQ-5D-5L  DSU          UK     NA <NA>
 ```
 
 ## Analysis of EQ-5D Profiles
@@ -393,7 +392,6 @@ EQ-5D dataset. The “by” argument enables a grouping variable to be
 specified when analysing the data subgroup.
 
 ``` r
-
 dat <- data.frame(
          matrix(
            sample(1:3,5*12, replace=TRUE),12,5, 
@@ -403,29 +401,29 @@ dat <- data.frame(
        )
 
 eq5dds(dat, version="3L")
-#>     MO SC   UA   PD   AD
-#> 1 33.3 25 16.7 25.0 58.3
-#> 2 50.0 50 50.0 16.7 25.0
-#> 3 16.7 25 33.3 58.3 16.7
+#>     MO   SC   UA   PD   AD
+#> 1 33.3 25.0 33.3 16.7 25.0
+#> 2 41.7 58.3 25.0 16.7 58.3
+#> 3 25.0 16.7 41.7 66.7 16.7
 
 eq5dds(dat, version="3L", counts=TRUE)
 #>   MO SC UA PD AD
-#> 1  4  3  2  3  7
-#> 2  6  6  6  2  3
-#> 3  2  3  4  7  2
+#> 1  4  3  4  2  3
+#> 2  5  7  3  2  7
+#> 3  3  2  5  8  2
 
 eq5dds(dat, version="3L", by="Sex")
 #> data[, by]: Female
-#>     MO   SC   UA   PD  AD
-#> 1  0.0 33.3 33.3 16.7 100
-#> 2 66.7 50.0 16.7 16.7   0
-#> 3 33.3 16.7 50.0 66.7   0
+#>     MO   SC   UA   PD   AD
+#> 1 33.3  0.0 33.3 16.7 33.3
+#> 2 33.3 66.7 33.3 16.7 33.3
+#> 3 33.3 33.3 33.3 66.7 33.3
 #> ------------------------------------------------------------ 
 #> data[, by]: Male
-#>     MO   SC   UA   PD   AD
-#> 1 66.7 16.7  0.0 33.3 16.7
-#> 2 33.3 50.0 83.3 16.7 50.0
-#> 3  0.0 33.3 16.7 50.0 33.3
+#>     MO SC   UA   PD   AD
+#> 1 33.3 50 33.3 16.7 16.7
+#> 2 50.0 50 16.7 16.7 83.3
+#> 3 16.7  0 50.0 66.7  0.0
 ```
 
 ## Helper functions
@@ -439,7 +437,6 @@ states into a data.frame of their individual components and
 data.frame into five digit health states.
 
 ``` r
-
 # Get all EQ-5D-3L five digit health states (top 6 returned for brevity).
 head(getHealthStates("3L"))
 #> [1] "11111" "11112" "11113" "11121" "11122" "11123"
@@ -500,7 +497,7 @@ results.
 ![Shiny EQ-5D app excel data
 formats](man/figures/shiny_app_excel_scores.png)
 
-The app is launched using the ***shiny\_eq5d*** function.
+The app is launched using the ***shiny_eq5d*** function.
 
 ``` r
 shiny_eq5d()

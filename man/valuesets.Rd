@@ -16,7 +16,8 @@ Unit's EQ-5D-5L to EQ-5D-3L and EQ-5D-3L to EQ-5D-5L mappings.}
 \item{country}{string one of the countries for which there is a value set.}
 }
 \value{
-A data.frame containing the EQ-5D version, value set type and country
+A data.frame containing the EQ-5D version, the value set type and
+  country, along with PubMed IDs and DOIs where available.
 }
 \description{
 \code{valuesets} returns a data.frame of the available EQ-5D value sets

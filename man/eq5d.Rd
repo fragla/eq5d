@@ -17,7 +17,7 @@ version.}
 
 \item{type}{string specifying method type used in deriving value set scores.
 Options are TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L, CW for EQ-5D-5L
-crosswalk conversion valuesets, RCW for EQ-5D-3L reverse crosswalk 
+crosswalk conversion valuesets, RCW for EQ-5D-3L reverse crosswalk
 conversion valuesets and DSU for the NICE Decision Support Unit age-sex
 based EQ-5D-3L to EQ-5D-5L and EQ-5D-5L to EQ-5D-3L mappings}
 
@@ -26,11 +26,11 @@ based EQ-5D-3L to EQ-5D-5L and EQ-5D-5L to EQ-5D-3L mappings}
 \item{ignore.invalid}{logical to indicate whether to ignore dimension data
 with invalid, incomplete or missing data.}
 
-\item{...}{character vectors for column names when using a data.frame. Use 
-"dimensions" (default c("MO", "SC", "UA", "PD" and "AD")), "five.digit" 
-(default "State") or "utility", "age", "sex" and "bwidth" (defaults 
-"Utility", "Age", "Sex" and "bwidth") for NICE DSU mapping. When a single 
-NICE DSU score is being calculated "age", "sex" and "bwidth" are also 
+\item{...}{character vectors for column names when using a data.frame. Use
+"dimensions" (default c("MO", "SC", "UA", "PD" and "AD")), "five.digit"
+(default "State") or "utility", "age", "sex" and "bwidth" (defaults
+"Utility", "Age", "Sex" and "bwidth") for NICE DSU mapping. When a single
+NICE DSU score is being calculated "age", "sex" and "bwidth" are also
 used. See \code{\link{eq5dmap}} for valid options.}
 }
 \value{
@@ -46,8 +46,8 @@ eq5d(scores=c(MO=1,SC=2,UA=3,PD=4,AD=5), type="VT",
  country="Indonesia", version="5L")
 eq5d(scores=c(MO=3,SC=2,UA=3,PD=2,AD=3),
  type="TTO", version="3L", country="Germany")
- 
-eq5d(0.922, country="UK", version="5L", type="DSU", 
+
+eq5d(0.922, country="UK", version="5L", type="DSU",
  age=18, sex="male")
 
 scores.df <- data.frame(
