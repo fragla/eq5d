@@ -6,7 +6,7 @@ EQ-5D-3L,TTO,Canada,22328929,10.1371/journal.pone.0031115,
 EQ-5D-3L,TTO,Chile,22152184,10.1016/j.jval.2011.09.002.,
 EQ-5D-3L,TTO,China,25128053,10.1016/j.jval.2014.05.007,
 EQ-5D-3L,TTO,Denmark,19411320,10.1177/1403494809105287,
-EQ-5D-3L,TTO,Ecuador,,,https://www.researchgate.net/publication/335840590_QALYs_FINAL_Ecuadordig
+EQ-5D-3L,TTO,Ecuador,,,https://www.salud.gob.ec/wp-content/uploads/2019/08/resultados_encuesta_valoracion_estados_salud.pdf
 EQ-5D-3L,TTO,France,21935715,10.1007/s10198-011-0351-x,
 EQ-5D-3L,TTO,Germany,19787848,10.1007/s10198-004-0264-z,
 EQ-5D-3L,TTO,Hungary,32940242,10.1016/j.jval.2020.03.019,
@@ -43,7 +43,7 @@ EQ-5D-3L,RCW,England,,,https://euroqol.org/support/analysis-tools/cross-walk/
 EQ-5D-3L,RCW,Germany,,,https://euroqol.org/support/analysis-tools/cross-walk/
 EQ-5D-3L,RCW,Netherlands,,,https://euroqol.org/support/analysis-tools/cross-walk/
 EQ-5D-3L,RCW,USA,,,https://euroqol.org/support/analysis-tools/cross-walk/
-EQ-5D-5L,VT,Belgium,,,https://www.kce.fgov.be/sites/default/files/2021-11/KCE_342_EQ-5D-5L_value_set_for_Belgium_Report_1.pdf
+EQ-5D-5L,VT,Belgium,35927410,10.1007/s41669-022-00353-3,https://www.kce.fgov.be/sites/default/files/2021-11/KCE_342_EQ-5D-5L_value_set_for_Belgium_Report_1.pdf
 EQ-5D-5L,VT,Canada,26492214,10.1097/MLR.0000000000000447,
 EQ-5D-5L,VT,China,28408009,10.1016/j.jval.2016.11.016,
 EQ-5D-5L,VT,Denmark,33527304,10.1007/s40258-021-00639-3,
