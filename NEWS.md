@@ -1,6 +1,14 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
+# eq5d (development version)
+
+  - valuesets function now returns PubMed/DOI/external URL.
+
+  - Restructuring of how value set data is stored internally.
+
+  - Thanks to @TimTaylor for implementing both of these things.
+
 # eq5d 0.12.0 (2022-07-26)
 
   - Philippine, Romanian and Indian EQ-5D-5L value sets added.
