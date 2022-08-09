@@ -161,7 +161,7 @@
 #'
 #' @source
 #' \itemize{
-#' \item{\strong{Belgium}: Bouckaert N, Gerkens S, Devriese S, Cleemput I. An EQ-5D-5L value set for Belgium – How to value health- related quality of life? Health Services Research (HSR) Brussels: Belgian Health Care Knowledge Centre (KCE). 2021. KCE Reports 342. D/2021/10.273/19. \href{https://www.kce.fgov.be/sites/default/files/2021-11/KCE_342_EQ-5D-5L_value_set_for_Belgium_Report_1.pdf}{PDF}}
+#' \item{\strong{Belgium}: Bouckaert N, Cleemput I, Devriese S, Gerkens S. An EQ-5D-5L Value Set for Belgium. Pharmacoecon Open. 2022 Aug 4. doi: 10.1007/s41669-022-00353-3. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/35927410/}{PubMed}}
 #' \item{\strong{Canada}: Xie F, Pullenayegum E, Gaebel K, Bansback N, Bryan S, Ohinmaa A, Poissant L, Johnson JA. A Time Trade-off-derived Value Set of the EQ-5D-5L for Canada. Med Care. 2016;54(1):98-105. \href{https://pubmed.ncbi.nlm.nih.gov/26492214/}{PubMed}}
 #' \item{\strong{China}: Luo N, Liu G, Li M, Guan H, Jin X, Rand-Hendriksen K. Estimating an EQ-5D-5L Value Set for China. Value in Health. 2017 Apr;20(4):662-669. doi: 10.1016/j.jval.2016.11.016. Epub 2017 Feb 9. \href{https://pubmed.ncbi.nlm.nih.gov/28408009/}{PubMed}}
 #' \item{\strong{Denmark}: Jensen CE, Sørensen SS, Gudex C, Jensen MB, Pedersen KM, Ehlers LH. The Danish EQ-5D-5L Value Set: A Hybrid Model Using cTTO and DCE Data. Appl Health Econ Health Policy. 2021 Feb 2. doi: 10.1007/s40258-021-00639-3. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/33527304/}{PubMed}}
