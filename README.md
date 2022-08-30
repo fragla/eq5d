@@ -67,7 +67,7 @@ mapping between the EQ-5D-5L and EQ-5D-3L descriptive systems.
 
 The recently published age and sex conditional based mapping data by the
 [NICE Decision Support
-Unit](https://nicedsu.sites.sheffield.ac.uk/methods-development/mapping-eq-5d-5l-to-3l)
+Unit](https://www.sheffield.ac.uk/nice-dsu/methods-development/mapping-eq-5d-5l-3l)
 are also now part of the package. These enable age-sex based EQ-5D-3L to
 EQ-5D-5L and EQ-5D-5L to EQ-5D-3L mappings from dimensions and exact or
 approximate utility index scores.
@@ -392,6 +392,7 @@ EQ-5D dataset. The “by” argument enables a grouping variable to be
 specified when analysing the data subgroup.
 
 ``` r
+
 dat <- data.frame(
          matrix(
            sample(1:3,5*12, replace=TRUE),12,5, 
@@ -402,28 +403,28 @@ dat <- data.frame(
 
 eq5dds(dat, version="3L")
 #>     MO   SC   UA   PD   AD
-#> 1 33.3 25.0 33.3 16.7 25.0
-#> 2 41.7 58.3 25.0 16.7 58.3
-#> 3 25.0 16.7 41.7 66.7 16.7
+#> 1 25.0 33.3 25.0 41.7 41.7
+#> 2 33.3 50.0 41.7 16.7 16.7
+#> 3 41.7 16.7 33.3 41.7 41.7
 
 eq5dds(dat, version="3L", counts=TRUE)
 #>   MO SC UA PD AD
-#> 1  4  3  4  2  3
-#> 2  5  7  3  2  7
-#> 3  3  2  5  8  2
+#> 1  3  4  3  5  5
+#> 2  4  6  5  2  2
+#> 3  5  2  4  5  5
 
 eq5dds(dat, version="3L", by="Sex")
 #> data[, by]: Female
-#>     MO   SC   UA   PD   AD
-#> 1 33.3  0.0 33.3 16.7 33.3
-#> 2 33.3 66.7 33.3 16.7 33.3
-#> 3 33.3 33.3 33.3 66.7 33.3
+#>     MO   SC   UA   PD AD
+#> 1 16.7 33.3 33.3  0.0 50
+#> 2 33.3 50.0 50.0 33.3  0
+#> 3 50.0 16.7 16.7 66.7 50
 #> ------------------------------------------------------------ 
 #> data[, by]: Male
-#>     MO SC   UA   PD   AD
-#> 1 33.3 50 33.3 16.7 16.7
-#> 2 50.0 50 16.7 16.7 83.3
-#> 3 16.7  0 50.0 66.7  0.0
+#>     MO   SC   UA   PD   AD
+#> 1 33.3 33.3 16.7 83.3 33.3
+#> 2 33.3 50.0 33.3  0.0 33.3
+#> 3 33.3 16.7 50.0 16.7 33.3
 ```
 
 ## Helper functions
@@ -437,6 +438,7 @@ states into a data.frame of their individual components and
 data.frame into five digit health states.
 
 ``` r
+
 # Get all EQ-5D-3L five digit health states (top 6 returned for brevity).
 head(getHealthStates("3L"))
 #> [1] "11111" "11112" "11113" "11121" "11122" "11123"
