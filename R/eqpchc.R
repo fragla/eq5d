@@ -51,8 +51,8 @@ pchc <- function(pre, post, version="5L", no.problems=TRUE, totals=TRUE, by.dime
   
   if(length(pre.idx)>0 || length(post.idx)>0) {
     if(ignore.invalid) {
-      pre[c(pre.idx,post.idx),] <- NA
-      post[c(pre.idx,post.idx),] <- NA
+      pre[unique(c(pre.idx,post.idx)),] <- NA
+      post[unique(c(pre.idx,post.idx)),] <- NA
     } else {
       stop("Missing/non-numeric dimension found.")
     }
