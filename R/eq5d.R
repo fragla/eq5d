@@ -233,10 +233,13 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
 #'     in the \code{eq5d} package.
 #'
 #' @param type string EQ-5D value set type. TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L,
-#'   CW for EQ-5D-5L crosswalk conversion dataset, or DSU for NICE Decision Support
+#'   cTTO for EQ-5D-Y, CW for EQ-5D-5L crosswalk conversion dataset, or DSU for NICE Decision Support
 #'   Unit's EQ-5D-5L to EQ-5D-3L and EQ-5D-3L to EQ-5D-5L mappings.
-#' @param version string either 3L or 5L.
+#' @param version string either 3L, 5L or Y.
 #' @param country string one of the countries for which there is a value set.
+#' @param references character vector of reference columns. One or more of PubMed, 
+#'   DOI, ISBN or ExternalURL. Default is all. Reference columns can be removed by 
+#'   setting argument to NULL.
 #'
 #' @return A data.frame containing the EQ-5D version, the value set type and
 #'   country, along with PubMed IDs and DOIs where available.
@@ -245,8 +248,9 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
 #' valuesets(type="TTO")
 #' valuesets(version="5L")
 #' valuesets(country="UK")
+#' valuesets(version="Y", references=c("DOI", "PubMed"))
 #' @export
-valuesets <- function(type=NULL, version=NULL, country=NULL) {
+valuesets <- function(type=NULL, version=NULL, country=NULL, references=c("PubMed", "DOI", "ISBN", "ExternalURL")) {
   if(!is.null(version)) version <- paste0("EQ-5D-", version)
 
   tto <- data.frame(Version="EQ-5D-3L", Type="TTO", Country=colnames(TTO))
@@ -263,7 +267,16 @@ valuesets <- function(type=NULL, version=NULL, country=NULL) {
   if(!is.null(version)) vs <- vs[vs$Version==version,]
   if(!is.null(country)) vs <- vs[vs$Country==country,]
   rownames(vs) <- NULL
+  
   vs <- merge(vs, REFERENCES, by = c("Version", "Type", "Country"))
-  vs$ExternalURL <- NULL
+  
+  if(is.null(references) || is.na(references) || references=="") {
+    vs <- vs[,c("Version", "Type", "Country")]
+  } else if (all(references %in% c("PubMed", "DOI", "ISBN", "ExternalURL"))) {
+    vs <- vs[,c("Version", "Type", "Country", references)]
+  } else {
+    stop("One or more reference columns not found. Valid options are one or more of PubMed, DOI, ISBN and ExternalURL.")
+  }
+  
   vs
 }
