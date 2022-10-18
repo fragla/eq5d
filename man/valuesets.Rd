@@ -26,7 +26,7 @@ setting argument to NULL.}
 }
 \value{
 A data.frame containing the EQ-5D version, the value set type and
-  country, along with PubMed IDs and DOIs where available.
+  country, along with PubMed IDs, DOIs, ISBNs and external URLs where available.
 }
 \description{
 \code{valuesets} returns a data.frame of the available EQ-5D value sets
