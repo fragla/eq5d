@@ -208,7 +208,9 @@
 #' @source
 #'   \itemize{
 #'     \item{\strong{Germany}: Kreimeier S, Mott D, Ludwig K, Greiner W; IMPACT HTA HRQoL Group. EQ-5D-Y Value Set for Germany. Pharmacoeconomics. 2022 May 23:1–13. doi: 10.1007/s40273-022-01143-9. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/35604633/}{PubMed}}
+#'     \item{\strong{Hungary}: Rencz F, Ruzsa G, Bató A, Yang Z, Finch AP, Brodszky V. Value Set for the EQ-5D-Y-3L in Hungary. Pharmacoeconomics. 2022 Sep 20:1–11. doi: 10.1007/s40273-022-01190-2. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/36123448/}{PubMed}}
 #'     \item{\strong{Japan}: Shiroiwa T, Ikeda S, Noto S, Fukuda T, Stolk E. Valuation Survey of EQ-5D-Y Based on the International Common Protocol: Development of a Value Set in Japan. Med Decis Making. 2021 Mar 23:272989X211001859. doi: 10.1177/0272989X211001859. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/33754886/}{PubMed}}
+#'     \item{\strong{Netherlands}:Roudijk B, Sajjad A, Essers B, Lipman S, Stalmeier P, Finch AP. A Value Set for the EQ-5D-Y-3L in the Netherlands. Pharmacoeconomics. 2022 Oct 10:1–11. doi: 10.1007/s40273-022-01192-0. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/36216977/}{PubMed}}
 #'     \item{\strong{Slovenia}: Prevolnik Rupel V, Ogorevc M; IMPACT HTA HRQoL Group. EQ-5D-Y Value Set for Slovenia. Pharmacoeconomics. 2021 Feb 10. doi: 10.1007/s40273-020-00994-4. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/33565048/}{PubMed}}
 #'     \item{\strong{Spain}: Ramos-Goñi JM, Oppe M, Estévez-Carrillo A, Rivero-Arias O; IMPACT HTA HRQoL Group. Accounting for Unobservable Preference Heterogeneity and Evaluating Alternative Anchoring Approaches to Estimate Country-Specific EQ-5D-Y Value Sets: A Case Study Using Spanish Preference Data. Value in Health. 2021 Dec 04. doi: 10.1016/j.jval.2021.10.013.}
 #'   }
