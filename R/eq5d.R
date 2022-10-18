@@ -242,7 +242,7 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
 #'   setting argument to NULL.
 #'
 #' @return A data.frame containing the EQ-5D version, the value set type and
-#'   country, along with PubMed IDs and DOIs where available.
+#'   country, along with PubMed IDs, DOIs, ISBNs and external URLs where available.
 #' @examples
 #' valuesets()
 #' valuesets(type="TTO")
@@ -270,7 +270,7 @@ valuesets <- function(type=NULL, version=NULL, country=NULL, references=c("PubMe
   
   vs <- merge(vs, REFERENCES, by = c("Version", "Type", "Country"))
   
-  if(is.null(references) || is.na(references) || references=="") {
+  if(is.null(references)) {
     vs <- vs[,c("Version", "Type", "Country")]
   } else if (all(references %in% c("PubMed", "DOI", "ISBN", "ExternalURL"))) {
     vs <- vs[,c("Version", "Type", "Country", references)]
