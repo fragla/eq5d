@@ -3,7 +3,7 @@
 
 # eq5d (development version)
 
--   Hungarian EQ-5D-Y value set added
+-   Dutch and Hungarian EQ-5D-Y value set added
 
 -   valuesets function now returns PubMed/DOI/ISBN/external URL.
 
