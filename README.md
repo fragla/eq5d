@@ -170,7 +170,7 @@ or by country.
 
 ``` r
 # Return TTO value sets with PubMed IDs and DOIs (top 6 returned for brevity).
-head(valuesets(type="TTO", references = c("PubMed", "DOI")))
+head(valuesets(type="TTO", references=c("PubMed", "DOI")))
 #>    Version Type   Country   PubMed                              DOI
 #> 1 EQ-5D-3L  TTO Argentina 19900257 10.1111/j.1524-4733.2008.00468.x
 #> 2 EQ-5D-3L  TTO Australia 21914515       10.1016/j.jval.2011.04.009
@@ -180,7 +180,7 @@ head(valuesets(type="TTO", references = c("PubMed", "DOI")))
 #> 6 EQ-5D-3L  TTO     China 25128053       10.1016/j.jval.2014.05.007
 
 # Return VAS value sets with ISBN and external URL (top 6 returned for brevity).
-head(valuesets(type="VAS", references = c("ISBN", "ExternalURL")))
+head(valuesets(type="VAS", references=c("ISBN", "ExternalURL")))
 #>    Version Type Country          ISBN
 #> 1 EQ-5D-3L  VAS Belgium 1-4020-5511-0
 #> 2 EQ-5D-3L  VAS Denmark 1-4020-5511-1
@@ -221,7 +221,7 @@ valuesets(country="France")
 #> 3 EQ-5D-5L   VT  France 31912325 10.1007/s40273-019-00876-4 <NA>        <NA>
 
 # Return all EQ-5D-5L to EQ-5D-3L DSU value sets without references.
-valuesets(type="DSU", version="5L", reference=NULL)
+valuesets(type="DSU", version="5L", references=NULL)
 #>    Version Type     Country
 #> 1 EQ-5D-5L  DSU       China
 #> 2 EQ-5D-5L  DSU     Germany
@@ -414,29 +414,29 @@ dat <- data.frame(
        )
 
 eq5dds(dat, version="3L")
-#>     MO   SC UA   PD   AD
-#> 1 33.3 16.7 50 41.7 50.0
-#> 2 25.0 25.0 25 33.3 33.3
-#> 3 41.7 58.3 25 25.0 16.7
+#>     MO   SC   UA   PD   AD
+#> 1 25.0 33.3 16.7 33.3 41.7
+#> 2 33.3 41.7 33.3 33.3 16.7
+#> 3 41.7 25.0 50.0 33.3 41.7
 
 eq5dds(dat, version="3L", counts=TRUE)
 #>   MO SC UA PD AD
-#> 1  4  2  6  5  6
-#> 2  3  3  3  4  4
-#> 3  5  7  3  3  2
+#> 1  3  4  2  4  5
+#> 2  4  5  4  4  2
+#> 3  5  3  6  4  5
 
 eq5dds(dat, version="3L", by="Sex")
 #> data[, by]: Female
-#>     MO   SC UA   PD   AD
-#> 1 33.3 16.7 50 33.3 83.3
-#> 2 33.3 33.3  0 33.3 16.7
-#> 3 33.3 50.0 50 33.3  0.0
+#>     MO SC   UA   PD   AD
+#> 1  0.0  0 16.7 16.7 50.0
+#> 2 66.7 50 33.3 33.3 16.7
+#> 3 33.3 50 50.0 50.0 33.3
 #> ------------------------------------------------------------ 
 #> data[, by]: Male
-#>     MO   SC UA   PD   AD
-#> 1 33.3 16.7 50 50.0 16.7
-#> 2 16.7 16.7 50 33.3 50.0
-#> 3 50.0 66.7  0 16.7 33.3
+#>   MO   SC   UA   PD   AD
+#> 1 50 66.7 16.7 50.0 33.3
+#> 2  0 33.3 33.3 33.3 16.7
+#> 3 50  0.0 50.0 16.7 50.0
 ```
 
 ## Helper functions
