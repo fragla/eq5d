@@ -169,55 +169,67 @@ function. The results can be filtered by EQ-5D version, value set type
 or by country.
 
 ``` r
-# Return all value sets (top 6 returned for brevity).
-head(valuesets())
-#>    Version Type     Country PubMed  DOI
-#> 1 EQ-5D-3L  DSU       China     NA <NA>
-#> 2 EQ-5D-3L  DSU     Germany     NA <NA>
-#> 3 EQ-5D-3L  DSU       Japan     NA <NA>
-#> 4 EQ-5D-3L  DSU Netherlands     NA <NA>
-#> 5 EQ-5D-3L  DSU  SouthKorea     NA <NA>
-#> 6 EQ-5D-3L  DSU       Spain     NA <NA>
+# Return TTO value sets with PubMed IDs and DOIs (top 6 returned for brevity).
+head(valuesets(type="TTO", references = c("PubMed", "DOI")))
+#>    Version Type   Country   PubMed                              DOI
+#> 1 EQ-5D-3L  TTO Argentina 19900257 10.1111/j.1524-4733.2008.00468.x
+#> 2 EQ-5D-3L  TTO Australia 21914515       10.1016/j.jval.2011.04.009
+#> 3 EQ-5D-3L  TTO    Brazil 29702778       10.1016/j.vhri.2013.01.009
+#> 4 EQ-5D-3L  TTO    Canada 22328929     10.1371/journal.pone.0031115
+#> 5 EQ-5D-3L  TTO     Chile 22152184      10.1016/j.jval.2011.09.002.
+#> 6 EQ-5D-3L  TTO     China 25128053       10.1016/j.jval.2014.05.007
 
-# Return VAS based value sets (top 6 returned for brevity).
-head(valuesets(type="VAS"))
-#>    Version Type Country   PubMed                       DOI
-#> 1 EQ-5D-3L  VAS Belgium 19582490 10.1007/s10198-009-0167-0
-#> 2 EQ-5D-3L  VAS Denmark       NA                      <NA>
-#> 3 EQ-5D-3L  VAS  Europe       NA                      <NA>
-#> 4 EQ-5D-3L  VAS Finland       NA                      <NA>
-#> 5 EQ-5D-3L  VAS Germany       NA                      <NA>
-#> 6 EQ-5D-3L  VAS    Iran 27186384       10.5812/ircmj.21584
+# Return VAS value sets with ISBN and external URL (top 6 returned for brevity).
+head(valuesets(type="VAS", references = c("ISBN", "ExternalURL")))
+#>    Version Type Country          ISBN
+#> 1 EQ-5D-3L  VAS Belgium 1-4020-5511-0
+#> 2 EQ-5D-3L  VAS Denmark 1-4020-5511-1
+#> 3 EQ-5D-3L  VAS  Europe 1-4020-5511-2
+#> 4 EQ-5D-3L  VAS Finland 1-4020-5511-3
+#> 5 EQ-5D-3L  VAS Germany 1-4020-5511-4
+#> 6 EQ-5D-3L  VAS    Iran          <NA>
+#>                                                              ExternalURL
+#> 1 https://eq-5dpublications.euroqol.org/download?id=0_54011&fileId=54420
+#> 2 https://eq-5dpublications.euroqol.org/download?id=0_54011&fileId=54420
+#> 3 https://eq-5dpublications.euroqol.org/download?id=0_54011&fileId=54420
+#> 4 https://eq-5dpublications.euroqol.org/download?id=0_54011&fileId=54420
+#> 5 https://eq-5dpublications.euroqol.org/download?id=0_54011&fileId=54420
+#> 6                                                                   <NA>
 
 # Return EQ-5D-5L value sets (top 6 returned for brevity).
 head(valuesets(version="5L"))
-#>    Version Type     Country   PubMed                        DOI
-#> 1 EQ-5D-5L   CW     Denmark 22867780 10.1016/j.jval.2012.02.008
-#> 2 EQ-5D-5L   CW      France 22867780 10.1016/j.jval.2012.02.008
-#> 3 EQ-5D-5L   CW     Germany 22867780 10.1016/j.jval.2012.02.008
-#> 4 EQ-5D-5L   CW       Japan 22867780 10.1016/j.jval.2012.02.008
-#> 5 EQ-5D-5L   CW Netherlands 22867780 10.1016/j.jval.2012.02.008
-#> 6 EQ-5D-5L   CW      Russia 33713323 10.1007/s11136-021-02804-6
+#>    Version Type     Country   PubMed                        DOI ISBN
+#> 1 EQ-5D-5L   CW     Denmark 22867780 10.1016/j.jval.2012.02.008 <NA>
+#> 2 EQ-5D-5L   CW      France 22867780 10.1016/j.jval.2012.02.008 <NA>
+#> 3 EQ-5D-5L   CW     Germany 22867780 10.1016/j.jval.2012.02.008 <NA>
+#> 4 EQ-5D-5L   CW       Japan 22867780 10.1016/j.jval.2012.02.008 <NA>
+#> 5 EQ-5D-5L   CW Netherlands 22867780 10.1016/j.jval.2012.02.008 <NA>
+#> 6 EQ-5D-5L   CW      Russia 33713323 10.1007/s11136-021-02804-6 <NA>
+#>   ExternalURL
+#> 1        <NA>
+#> 2        <NA>
+#> 3        <NA>
+#> 4        <NA>
+#> 5        <NA>
+#> 6        <NA>
 
-# Return all UK value sets.
-valuesets(country="UK")
-#>    Version Type Country   PubMed                              DOI
-#> 1 EQ-5D-3L  DSU      UK       NA                             <NA>
-#> 2 EQ-5D-3L  TTO      UK  9366889 10.1097/00005650-199711000-00002
-#> 3 EQ-5D-3L  VAS      UK       NA                             <NA>
-#> 4 EQ-5D-5L   CW      UK 22867780       10.1016/j.jval.2012.02.008
-#> 5 EQ-5D-5L  DSU      UK       NA                             <NA>
+# Return all French value sets.
+valuesets(country="France")
+#>    Version Type Country   PubMed                        DOI ISBN ExternalURL
+#> 1 EQ-5D-3L  TTO  France 21935715  10.1007/s10198-011-0351-x <NA>        <NA>
+#> 2 EQ-5D-5L   CW  France 22867780 10.1016/j.jval.2012.02.008 <NA>        <NA>
+#> 3 EQ-5D-5L   VT  France 31912325 10.1007/s40273-019-00876-4 <NA>        <NA>
 
-# Return all EQ-5D-5L to EQ-5D-3L DSU value sets.
-valuesets(type="DSU", version="5L")
-#>    Version Type     Country PubMed  DOI
-#> 1 EQ-5D-5L  DSU       China     NA <NA>
-#> 2 EQ-5D-5L  DSU     Germany     NA <NA>
-#> 3 EQ-5D-5L  DSU       Japan     NA <NA>
-#> 4 EQ-5D-5L  DSU Netherlands     NA <NA>
-#> 5 EQ-5D-5L  DSU  SouthKorea     NA <NA>
-#> 6 EQ-5D-5L  DSU       Spain     NA <NA>
-#> 7 EQ-5D-5L  DSU          UK     NA <NA>
+# Return all EQ-5D-5L to EQ-5D-3L DSU value sets without references.
+valuesets(type="DSU", version="5L", reference=NULL)
+#>    Version Type     Country
+#> 1 EQ-5D-5L  DSU       China
+#> 2 EQ-5D-5L  DSU     Germany
+#> 3 EQ-5D-5L  DSU       Japan
+#> 4 EQ-5D-5L  DSU Netherlands
+#> 5 EQ-5D-5L  DSU  SouthKorea
+#> 6 EQ-5D-5L  DSU       Spain
+#> 7 EQ-5D-5L  DSU          UK
 ```
 
 ## Analysis of EQ-5D Profiles
@@ -402,29 +414,29 @@ dat <- data.frame(
        )
 
 eq5dds(dat, version="3L")
-#>     MO   SC   UA   PD   AD
-#> 1 25.0 33.3 25.0 41.7 41.7
-#> 2 33.3 50.0 41.7 16.7 16.7
-#> 3 41.7 16.7 33.3 41.7 41.7
+#>     MO   SC UA   PD   AD
+#> 1 33.3 16.7 50 41.7 50.0
+#> 2 25.0 25.0 25 33.3 33.3
+#> 3 41.7 58.3 25 25.0 16.7
 
 eq5dds(dat, version="3L", counts=TRUE)
 #>   MO SC UA PD AD
-#> 1  3  4  3  5  5
-#> 2  4  6  5  2  2
-#> 3  5  2  4  5  5
+#> 1  4  2  6  5  6
+#> 2  3  3  3  4  4
+#> 3  5  7  3  3  2
 
 eq5dds(dat, version="3L", by="Sex")
 #> data[, by]: Female
-#>     MO   SC   UA   PD AD
-#> 1 16.7 33.3 33.3  0.0 50
-#> 2 33.3 50.0 50.0 33.3  0
-#> 3 50.0 16.7 16.7 66.7 50
+#>     MO   SC UA   PD   AD
+#> 1 33.3 16.7 50 33.3 83.3
+#> 2 33.3 33.3  0 33.3 16.7
+#> 3 33.3 50.0 50 33.3  0.0
 #> ------------------------------------------------------------ 
 #> data[, by]: Male
-#>     MO   SC   UA   PD   AD
-#> 1 33.3 33.3 16.7 83.3 33.3
-#> 2 33.3 50.0 33.3  0.0 33.3
-#> 3 33.3 16.7 50.0 16.7 33.3
+#>     MO   SC UA   PD   AD
+#> 1 33.3 16.7 50 50.0 16.7
+#> 2 16.7 16.7 50 33.3 50.0
+#> 3 50.0 66.7  0 16.7 33.3
 ```
 
 ## Helper functions

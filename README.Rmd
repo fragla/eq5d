@@ -119,20 +119,20 @@ eq5d(scores.df2$state, country="Canada", version="5L", type="VT")
 The available value sets can be viewed using the ***valuesets*** function. The results can be filtered by EQ-5D version, value set type or by country.
 
 ```{r valuesets}
-# Return all value sets (top 6 returned for brevity).
-head(valuesets())
+# Return TTO value sets with PubMed IDs and DOIs (top 6 returned for brevity).
+head(valuesets(type="TTO", references = c("PubMed", "DOI")))
 
-# Return VAS based value sets (top 6 returned for brevity).
-head(valuesets(type="VAS"))
+# Return VAS value sets with ISBN and external URL (top 6 returned for brevity).
+head(valuesets(type="VAS", references = c("ISBN", "ExternalURL")))
 
 # Return EQ-5D-5L value sets (top 6 returned for brevity).
 head(valuesets(version="5L"))
 
-# Return all UK value sets.
-valuesets(country="UK")
+# Return all French value sets.
+valuesets(country="France")
 
-# Return all EQ-5D-5L to EQ-5D-3L DSU value sets.
-valuesets(type="DSU", version="5L")
+# Return all EQ-5D-5L to EQ-5D-3L DSU value sets without references.
+valuesets(type="DSU", version="5L", reference=NULL)
 
 ```
 
