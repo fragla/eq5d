@@ -5,10 +5,11 @@
 \alias{Y}
 \title{EQ-5D-Y value set data}
 \format{
-An object of class \code{data.frame} with 12 rows and 6 columns.
+An object of class \code{data.frame} with 12 rows and 7 columns.
 }
 \source{
 \itemize{
+    \item{\strong{Belgium}: Dewilde S, Roudijk B, Tollenaar NH, Ramos-Goñi JM. An EQ-5D-Y-3L Value Set for Belgium. Pharmacoeconomics. 2022 Nov 1:1–12. doi: 10.1007/s40273-022-01187-x. Epub ahead of print.  \href{https://pubmed.ncbi.nlm.nih.gov/36316544/}{PubMed}}
     \item{\strong{Germany}: Kreimeier S, Mott D, Ludwig K, Greiner W; IMPACT HTA HRQoL Group. EQ-5D-Y Value Set for Germany. Pharmacoeconomics. 2022 May 23:1–13. doi: 10.1007/s40273-022-01143-9. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/35604633/}{PubMed}}
     \item{\strong{Hungary}: Rencz F, Ruzsa G, Bató A, Yang Z, Finch AP, Brodszky V. Value Set for the EQ-5D-Y-3L in Hungary. Pharmacoeconomics. 2022 Sep 20:1–11. doi: 10.1007/s40273-022-01190-2. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/36123448/}{PubMed}}
     \item{\strong{Japan}: Shiroiwa T, Ikeda S, Noto S, Fukuda T, Stolk E. Valuation Survey of EQ-5D-Y Based on the International Common Protocol: Development of a Value Set in Japan. Med Decis Making. 2021 Mar 23:272989X211001859. doi: 10.1177/0272989X211001859. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/33754886/}{PubMed}}
