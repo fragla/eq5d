@@ -36,6 +36,13 @@ shinyUI(
         conditionalPanel(
           condition = "input.multi == 'single'",
           uiOutput("choose_dimensions"),
+          conditionalPanel(
+            condition = "input.type == 'DSU'",
+            uiOutput("choose_utility"),
+            uiOutput("choose_age"),
+            uiOutput("choose_sex"),
+            uiOutput("choose_bwidth")
+          ),
           textOutput("eq5d_text")
         )
       )
@@ -101,6 +108,21 @@ shinyUI(
           grouping data in the plots tab. An example file can be downloaded " , 
           a("here", href="data/eq5d3l_example.xlsx", target="_blank"), "."),
         div(img(src="images/shiny_app_excel_scores.png", width="75%"), style="text-align:center"),
+        p("Dimensions scores can also be converted from EQ-5D-3L to EQ-5D-5L and 
+          EQ-5D-5L to EQ-5D-3L using the ", a(href='https://www.sheffield.ac.uk/nice-dsu/methods-development/mapping-eq-5d-5l-3l', 'NICE Decision Support Unit'),
+          " age-sex based mappings. To use these value sets files require \"Age\" and 
+          \"Sex\" columns in addition to dimension scores. Age should be specified 
+          in years (18-100) or as a category (1: 18-34, 2: 35-44, 3: 45-54, 4: 55-64, 
+          5: 65-100). Sex should be specified as Male or Female. In addition index 
+          scores can also be converted. Scores should be specified in a \"Utility\" 
+          column. If the scores provided are an approximate score then a \"bwidth\" 
+          column must also be included. The NICE DSU recommendations are < 0.8: 0.2, 
+          0.8-0.951: 0.1, 0.951-1: small, but large enough to include 1. Zero can be 
+          used for an exact match. Example files can be seen in the image below and 
+          more info can be found at the NICE DSU link above."),
+        div(img(src="images/shiny_app_dsu_dimension.png", width="35%"), 
+            img(src="images/shiny_app_dsu_utility.png", width="30%"),
+            img(src="images/shiny_app_dsu_utility_bwidth.png", width="30%"),style="text-align:center"),
         h4("I've uploaded my data. What do I do now?"),
         p("Once a file of EQ-5D dimension scores has been successfully uploaded the 
           correct EQ-5D version and value set need to be selected from side bar for 

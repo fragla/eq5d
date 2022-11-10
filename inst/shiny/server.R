@@ -90,6 +90,9 @@ shinyServer(function(input, output, session) {
         if(input$country %in% colnames(RCW))
           type <-c(type, "RCW")
         
+        if(input$country %in% colnames(DSU3L))
+          type <-c(type, "DSU")
+        
     } else if(input$version=="Y") {
       type <-c(type, "cTTO")
     }
@@ -100,6 +103,9 @@ shinyServer(function(input, output, session) {
         
         if(input$country %in% colnames(CW))
           type <-c(type, "CW")
+        
+        if(input$country %in% colnames(DSU5L))
+          type <-c(type, "DSU")
         
     }
     
@@ -115,6 +121,32 @@ shinyServer(function(input, output, session) {
     checkboxGroupInput("severity_scores", "Include severity scores:", calculations)
     
   })
+  
+  output$choose_utility <- renderUI({
+    textInput("utility", label = "Utility:", width="100px")
+  })
+  
+  output$choose_age <- renderUI({
+    age <- c("18-34" = 1,
+             "35-44" = 2,
+             "45-54" = 3,
+             "55-64" = 4, 
+             "65-100" = 5)
+    selectInput("age", "Age:", 
+                choices=age, selected=FALSE, selectize = FALSE, width="100px")
+  })
+  
+  output$choose_sex <- renderUI({
+    sex <- c("Male" = "male",
+             "Female" = "female")
+    
+    selectInput("sex", "Sex:", 
+                choices=sex, selected=FALSE, selectize = FALSE, width="100px")
+  }) 
+  
+  output$choose_bwidth <- renderUI({
+    textInput("bwidth", label = "Bandwidth:", value = 0, width="100px")
+  })    
   
   output$include_raw_data <- renderUI({
     checkboxInput("raw", "Include all submitted data in table", TRUE)
@@ -209,7 +241,19 @@ shinyServer(function(input, output, session) {
     
     dimensions <- c(MO=input$mo, SC=input$sc, UA=input$ua, PD=input$pd, AD=input$ad)
     class(dimensions) <- "numeric"
-    score <- eq5d(dimensions, version=input$version, type=input$type, country=input$country)
+    if(input$type=="DSU") {
+      if(input$utility!="") {
+        utility <- suppressWarnings(as.numeric(input$utility))
+        if(is.na(utility)) {
+          stop("Utility score is not numeric.")
+        }
+        score <- eq5d(utility, version=input$version, type=input$type, country=input$country, age=input$age, sex=input$sex, bwidth=input$bwidth)
+      } else {
+        score <- eq5d(dimensions, version=input$version, type=input$type, country=input$country, age=input$age, sex=input$sex, bwidth=input$bwidth)
+      }
+    } else {
+      score <- eq5d(dimensions, version=input$version, type=input$type, country=input$country)
+    }
     paste0("The index for EQ-5D-", input$version, " ", input$country, " ", input$type, " value set is: ", score)
   })
   
@@ -259,7 +303,7 @@ shinyServer(function(input, output, session) {
   })
   
   resetColumns <- function(vals) {
-    vals$MO <- vals$SC <- vals$UA <- vals$PD <- vals$AD  <- vals$State <- NULL
+    vals$MO <- vals$SC <- vals$UA <- vals$PD <- vals$AD  <- vals$State <- vals$Utility <- vals$Age <- vals$Sex <- NULL
   }
   
   rawdata <- reactive({
@@ -294,6 +338,10 @@ shinyServer(function(input, output, session) {
       selectInput("state_col", "Five digit:",
                   choices=select.options, selected=FALSE, selectize = FALSE, width="100px"),
 
+      div(p(tags$b("or:"))),
+      selectInput("utility_col", "Utility:",
+                  choices=select.options, selected=FALSE, selectize = FALSE, width="100px"),
+      
       if (failed)
         div(tags$b("Invalid column names. Columns may contain non-valid data.", style = "color: red;")),
       
@@ -326,7 +374,7 @@ shinyServer(function(input, output, session) {
                       selected = input$ad_col)
   })
   
-  vals <- reactiveValues(MO=NULL, SC=NULL, UA=NULL, PD=NULL, AD=NULL, State=NULL)
+  vals <- reactiveValues(MO=NULL, SC=NULL, UA=NULL, PD=NULL, AD=NULL, State=NULL, Utility=NULL, Age=NULL, Sex=NULL)
   
   getMaxLevels <- reactive({
     if(input$version %in% c("3L", "Y")) {
@@ -351,6 +399,12 @@ shinyServer(function(input, output, session) {
     return(is.valid)
   })
   
+  utilityValid <- reactive({
+    dat <- readdata()
+    is.valid <- any(!check.integer(dat[,input$utility_col]))
+    return(is.valid)
+  })
+  
   observeEvent(input$ok, {
     if(all(modalDimensions()!="None") && dimensionsValid()) {
       vals$MO <- input$mo_col
@@ -361,6 +415,9 @@ shinyServer(function(input, output, session) {
       removeModal()
     } else if(input$state_col!="None" && stateValid()) {
       vals$State <- input$state_col
+      removeModal()
+    } else if(input$utility_col!="None" && utilityValid()) {
+      vals$Utility <- input$utility_col
       removeModal()
     } else {
       showModal(columnModal(readdata(), failed = TRUE))
@@ -374,12 +431,20 @@ shinyServer(function(input, output, session) {
     
     idx <- getColumnIndex(dat)
     if(is.null(idx)) {
-      print(head(dat))
       return()
-      stop("Unable to identify EQ-5D dimensions in the file header.")
+      stop("Unable to identify EQ-5D dimensions/scores in the file header.")
     }
     
-    if(length(idx)==1) {
+    dsu <- NULL
+    if(input$type=="DSU" && !is.null(getDSUIndex(dat))) {
+      dsu <- dat[,getDSUIndex(dat)]
+    }
+    
+    if(input$type=="DSU" && (!getAgeName() %in% colnames(dsu) || !getSexName() %in% colnames(dsu))) {
+      stop("NICE DSU value set selected, but no Age or Sex columns found.")
+    }
+    
+    if(length(idx)==1 && all(dat[[idx]]==round(dat[[idx]]))) {
       length.check <- sapply(dat[[idx]], nchar)
       if(any(is.na(length.check)|length.check!=5)) {
         if(ignoreInvalid()) {
@@ -391,13 +456,27 @@ shinyServer(function(input, output, session) {
       dat <- as.data.frame(do.call(rbind, strsplit(as.character(dat[[idx]]), "")))
       colnames(dat) <- c("MO", "SC", "UA", "PD", "AD")
       dat <- as.data.frame(apply(dat, 2, function(x) as.numeric(as.character(x))))
+    } else if(length(idx)==1 && any(!check.integer(dat[[idx]]))) {
+      dat <- dat[idx]
+      colnames(dat) <- "Utility"
     } else {
       dat <- dat[idx]
     }
-    
+
     if(!all(sapply(dat, function(x) is.numeric(x)))) {
       stop("Non-numeric values found in uploaded EQ-5D dimensions.")
     }
+    
+    if(input$type=="DSU") {
+      if (is.double(dat)) {
+        range <- .getDSURange(country, version)
+        if(!any(sapply(dat, function(x) {x >= range[1] && x <= range[2]}))) {
+          stop(paste0("Index scores must be in the range ", range[1], " to ", range[2], " for ", country, " EQ-5D-", version,"."))
+        }
+      }
+      dat <- cbind(dat, dsu)
+    }
+    
     return(dat)
   })
   
@@ -405,38 +484,83 @@ shinyServer(function(input, output, session) {
     
     short <- getDimensionNames()
     five.digit <- getStateName()
+    utility <- getUtilityName()
+    #age <- getAgeName()
+    #sex <- getSexName()
     
     short.idx <- match(tolower(short), tolower(colnames(dat)))
     five.digit.idx <- match(tolower(five.digit), tolower(colnames(dat)))
+    utility.idx <- match(tolower(utility), tolower(colnames(dat)))
+    #age.idx <- match(tolower(age), tolower(colnames(dat)))
+    #sex.idx <- match(tolower(sex), tolower(colnames(dat)))
     
     if(all(!is.na(short.idx))) {
       return(short.idx)
     } else if (!is.na(five.digit.idx)) {
       return(five.digit.idx)
+    } else if(!is.na(utility.idx)) { #} && !is.na(age.idx) && !is.na(sex.idx)) {
+      return(c(utility.idx)) #,age.idx, sex.idx))
     } else {
       return(NULL)
     }
   }
   
+  getDSUIndex <- function(dat) {
+    age <- getAgeName()
+    sex <- getSexName()
+    bwidth <- getBwidthName()
+    
+    age.idx <- match(tolower(age), tolower(colnames(dat)))
+    sex.idx <- match(tolower(sex), tolower(colnames(dat)))
+    bw.idx <- match(tolower(bwidth), tolower(colnames(dat)))
+    
+    cols <- NULL
+    if (!is.na(age.idx)) {
+      cols <- c(cols, age.idx)
+    } 
+    
+    if (!is.na(sex.idx)) {
+      cols <- c(cols, sex.idx)
+    } 
+    
+    if (!is.na(bw.idx)) {
+      cols <- c(cols, bw.idx)
+    } 
+    return(cols)
+  }
+  
   getTableData <- reactive({
-    eq5d <- eq5d(dataset(), version=input$version, type=input$type, country=input$country, ignore.invalid=ignoreInvalid(), dimensions=getDimensionNames())
+    if(input$type=="DSU") {
+      if(!is.null(getBwidthName()) && getBwidthName() %in% colnames(dataset())) {
+        eq5d <- eq5d(dataset(), version=input$version, type=input$type, country=input$country, ignore.invalid=ignoreInvalid(), dimensions=getDimensionNames(), age=getAgeName(), sex=getSexName(), bwidth=getBwidthName())
+      } else{
+        eq5d <- eq5d(dataset(), version=input$version, type=input$type, country=input$country, ignore.invalid=ignoreInvalid(), dimensions=getDimensionNames(), age=getAgeName(), sex=getSexName())
+      }
+    } else {
+      eq5d <- eq5d(dataset(), version=input$version, type=input$type, country=input$country, ignore.invalid=ignoreInvalid(), dimensions=getDimensionNames())
+    }
+
     if(input$raw) {
       if(all(getDimensionNames() %in% colnames(rawdata()))) {
         res <- cbind(rawdata(), eq5d)
-      } else {
+      } else if(all(rawdata()[[getColumnIndex(rawdata())]]!=round(rawdata()[[getColumnIndex(rawdata())]]))) {
+        res <- cbind(rawdata(), eq5d)
+      } else { ## if five digits - fix
         res <- cbind(rawdata(), dataset(), eq5d)
       }
     } else {
       res <- cbind(dataset(), eq5d)
     }
     colnames(res)[ncol(res)] <- "Index"
-    
-    if("lss" %in% input$severity_scores) {
-      res$LSS <- lss(dataset(), version=input$version, ignore.invalid=ignoreInvalid(), dimensions=getDimensionNames())
-    }
-    
-    if("lfs" %in% input$severity_scores) {
-      res$LFS <- lfs(dataset(), version=input$version, ignore.invalid=ignoreInvalid(), dimensions=getDimensionNames())
+
+    if(all(getDimensionNames() %in% colnames(rawdata()))) {
+      if("lss" %in% input$severity_scores) {
+        res$LSS <- lss(dataset(), version=input$version, ignore.invalid=ignoreInvalid(), dimensions=getDimensionNames())
+      }
+      
+      if("lfs" %in% input$severity_scores) {
+        res$LFS <- lfs(dataset(), version=input$version, ignore.invalid=ignoreInvalid(), dimensions=getDimensionNames())
+      }
     }
     
     return(res)
@@ -578,6 +702,9 @@ shinyServer(function(input, output, session) {
     if(is.null(input$data) || is.null(input$plot_type) || is.null(input$group))
       return()
     
+    if(!all(getDimensionNames() %in% colnames(dataset())))
+      stop("Unable to generate plot without dimension data.")
+    
     data <- getTableDataByGroup()
     
     if(input$group=="None" || !input$raw) {
@@ -598,11 +725,14 @@ shinyServer(function(input, output, session) {
     if(is.null(input$data) || is.null(input$plot_type) || is.null(input$group) || is.null(input$summary_type))
       return()
     
+    if(!all(getDimensionNames() %in% colnames(dataset())))
+      stop("Unable to generate plot without dimension data.")
+    
     data <- getTableDataByGroup()
     
     counts <- ifelse(input$summary_type == "counts", TRUE, FALSE)
     summary_type <- toTitleCase(input$summary_type)
-    
+  
     if(input$group=="None" || !input$raw) {
       data <- eq5dds(data, version=input$version, counts=counts, dimensions=getDimensionNames())
       
@@ -692,6 +822,10 @@ shinyServer(function(input, output, session) {
     if(is.null(input$data) || is.null(input$plot_type) || is.null(input$summary_type)) {
       return()
     }
+    
+    if(!all(getDimensionNames() %in% colnames(dataset())))
+      stop("Unable to generate summary without dimension data.")
+    
     counts <- ifelse(input$summary_type == "counts", TRUE, FALSE)
 
     data <- getTableDataByGroup()
@@ -907,6 +1041,38 @@ shinyServer(function(input, output, session) {
     }
   })
   
+  getUtilityName <- reactive({
+    if(!is.null(vals$Utility)) {
+      return(vals$Utility)
+    } else {
+      return("Utility")
+    }
+  })
+  
+  getAgeName <- reactive({
+    if(!is.null(vals$Age)) {
+      return(vals$Age)
+    } else {
+      return("Age")
+    }
+  })
+  
+  getSexName <- reactive({
+    if(!is.null(vals$Sex)) {
+      return(vals$Sex)
+    } else {
+      return("Sex")
+    }
+  })
+  
+  getBwidthName <- reactive({
+    if(!is.null(vals$Sex)) {
+      return(vals$Sex)
+    } else {
+      return("bwidth")
+    }
+  })
+  
   getReadableCountryNames <- reactive({
     countries <- sort(unique(as.character(valuesets(version=input$version)$Country)))
     countries.list <- as.list(countries)
@@ -915,4 +1081,9 @@ shinyServer(function(input, output, session) {
     names(countries.list) <- countries
     return(countries.list)
   })
+  
+  check.integer <- function(N){
+    !grepl("[^[:digit:]]", format(N,  digits = 20, scientific = FALSE))
+  }
+  
 })
