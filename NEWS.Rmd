@@ -16,6 +16,8 @@ knitr::opts_chunk$set(echo = TRUE)
  - Restructuring of how value set data is stored internally.
  
  - Thanks to @TimTaylor for implementing both of these things.
+ 
+ - NICE DSU functionality added to the Shiny app.
 
 # eq5d 0.12.0 (2022-07-26)
 
