@@ -1,7 +1,7 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-# eq5d (development version)
+# eq5d 0.13.0 (2022-11-11)
 
 -   Belgian, Dutch and Hungarian EQ-5D-Y value set added
 

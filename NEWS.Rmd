@@ -7,7 +7,7 @@ output: github_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-# eq5d (development version)
+# eq5d 0.13.0 (2022-11-11)
 
  - Belgian, Dutch and Hungarian EQ-5D-Y value set added
  
