@@ -1,9 +1,13 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
+# eq5d (development version)
+
+-   Indonesian EQ-5D-Y value set added.
+
 # eq5d 0.13.0 (2022-11-11)
 
--   Belgian, Dutch and Hungarian EQ-5D-Y value set added
+-   Belgian, Dutch and Hungarian EQ-5D-Y value sets added
 
 -   valuesets function now returns PubMed/DOI/ISBN/external URL.
 
