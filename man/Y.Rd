@@ -5,13 +5,15 @@
 \alias{Y}
 \title{EQ-5D-Y value set data}
 \format{
-An object of class \code{data.frame} with 12 rows and 7 columns.
+An object of class \code{data.frame} with 14 rows and 9 columns.
 }
 \source{
 \itemize{
     \item{\strong{Belgium}: Dewilde S, Roudijk B, Tollenaar NH, Ramos-Goñi JM. An EQ-5D-Y-3L Value Set for Belgium. Pharmacoeconomics. 2022 Nov 1:1–12. doi: 10.1007/s40273-022-01187-x. Epub ahead of print.  \href{https://pubmed.ncbi.nlm.nih.gov/36316544/}{PubMed}}
+    \item{\strong{China}: Yang Z, Jiang J, Wang P, Jin X, Wu J, Fang Y, Feng D, Xi X, Li S, Jing M, Zheng B, Huang W, Luo N. Estimating an EQ-5D-Y-3L Value Set for China. Pharmacoeconomics. 2022 Nov 18. doi: 10.1007/s40273-022-01216-9. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/36396878/}{PubMed}}
     \item{\strong{Germany}: Kreimeier S, Mott D, Ludwig K, Greiner W; IMPACT HTA HRQoL Group. EQ-5D-Y Value Set for Germany. Pharmacoeconomics. 2022 May 23:1–13. doi: 10.1007/s40273-022-01143-9. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/35604633/}{PubMed}}
     \item{\strong{Hungary}: Rencz F, Ruzsa G, Bató A, Yang Z, Finch AP, Brodszky V. Value Set for the EQ-5D-Y-3L in Hungary. Pharmacoeconomics. 2022 Sep 20:1–11. doi: 10.1007/s40273-022-01190-2. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/36123448/}{PubMed}}
+    \item{\strong{Indonesia}: Fitriana TS, Roudijk B, Purba FD, Busschbach JJV, Stolk E. Estimating an EQ-5D-Y-3L Value Set for Indonesia by Mapping the DCE onto TTO Values. Pharmacoeconomics. 2022 Nov 9. doi: 10.1007/s40273-022-01210-1. Epub ahead of print.  \href{https://pubmed.ncbi.nlm.nih.gov/36348155/}{PubMed}} 
     \item{\strong{Japan}: Shiroiwa T, Ikeda S, Noto S, Fukuda T, Stolk E. Valuation Survey of EQ-5D-Y Based on the International Common Protocol: Development of a Value Set in Japan. Med Decis Making. 2021 Mar 23:272989X211001859. doi: 10.1177/0272989X211001859. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/33754886/}{PubMed}}
     \item{\strong{Netherlands}:Roudijk B, Sajjad A, Essers B, Lipman S, Stalmeier P, Finch AP. A Value Set for the EQ-5D-Y-3L in the Netherlands. Pharmacoeconomics. 2022 Oct 10:1–11. doi: 10.1007/s40273-022-01192-0. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/36216977/}{PubMed}}
     \item{\strong{Slovenia}: Prevolnik Rupel V, Ogorevc M; IMPACT HTA HRQoL Group. EQ-5D-Y Value Set for Slovenia. Pharmacoeconomics. 2021 Feb 10. doi: 10.1007/s40273-020-00994-4. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/33565048/}{PubMed}}
