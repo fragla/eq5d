@@ -32,7 +32,7 @@ eq5dy <- function(scores, country=NULL) {
   survey <- setNames(survey[[country]], rownames(survey))
 
   values <- c(survey["FullHealth"],
-              .intercept(scores, survey), .power(scores, survey))
+              .intercept(scores, survey), .power(scores, survey), .all3(scores, survey))
 
   return(round(sum(values, na.rm = TRUE), digits=3))
 }
@@ -52,4 +52,11 @@ eq5dy <- function(scores, country=NULL) {
     .total <- sum(.dimensionScores(scores, survey), na.rm = TRUE)
   }
   return(.total)
+}
+
+.all3 <- function(scores, survey) {
+  ##all dimensions == 3
+  if(all(scores == 3) && !is.na(survey["A3"])) {
+    survey["A3"]
+  }
 }
