@@ -4,6 +4,7 @@
 # eq5d (development version)
 
 - Chinese and Indonesian EQ-5D-Y value sets added.
+- Links to value set references added to the web app.
 
 # eq5d 0.13.0 (2022-11-11)
 
