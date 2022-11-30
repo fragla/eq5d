@@ -1086,4 +1086,57 @@ shinyServer(function(input, output, session) {
     !grepl("[^[:digit:]]", format(N,  digits = 20, scientific = FALSE))
   }
   
+  getValueSet <- reactive({
+    vs <- valuesets(version=input$version, type=input$type, country=input$country)
+    
+    if(nrow(vs) != 1)
+      return()
+    
+    vs
+  })
+  
+  output$reference_links <- renderUI({
+    div(span("Value set references:", style="color:grey"), getDOI(), getPubMed(), getISBN(), getExternalURL(), style="padding-bottom: 16px")
+  })
+  
+  getDOI <- reactive({
+    vs <- getValueSet()
+    if(is.null(vs))
+      return()
+    
+    if(!is.na(vs$DOI)) {
+      return(a('DOI',href=paste0('https://doi.org/', vs$DOI), target="_blank"))
+    }
+  })
+  
+  getPubMed <- reactive({
+    vs <- getValueSet()
+    if(is.null(vs))
+      return()
+    
+    if(!is.na(vs$PubMed)) {
+      return(a('PubMed', href=paste0('https://pubmed.ncbi.nlm.nih.gov/', vs$PubMed, '/'), target="_blank"))
+    }
+  })
+  
+  getISBN <- reactive({
+    vs <- getValueSet()
+    if(is.null(vs))
+      return()
+    
+    if(!is.na(vs$ISBN)) {
+      return(a('ISBN', href=paste0('https://isbndb.com/book/', vs$ISBN), target="_blank"))
+    }
+  })
+  
+  getExternalURL <- reactive({
+    vs <- getValueSet()
+    if(is.null(vs))
+      return()
+    
+    if(!is.na(vs$ExternalURL)) {
+      return(a('External URL', href=vs$ExternalURL, target="_blank"))
+    }
+  })
+  
 })

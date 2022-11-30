@@ -15,6 +15,7 @@ shinyUI(
         uiOutput("choose_version"),
         uiOutput("choose_country"),
         uiOutput("choose_type"),
+        uiOutput("reference_links"),
         uiOutput("choose_calc_type"),
         conditionalPanel(
           condition = "input.multi == 'multiple'",
