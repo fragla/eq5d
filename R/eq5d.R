@@ -265,7 +265,7 @@ valuesets <- function(type=NULL, version=NULL, country=NULL, references=c("PubMe
 
   if(!is.null(type)) vs <- vs[vs$Type==type,]
   if(!is.null(version)) vs <- vs[vs$Version==version,]
-  if(!is.null(country)) vs <- vs[vs$Country==country,]
+  if(!is.null(country)) vs <- vs[grep(paste0("^",country), vs$Country),]
   rownames(vs) <- NULL
   
   vs <- merge(vs, REFERENCES, by = c("Version", "Type", "Country"))
