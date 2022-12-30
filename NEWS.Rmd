@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 # eq5d (development version)
 
  - Chinese and Indonesian EQ-5D-Y value sets added.
+ - Swedish "social" EQ-5D-5L value set added. There are now two EQ-5D-5L value sets, the 2020 "experience-based" and the new 2022 "social-based" value set.
  - Links to value set references added to the web app.
 
 # eq5d 0.13.0 (2022-11-11)

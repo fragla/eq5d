@@ -5,7 +5,7 @@
 \alias{VT}
 \title{EQ-5D-5L VT value set data}
 \format{
-An object of class \code{data.frame} with 35 rows and 36 columns.
+An object of class \code{data.frame} with 35 rows and 37 columns.
 }
 \source{
 \itemize{
@@ -36,7 +36,8 @@ An object of class \code{data.frame} with 35 rows and 36 columns.
 \item{\strong{Romania} Olariu E, Mohammed W, Oluboyede Y, Caplescu R, Niculescu-Aron IG, Paveliu MS, Vale L. EQ-5D-5L: a value set for Romania. Eur J Health Econ. 2022 Jun 10. doi: 10.1007/s10198-022-01481-7. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/35688994/}{PubMed}}
 \item{\strong{South Korea} Kim SH, Ahn J, Ock M, Shin S, Park J, Luo N, Jo MW. The EQ-5D-5L valuation study in Korea. Qual Life Res. 2016 Jul;25(7):1845-52. doi: 10.1007/s11136-015-1205-2. \href{https://pubmed.ncbi.nlm.nih.gov/26961008/}{PubMed}}
 \item{\strong{Spain}: Ramos-Goñi JM, Craig B, Oppe M, Ramallo-Fariña Y, Pinto-Prades JL, Luo N, Rivero-Arias O. Handling data quality issues to estimate the Spanish EQ-5D-5L Value Set using a hybrid interval regression approach.  Value in Health 2018 May;21(5):596-604. doi: 10.1016/j.jval.2017.10.023. \href{https://pubmed.ncbi.nlm.nih.gov/29753358/}{PubMed}}
-\item{\strong{Sweden}: Burström K, Teni FS, Gerdtham UG, Leidl R, Helgesson G, Rolfson O, Henriksson M. Experience-Based Swedish TTO and VAS Value Sets for EQ-5D-5L Health States. Pharmacoeconomics. 2020 Apr 20. doi: 10.1007/s40273-020-00905-7. \href{https://pubmed.ncbi.nlm.nih.gov/32307663/}{PubMed}}
+\item{\strong{Sweden (2020)}: Burström K, Teni FS, Gerdtham UG, Leidl R, Helgesson G, Rolfson O, Henriksson M. Experience-Based Swedish TTO and VAS Value Sets for EQ-5D-5L Health States. Pharmacoeconomics. 2020 Apr 20. doi: 10.1007/s40273-020-00905-7. \href{https://pubmed.ncbi.nlm.nih.gov/32307663/}{PubMed}}
+\item{\strong{Sweden (2022)}: Sun S, Chuang LH, Sahlén KG, Lindholm L, Norström F. Estimating a social value set for EQ-5D-5L in Sweden. Health Qual Life Outcomes. 2022 Dec 23;20(1):167. doi: 10.1186/s12955-022-02083-w. \href{https://pubmed.ncbi.nlm.nih.gov/36564844/}{PubMed}}
 \item{\strong{Taiwan}: Lin HW, Li CI, Lin FJ, Chang JY, Gau CS, Luo N, Pickard AS, Ramos Goñi JM, Tang CH, Hsu CN. Valuation of the EQ-5D-5L in Taiwan. PLoS One. 2018; 13(12):: e0209344. doi: 10.1371/journal.pone.0209344. \href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6306233/}{PubMed}}
 \item{\strong{Thailand} Pattanaphesaj J, Thavorncharoensap M, Ramos-Goñi JM, Tongsiri S, Ingsrisawang L, Teerawattananon Y. The EQ-5D-5L Valuation study in Thailand. Expert Review of Pharmacoeconomics & Outcomes Research. 2018 Oct;18(5):551-558. doi: 10.1080/14737167.2018.1494574 \href{https://pubmed.ncbi.nlm.nih.gov/29958008/}{PubMed}}
 \item{\strong{Uganda} Yang F, Katumba KR, Roudijk B, Yang Z, Revill P, Griffin S, Ochanda PN, Lamorde M, Greco G, Seeley J, Sculpher M. Developing the EQ-5D-5L Value Set for Uganda Using the 'Lite' Protocol. Pharmacoeconomics. 2021 Nov 29:1–13. doi: 10.1007/s40273-021-01101-x. \href{https://pubmed.ncbi.nlm.nih.gov/34841471/}{PubMed}}

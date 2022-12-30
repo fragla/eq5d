@@ -250,12 +250,21 @@ test_that("EQ-5D-5L Spain gives correct answer", {
   expect_equal(eq5d5l(c(MO=5,SC=5,UA=5,PD=5,AD=5), "Spain"), -0.416)
 })
 
-test_that("EQ-5D-5L Sweden gives correct answer", {
-  expect_equal(eq5d5l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "Sweden"), 0.975, tolerance = .0011)
-  expect_equal(eq5d5l(c(MO=1,SC=2,UA=3,PD=4,AD=5), "Sweden"), 0.497)
-  expect_equal(eq5d5l(c(MO=2,SC=2,UA=3,PD=3,AD=5), "Sweden"), 0.528)
-  expect_equal(eq5d5l(c(MO=3,SC=4,UA=5,PD=4,AD=3), "Sweden"), 0.503)
-  expect_equal(eq5d5l(c(MO=5,SC=5,UA=5,PD=5,AD=5), "Sweden"), 0.243)
+test_that("EQ-5D-5L Sweden (2020) gives correct answer", {
+  expect_equal(eq5d5l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "Sweden_2020"), 0.975, tolerance = .0011)
+  expect_equal(eq5d5l(c(MO=1,SC=2,UA=3,PD=4,AD=5), "Sweden_2020"), 0.497)
+  expect_equal(eq5d5l(c(MO=2,SC=2,UA=3,PD=3,AD=5), "Sweden_2020"), 0.528)
+  expect_equal(eq5d5l(c(MO=3,SC=4,UA=5,PD=4,AD=3), "Sweden_2020"), 0.503)
+  expect_equal(eq5d5l(c(MO=5,SC=5,UA=5,PD=5,AD=5), "Sweden_2020"), 0.243)
+})
+
+test_that("EQ-5D-5L Sweden (2022) gives correct answer", {
+  expect_equal(eq5d5l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "Sweden_2022"), 1)
+  expect_equal(eq5d5l(c(MO=2,SC=2,UA=2,PD=2,AD=2), "Sweden_2022"), 0.896)
+  expect_equal(eq5d5l(c(MO=3,SC=3,UA=3,PD=3,AD=3), "Sweden_2022"), 0.701)
+  expect_equal(eq5d5l(c(MO=4,SC=4,UA=4,PD=4,AD=4), "Sweden_2022"), 0.073)
+  expect_equal(eq5d5l(c(MO=1,SC=2,UA=3,PD=4,AD=5), "Sweden_2022"), 0.220)
+  expect_equal(eq5d5l(c(MO=5,SC=5,UA=5,PD=5,AD=5), "Sweden_2022"), -0.314)
 })
 
 test_that("EQ-5D-5L Taiwan gives correct answer", {
