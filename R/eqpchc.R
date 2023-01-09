@@ -20,10 +20,12 @@
 #' throws an error.
 #' @param dimensions character vector, specifying "dimension" column names. Defaults 
 #' are "MO", "SC", "UA", "PD" and "AD".
+#' @param summary boolean. Summarise results or return all classifications.
 #' @return a data.frame or list of data.frames of changes according to PCHC.
-#' contain dimensions names and rows the EQ-5D score.
+#' contain dimensions names and rows the EQ-5D score or, if summary=FALSE, a vector or  
+#' list of vectors of changes.
 #' @export
-pchc <- function(pre, post, version="5L", no.problems=TRUE, totals=TRUE, by.dimension=FALSE, ignore.invalid=TRUE, dimensions=.getDimensionNames()) {
+pchc <- function(pre, post, version="5L", no.problems=TRUE, totals=TRUE, by.dimension=FALSE, ignore.invalid=TRUE, dimensions=.getDimensionNames(), summary=TRUE) {
   
   if(is.character(pre) || is.numeric(pre)) {
     pre <- getDimensionsFromHealthStates(pre, version=version, ignore.invalid=ignore.invalid)
@@ -46,6 +48,10 @@ pchc <- function(pre, post, version="5L", no.problems=TRUE, totals=TRUE, by.dime
     stop("Different numbers of health states in pre and post.")
   }
   
+  if(totals && !summary) {
+    warning("'totals = TRUE' and 'summary = FALSE' can't be used together. 'totals' will be ignored.")
+  }
+  
   pre.idx <- which(apply(pre, 1, function(x) { any(!x%in% 1:.getNumberLevels(version))}))
   post.idx <- which(apply(post, 1, function(x) { any(!x%in% 1:.getNumberLevels(version))}))
   
@@ -59,28 +65,35 @@ pchc <- function(pre, post, version="5L", no.problems=TRUE, totals=TRUE, by.dime
   }
   
   if(!by.dimension) {
-    res <- .pchc(pre, post, no.problems, totals)
+    res <- .pchc(pre, post, no.problems, totals, summary)
   } else {
     res <- lapply(.getDimensionNames(), function(x) {
-      dim.pchc <- .pchc(pre[,x, drop=FALSE], post[,x, drop=FALSE], no.problems, totals)
-      dim.pchc <- dim.pchc[!rownames(dim.pchc) %in% "Mixed change",]
+      dim.pchc <- .pchc(pre[,x, drop=FALSE], post[,x, drop=FALSE], no.problems, totals, summary)
+      if(summary){
+        dim.pchc <- dim.pchc[!rownames(dim.pchc) %in% "Mixed change",]
+      }
+      dim.pchc
     })
     names(res) <- .getDimensionNames()
   }
   return(res)
 }
 
-.pchc <- function(pre, post, no.problems, totals) {
+.pchc <- function(pre, post, no.problems, totals, summary) {
   res <- sapply(1:nrow(pre), function(x) {
     if(any(is.na(pre[x,]))||any(is.na(post[x,])))
       return(NA)
     .classif(pre[x,], post[x,], no.problems=no.problems)
   })
   
-  if(no.problems) {
-    .total.no.problems(res, totals)
+  if(summary) {
+    if(no.problems) {
+      .total.no.problems(res, totals)
+    } else {
+      .total(res, totals)
+    }
   } else {
-    .total(res, totals)
+    res
   }
 }
 
