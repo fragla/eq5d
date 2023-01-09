@@ -12,7 +12,8 @@ pchc(
   totals = TRUE,
   by.dimension = FALSE,
   ignore.invalid = TRUE,
-  dimensions = .getDimensionNames()
+  dimensions = .getDimensionNames(),
+  summary = TRUE
 )
 }
 \arguments{
@@ -41,10 +42,13 @@ throws an error.}
 
 \item{dimensions}{character vector, specifying "dimension" column names. Defaults 
 are "MO", "SC", "UA", "PD" and "AD".}
+
+\item{summary}{boolean. Summarise results or return all classifications.}
 }
 \value{
 a data.frame or list of data.frames of changes according to PCHC.
-contain dimensions names and rows the EQ-5D score.
+contain dimensions names and rows the EQ-5D score or, if summary=FALSE, a vector or  
+list of vectors of changes.
 }
 \description{
 Calculate the Paretian Classification of Health Change (PCHC) for two EQ-5D datasets.
