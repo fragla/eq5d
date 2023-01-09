@@ -7,6 +7,7 @@ res1 <- read.csv("../testdata/pchc_noprob_true_totals_true.csv", row.names=1, co
 res2 <- read.csv("../testdata/pchc_noprob_true_totals_false.csv", row.names=1, colClasses=c("character",rep("numeric",2)))
 res3 <- read.csv("../testdata/pchc_noprob_false_totals_false.csv", row.names=1, colClasses=c("character",rep("numeric",2)))
 res4 <- read.csv("../testdata/pchc_noprob_false_totals_true.csv", row.names=1, colClasses=c("character",rep("numeric",2)))
+res5 <- c(NA, "Improve", "Worsen", "Worsen", "Worsen", "Improve")
 
 res1.mo <- read.csv("../testdata/pchc_noprob_true_totals_true_dim_mo.csv", row.names=1, colClasses=c("character",rep("numeric",2)))
 res2.mo <- read.csv("../testdata/pchc_noprob_true_totals_false_dim_mo.csv", row.names=1, colClasses=c("character",rep("numeric",2)))
@@ -23,10 +24,15 @@ test_that("eqpchc five digit gives correct answer", {
   expect_equal(pchc(pre, post, version="3L", no.problems=FALSE, totals=FALSE, by.dimension=TRUE)$MO, res3.mo)
   expect_equal(pchc(pre, post, version="3L", no.problems=FALSE, totals=TRUE, by.dimension=TRUE)$MO, res4.mo)
   expect_equal(pchc(pre, post, version="Y", no.problems=TRUE, totals=TRUE), res1)
+  expect_equal(pchc(pre[1:6], post[1:6], version="3L", no.problems=TRUE, totals=F, summary=F), res5)
 })
 
 test_that("eqpchc data.frame throws error", {
   expect_error(pchc(pre[-1,], post, version="3L", ignore.invalid=FALSE))
+})
+
+test_that("eqpchc data.frame throws warning", {
+  expect_warning(pchc(pre, post, version="3L", no.problems=TRUE, totals=TRUE, summary=F))
 })
 
 pre.df <- read.csv("../testdata/pre_df.csv")
