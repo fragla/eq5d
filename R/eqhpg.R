@@ -64,5 +64,3 @@ hpg <- function(pre, post, country=NULL, version="5L", type=NULL, ignore.invalid
   
   return(dat)
 }
-
-#ggplot(dat, aes(post, pre, color=pchc)) + geom_point(aes(shape=pchc)) + xlim(0,500) + ylim(0,500) + geom_segment(x=0,y=0,xend=3125,yend=3125)
