@@ -10,6 +10,7 @@
 #' names should be MO, SC, UA, PD and AD representing Mobility, Self-care, 
 #' Usual activities, Pain/discomfort and Anxiety/depression. Vector using five 
 #' digit format can also be used.
+#' @param country string of value set country name used.
 #' @param version string of value "3L" or "5L" to indicate instrument version.
 #' @param type string specifying method type used in deriving value set scores.
 #' Options are TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L, CW for EQ-5D-5L

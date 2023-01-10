@@ -26,6 +26,8 @@ names should be MO, SC, UA, PD and AD representing Mobility, Self-care,
 Usual activities, Pain/discomfort and Anxiety/depression. Vector using five 
 digit format can also be used.}
 
+\item{country}{string of value set country name used.}
+
 \item{version}{string of value "3L" or "5L" to indicate instrument version.}
 
 \item{type}{string specifying method type used in deriving value set scores.
