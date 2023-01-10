@@ -1,0 +1,67 @@
+#' Calculate the Health Profile Grid
+#' 
+#' Calculate the Health Profile Grid (HPG) for two EQ-5D datasets.
+#' 
+#' @param pre data.frame, numeric or character. For data.frame default column 
+#' names should be MO, SC, UA, PD and AD representing Mobility, Self-care, 
+#' Usual activities, Pain/discomfort and Anxiety/depression. Vector using five 
+#' digit format can also be used.
+#' @param post data.frame, numeric or character. For data.frame default column 
+#' names should be MO, SC, UA, PD and AD representing Mobility, Self-care, 
+#' Usual activities, Pain/discomfort and Anxiety/depression. Vector using five 
+#' digit format can also be used.
+#' @param version string of value "3L" or "5L" to indicate instrument version.
+#' @param type string specifying method type used in deriving value set scores.
+#' Options are TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L, CW for EQ-5D-5L
+#' crosswalk conversion valuesets, RCW for EQ-5D-3L reverse crosswalk
+#' conversion valuesets.
+#' @param ignore.invalid boolean whether to ignore invalid scores. TRUE returns NA, FALSE 
+#' throws an error.
+#' @param dimensions character vector, specifying "dimension" column names. Defaults 
+#' are "MO", "SC", "UA", "PD" and "AD".
+#' @param no.problems boolean. Summarise 11111 "No change" subjects in a "No problems" 
+#' group.
+#' @return a data.frame or list of data.frames of changes according to PCHC.
+#' contain dimensions names and rows the EQ-5D score or, if summary=FALSE, a vector or  
+#' list of vectors of changes.
+#' @export
+hpg <- function(pre, post, country=NULL, version="5L", type=NULL, ignore.invalid=TRUE, dimensions=.getDimensionNames(), no.problems=TRUE) {
+  if(is.character(pre) || is.numeric(pre)) {
+    pre <- getDimensionsFromHealthStates(pre, version=version, ignore.invalid=ignore.invalid)
+  }
+  
+  if(is.character(post) || is.numeric(post)) {
+    post <- getDimensionsFromHealthStates(post, version=version, ignore.invalid=ignore.invalid)
+  }
+  
+  if(all(dimensions %in% names(pre)) && all(dimensions %in% names(post))) {
+    pre <- pre[,dimensions]
+    colnames(pre) <- .getDimensionNames()
+    post <- post[,dimensions]
+    colnames(post) <- .getDimensionNames()
+  } else {
+    stop("Unable to identify EQ-5D dimensions in data.frames.")
+  }
+  
+  if(nrow(pre)!=nrow(post)) {
+    stop("Different numbers of health states in pre and post.")
+  }
+
+  #calculate PCHC to be used for colouring
+  pchc <- pchc(pre, post, version=version, no.problems=no.problems, totals=FALSE, summary=FALSE)
+  
+  #convert pre/post scores to index utility scores
+  pre <- eq5d(scores=pre, version = version, type = type, country = country, ignore.invalid=TRUE)
+  post <- eq5d(scores=post, version = version, type = type, country = country, ignore.invalid=TRUE)
+  
+  utilities <- sort(eq5d(scores=getHealthStates(version = version), version = version, type = type, country = country), decreasing=TRUE)
+  
+  pre.match <- sapply(pre, function(x){if(length(wm <- which.min(abs(utilities-x)))) wm else NA})
+  post.match <- sapply(post, function(x){if(length(wm <- which.min(abs(utilities-x)))) wm else NA})
+  
+  dat <- data.frame(pre=pre.match, post=post.match, pchc=pchc)
+  
+  return(dat)
+}
+
+#ggplot(dat, aes(post, pre, color=pchc)) + geom_point(aes(shape=pchc)) + xlim(0,500) + ylim(0,500) + geom_segment(x=0,y=0,xend=3125,yend=3125)
