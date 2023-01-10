@@ -45,9 +45,8 @@ are "MO", "SC", "UA", "PD" and "AD".}
 group.}
 }
 \value{
-a data.frame or list of data.frames of changes according to PCHC.
-contain dimensions names and rows the EQ-5D score or, if summary=FALSE, a vector or  
-list of vectors of changes.
+a data.frame or list of data.frames containing the columns Pre, Post and PCHC. 
+Pre and Post contain the severity rankings and PCHC the PCHC category.
 }
 \description{
 Calculate the Health Profile Grid (HPG) for two EQ-5D datasets.

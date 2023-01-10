@@ -22,9 +22,8 @@
 #' are "MO", "SC", "UA", "PD" and "AD".
 #' @param no.problems boolean. Summarise 11111 "No change" subjects in a "No problems" 
 #' group.
-#' @return a data.frame or list of data.frames of changes according to PCHC.
-#' contain dimensions names and rows the EQ-5D score or, if summary=FALSE, a vector or  
-#' list of vectors of changes.
+#' @return a data.frame or list of data.frames containing the columns Pre, Post and PCHC. 
+#' Pre and Post contain the severity rankings and PCHC the PCHC category.
 #' @export
 hpg <- function(pre, post, country=NULL, version="5L", type=NULL, ignore.invalid=TRUE, dimensions=.getDimensionNames(), no.problems=TRUE) {
   if(is.character(pre) || is.numeric(pre)) {
@@ -60,7 +59,7 @@ hpg <- function(pre, post, country=NULL, version="5L", type=NULL, ignore.invalid
   pre.match <- sapply(pre, function(x){if(length(wm <- which.min(abs(utilities-x)))) wm else NA})
   post.match <- sapply(post, function(x){if(length(wm <- which.min(abs(utilities-x)))) wm else NA})
   
-  dat <- data.frame(pre=pre.match, post=post.match, pchc=pchc)
+  dat <- data.frame(Pre=pre.match, Post=post.match, PCHC=pchc)
   
   return(dat)
 }
