@@ -10,7 +10,7 @@ ps(
   version = "5L",
   ignore.invalid = TRUE,
   dimensions = .getDimensionNames(),
-  digits = 3
+  digits = 2
 )
 }
 \arguments{
@@ -32,7 +32,7 @@ throws an error.}
 \item{dimensions}{character vector, specifying "dimension" column names. Defaults 
 are "MO", "SC", "UA", "PD" and "AD".}
 
-\item{digits}{numeric specifying the number of decimal places. Defaults to 3.}
+\item{digits}{numeric specifying the number of decimal places. Defaults to 2.}
 }
 \value{
 a list of Probability of Superiority scores by dimension.
