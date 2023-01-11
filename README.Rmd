@@ -210,6 +210,62 @@ res2
 res3 <- pchc(pre, post, version="3L", no.problems=TRUE, totals=TRUE, by.dimension=TRUE)
 res3
 
+#Don't summarise. Return all classifications
+res4 <- pchc(pre, post, version="3L", no.problems=TRUE, totals=TRUE, summary=FALSE)
+head(res4)
+```
+
+### Probability of Superiority
+
+The Probability of Superiority (PS) is a non-parametric measure of effect size introduced by [Buchholz et al](https://pubmed.ncbi.nlm.nih.gov/25355653/) in 2015 and enables the assessment of paired samples of EQ-5D profile data in the context of assessing changes in health in terms of improvement or deterioration. For each EQ-5D dimension the number of subjects that have improved over time is divided by the total number of matched pairs. Ties (those with no changes) were accounted for through the addition of half the number of ties to the numerator. The score is less than 0.5 if more patients deteriorate than improve, 0.5 if the same number of patients improve and deteriorate or do not change and greater than 0.5 if more patients improve than deteriorate.
+
+```{r ps}
+library(readxl)
+
+#load example data
+data <- read_excel(system.file("extdata", "eq5d3l_example.xlsx", package="eq5d"))
+
+#use first 50 entries of each group as pre/post
+pre <- data[data$Group=="Group1",][1:50,]
+post <- data[data$Group=="Group2",][1:50,]
+
+res <- ps(pre, post, version="3L")
+res
+```
+
+### Health Grid Profile
+
+The Health Grid Profile (HPG) was also introduced by [Devlin et al](https://pubmed.ncbi.nlm.nih.gov/20623685/) in 2010. The HPG provides a visual way to observe changes in individuals between two time points. The HPG requires profiles for each time point to be ordered from best to worst. The ***hpg*** function uses a specified value set for this with profiles being assigned a ranking between 1 and 243 for EQ-5D-3L and 1 and 3125 for EQ-5D-5L based on severity (1 being the best and 243/3125 the worst). The rankings for the two time points for each individual are plotted with the location of each point showing whether there has been an improvement or deterioration. The further a point is above the 45° line, the great the improvement in an individuals health. Conversely, the further below the line a point is the more health has deteriorated. Those individuals on the line show "no change".
+
+```{r hpg}
+library(readxl)
+
+#load example data
+data <- read_excel(system.file("extdata", "eq5d3l_example.xlsx", package="eq5d"))
+
+#use first 50 entries of each group as pre/post
+pre <- data[data$Group=="Group1",][1:50,]
+post <- data[data$Group=="Group2",][1:50,]
+
+#run hpg function on data.frames
+
+#Show pre/post rankings and PCHC classification
+res <- hpg(pre, post, country = "UK", version="3L", type="TTO")
+head(res)
+
+#Plot data using ggplot2
+library(ggplot2)
+
+ggplot(res, aes(Post, Pre, color=PCHC)) +
+  geom_point(aes(shape=PCHC)) +
+  coord_cartesian(xlim = c(1, 243), ylim = c(1, 243)) +
+  scale_x_continuous(breaks = c(1,243)) +
+  scale_y_continuous(breaks = c(1,243)) +
+  geom_segment(x=1,y=1,xend=243,yend=243, colour="black", size=0.01) +
+  theme(panel.border = element_blank(), panel.grid.minor = element_blank()) +
+  xlab("Post-treatment") +
+  ylab("Pre-treatment")
+
 ```
 
 ### EQ-5D-DS

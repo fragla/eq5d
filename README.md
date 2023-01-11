@@ -392,7 +392,114 @@ res3
 #> Worsen                   7    30.4
 #> Total with problems     23    46.0
 #> No problems             27    54.0
+
+#Don't summarise. Return all classifications
+res4 <- pchc(pre, post, version="3L", no.problems=TRUE, totals=TRUE, summary=FALSE)
+#> Warning in pchc(pre, post, version = "3L", no.problems = TRUE, totals = TRUE, :
+#> 'totals = TRUE' and 'summary = FALSE' can't be used together. 'totals' will be
+#> ignored.
+head(res4)
+#> [1] "Improve"      "Improve"      "Improve"      "Improve"      "Improve"     
+#> [6] "Mixed change"
 ```
+
+### Probability of Superiority
+
+The Probability of Superiority (PS) is a non-parametric measure of
+effect size introduced by [Buchholz et
+al](https://pubmed.ncbi.nlm.nih.gov/25355653/) in 2015 and enables the
+assessment of paired samples of EQ-5D profile data in the context of
+assessing changes in health in terms of improvement or deterioration.
+For each EQ-5D dimension the number of subjects that have improved over
+time is divided by the total number of matched pairs. Ties (those with
+no changes) were accounted for through the addition of half the number
+of ties to the numerator. The score is less than 0.5 if more patients
+deteriorate than improve, 0.5 if the same number of patients improve and
+deteriorate or do not change and greater than 0.5 if more patients
+improve than deteriorate.
+
+``` r
+library(readxl)
+
+#load example data
+data <- read_excel(system.file("extdata", "eq5d3l_example.xlsx", package="eq5d"))
+
+#use first 50 entries of each group as pre/post
+pre <- data[data$Group=="Group1",][1:50,]
+post <- data[data$Group=="Group2",][1:50,]
+
+res <- ps(pre, post, version="3L")
+res
+#> $MO
+#> [1] 0.6
+#> 
+#> $SC
+#> [1] 0.61
+#> 
+#> $UA
+#> [1] 0.72
+#> 
+#> $PD
+#> [1] 0.68
+#> 
+#> $AD
+#> [1] 0.52
+```
+
+### Health Grid Profile
+
+The Health Grid Profile (HPG) was also introduced by [Devlin et
+al](https://pubmed.ncbi.nlm.nih.gov/20623685/) in 2010. The HPG provides
+a visual way to observe changes in individuals between two time points.
+The HPG requires profiles for each time point to be ordered from best to
+worst. The ***hpg*** function uses a specified value set for this with
+profiles being assigned a ranking between 1 and 243 for EQ-5D-3L and 1
+and 3125 for EQ-5D-5L based on severity (1 being the best and 243/3125
+the worst). The rankings for the two time points for each individual are
+plotted with the location of each point showing whether there has been
+an improvement or deterioration. The further a point is above the 45°
+line, the great the improvement in an individuals health. Conversely,
+the further below the line a point is the more health has deteriorated.
+Those individuals on the line show “no change”.
+
+``` r
+library(readxl)
+
+#load example data
+data <- read_excel(system.file("extdata", "eq5d3l_example.xlsx", package="eq5d"))
+
+#use first 50 entries of each group as pre/post
+pre <- data[data$Group=="Group1",][1:50,]
+post <- data[data$Group=="Group2",][1:50,]
+
+#run hpg function on data.frames
+
+#Show pre/post rankings and PCHC classification
+res <- hpg(pre, post, country = "UK", version="3L", type="TTO")
+head(res)
+#>   Pre Post         PCHC
+#> 1  11    8      Improve
+#> 2 161    8      Improve
+#> 3  23    1      Improve
+#> 4  20    1      Improve
+#> 5  23    9      Improve
+#> 6  33   97 Mixed change
+
+#Plot data using ggplot2
+library(ggplot2)
+
+ggplot(res, aes(Post, Pre, color=PCHC)) +
+  geom_point(aes(shape=PCHC)) +
+  coord_cartesian(xlim = c(1, 243), ylim = c(1, 243)) +
+  scale_x_continuous(breaks = c(1,243)) +
+  scale_y_continuous(breaks = c(1,243)) +
+  geom_segment(x=1,y=1,xend=243,yend=243, colour="black", size=0.01) +
+  theme(panel.border = element_blank(), panel.grid.minor = element_blank()) +
+  xlab("Post-treatment") +
+  ylab("Pre-treatment")
+```
+
+<img src="man/figures/README-hpg-1.png" width="100%" />
 
 ### EQ-5D-DS
 
@@ -414,29 +521,29 @@ dat <- data.frame(
        )
 
 eq5dds(dat, version="3L")
-#>     MO   SC   UA   PD   AD
-#> 1 25.0 33.3 16.7 33.3 41.7
-#> 2 33.3 41.7 33.3 33.3 16.7
-#> 3 41.7 25.0 50.0 33.3 41.7
+#>     MO   SC   UA PD   AD
+#> 1 41.7 50.0 50.0 25 41.7
+#> 2 25.0 16.7 16.7 25  0.0
+#> 3 33.3 33.3 33.3 50 58.3
 
 eq5dds(dat, version="3L", counts=TRUE)
 #>   MO SC UA PD AD
-#> 1  3  4  2  4  5
-#> 2  4  5  4  4  2
-#> 3  5  3  6  4  5
+#> 1  5  6  6  3  5
+#> 2  3  2  2  3  0
+#> 3  4  4  4  6  7
 
 eq5dds(dat, version="3L", by="Sex")
 #> data[, by]: Female
-#>     MO SC   UA   PD   AD
-#> 1  0.0  0 16.7 16.7 50.0
-#> 2 66.7 50 33.3 33.3 16.7
-#> 3 33.3 50 50.0 50.0 33.3
+#>     MO   SC   UA   PD AD
+#> 1 33.3 66.7 66.7 50.0 50
+#> 2 16.7  0.0 33.3 33.3  0
+#> 3 50.0 33.3  0.0 16.7 50
 #> ------------------------------------------------------------ 
 #> data[, by]: Male
-#>   MO   SC   UA   PD   AD
-#> 1 50 66.7 16.7 50.0 33.3
-#> 2  0 33.3 33.3 33.3 16.7
-#> 3 50  0.0 50.0 16.7 50.0
+#>     MO   SC   UA   PD   AD
+#> 1 50.0 33.3 33.3  0.0 33.3
+#> 2 33.3 33.3  0.0 16.7  0.0
+#> 3 16.7 33.3 66.7 83.3 66.7
 ```
 
 ## Helper functions
