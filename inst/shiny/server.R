@@ -837,6 +837,31 @@ shinyServer(function(input, output, session) {
     return(data)
   })
   
+  getShannon <- reactive({
+    if(is.null(input$data) || is.null(input$plot_type) || is.null(input$summary_type)) {
+      return()
+    }
+    
+    if(!all(getDimensionNames() %in% colnames(dataset())))
+      stop("Unable to generate summary without dimension data.")
+    
+    data <- getTableDataByGroup()
+    if(input$group=="None" || !input$raw) {
+     data <- shannon(data, version=input$version, by.dimension=TRUE, ignore.invalid=ignore.invalid, dimensions=getDimensionNames())
+     data <- t(do.call(rbind, data))
+     rownames(data) <- c("H'", "H' max", "J'")
+    } else {
+      data <- shannon(data, version=input$version, by.dimension=TRUE, ignore.invalid=ignore.invalid, dimensions=getDimensionNames())
+      data <- t(do.call(rbind, data))
+    }
+    # if(input$group=="None" || !input$raw) {
+    #   data <- eq5dds(data, version=input$version, counts=counts, dimensions=getDimensionNames())
+    # } else {
+    #   data <- eq5dds(data, version=input$version, counts=counts, by=input$group, dimensions=getDimensionNames())
+    # }
+    return(data)
+  })
+  
   getStatistics <- reactive({
     if(is.null(input$group) || input$group=="None") {
       return()
@@ -864,10 +889,19 @@ shinyServer(function(input, output, session) {
 
     if(input$plot_type %in% c("radar", "summary")) {
       summ <- getSummary()
+      shannon <- getShannon()
       if(input$group=="None" || !input$raw) {
         taglist <- tagList(
-          h5(paste("Descriptive system by", input$summary_type)),
-          renderDT(summ,options = list(searching = FALSE, paging = FALSE, info = FALSE))
+          tabsetPanel(
+            tabPanel("Descriptive",
+              h5(paste("Descriptive system by", input$summary_type)),
+              renderDT(summ,options = list(searching = FALSE, paging = FALSE, info = FALSE))
+            ),
+            tabPanel("Shannon",
+              h5("Shannon's index values"),
+              renderDT(shannon,options = list(searching = FALSE, paging = FALSE, info = FALSE))
+            )
+          )
         )
       } else {
         if(length(summ)==0)
