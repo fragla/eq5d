@@ -268,6 +268,27 @@ ggplot(res, aes(Post, Pre, color=PCHC)) +
 
 ```
 
+### Shannon's Indices
+
+Shannon's indices were first used to assess how evenly EQ-5D dimension scores or health states in a dataset are distributed by [Janssen et al](https://pubmed.ncbi.nlm.nih.gov/17294285/) in 2007. Shannon's H' (diversity) index represents the absolute amount of informativity captured with Shannon's J' (evenness) index capturing the evenness of the distribution of data. Shannon's J' is calculated by dividing H' by H' max to give a value between 0 and 1. Lower values indicate more diversity and higher values indicate less.
+
+```{r shannon}
+library(readxl)
+
+#load example data
+data <- read_excel(system.file("extdata", "eq5d3l_example.xlsx", package="eq5d"))
+
+#Shannon's H', H' max and J' for the whole dataset
+shannon(data, version="3L", by.dimension=FALSE)
+
+#Shannon's H', H' max and J' for each dimension
+res <- shannon(data, version="3L", by.dimension=TRUE)
+
+#Convert to data.frame for ease of viewing
+do.call(rbind, res)
+
+```
+
 ### EQ-5D-DS
 
 The ***eq5dds*** function is an R approximation of the Stata command written by [Ramos-Goñi & Ramallo-Fariña](https://www.stata-journal.com/article.html?article=st0450). The function analyses and summarises the descriptive components of an EQ-5D dataset. The "by" argument enables a grouping variable to be specified when analysing the data subgroup.

@@ -501,6 +501,47 @@ ggplot(res, aes(Post, Pre, color=PCHC)) +
 
 <img src="man/figures/README-hpg-1.png" width="100%" />
 
+### Shannon’s Indices
+
+Shannon’s indices were first used to assess how evenly EQ-5D dimension
+scores or health states in a dataset are distributed by [Janssen et
+al](https://pubmed.ncbi.nlm.nih.gov/17294285/) in 2007. Shannon’s H’
+(diversity) index represents the absolute amount of informativity
+captured with Shannon’s J’ (evenness) index capturing the evenness of
+the distribution of data. Shannon’s J’ is calculated by dividing H’ by
+H’ max to give a value between 0 and 1. Lower values indicate more
+diversity and higher values indicate less.
+
+``` r
+library(readxl)
+
+#load example data
+data <- read_excel(system.file("extdata", "eq5d3l_example.xlsx", package="eq5d"))
+
+#Shannon's H', H' max and J' for the whole dataset
+shannon(data, version="3L", by.dimension=FALSE)
+#> $H
+#> [1] 4.17
+#> 
+#> $H.max
+#> [1] 6.97
+#> 
+#> $J
+#> [1] 0.6
+
+#Shannon's H', H' max and J' for each dimension
+res <- shannon(data, version="3L", by.dimension=TRUE)
+
+#Convert to data.frame for ease of viewing
+do.call(rbind, res)
+#>    H    H.max J   
+#> MO 1    1.58  0.63
+#> SC 0.97 1.58  0.61
+#> UA 1.22 1.58  0.77
+#> PD 1.13 1.58  0.71
+#> AD 1.09 1.58  0.69
+```
+
 ### EQ-5D-DS
 
 The ***eq5dds*** function is an R approximation of the Stata command
@@ -521,29 +562,29 @@ dat <- data.frame(
        )
 
 eq5dds(dat, version="3L")
-#>     MO   SC   UA PD   AD
-#> 1 41.7 50.0 50.0 25 41.7
-#> 2 25.0 16.7 16.7 25  0.0
-#> 3 33.3 33.3 33.3 50 58.3
+#>     MO SC   UA   PD   AD
+#> 1 33.3 25 33.3 25.0 41.7
+#> 2 33.3 25 25.0 58.3 33.3
+#> 3 33.3 50 41.7 16.7 25.0
 
 eq5dds(dat, version="3L", counts=TRUE)
 #>   MO SC UA PD AD
-#> 1  5  6  6  3  5
-#> 2  3  2  2  3  0
-#> 3  4  4  4  6  7
+#> 1  4  3  4  3  5
+#> 2  4  3  3  7  4
+#> 3  4  6  5  2  3
 
 eq5dds(dat, version="3L", by="Sex")
 #> data[, by]: Female
-#>     MO   SC   UA   PD AD
-#> 1 33.3 66.7 66.7 50.0 50
-#> 2 16.7  0.0 33.3 33.3  0
-#> 3 50.0 33.3  0.0 16.7 50
+#>     MO   SC   UA   PD   AD
+#> 1 33.3 33.3 50.0 16.7 66.7
+#> 2 33.3 33.3 33.3 66.7 16.7
+#> 3 33.3 33.3 16.7 16.7 16.7
 #> ------------------------------------------------------------ 
 #> data[, by]: Male
 #>     MO   SC   UA   PD   AD
-#> 1 50.0 33.3 33.3  0.0 33.3
-#> 2 33.3 33.3  0.0 16.7  0.0
-#> 3 16.7 33.3 66.7 83.3 66.7
+#> 1 33.3 16.7 16.7 33.3 16.7
+#> 2 33.3 16.7 16.7 50.0 50.0
+#> 3 33.3 66.7 66.7 16.7 33.3
 ```
 
 ## Helper functions
