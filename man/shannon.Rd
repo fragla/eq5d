@@ -39,7 +39,7 @@ are "MO", "SC", "UA", "PD" and "AD".}
 a single list or list of dimensions containing H' H' max and J' scores.
 }
 \description{
-Calculate Shannon's H' index, H' max and Shannon's J' Evenness index for an 
-EQ-5D data set. This can be calculated both by dimension and for health states
-as a whole.
+Calculate Shannon's H' (diversity) index, H' max and Shannon's J' (evenness) 
+index for an EQ-5D data set. This can be calculated both by dimension and 
+for health states as a whole.
 }

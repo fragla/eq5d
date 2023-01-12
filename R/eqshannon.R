@@ -1,8 +1,8 @@
 #' Calculate Shannon's Index
 #' 
-#' Calculate Shannon's H' index, H' max and Shannon's J' Evenness index for an 
-#' EQ-5D data set. This can be calculated both by dimension and for health states
-#' as a whole.
+#' Calculate Shannon's H' (diversity) index, H' max and Shannon's J' (evenness) 
+#' index for an EQ-5D data set. This can be calculated both by dimension and 
+#' for health states as a whole.
 #' 
 #' @param scores data.frame, numeric or character. For data.frame default column 
 #' names should be MO, SC, UA, PD and AD representing Mobility, Self-care, 
