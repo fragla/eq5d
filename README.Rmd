@@ -211,8 +211,9 @@ res3 <- pchc(pre, post, version="3L", no.problems=TRUE, totals=TRUE, by.dimensio
 res3
 
 #Don't summarise. Return all classifications
-res4 <- pchc(pre, post, version="3L", no.problems=TRUE, totals=TRUE, summary=FALSE)
+res4 <- pchc(pre, post, version="3L", no.problems=TRUE, totals=FALSE, summary=FALSE)
 head(res4)
+
 ```
 
 ### Probability of Superiority
@@ -231,6 +232,7 @@ post <- data[data$Group=="Group2",][1:50,]
 
 res <- ps(pre, post, version="3L")
 res
+
 ```
 
 ### Health Grid Profile
@@ -294,7 +296,6 @@ do.call(rbind, res)
 The ***eq5dds*** function is an R approximation of the Stata command written by [Ramos-Goñi & Ramallo-Fariña](https://www.stata-journal.com/article.html?article=st0450). The function analyses and summarises the descriptive components of an EQ-5D dataset. The "by" argument enables a grouping variable to be specified when analysing the data subgroup.
 
 ```{r eq5dds}
-
 dat <- data.frame(
          matrix(
            sample(1:3,5*12, replace=TRUE),12,5, 
@@ -342,6 +343,7 @@ scores <- eq5d(data, country="UK", version="3L", type="TTO")
 
 # Top 6 scores
 head(scores)
+
 ```
 
 ## Shiny web interface

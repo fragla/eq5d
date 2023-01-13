@@ -28,13 +28,13 @@ Following assessment the scores from the descriptive component can be reported a
 
 The eq5d package provides methods for the cross-sectional and longitudinal analysis of EQ-5D profiles and also the calculation of utility index scores from a subject's dimension scores. Additionally, a [Shiny](https://shiny.rstudio.com) app is included to enable the calculation, visualisation and automated statistical analysis of multiple EQ-5D index values via a web browser using EQ-5D dimension scores stored in CSV or Excel files.
 
-Value sets for EQ-5D-3L are available for many countries and have been produced using the time trade-off (TTO) valuation technique or the visual analogue scale (VAS) valuation technique.  Some countries have TTO and VAS value sets for EQ-5D-3L. Additionally, EQ-5D-3L "reverse crosswalk" value sets published on the [EuroQol](https://euroqol.org/support/analysis-tools/) website that enable EQ-5D-3L data to be mapped to EQ-5D-5L value sets are included.
+Value sets for EQ-5D-3L are available for many countries and have been produced using the time trade-off (TTO) valuation technique or the visual analogue scale (VAS) valuation technique.  Some countries have TTO and VAS value sets for EQ-5D-3L. Additionally, EQ-5D-3L "reverse crosswalk" value sets published on the [EuroQol](https://euroqol.org/support/analysis-tools/) website that enable EQ-5D-3L data to be mapped to EQ-5D-5L value sets are included. 
 
 For EQ-5D-5L, a standardised valuation study protocol (EQ-VT) was developed by the EuroQol group based on the composite time trade-off (cTTO) valuation technique supplemented by a discrete choice experiment (DCE).  The EuroQol group recommends users to use a standard value set where available.
 
 The EQ-5D-5L "crosswalk" value sets published by [van Hout *et al*](https://pubmed.ncbi.nlm.nih.gov/22867780/) as well as that for Russia are also included. The crosswalk value sets enable index values to be calculated for EQ-5D-5L data where no value set is available by mapping between the EQ-5D-5L and EQ-5D-3L descriptive systems.
 
-The recently published age and sex conditional based mapping data by the [NICE Decision Support Unit](https://nicedsu.sites.sheffield.ac.uk/methods-development/mapping-eq-5d-5l-to-3l) are also now part of the package. These enable age-sex based EQ-5D-3L to EQ-5D-5L and EQ-5D-5L to EQ-5D-3L mappings from dimensions and exact or approximate utility index scores. 
+The recently published age and sex conditional based mapping data by the [NICE Decision Support Unit](https://www.sheffield.ac.uk/nice-dsu/methods-development/mapping-eq-5d-5l-3l) are also now part of the package. These enable age-sex based EQ-5D-3L to EQ-5D-5L and EQ-5D-5L to EQ-5D-3L mappings from dimensions and exact or approximate utility index scores. 
 
 Additional information on EQ-5D can be found on the [EuroQol](https://euroqol.org/) website as well as in [Szende *et al* (2007)](https://doi.org/10.1007/1-4020-5511-0) and [Szende 
     *et al* (2014)](https://doi.org/10.1007/978-94-007-7596-1). Advice on [choosing a value set](https://euroqol.org/eq-5d-instruments/eq-5d-3l-about/valuation/choosing-a-value-set/
@@ -116,20 +116,20 @@ eq5d(scores.df2$state, country="Canada", version="5L", type="VT")
 The available value sets can be viewed using the ***valuesets*** function. The results can be filtered by EQ-5D version, value set type or by country.
 
 ```{r valuesets}
-# Return all value sets (top 6 returned for brevity).
-head(valuesets())
+# Return TTO value sets with PubMed IDs and DOIs (top 6 returned for brevity).
+head(valuesets(type="TTO", references=c("PubMed", "DOI")))
 
-# Return VAS based value sets (top 6 returned for brevity).
-head(valuesets(type="VAS"))
+# Return VAS value sets with ISBN and external URL (top 6 returned for brevity).
+head(valuesets(type="VAS", references=c("ISBN", "ExternalURL")))
 
 # Return EQ-5D-5L value sets (top 6 returned for brevity).
 head(valuesets(version="5L"))
 
-# Return all UK value sets.
-valuesets(country="UK")
+# Return all French value sets.
+valuesets(country="France")
 
-# Return all EQ-5D-5L to EQ-5D-3L DSU value sets.
-valuesets(type="DSU", version="5L")
+# Return all EQ-5D-5L to EQ-5D-3L DSU value sets without references.
+valuesets(type="DSU", version="5L", references=NULL)
 
 ```
 
@@ -207,6 +207,85 @@ res2
 res3 <- pchc(pre, post, version="3L", no.problems=TRUE, totals=TRUE, by.dimension=TRUE)
 res3
 
+#Don't summarise. Return all classifications
+res4 <- pchc(pre, post, version="3L", no.problems=TRUE, totals=FALSE, summary=FALSE)
+head(res4)
+
+```
+
+### Probability of Superiority
+
+The Probability of Superiority (PS) is a non-parametric measure of effect size introduced by [Buchholz et al](https://pubmed.ncbi.nlm.nih.gov/25355653/) in 2015 and enables the assessment of paired samples of EQ-5D profile data in the context of assessing changes in health in terms of improvement or deterioration. For each EQ-5D dimension the number of subjects that have improved over time is divided by the total number of matched pairs. Ties (those with no changes) were accounted for through the addition of half the number of ties to the numerator. The score is less than 0.5 if more patients deteriorate than improve, 0.5 if the same number of patients improve and deteriorate or do not change and greater than 0.5 if more patients improve than deteriorate.
+
+```{r ps}
+library(readxl)
+
+#load example data
+data <- read_excel(system.file("extdata", "eq5d3l_example.xlsx", package="eq5d"))
+
+#use first 50 entries of each group as pre/post
+pre <- data[data$Group=="Group1",][1:50,]
+post <- data[data$Group=="Group2",][1:50,]
+
+res <- ps(pre, post, version="3L")
+res
+
+```
+
+### Health Grid Profile
+
+The Health Grid Profile (HPG) was also introduced by [Devlin et al](https://pubmed.ncbi.nlm.nih.gov/20623685/) in 2010. The HPG provides a visual way to observe changes in individuals between two time points. The HPG requires profiles for each time point to be ordered from best to worst. The ***hpg*** function uses a specified value set for this with profiles being assigned a ranking between 1 and 243 for EQ-5D-3L and 1 and 3125 for EQ-5D-5L based on severity (1 being the best and 243/3125 the worst). The rankings for the two time points for each individual are plotted with the location of each point showing whether there has been an improvement or deterioration. The further a point is above the 45° line, the great the improvement in an individuals health. Conversely, the further below the line a point is the more health has deteriorated. Those individuals on the line show "no change".
+
+```{r hpg}
+library(readxl)
+
+#load example data
+data <- read_excel(system.file("extdata", "eq5d3l_example.xlsx", package="eq5d"))
+
+#use first 50 entries of each group as pre/post
+pre <- data[data$Group=="Group1",][1:50,]
+post <- data[data$Group=="Group2",][1:50,]
+
+#run hpg function on data.frames
+
+#Show pre/post rankings and PCHC classification
+res <- hpg(pre, post, country = "UK", version="3L", type="TTO")
+head(res)
+
+#Plot data using ggplot2
+library(ggplot2)
+
+ggplot(res, aes(Post, Pre, color=PCHC)) +
+  geom_point(aes(shape=PCHC)) +
+  coord_cartesian(xlim = c(1, 243), ylim = c(1, 243)) +
+  scale_x_continuous(breaks = c(1,243)) +
+  scale_y_continuous(breaks = c(1,243)) +
+  geom_segment(x=1,y=1,xend=243,yend=243, colour="black", size=0.01) +
+  theme(panel.border = element_blank(), panel.grid.minor = element_blank()) +
+  xlab("Post-treatment") +
+  ylab("Pre-treatment")
+
+```
+
+### Shannon's Indices
+
+Shannon's indices were first used to assess how evenly EQ-5D dimension scores or health states in a dataset are distributed by [Janssen et al](https://pubmed.ncbi.nlm.nih.gov/17294285/) in 2007. Shannon's H' (diversity) index represents the absolute amount of informativity captured with Shannon's J' (evenness) index capturing the evenness of the distribution of data. Shannon's J' is calculated by dividing H' by H' max to give a value between 0 and 1. Lower values indicate more diversity and higher values indicate less.
+
+```{r shannon}
+library(readxl)
+
+#load example data
+data <- read_excel(system.file("extdata", "eq5d3l_example.xlsx", package="eq5d"))
+
+#Shannon's H', H' max and J' for the whole dataset
+shannon(data, version="3L", by.dimension=FALSE)
+
+#Shannon's H', H' max and J' for each dimension
+res <- shannon(data, version="3L", by.dimension=TRUE)
+
+#Convert to data.frame for ease of viewing
+do.call(rbind, res)
+
 ```
 
 ### EQ-5D-DS
@@ -214,7 +293,6 @@ res3
 The ***eq5dds*** function is an R approximation of the Stata command written by [Ramos-Goñi & Ramallo-Fariña](https://www.stata-journal.com/article.html?article=st0450). The function analyses and summarises the descriptive components of an EQ-5D dataset. The "by" argument enables a grouping variable to be specified when analysing the data subgroup.
 
 ```{r eq5dds}
-
 dat <- data.frame(
          matrix(
            sample(1:3,5*12, replace=TRUE),12,5, 
@@ -262,8 +340,8 @@ scores <- eq5d(data, country="UK", version="3L", type="TTO")
 
 # Top 6 scores
 head(scores)
-```
 
+```
 ## Shiny web interface
 
 The calculation (and visualisation) of multiple EQ-5D indices can also be performed by upload of a CSV or Excel file using the packaged [Shiny](https://shiny.rstudio.com) app. This requires the [shiny](https://cran.r-project.org/package=shiny),  [DT](https://cran.r-project.org/package=DT), 

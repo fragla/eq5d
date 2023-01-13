@@ -394,10 +394,7 @@ res3
 #> No problems             27    54.0
 
 #Don't summarise. Return all classifications
-res4 <- pchc(pre, post, version="3L", no.problems=TRUE, totals=TRUE, summary=FALSE)
-#> Warning in pchc(pre, post, version = "3L", no.problems = TRUE, totals = TRUE, :
-#> 'totals = TRUE' and 'summary = FALSE' can't be used together. 'totals' will be
-#> ignored.
+res4 <- pchc(pre, post, version="3L", no.problems=TRUE, totals=FALSE, summary=FALSE)
 head(res4)
 #> [1] "Improve"      "Improve"      "Improve"      "Improve"      "Improve"     
 #> [6] "Mixed change"
@@ -552,7 +549,6 @@ EQ-5D dataset. The “by” argument enables a grouping variable to be
 specified when analysing the data subgroup.
 
 ``` r
-
 dat <- data.frame(
          matrix(
            sample(1:3,5*12, replace=TRUE),12,5, 
@@ -562,29 +558,29 @@ dat <- data.frame(
        )
 
 eq5dds(dat, version="3L")
-#>     MO SC   UA   PD   AD
-#> 1 33.3 25 33.3 25.0 41.7
-#> 2 33.3 25 25.0 58.3 33.3
-#> 3 33.3 50 41.7 16.7 25.0
+#>     MO   SC   UA   PD   AD
+#> 1 66.7 33.3 16.7 25.0 41.7
+#> 2 25.0 25.0 50.0 58.3 16.7
+#> 3  8.3 41.7 33.3 16.7 41.7
 
 eq5dds(dat, version="3L", counts=TRUE)
 #>   MO SC UA PD AD
-#> 1  4  3  4  3  5
-#> 2  4  3  3  7  4
-#> 3  4  6  5  2  3
+#> 1  8  4  2  3  5
+#> 2  3  3  6  7  2
+#> 3  1  5  4  2  5
 
 eq5dds(dat, version="3L", by="Sex")
 #> data[, by]: Female
 #>     MO   SC   UA   PD   AD
-#> 1 33.3 33.3 50.0 16.7 66.7
-#> 2 33.3 33.3 33.3 66.7 16.7
-#> 3 33.3 33.3 16.7 16.7 16.7
+#> 1 50.0 16.7 16.7 33.3 33.3
+#> 2 33.3 33.3 33.3 50.0 16.7
+#> 3 16.7 50.0 50.0 16.7 50.0
 #> ------------------------------------------------------------ 
 #> data[, by]: Male
 #>     MO   SC   UA   PD   AD
-#> 1 33.3 16.7 16.7 33.3 16.7
-#> 2 33.3 16.7 16.7 50.0 50.0
-#> 3 33.3 66.7 66.7 16.7 33.3
+#> 1 83.3 50.0 16.7 16.7 50.0
+#> 2 16.7 16.7 66.7 66.7 16.7
+#> 3  0.0 33.3 16.7 16.7 33.3
 ```
 
 ## Helper functions
