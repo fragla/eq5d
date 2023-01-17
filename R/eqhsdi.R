@@ -15,8 +15,8 @@
 #' are "MO", "SC", "UA", "PD" and "AD".
 #' @return numeric containing the HSDI value.
 #' @export
-hsdi <- function(scores, version, ignore.invalid=TRUE, digits=2) {
-  cf <- eq5dcf(scores, version=version, ignore.invalid=ignore.invalid, proportions=TRUE, digits=NULL)
+hsdi <- function(scores, version, ignore.invalid=TRUE, digits=2, ...) {
+  cf <- eq5dcf(scores, version=version, ignore.invalid=ignore.invalid, proportions=TRUE, digits=NULL, ...)
   cf$CumulativeState <- 1:nrow(cf) / nrow(cf)
   
   cf$X <- sapply(1:nrow(cf), function(x){cf$CumulativeProp[x]-ifelse(x==1, 0, cf$CumulativeProp[x-1])})
