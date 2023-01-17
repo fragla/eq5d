@@ -18,24 +18,24 @@ eq5dcf <- function(data, version, ignore.invalid, ...) {
 }
 
 #' @export
-eq5dcf.data.frame <- function(data, version, ignore.invalid=TRUE, ...) {
+eq5dcf.data.frame <- function(data, version, ignore.invalid=TRUE, digits=1, ...) {
   args <- list(...)
   
   dimensions <- .getDimensionNames()
   if(!is.null(args$dimensions)) {dimensions <- args$dimensions}
   
   states <- getHealthStatesFromDimensions(data, version, ignore.invalid, dimensions)
-  eq5dcf.default(states, version, ignore.invalid, ...)
+  eq5dcf.default(states, version, ignore.invalid, digits=1, ...)
 }
 
 #' @export
-eq5dcf.matrix <- function(data, version, ignore.invalid=TRUE, ...) {
+eq5dcf.matrix <- function(data, version, ignore.invalid=TRUE, digits=1, ...) {
   data <- as.data.frame(data)
-  eq5dcf.data.frame(data, version, ignore.invalid=TRUE, ...)
+  eq5dcf.data.frame(data, version, ignore.invalid=TRUE, digits=1, ...)
 }
 
 #' @export
-eq5dcf.default <- function(data, version, ignore.invalid=TRUE, ...) {
+eq5dcf.default <- function(data, version, ignore.invalid=TRUE, digits=1, ...) {
   invalid.idx <- which(!data %in% getHealthStates(version))
   
   if(length(invalid.idx) > 0) {
@@ -48,9 +48,14 @@ eq5dcf.default <- function(data, version, ignore.invalid=TRUE, ...) {
 
   #State, Frequency, Percentage, Cumulative frequency, Cumulative percentage
   frequencies <- sort(table(data), decreasing=TRUE)
-  percentage <- round(prop.table(as.numeric(frequencies))*100,1)
+  percentage <- prop.table(as.numeric(frequencies))*100
   cum.freq <- cumsum(as.numeric(frequencies))
-  cum.perc <- round(cum.freq/sum(frequencies)*100,1)
+  cum.perc <- cum.freq/sum(frequencies)*100
+  
+  if(!is.null(digits)) {
+    percentage <- round(percentage, digits)
+    cum.perc <- round(cum.perc, digits)
+  }
   
   return(data.frame(State=names(frequencies), Frequency=as.numeric(frequencies),
                     Percentage=percentage, CumulativeFreq=cum.freq, CumulativePerc=cum.perc, 
