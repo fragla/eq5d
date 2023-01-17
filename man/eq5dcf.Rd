@@ -4,7 +4,7 @@
 \alias{eq5dcf}
 \title{Calculate the cumulative frequency profile of an EQ-5D dataset}
 \usage{
-eq5dcf(data, version, ignore.invalid, ...)
+eq5dcf(data, version, ignore.invalid, proportions, digits, ...)
 }
 \arguments{
 \item{data}{data.frame with names MO, SC, UA, PD and AD representing
@@ -12,8 +12,13 @@ Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.}
 
 \item{version}{string of value "3L" or "5L" to indicate instrument version.}
 
-\item{ignore.invalid}{whether to ignore invalid scores. TRUE returns NA, FALSE throws an 
+\item{ignore.invalid}{booloean whether to ignore invalid scores. TRUE returns NA, FALSE throws an 
 error.}
+
+\item{proportions}{boolean whether to include proportion data columns Proportions and
+CumulativeProp. Default is FALSE.}
+
+\item{digits}{numeric specifying the number of decimal places for percentages. Defaults to 1.}
 
 \item{...}{character vector, specifying "dimensions" column names. Defaults 
 are "MO", "SC", "UA", "PD" and "AD".}
