@@ -291,6 +291,37 @@ do.call(rbind, res)
 
 ```
 
+### Health State Density Curve and Health State Density Index
+
+The Health State Density Curve (HSDC) was introduced by [Zamora et al](https://www.ohe.org/publications/new-methods-analysing-distribution-eq-5d-observations) in 2018 and provides a graphical way to depict the distribution of EQ-5D profiles. The cumulative frequency of health profiles ranked from most to least frequent is plotted against the cumulative proportion of the distinct health profiles (red line) and can be compared a uniform distribution representing total equality (black line). The Health State Density Index (HSDI) is based on the area formed by the diagonal line representing total equality and the line of the HSDC. The HSDI has a value between 0 and 1 where a value of 0 represents total inequality and 1 total equality.
+
+```{r hsdi}
+#load example data
+data <- read_excel(system.file("extdata", "eq5d3l_example.xlsx", package="eq5d"))
+
+#Calculate HSDIdata <- redata <- read_excel(system.file("extdata", "eq5d3l_example.xlsx", package="eq5d"))
+
+#Calculate HSDI
+hsdi <- hsdi(data, version="3L")
+
+#Plot HSDC
+cf <- eq5dcf(data, version="3L", proportions = T)
+cf$CumulativeState <- 1:nrow(cf)/nrow(cf)
+
+#Plot data using ggplot2
+library(ggplot2)
+
+ggplot(cf, aes(CumulativeProp, CumulativeState)) + 
+  geom_line(color="#FF9999") + 
+  geom_segment(x=0,y=0,xend=1,yend=1, colour="black", size=0.01) +  
+  geom_text(x=0.5, y=0.9, label=paste0("HSDI=", hsdi)) +
+  theme(panel.border = element_blank(), panel.grid.minor = element_blank()) +
+  coord_cartesian(xlim = c(0, 1), ylim = c(0, 1)) +
+  xlab("Cumulative proportion of observations") +
+  ylab("Cumulative proportion of profiles")
+
+```
+
 ### EQ-5D-DS
 
 The ***eq5dds*** function is an R approximation of the Stata command written by [Ramos-Goñi & Ramallo-Fariña](https://www.stata-journal.com/article.html?article=st0450). The function analyses and summarises the descriptive components of an EQ-5D dataset. The "by" argument enables a grouping variable to be specified when analysing the data subgroup.

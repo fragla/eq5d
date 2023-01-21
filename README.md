@@ -539,6 +539,48 @@ do.call(rbind, res)
 #> AD 1.09 1.58  0.69
 ```
 
+### Health State Density Curve and Health State Density Index
+
+The Health State Density Curve (HSDC) was introduced by [Zamora et
+al](https://www.ohe.org/publications/new-methods-analysing-distribution-eq-5d-observations)
+in 2018 and provides a graphical way to depict the distribution of EQ-5D
+profiles. The cumulative frequency of health profiles ranked from most
+to least frequent is plotted against the cumulative proportion of the
+distinct health profiles (red line) and can be compared a uniform
+distribution representing total equality (black line). The Health State
+Density Index (HSDI) is based on the area formed by the diagonal line
+representing total equality and the line of the HSDC. The HSDI has a
+value between 0 and 1 where a value of 0 represents total inequality and
+1 total equality.
+
+``` r
+#load example data
+data <- read_excel(system.file("extdata", "eq5d3l_example.xlsx", package="eq5d"))
+
+#Calculate HSDIdata <- redata <- read_excel(system.file("extdata", "eq5d3l_example.xlsx", package="eq5d"))
+
+#Calculate HSDI
+hsdi <- hsdi(data, version="3L")
+
+#Plot HSDC
+cf <- eq5dcf(data, version="3L", proportions = T)
+cf$CumulativeState <- 1:nrow(cf)/nrow(cf)
+
+#Plot data using ggplot2
+library(ggplot2)
+
+ggplot(cf, aes(CumulativeProp, CumulativeState)) + 
+  geom_line(color="#FF9999") + 
+  geom_segment(x=0,y=0,xend=1,yend=1, colour="black", size=0.01) +  
+  geom_text(x=0.5, y=0.9, label=paste0("HSDI=", hsdi)) +
+  theme(panel.border = element_blank(), panel.grid.minor = element_blank()) +
+  coord_cartesian(xlim = c(0, 1), ylim = c(0, 1)) +
+  xlab("Cumulative proportion of observations") +
+  ylab("Cumulative proportion of profiles")
+```
+
+<img src="man/figures/README-hsdi-1.png" width="100%" />
+
 ### EQ-5D-DS
 
 The ***eq5dds*** function is an R approximation of the Stata command
@@ -559,28 +601,28 @@ dat <- data.frame(
 
 eq5dds(dat, version="3L")
 #>     MO   SC   UA   PD   AD
-#> 1 66.7 33.3 16.7 25.0 41.7
-#> 2 25.0 25.0 50.0 58.3 16.7
-#> 3  8.3 41.7 33.3 16.7 41.7
+#> 1 41.7 16.7 33.3 41.7 25.0
+#> 2 41.7 33.3 33.3 25.0 66.7
+#> 3 16.7 50.0 33.3 33.3  8.3
 
 eq5dds(dat, version="3L", counts=TRUE)
 #>   MO SC UA PD AD
-#> 1  8  4  2  3  5
-#> 2  3  3  6  7  2
-#> 3  1  5  4  2  5
+#> 1  5  2  4  5  3
+#> 2  5  4  4  3  8
+#> 3  2  6  4  4  1
 
 eq5dds(dat, version="3L", by="Sex")
 #> data[, by]: Female
 #>     MO   SC   UA   PD   AD
-#> 1 50.0 16.7 16.7 33.3 33.3
-#> 2 33.3 33.3 33.3 50.0 16.7
-#> 3 16.7 50.0 50.0 16.7 50.0
+#> 1 50.0 16.7 16.7 66.7 16.7
+#> 2 16.7 33.3 66.7  0.0 66.7
+#> 3 33.3 50.0 16.7 33.3 16.7
 #> ------------------------------------------------------------ 
 #> data[, by]: Male
-#>     MO   SC   UA   PD   AD
-#> 1 83.3 50.0 16.7 16.7 50.0
-#> 2 16.7 16.7 66.7 66.7 16.7
-#> 3  0.0 33.3 16.7 16.7 33.3
+#>     MO   SC UA   PD   AD
+#> 1 33.3 16.7 50 16.7 33.3
+#> 2 66.7 33.3  0 50.0 66.7
+#> 3  0.0 50.0 50 33.3  0.0
 ```
 
 ## Helper functions
