@@ -11,7 +11,8 @@ shannon(
   ignore.invalid = TRUE,
   dimensions = .getDimensionNames(),
   base = 2,
-  digits = 2
+  digits = 2,
+  permutations = TRUE
 )
 }
 \arguments{
@@ -34,6 +35,9 @@ are "MO", "SC", "UA", "PD" and "AD".}
 \item{base}{numeric base of logarithm to use. Defaults to base 2.}
 
 \item{digits}{numeric specifying the number of decimal places. Defaults to 2.}
+
+\item{permutations}{boolean whether to use maximum number of permutations for 
+H' max or the number of observed unique profiles. Default is TRUE.}
 }
 \value{
 a single list or list of dimensions containing H' H' max and J' scores.

@@ -17,9 +17,11 @@
 #' are "MO", "SC", "UA", "PD" and "AD".
 #' @param base numeric base of logarithm to use. Defaults to base 2.
 #' @param digits numeric specifying the number of decimal places. Defaults to 2.
+#' @param permutations boolean whether to use maximum number of permutations for 
+#' H' max or the number of observed unique profiles. Default is TRUE.
 #' @return a single list or list of dimensions containing H' H' max and J' scores.
 #' @export
-shannon <- function(scores, version="5L", by.dimension=TRUE, ignore.invalid=TRUE, dimensions=.getDimensionNames(), base=2, digits=2) {
+shannon <- function(scores, version="5L", by.dimension=TRUE, ignore.invalid=TRUE, dimensions=.getDimensionNames(), base=2, digits=2, permutations=TRUE) {
   
   if(is.character(scores) || is.numeric(scores)) {
     scores <- getDimensionsFromHealthStates(scores, version=version, ignore.invalid=ignore.invalid)
@@ -42,14 +44,15 @@ shannon <- function(scores, version="5L", by.dimension=TRUE, ignore.invalid=TRUE
     }
   }
   
-  max.levels <- .getNumberLevels(version)
-  
+  #max.levels <- .getNumberLevels(version)
+
   if(!by.dimension) {
-    max.levels <- 5^max.levels
     scores <- getHealthStatesFromDimensions(scores)
+    max.levels <- ifelse(permutations, 5^.getNumberLevels(version), length(unique(scores)))
     res <- .shannon(scores, max.levels, base, digits)
   } else {
     res <- lapply(.getDimensionNames(), function(x) {
+      max.levels <- ifelse (permutations, .getNumberLevels(version), length(unique(scores)))
       .shannon(scores[,x, drop=FALSE], max.levels, base, digits)
     })
     names(res) <- .getDimensionNames()
