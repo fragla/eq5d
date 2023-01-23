@@ -52,7 +52,7 @@ shannon <- function(scores, version="5L", by.dimension=TRUE, ignore.invalid=TRUE
     res <- .shannon(scores, max.levels, base, digits)
   } else {
     res <- lapply(.getDimensionNames(), function(x) {
-      max.levels <- ifelse (permutations, .getNumberLevels(version), length(unique(scores)))
+      max.levels <- ifelse(permutations, .getNumberLevels(version), length(unique(scores[[x]])))
       .shannon(scores[,x, drop=FALSE], max.levels, base, digits)
     })
     names(res) <- .getDimensionNames()
