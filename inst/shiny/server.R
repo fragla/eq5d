@@ -206,6 +206,13 @@ shinyServer(function(input, output, session) {
                  inline=T)
   })
   
+  output$choose_shannon_type <- renderUI({
+    radioButtons("shannon_type", "Shannon type:",
+                 c("Permutations"="permutations", "Observations"="observations"),
+                 selected="permutations",
+                 inline=T)
+  })
+  
   output$eq5d_table <- DT::renderDataTable({
     if(is.null(input$data) || is.null(input$version) || is.null(input$type) || is.null(input$country))
       return()
@@ -610,6 +617,9 @@ shinyServer(function(input, output, session) {
     } else if(input$plot_type=="ecdf") {
       print("ECDF")
       code <- ecdf_plot()
+    } else if(input$plot_type=="hsdc") {
+      print("HSDC")
+      code <- hsdc_plot()
     } else if(input$plot_type=="radar") {
       print("Radar")
       code <- radar_plot()
@@ -698,6 +708,61 @@ shinyServer(function(input, output, session) {
     
   })
   
+  hsdc_plot <- reactive({
+    if(is.null(input$data) || is.null(input$plot_type) || is.null(input$group))
+      return()
+    
+    data <- getTableDataByGroup()
+    
+    if(input$group=="None" || !input$raw) {
+
+      hsdi <- hsdi(data, version=input$version)
+      
+      res <- eq5dcf(data, version=input$version, proportions = TRUE)
+      res$CumulativeState <- 1:nrow(res)/nrow(res)
+
+      p <- ggplot(res, aes(CumulativeProp, CumulativeState)) + 
+        geom_line(color="#FF9999") + 
+        annotate("segment", x=0, y=0, xend=1,yend=1, colour="black") +  
+        annotate("text", x=0.5, y=0.9, label=paste0("HSDI=", hsdi)) +
+        theme(panel.border = element_blank(), panel.grid.minor = element_blank()) +
+        coord_cartesian(xlim = c(0, 1), ylim = c(0, 1)) +
+        xlab("Cumulative proportion of observations") +
+        ylab("Cumulative proportion of profiles")
+      
+    } else {
+      colours <- getGroupColours()
+      
+      hsdi <- sapply(unique(data[[input$group]]), function(x){
+        hsdi(data[data[[input$group]]==x,], version=input$version)
+      })
+      label <- paste("HSDI:", paste(names(hsdi), hsdi, sep="=", collapse = ", "))
+
+      res <- lapply(unique(data[[input$group]]), function(x){
+        cf <- eq5dcf(data[data[[input$group]]==x,], version=input$version, proportions = TRUE)
+        cf$CumulativeState <- 1:nrow(cf)/nrow(cf)
+        cf[,input$group] <- x
+        cf
+      })
+      
+      res <- do.call(rbind, res)
+      
+      p <- ggplot(res, aes_string("CumulativeProp", "CumulativeState", colour=input$group, group=input$group)) + 
+        geom_line() + 
+        annotate("segment", x=0, y=0, xend=1,yend=1, colour="black") +  
+        annotate("text", x=0.5, y=0.9, label=label) +
+        theme(panel.border = element_blank(), panel.grid.minor = element_blank()) +
+        coord_cartesian(xlim = c(0, 1), ylim = c(0, 1)) +
+        scale_fill_manual(values=colours) + 
+        scale_color_manual(values=colours) +
+        xlab("Cumulative proportion of observations") +
+        ylab("Cumulative proportion of profiles")
+    }
+
+    return(p)
+
+  })
+  
   radar_plot <- reactive({
     if(is.null(input$data) || is.null(input$plot_type) || is.null(input$group))
       return()
@@ -777,7 +842,7 @@ shinyServer(function(input, output, session) {
 
   output$choose_plot_type <- renderUI({
     selectInput("plot_type", "Plot type:",
-        c("Summary"="summary", "Density"="density", "ECDF"="ecdf", "Radar"="radar")
+        c("Summary"="summary", "Density"="density", "ECDF"="ecdf", "HSDC"="hsdc", "Radar"="radar")
     )
   })
 
@@ -847,19 +912,16 @@ shinyServer(function(input, output, session) {
     
     data <- getTableDataByGroup()
     if(input$group=="None" || !input$raw) {
-     data <- shannon(data, version=input$version, by.dimension=TRUE, ignore.invalid=ignore.invalid, dimensions=getDimensionNames())
-     data <- t(do.call(rbind, data))
-     rownames(data) <- c("H'", "H' max", "J'")
+      permutations <- input$shannon_type=="permutations"
+      shannon <- shannon(data, version=input$version, by.dimension=TRUE, ignore.invalid=ignore.invalid, dimensions=getDimensionNames(), permutations=permutations)
+      shannon <- as.data.frame(t(do.call(rbind, shannon)))
+      rownames(shannon) <- c("H'", "H' max", "J'")
+      shannon$Overall <- shannon(data, version=input$version, by.dimension=FALSE, ignore.invalid=ignore.invalid, dimensions=getDimensionNames(), permutations=permutations)
     } else {
-      data <- shannon(data, version=input$version, by.dimension=TRUE, ignore.invalid=ignore.invalid, dimensions=getDimensionNames())
-      data <- t(do.call(rbind, data))
+      return()
     }
-    # if(input$group=="None" || !input$raw) {
-    #   data <- eq5dds(data, version=input$version, counts=counts, dimensions=getDimensionNames())
-    # } else {
-    #   data <- eq5dds(data, version=input$version, counts=counts, by=input$group, dimensions=getDimensionNames())
-    # }
-    return(data)
+
+    return(shannon)
   })
   
   getStatistics <- reactive({
@@ -887,7 +949,7 @@ shinyServer(function(input, output, session) {
     if(is.null(input$data) || is.null(input$plot_type))
       return()
 
-    if(input$plot_type %in% c("radar", "summary")) {
+    if(input$plot_type %in% c("radar", "summary", "hsdc")) {
       summ <- getSummary()
       shannon <- getShannon()
       if(input$group=="None" || !input$raw) {
