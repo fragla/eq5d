@@ -490,7 +490,7 @@ ggplot(res, aes(Post, Pre, color=PCHC)) +
   coord_cartesian(xlim = c(1, 243), ylim = c(1, 243)) +
   scale_x_continuous(breaks = c(1,243)) +
   scale_y_continuous(breaks = c(1,243)) +
-  geom_segment(x=1,y=1,xend=243,yend=243, colour="black", size=0.01) +
+  annotate("segment", x=1,y=1,xend=243,yend=243, colour="black") +
   theme(panel.border = element_blank(), panel.grid.minor = element_blank()) +
   xlab("Post-treatment") +
   ylab("Pre-treatment")
@@ -557,8 +557,6 @@ value between 0 and 1 where a value of 0 represents total inequality and
 #load example data
 data <- read_excel(system.file("extdata", "eq5d3l_example.xlsx", package="eq5d"))
 
-#Calculate HSDIdata <- redata <- read_excel(system.file("extdata", "eq5d3l_example.xlsx", package="eq5d"))
-
 #Calculate HSDI
 hsdi <- hsdi(data, version="3L")
 
@@ -571,8 +569,8 @@ library(ggplot2)
 
 ggplot(cf, aes(CumulativeProp, CumulativeState)) + 
   geom_line(color="#FF9999") + 
-  geom_segment(x=0,y=0,xend=1,yend=1, colour="black", size=0.01) +  
-  geom_text(x=0.5, y=0.9, label=paste0("HSDI=", hsdi)) +
+  annotate("segment", x=0, y=0, xend=1,yend=1, colour="black") +  
+  annotate("text", x=0.5, y=0.9, label=paste0("HSDI=", hsdi)) +
   theme(panel.border = element_blank(), panel.grid.minor = element_blank()) +
   coord_cartesian(xlim = c(0, 1), ylim = c(0, 1)) +
   xlab("Cumulative proportion of observations") +
@@ -601,28 +599,28 @@ dat <- data.frame(
 
 eq5dds(dat, version="3L")
 #>     MO   SC   UA   PD   AD
-#> 1 41.7 16.7 33.3 41.7 25.0
-#> 2 41.7 33.3 33.3 25.0 66.7
-#> 3 16.7 50.0 33.3 33.3  8.3
+#> 1 25.0 25.0 50.0 33.3 33.3
+#> 2 41.7 16.7 33.3 16.7 16.7
+#> 3 33.3 58.3 16.7 50.0 50.0
 
 eq5dds(dat, version="3L", counts=TRUE)
 #>   MO SC UA PD AD
-#> 1  5  2  4  5  3
-#> 2  5  4  4  3  8
-#> 3  2  6  4  4  1
+#> 1  3  3  6  4  4
+#> 2  5  2  4  2  2
+#> 3  4  7  2  6  6
 
 eq5dds(dat, version="3L", by="Sex")
 #> data[, by]: Female
 #>     MO   SC   UA   PD   AD
-#> 1 50.0 16.7 16.7 66.7 16.7
-#> 2 16.7 33.3 66.7  0.0 66.7
-#> 3 33.3 50.0 16.7 33.3 16.7
+#> 1 16.7 50.0 50.0 16.7 50.0
+#> 2 33.3 16.7 33.3 33.3 16.7
+#> 3 50.0 33.3 16.7 50.0 33.3
 #> ------------------------------------------------------------ 
 #> data[, by]: Male
-#>     MO   SC UA   PD   AD
-#> 1 33.3 16.7 50 16.7 33.3
-#> 2 66.7 33.3  0 50.0 66.7
-#> 3  0.0 50.0 50 33.3  0.0
+#>     MO   SC   UA PD   AD
+#> 1 33.3  0.0 50.0 50 16.7
+#> 2 50.0 16.7 33.3  0 16.7
+#> 3 16.7 83.3 16.7 50 66.7
 ```
 
 ## Helper functions

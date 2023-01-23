@@ -263,7 +263,7 @@ ggplot(res, aes(Post, Pre, color=PCHC)) +
   coord_cartesian(xlim = c(1, 243), ylim = c(1, 243)) +
   scale_x_continuous(breaks = c(1,243)) +
   scale_y_continuous(breaks = c(1,243)) +
-  geom_segment(x=1,y=1,xend=243,yend=243, colour="black", size=0.01) +
+  annotate("segment", x=1,y=1,xend=243,yend=243, colour="black") +
   theme(panel.border = element_blank(), panel.grid.minor = element_blank()) +
   xlab("Post-treatment") +
   ylab("Pre-treatment")
@@ -299,8 +299,6 @@ The Health State Density Curve (HSDC) was introduced by [Zamora et al](https://w
 #load example data
 data <- read_excel(system.file("extdata", "eq5d3l_example.xlsx", package="eq5d"))
 
-#Calculate HSDIdata <- redata <- read_excel(system.file("extdata", "eq5d3l_example.xlsx", package="eq5d"))
-
 #Calculate HSDI
 hsdi <- hsdi(data, version="3L")
 
@@ -313,8 +311,8 @@ library(ggplot2)
 
 ggplot(cf, aes(CumulativeProp, CumulativeState)) + 
   geom_line(color="#FF9999") + 
-  geom_segment(x=0,y=0,xend=1,yend=1, colour="black", size=0.01) +  
-  geom_text(x=0.5, y=0.9, label=paste0("HSDI=", hsdi)) +
+  annotate("segment", x=0, y=0, xend=1,yend=1, colour="black") +  
+  annotate("text", x=0.5, y=0.9, label=paste0("HSDI=", hsdi)) +
   theme(panel.border = element_blank(), panel.grid.minor = element_blank()) +
   coord_cartesian(xlim = c(0, 1), ylim = c(0, 1)) +
   xlab("Cumulative proportion of observations") +
