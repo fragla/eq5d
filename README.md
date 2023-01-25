@@ -1,5 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
 <!-- badges: start -->
 
 [![R build
@@ -151,7 +152,7 @@ eq5d(scores.df, country="Canada", version="5L", type="VT")
 #> [1] 0.949 0.362 0.390 0.524 0.431
 
 #data.frame using five digit format
-scores.df2 <- data.frame(state=c(11111,25532,34241,43332,52141))
+scores.df2 <- data.frame(state=c(11111, 25532, 34241, 43332, 52141))
 
 eq5d(scores.df2, country="Canada", version="5L", type="VT", five.digit="state")
 #> [1] 0.949 0.362 0.390 0.524 0.431
@@ -170,7 +171,7 @@ or by country.
 
 ``` r
 # Return TTO value sets with PubMed IDs and DOIs (top 6 returned for brevity).
-head(valuesets(type="TTO", references=c("PubMed", "DOI")))
+head(valuesets(type="TTO", references=c("PubMed","DOI")))
 #>    Version Type   Country   PubMed                              DOI
 #> 1 EQ-5D-3L  TTO Argentina 19900257 10.1111/j.1524-4733.2008.00468.x
 #> 2 EQ-5D-3L  TTO Australia 21914515       10.1016/j.jval.2011.04.009
@@ -180,7 +181,7 @@ head(valuesets(type="TTO", references=c("PubMed", "DOI")))
 #> 6 EQ-5D-3L  TTO     China 25128053       10.1016/j.jval.2014.05.007
 
 # Return VAS value sets with ISBN and external URL (top 6 returned for brevity).
-head(valuesets(type="VAS", references=c("ISBN", "ExternalURL")))
+head(valuesets(type="VAS", references=c("ISBN","ExternalURL")))
 #>    Version Type Country          ISBN
 #> 1 EQ-5D-3L  VAS Belgium 1-4020-5511-0
 #> 2 EQ-5D-3L  VAS Denmark 1-4020-5511-1
@@ -283,7 +284,7 @@ lss(c(MO=1,SC=2,UA=3,PD=2,AD=1), version="3L")
 lss(55555, version="5L")
 #> [1] 25
 
-lss(c(11111,12345, 55555), version="5L")
+lss(c(11111, 12345, 55555), version="5L")
 #> [1]  5 15 25
 ```
 
@@ -303,7 +304,7 @@ lfs(c(MO=1,SC=2,UA=3,PD=2,AD=1), version="3L")
 lfs(55555, version="5L")
 #> [1] "00005"
 
-lfs(c(11111,12345, 55555), version="5L")
+lfs(c(11111, 12345, 55555), version="5L")
 #> [1] "50000" "11111" "00005"
 ```
 
@@ -472,7 +473,7 @@ post <- data[data$Group=="Group2",][1:50,]
 #run hpg function on data.frames
 
 #Show pre/post rankings and PCHC classification
-res <- hpg(pre, post, country = "UK", version="3L", type="TTO")
+res <- hpg(pre, post, country="UK", version="3L", type="TTO")
 head(res)
 #>   Pre Post         PCHC
 #> 1  11    8      Improve
@@ -487,11 +488,11 @@ library(ggplot2)
 
 ggplot(res, aes(Post, Pre, color=PCHC)) +
   geom_point(aes(shape=PCHC)) +
-  coord_cartesian(xlim = c(1, 243), ylim = c(1, 243)) +
-  scale_x_continuous(breaks = c(1,243)) +
-  scale_y_continuous(breaks = c(1,243)) +
-  annotate("segment", x=1,y=1,xend=243,yend=243, colour="black") +
-  theme(panel.border = element_blank(), panel.grid.minor = element_blank()) +
+  coord_cartesian(xlim=c(1,243), ylim=c(1,243)) +
+  scale_x_continuous(breaks=c(1,243)) +
+  scale_y_continuous(breaks=c(1,243)) +
+  annotate("segment", x=1, y=1, xend=243, yend=243, colour="black") +
+  theme(panel.border=element_blank(), panel.grid.minor=element_blank()) +
   xlab("Post-treatment") +
   ylab("Pre-treatment")
 ```
@@ -561,7 +562,7 @@ data <- read_excel(system.file("extdata", "eq5d3l_example.xlsx", package="eq5d")
 hsdi <- hsdi(data, version="3L")
 
 #Plot HSDC
-cf <- eq5dcf(data, version="3L", proportions = T)
+cf <- eq5dcf(data, version="3L", proportions=T)
 cf$CumulativeState <- 1:nrow(cf)/nrow(cf)
 
 #Plot data using ggplot2
@@ -569,10 +570,10 @@ library(ggplot2)
 
 ggplot(cf, aes(CumulativeProp, CumulativeState)) + 
   geom_line(color="#FF9999") + 
-  annotate("segment", x=0, y=0, xend=1,yend=1, colour="black") +  
+  annotate("segment", x=0, y=0, xend=1, yend=1, colour="black") +  
   annotate("text", x=0.5, y=0.9, label=paste0("HSDI=", hsdi)) +
-  theme(panel.border = element_blank(), panel.grid.minor = element_blank()) +
-  coord_cartesian(xlim = c(0, 1), ylim = c(0, 1)) +
+  theme(panel.border=element_blank(), panel.grid.minor=element_blank()) +
+  coord_cartesian(xlim=c(0,1), ylim=c(0,1)) +
   xlab("Cumulative proportion of observations") +
   ylab("Cumulative proportion of profiles")
 ```
@@ -591,36 +592,36 @@ specified when analysing the data subgroup.
 ``` r
 dat <- data.frame(
          matrix(
-           sample(1:3,5*12, replace=TRUE),12,5, 
-           dimnames=list(1:12,c("MO","SC","UA","PD","AD"))
+           sample(1:3, 5*12, replace=TRUE), 12, 5, 
+           dimnames=list(1:12, c("MO","SC","UA","PD","AD"))
          ),
          Sex=rep(c("Male", "Female"))
        )
 
 eq5dds(dat, version="3L")
 #>     MO   SC   UA   PD   AD
-#> 1 25.0 25.0 50.0 33.3 33.3
-#> 2 41.7 16.7 33.3 16.7 16.7
-#> 3 33.3 58.3 16.7 50.0 50.0
+#> 1 41.7 25.0 41.7 50.0 41.7
+#> 2 33.3 41.7 41.7 33.3 33.3
+#> 3 25.0 33.3 16.7 16.7 25.0
 
 eq5dds(dat, version="3L", counts=TRUE)
 #>   MO SC UA PD AD
-#> 1  3  3  6  4  4
-#> 2  5  2  4  2  2
-#> 3  4  7  2  6  6
+#> 1  5  3  5  6  5
+#> 2  4  5  5  4  4
+#> 3  3  4  2  2  3
 
 eq5dds(dat, version="3L", by="Sex")
 #> data[, by]: Female
 #>     MO   SC   UA   PD   AD
-#> 1 16.7 50.0 50.0 16.7 50.0
-#> 2 33.3 16.7 33.3 33.3 16.7
-#> 3 50.0 33.3 16.7 50.0 33.3
+#> 1 50.0 33.3 16.7 66.7 50.0
+#> 2 16.7 33.3 50.0 33.3 16.7
+#> 3 33.3 33.3 33.3  0.0 33.3
 #> ------------------------------------------------------------ 
 #> data[, by]: Male
-#>     MO   SC   UA PD   AD
-#> 1 33.3  0.0 50.0 50 16.7
-#> 2 50.0 16.7 33.3  0 16.7
-#> 3 16.7 83.3 16.7 50 66.7
+#>     MO   SC   UA   PD   AD
+#> 1 33.3 16.7 66.7 33.3 33.3
+#> 2 50.0 50.0 33.3 33.3 50.0
+#> 3 16.7 33.3  0.0 33.3 16.7
 ```
 
 ## Helper functions
@@ -695,7 +696,7 @@ results.
 ![Shiny EQ-5D app excel data
 formats](man/figures/shiny_app_excel_scores.png)
 
-The app is launched using the ***shiny_eq5d*** function.
+The app is launched using the ***shiny\_eq5d*** function.
 
 ``` r
 shiny_eq5d()
