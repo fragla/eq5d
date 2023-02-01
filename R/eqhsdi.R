@@ -14,6 +14,10 @@
 #' @param ... character vector, specifying "dimensions" column names. Defaults 
 #' are "MO", "SC", "UA", "PD" and "AD".
 #' @return numeric containing the HSDI value.
+#' @examples
+#' dat <- read.csv(system.file("extdata", "eq5d3l_example.csv", package="eq5d"))
+#' hsdi(dat, version="3L")
+#' 
 #' @export
 hsdi <- function(scores, version, ignore.invalid=TRUE, digits=2, ...) {
   cf <- eq5dcf(scores, version=version, ignore.invalid=ignore.invalid, proportions=TRUE, digits=NULL, ...)

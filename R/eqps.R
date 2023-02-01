@@ -20,6 +20,14 @@
 #' are "MO", "SC", "UA", "PD" and "AD".
 #' @param digits numeric specifying the number of decimal places. Defaults to 2.
 #' @return a list of Probability of Superiority scores by dimension.
+#' @examples
+#' dat <- read.csv(system.file("extdata", "eq5d3l_example.csv", package="eq5d"))
+#' 
+#' pre <- dat[dat$Group=="Group1",][1:50,]
+#' post <- dat[dat$Group=="Group2",][1:50,]
+#' 
+#' ps(pre, post, version="3L")
+#' 
 #' @export
 ps <- function(pre, post, version="5L", ignore.invalid=TRUE, dimensions=.getDimensionNames(), digits=2) {
   dat <- pchc(pre, post, version=version, no.problems=FALSE, totals=TRUE, by.dimension=TRUE, ignore.invalid=ignore.invalid, dimensions=dimensions)

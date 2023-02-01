@@ -29,3 +29,8 @@ numeric containing the HSDI value.
 \description{
 Calculate the Health State Density Index (HSDI) for an EQ-5D dataset.
 }
+\examples{
+dat <- read.csv(system.file("extdata", "eq5d3l_example.csv", package="eq5d"))
+hsdi(dat, version="3L")
+
+}

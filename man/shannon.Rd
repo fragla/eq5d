@@ -47,3 +47,10 @@ Calculate Shannon's H' (diversity) index, H' max and Shannon's J' (evenness)
 index for an EQ-5D data set. This can be calculated both by dimension and 
 for health states as a whole.
 }
+\examples{
+dat <- read.csv(system.file("extdata", "eq5d3l_example.csv", package="eq5d"))
+
+shannon(dat, version="3L", by.dimension=FALSE)
+shannon(dat, version="3L", by.dimension=TRUE)
+
+}

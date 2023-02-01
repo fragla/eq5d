@@ -43,3 +43,12 @@ datasets. Score is less than 0.5 if more patients deteriorate than improve, 0.5
 if the same number of patients improve and deteriorate or do not change and 
 greater than 0.5 if more patients improve than deteriorate.
 }
+\examples{
+dat <- read.csv(system.file("extdata", "eq5d3l_example.csv", package="eq5d"))
+
+pre <- dat[dat$Group=="Group1",][1:50,]
+post <- dat[dat$Group=="Group2",][1:50,]
+
+ps(pre, post, version="3L")
+
+}

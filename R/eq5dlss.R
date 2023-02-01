@@ -11,6 +11,11 @@
 #' are "MO", "SC", "UA", "PD" and "AD".
 #' @return a data.frame or list of data.frames of counts/percentages. Columns 
 #' contain dimensions names and rows the EQ-5D score.
+#' @examples
+#' lss(c(MO=1,SC=2,UA=3,PD=2,AD=1), version="3L")
+#' lss(55555, version="5L")
+#' lss(c(11111, 12345, 55555), version="5L")
+#' 
 #' @export
 lss <- function(scores, version, ignore.invalid, ...) {
   UseMethod("lss", scores)

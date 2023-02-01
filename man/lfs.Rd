@@ -25,3 +25,10 @@ contain dimensions names and rows the EQ-5D score.
 \description{
 Calculate the Levels Frequency Score for a single or number of EQ-5D profiles
 }
+\examples{
+lfs(c(MO=1,SC=2,UA=3,PD=2,AD=1), version="3L")
+lfs(55555, version="5L")
+lfs(c(11111, 12345, 55555), version="5L")
+
+
+}

@@ -24,6 +24,14 @@
 #' @return a data.frame or list of data.frames of changes according to PCHC.
 #' contain dimensions names and rows the EQ-5D score or, if summary=FALSE, a vector or  
 #' list of vectors of changes.
+#' @examples
+#' dat <- read.csv(system.file("extdata", "eq5d3l_example.csv", package="eq5d"))
+#' 
+#' pre <- dat[dat$Group=="Group1",][1:50,]
+#' post <- dat[dat$Group=="Group2",][1:50,]
+#' 
+#' pchc(pre, post, version="3L", no.problems=FALSE, totals=FALSE)
+#' 
 #' @export
 pchc <- function(pre, post, version="5L", no.problems=TRUE, totals=TRUE, by.dimension=FALSE, ignore.invalid=TRUE, dimensions=.getDimensionNames(), summary=TRUE) {
   

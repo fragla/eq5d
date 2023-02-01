@@ -15,6 +15,10 @@
 #' are "MO", "SC", "UA", "PD" and "AD".
 #' @return a data.frame or list of data.frames of counts/percentages. Columns 
 #' contain dimensions names and rows the EQ-5D score.
+#' @examples
+#' dat <- read.csv(system.file("extdata", "eq5d3l_example.csv", package="eq5d"))
+#' eq5dcf(dat, "3L")
+#' 
 #' @export
 eq5dcf <- function(data, version, ignore.invalid, proportions, digits, ...) {
   UseMethod("eq5dcf", data)

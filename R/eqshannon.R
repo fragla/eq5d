@@ -20,6 +20,12 @@
 #' @param permutations boolean whether to use maximum number of permutations for 
 #' H' max or the number of observed unique profiles. Default is TRUE.
 #' @return a single list or list of dimensions containing H' H' max and J' scores.
+#' @examples
+#' dat <- read.csv(system.file("extdata", "eq5d3l_example.csv", package="eq5d"))
+#' 
+#' shannon(dat, version="3L", by.dimension=FALSE)
+#' shannon(dat, version="3L", by.dimension=TRUE)
+#' 
 #' @export
 shannon <- function(scores, version="5L", by.dimension=TRUE, ignore.invalid=TRUE, dimensions=.getDimensionNames(), base=2, digits=2, permutations=TRUE) {
   

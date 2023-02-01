@@ -51,3 +51,12 @@ Pre and Post contain the severity rankings and PCHC the PCHC category.
 \description{
 Calculate the Health Profile Grid (HPG) for two EQ-5D datasets.
 }
+\examples{
+dat <- read.csv(system.file("extdata", "eq5d3l_example.csv", package="eq5d"))
+
+pre <- dat[dat$Group=="Group1",][1:50,]
+post <- dat[dat$Group=="Group2",][1:50,]
+res <- hpg(pre, post, country="UK", version="3L", type="TTO")
+head(res)
+
+}

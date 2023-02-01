@@ -31,3 +31,8 @@ contain dimensions names and rows the EQ-5D score.
 Calculate the frequency, percentage, cumulative frequency and cumulative 
 percentage for each profile in an EQ-5D dataset.
 }
+\examples{
+dat <- read.csv(system.file("extdata", "eq5d3l_example.csv", package="eq5d"))
+eq5dcf(dat, "3L")
+
+}
