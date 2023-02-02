@@ -543,7 +543,7 @@ do.call(rbind, res)
 ### Health State Density Curve and Health State Density Index
 
 The Health State Density Curve (HSDC) was introduced by [Zamora et
-al](https://www.ohe.org/publications/new-methods-analysing-distribution-eq-5d-observations)
+al](https://www.ohe.org/publications/new-methods-analysing-distribution-eq-5d-observations/)
 in 2018 and provides a graphical way to depict the distribution of EQ-5D
 profiles. The cumulative frequency of health profiles ranked from most
 to least frequent is plotted against the cumulative proportion of the
@@ -600,28 +600,28 @@ dat <- data.frame(
 
 eq5dds(dat, version="3L")
 #>     MO   SC   UA   PD   AD
-#> 1 41.7 25.0 41.7 50.0 41.7
-#> 2 33.3 41.7 41.7 33.3 33.3
-#> 3 25.0 33.3 16.7 16.7 25.0
+#> 1 66.7 41.7 33.3 25.0 41.7
+#> 2 16.7 16.7 41.7 41.7 33.3
+#> 3 16.7 41.7 25.0 33.3 25.0
 
 eq5dds(dat, version="3L", counts=TRUE)
 #>   MO SC UA PD AD
-#> 1  5  3  5  6  5
-#> 2  4  5  5  4  4
-#> 3  3  4  2  2  3
+#> 1  8  5  4  3  5
+#> 2  2  2  5  5  4
+#> 3  2  5  3  4  3
 
 eq5dds(dat, version="3L", by="Sex")
 #> data[, by]: Female
-#>     MO   SC   UA   PD   AD
-#> 1 50.0 33.3 16.7 66.7 50.0
-#> 2 16.7 33.3 50.0 33.3 16.7
-#> 3 33.3 33.3 33.3  0.0 33.3
+#>     MO   SC   UA PD   AD
+#> 1 50.0 66.7 33.3  0 33.3
+#> 2 33.3 33.3 50.0 50 33.3
+#> 3 16.7  0.0 16.7 50 33.3
 #> ------------------------------------------------------------ 
 #> data[, by]: Male
 #>     MO   SC   UA   PD   AD
-#> 1 33.3 16.7 66.7 33.3 33.3
-#> 2 50.0 50.0 33.3 33.3 50.0
-#> 3 16.7 33.3  0.0 33.3 16.7
+#> 1 83.3 16.7 33.3 50.0 50.0
+#> 2  0.0  0.0 33.3 33.3 33.3
+#> 3 16.7 83.3 33.3 16.7 16.7
 ```
 
 ## Helper functions
@@ -655,8 +655,9 @@ Example data is included with the package and can be accessed using the
 ``` r
 # View example files.
 dir(path=system.file("extdata", package="eq5d"))
-#> [1] "eq5d3l_example.xlsx"            "eq5d3l_five_digit_example.xlsx"
-#> [3] "eq5d5l_example.xlsx"
+#> [1] "eq5d3l_example.csv"             "eq5d3l_example.xlsx"           
+#> [3] "eq5d3l_five_digit_example.csv"  "eq5d3l_five_digit_example.xlsx"
+#> [5] "eq5d5l_example.csv"             "eq5d5l_example.xlsx"
 
 # Read example EQ-5D-3L data.
 library(readxl)

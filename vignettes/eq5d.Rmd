@@ -290,7 +290,7 @@ do.call(rbind, res)
 
 ### Health State Density Curve and Health State Density Index
 
-The Health State Density Curve (HSDC) was introduced by [Zamora et al](https://www.ohe.org/publications/new-methods-analysing-distribution-eq-5d-observations) in 2018 and provides a graphical way to depict the distribution of EQ-5D profiles. The cumulative frequency of health profiles ranked from most to least frequent is plotted against the cumulative proportion of the distinct health profiles (red line) and can be compared a uniform distribution representing total equality (black line). The Health State Density Index (HSDI) is based on the area formed by the diagonal line representing total equality and the line of the HSDC. The HSDI has a value between 0 and 1 where a value of 0 represents total inequality and 1 total equality.
+The Health State Density Curve (HSDC) was introduced by [Zamora et al](https://www.ohe.org/publications/new-methods-analysing-distribution-eq-5d-observations/) in 2018 and provides a graphical way to depict the distribution of EQ-5D profiles. The cumulative frequency of health profiles ranked from most to least frequent is plotted against the cumulative proportion of the distinct health profiles (red line) and can be compared a uniform distribution representing total equality (black line). The Health State Density Index (HSDI) is based on the area formed by the diagonal line representing total equality and the line of the HSDC. The HSDI has a value between 0 and 1 where a value of 0 represents total inequality and 1 total equality.
 
 ```{r hsdi}
 #load example data
