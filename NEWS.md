@@ -5,14 +5,20 @@
 
   - Functions for Probability of Superiority, Health Grid Profile,
     Health State Density Index and Shannon’s Index added.
+
   - “summary” argument added to PCHC function to enable either all data
     or a summary table to be returned.
+
   - Chinese and Indonesian EQ-5D-Y value sets added.
+
   - Australian EQ-5D-5L value set added.
+
   - Swedish “social” EQ-5D-5L value set added. There are now two
     EQ-5D-5L value sets, the 2020 “experience-based” and the new 2022
     “social-based” value set.
-  - Links to value set references added to the web app.
+
+  - Links to value set references, HSDC plot and HSDI/Shannon scores
+    added to the web app.
 
 # eq5d 0.13.0 (2022-11-11)
 
