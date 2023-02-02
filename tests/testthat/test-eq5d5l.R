@@ -3,6 +3,9 @@ context("EQ-5D-5L")
 test_that("EQ-5D-5L Australia gives correct answer", {
   expect_equal(eq5d5l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "Australia"), 1)
   expect_equal(eq5d5l(c(MO=2,SC=3,UA=2,PD=3,AD=5), "Australia"), 0.431)
+  expect_equal(eq5d5l(c(MO=2,SC=2,UA=2,PD=2,AD=2), "Australia"), 0.855)
+  expect_equal(eq5d5l(c(MO=3,SC=3,UA=3,PD=3,AD=3), "Australia"), 0.673)
+  expect_equal(eq5d5l(c(MO=4,SC=4,UA=4,PD=4,AD=4), "Australia"), -0.126)
   expect_equal(eq5d5l(c(MO=5,SC=5,UA=5,PD=5,AD=5), "Australia"),-0.301)
 })
 
