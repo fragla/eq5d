@@ -8,6 +8,7 @@
   - “summary” argument added to PCHC function to enable either all data
     or a summary table to be returned.
   - Chinese and Indonesian EQ-5D-Y value sets added.
+  - Australian EQ-5D-5L value set added.
   - Swedish “social” EQ-5D-5L value set added. There are now two
     EQ-5D-5L value sets, the 2020 “experience-based” and the new 2022
     “social-based” value set.
