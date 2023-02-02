@@ -5,10 +5,11 @@
 \alias{VT}
 \title{EQ-5D-5L VT value set data}
 \format{
-An object of class \code{data.frame} with 35 rows and 37 columns.
+An object of class \code{data.frame} with 35 rows and 38 columns.
 }
 \source{
 \itemize{
+\item{\strong{Australia}: Norman R, Mulhern B, Lancsar E, Lorgelly P, Ratcliffe J, Street D, Viney R. The Use of a Discrete Choice Experiment Including Both Duration and Dead for the Development of an EQ-5D-5L Value Set for Australia. Pharmacoeconomics. 2023 Jan 31. doi: 10.1007/s40273-023-01243-0. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/36720793/}{PubMed}}
 \item{\strong{Belgium}: Bouckaert N, Cleemput I, Devriese S, Gerkens S. An EQ-5D-5L Value Set for Belgium. Pharmacoecon Open. 2022 Aug 4. doi: 10.1007/s41669-022-00353-3. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/35927410/}{PubMed}}
 \item{\strong{Canada}: Xie F, Pullenayegum E, Gaebel K, Bansback N, Bryan S, Ohinmaa A, Poissant L, Johnson JA. A Time Trade-off-derived Value Set of the EQ-5D-5L for Canada. Med Care. 2016;54(1):98-105. \href{https://pubmed.ncbi.nlm.nih.gov/26492214/}{PubMed}}
 \item{\strong{China}: Luo N, Liu G, Li M, Guan H, Jin X, Rand-Hendriksen K. Estimating an EQ-5D-5L Value Set for China. Value in Health. 2017 Apr;20(4):662-669. doi: 10.1016/j.jval.2016.11.016. Epub 2017 Feb 9. \href{https://pubmed.ncbi.nlm.nih.gov/28408009/}{PubMed}}
