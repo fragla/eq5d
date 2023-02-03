@@ -33,14 +33,6 @@ getHealthStates <- function(version) {
   } else {
     return(STATES[["5L"]])
   }
-  # if(version=="Y")
-  #   version <- "3L"
-  # 
-  # max.value <- .getNumberLevels(version)
-  # dimensions <- expand.grid(1:max.value, 1:max.value, 1:max.value, 1:max.value, 1:max.value)
-  # indexes <- apply(dimensions, 1, function(x){paste(x, collapse="")})
-  # indexes <- sort(indexes)
-  # return(indexes)
 }
 
 #' Get individual dimension scores from their five digit health states

@@ -50,8 +50,6 @@ shannon <- function(scores, version="5L", by.dimension=TRUE, ignore.invalid=TRUE
     }
   }
   
-  #max.levels <- .getNumberLevels(version)
-
   if(!by.dimension) {
     scores <- getHealthStatesFromDimensions(scores)
     max.levels <- ifelse(permutations, 5^.getNumberLevels(version), length(unique(na.omit(scores))))
