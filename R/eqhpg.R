@@ -33,7 +33,11 @@
 #' head(res)
 #' 
 #' @export
-hpg <- function(pre, post, country=NULL, version="5L", type=NULL, ignore.invalid=TRUE, dimensions=.getDimensionNames(), no.problems=TRUE) {
+hpg <- function(pre, post, country=NULL, version=NULL, type=NULL, ignore.invalid=TRUE, dimensions=.getDimensionNames(), no.problems=TRUE) {
+  
+  if(is.null(version) || !version %in% c("3L", "5L", "Y"))
+    stop("EQ-5D version not one of 3L, 5L or Y.")
+  
   if(is.character(pre) || is.numeric(pre)) {
     pre <- getDimensionsFromHealthStates(pre, version=version, ignore.invalid=ignore.invalid)
   }

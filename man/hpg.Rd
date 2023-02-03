@@ -8,7 +8,7 @@ hpg(
   pre,
   post,
   country = NULL,
-  version = "5L",
+  version = NULL,
   type = NULL,
   ignore.invalid = TRUE,
   dimensions = .getDimensionNames(),

@@ -29,6 +29,7 @@ test_that("eqpchc five digit gives correct answer", {
 
 test_that("eqpchc data.frame throws error", {
   expect_error(pchc(pre[-1,], post, version="3L", ignore.invalid=FALSE))
+  expect_error(pchc(pre, post, no.problems=TRUE, totals=TRUE))
 })
 
 test_that("eqpchc data.frame throws warning", {

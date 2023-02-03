@@ -33,7 +33,10 @@
 #' pchc(pre, post, version="3L", no.problems=FALSE, totals=FALSE)
 #' 
 #' @export
-pchc <- function(pre, post, version="5L", no.problems=TRUE, totals=TRUE, by.dimension=FALSE, ignore.invalid=TRUE, dimensions=.getDimensionNames(), summary=TRUE) {
+pchc <- function(pre, post, version=NULL, no.problems=TRUE, totals=TRUE, by.dimension=FALSE, ignore.invalid=TRUE, dimensions=.getDimensionNames(), summary=TRUE) {
+  
+  if(is.null(version) || !version %in% c("3L", "5L", "Y"))
+    stop("EQ-5D version not one of 3L, 5L or Y.")
   
   if(is.character(pre) || is.numeric(pre)) {
     pre <- getDimensionsFromHealthStates(pre, version=version, ignore.invalid=ignore.invalid)

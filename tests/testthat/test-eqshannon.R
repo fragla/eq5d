@@ -15,6 +15,7 @@ test_that("eqshannon five digit gives correct answer", {
 test_that("eqshannon throws error", {
   expect_error(shannon(pre, version="3L", by.dimension=TRUE, permutations=TRUE, ignore.invalid=FALSE))
   expect_error(shannon(pre, version="3L", by.dimension=TRUE, permutations=FALSE, ignore.invalid=FALSE))
+  expect_error(shannon(pre, by.dimension=FALSE, permutations=FALSE))
 })
 
 pre.df <- read.csv("../testdata/pre_df.csv")

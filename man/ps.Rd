@@ -7,7 +7,7 @@
 ps(
   pre,
   post,
-  version = "5L",
+  version = NULL,
   ignore.invalid = TRUE,
   dimensions = .getDimensionNames(),
   digits = 2

@@ -7,7 +7,7 @@
 pchc(
   pre,
   post,
-  version = "5L",
+  version = NULL,
   no.problems = TRUE,
   totals = TRUE,
   by.dimension = FALSE,

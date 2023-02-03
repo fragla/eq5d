@@ -6,7 +6,7 @@
 \usage{
 shannon(
   scores,
-  version = "5L",
+  version = NULL,
   by.dimension = TRUE,
   ignore.invalid = TRUE,
   dimensions = .getDimensionNames(),

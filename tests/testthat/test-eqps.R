@@ -14,6 +14,7 @@ test_that("eqps five digit gives correct answer", {
 test_that("eqps throws error", {
   expect_error(ps(pre, post, version="3L", ignore.invalid=F))
   expect_error(ps(pre[-1,], post, version="3L", ignore.invalid=TRUE))
+  expect_error(ps(pre, post, ignore.invalid=TRUE))
 })
 
 pre.df <- read.csv("../testdata/pre_df.csv")

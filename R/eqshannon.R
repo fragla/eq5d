@@ -27,7 +27,10 @@
 #' shannon(dat, version="3L", by.dimension=TRUE)
 #' 
 #' @export
-shannon <- function(scores, version="5L", by.dimension=TRUE, ignore.invalid=TRUE, dimensions=.getDimensionNames(), base=2, digits=2, permutations=TRUE) {
+shannon <- function(scores, version=NULL, by.dimension=TRUE, ignore.invalid=TRUE, dimensions=.getDimensionNames(), base=2, digits=2, permutations=TRUE) {
+  
+  if(is.null(version) || !version %in% c("3L", "5L", "Y"))
+    stop("EQ-5D version not one of 3L, 5L or Y.")
   
   if(is.character(scores) || is.numeric(scores)) {
     scores <- getDimensionsFromHealthStates(scores, version=version, ignore.invalid=ignore.invalid)

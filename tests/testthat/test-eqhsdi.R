@@ -8,4 +8,5 @@ test_that("eqhsdi five digit gives correct answer", {
 
 test_that("eqhsdi throws error", {
   expect_error(hsdi(pre, version="3L", ignore.invalid=FALSE))
+  expect_error(hsdi(pre))
 })
