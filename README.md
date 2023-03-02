@@ -247,7 +247,7 @@ book and from other sources that may be of use in analysing EQ-5D data.
 The ***eq5dcf*** function calculates the frequency, percentage,
 cumulative frequency and cumulative percentage for each five digit
 profile in an EQ-5D dataset. Either a vector of five digit profiles or a
-data.frame of indiviual dimensions can be passed to this function in
+data.frame of individual dimensions can be passed to this function in
 order to summarise data in this way.
 
 ``` r
@@ -600,28 +600,28 @@ dat <- data.frame(
 
 eq5dds(dat, version="3L")
 #>     MO   SC   UA   PD   AD
-#> 1 66.7 41.7 33.3 25.0 41.7
-#> 2 16.7 16.7 41.7 41.7 33.3
-#> 3 16.7 41.7 25.0 33.3 25.0
+#> 1 41.7 33.3  0.0 50.0 41.7
+#> 2 33.3 16.7 33.3 16.7 16.7
+#> 3 25.0 50.0 66.7 33.3 41.7
 
 eq5dds(dat, version="3L", counts=TRUE)
 #>   MO SC UA PD AD
-#> 1  8  5  4  3  5
-#> 2  2  2  5  5  4
-#> 3  2  5  3  4  3
+#> 1  5  4  0  6  5
+#> 2  4  2  4  2  2
+#> 3  3  6  8  4  5
 
 eq5dds(dat, version="3L", by="Sex")
 #> data[, by]: Female
-#>     MO   SC   UA PD   AD
-#> 1 50.0 66.7 33.3  0 33.3
-#> 2 33.3 33.3 50.0 50 33.3
-#> 3 16.7  0.0 16.7 50 33.3
+#>     MO SC   UA   PD AD
+#> 1 33.3 50  0.0  0.0 50
+#> 2 50.0  0 33.3 33.3  0
+#> 3 16.7 50 66.7 66.7 50
 #> ------------------------------------------------------------ 
 #> data[, by]: Male
-#>     MO   SC   UA   PD   AD
-#> 1 83.3 16.7 33.3 50.0 50.0
-#> 2  0.0  0.0 33.3 33.3 33.3
-#> 3 16.7 83.3 33.3 16.7 16.7
+#>     MO   SC   UA  PD   AD
+#> 1 50.0 16.7  0.0 100 33.3
+#> 2 16.7 33.3 33.3   0 33.3
+#> 3 33.3 50.0 66.7   0 33.3
 ```
 
 ## Helper functions

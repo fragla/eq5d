@@ -142,7 +142,7 @@ A number of methods have been published that enable the analysis of EQ-5D profil
 
 ### Cumulative frequency analysis
 
-The ***eq5dcf*** function calculates the frequency, percentage, cumulative frequency and cumulative percentage for each five digit profile in an EQ-5D dataset. Either a vector of five digit profiles or a data.frame of indiviual dimensions can be passed to this function in order to summarise data in this way.
+The ***eq5dcf*** function calculates the frequency, percentage, cumulative frequency and cumulative percentage for each five digit profile in an EQ-5D dataset. Either a vector of five digit profiles or a data.frame of individual dimensions can be passed to this function in order to summarise data in this way.
 
 ```{r eq5dcf}
 library(readxl)
