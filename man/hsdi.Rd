@@ -4,7 +4,7 @@
 \alias{hsdi}
 \title{Calculate the Health State Density Index}
 \usage{
-hsdi(scores, version, ignore.invalid = TRUE, digits = 2, ...)
+hsdi(scores, version = NULL, ignore.invalid = TRUE, digits = 2, ...)
 }
 \arguments{
 \item{scores}{scores data.frame, numeric or character. For data.frame default column 

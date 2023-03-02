@@ -3,13 +3,17 @@
 #' Analyses the descriptive components of an EQ-5D dataset producing summary 
 #' information either as counts or as percentages.
 #' 
-#' @param data data.frame with names MO, SC, UA, PD and AD representing
-#'   Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.
+#' @param data numeric or data.frame with names/colnames MO, SC, UA, PD and AD
+#' representing Mobility, Self-care, Usual activities, Pain/discomfort and
+#' Anxiety/depression. Alternatively an EQ-5D  score can be provided in
+#' five digit format e.g. 12321.
 #' @param version string of value "3L" or "5L" to indicate instrument version.
 #' @param counts logical show absolute counts in the summary table. Default is 
 #' FALSE, which shows percentages for each EQ-5D dimension.
 #' @param by character specifying the column in the data.frame by which to 
 #' group the results.
+#' @param ignore.invalid boolean whether to ignore invalid scores. TRUE returns NA, FALSE 
+#' throws an error.
 #' @param ... character vector, specifying "dimensions" column names. Defaults 
 #' are "MO", "SC", "UA", "PD" and "AD".
 #' @return a data.frame or list of data.frames of counts/percentages. Columns 
@@ -29,18 +33,24 @@
 #' eq5dds(dat, version="3L", by="Sex")
 #' 
 #' @export
-eq5dds <- function(data, version, counts=FALSE, by=NULL, ...) {
+eq5dds <- function(data, version, counts=FALSE, by=NULL, ignore.invalid=TRUE, ...) {
   args <- list(...)
   
   dimensions <- .getDimensionNames()
+  five.digit <- "State"
 
   if(!is.null(args$dimensions)) {dimensions <- args$dimensions}
+  if(!is.null(args$five.digit)) {five.digit <- args$five.digit}
 
   if(!version %in% c("3L", "5L", "Y"))
     stop("EQ-5D version not one of 3L, 5L or Y.")
   
   if(all(dimensions %in% names(data))) {
     colnames(data)[match(dimensions, colnames(data))] <- .getDimensionNames()
+  } else if(five.digit %in% names(data)) {
+    data <- cbind(data, getDimensionsFromHealthStates(data[[five.digit]], version=version, ignore.invalid=ignore.invalid))
+  } else if(is.character(data) || is.numeric(data)) {
+    data <- getDimensionsFromHealthStates(data, version=version, ignore.invalid=ignore.invalid)
   } else {
     stop("Unable to identify EQ-5D dimensions in data.frame.")
   }

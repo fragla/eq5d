@@ -16,7 +16,6 @@
 #' lfs(55555, version="5L")
 #' lfs(c(11111, 12345, 55555), version="5L")
 #' 
-#' 
 #' @export
 lfs <- function(scores, version, ignore.invalid, ...) {
   UseMethod("lfs", scores)

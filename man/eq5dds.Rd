@@ -4,11 +4,13 @@
 \alias{eq5dds}
 \title{Analyse the descriptive system of an EQ-5D dataset}
 \usage{
-eq5dds(data, version, counts = FALSE, by = NULL, ...)
+eq5dds(data, version, counts = FALSE, by = NULL, ignore.invalid = TRUE, ...)
 }
 \arguments{
-\item{data}{data.frame with names MO, SC, UA, PD and AD representing
-Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.}
+\item{data}{numeric or data.frame with names/colnames MO, SC, UA, PD and AD
+representing Mobility, Self-care, Usual activities, Pain/discomfort and
+Anxiety/depression. Alternatively an EQ-5D  score can be provided in
+five digit format e.g. 12321.}
 
 \item{version}{string of value "3L" or "5L" to indicate instrument version.}
 
@@ -17,6 +19,9 @@ FALSE, which shows percentages for each EQ-5D dimension.}
 
 \item{by}{character specifying the column in the data.frame by which to 
 group the results.}
+
+\item{ignore.invalid}{boolean whether to ignore invalid scores. TRUE returns NA, FALSE 
+throws an error.}
 
 \item{...}{character vector, specifying "dimensions" column names. Defaults 
 are "MO", "SC", "UA", "PD" and "AD".}
