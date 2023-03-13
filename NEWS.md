@@ -1,6 +1,10 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
+# eq5d (development version)
+
+  - Iranian EQ-5D-5L value set added.
+
 # eq5d 0.14.0 (2023-02-03)
 
   - Functions for Probability of Superiority, Health Grid Profile,
