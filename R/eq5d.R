@@ -1,7 +1,7 @@
 #' Calculate EQ-5D index scores
 #'
-#' Wrapper for \code{eq5d3l} and \code{eq5d5l}. Calculate EQ-5D index scores for
-#' EQ-5D-3L and EQ-5D-5L. Available value sets can be viewed using the function
+#' Wrapper for \code{eq5d3l}, \code{eq5d5l} and \code{eq5dy}. Calculate EQ-5D index scores for
+#' EQ-5D-3L, EQ-5D-5L and EQ-5D-Y. Available value sets can be viewed using the function
 #' \code{valuesets}.
 #'
 #' @param scores numeric or data.frame with names/colnames MO, SC, UA, PD and AD
@@ -13,8 +13,8 @@
 #' @param type string specifying method type used in deriving value set scores.
 #'   Options are TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L, CW for EQ-5D-5L
 #'   crosswalk conversion valuesets, RCW for EQ-5D-3L reverse crosswalk
-#'   conversion valuesets and DSU for the NICE Decision Support Unit age-sex
-#'   based EQ-5D-3L to EQ-5D-5L and EQ-5D-5L to EQ-5D-3L mappings
+#'   conversion valuesets and DSU for the NICE Decision Support Unit's EEPRU 
+#'   age-sex based EQ-5D-3L to EQ-5D-5L and EQ-5D-5L to EQ-5D-3L mappings.
 #' @param country string of value set country name used.
 #' @param ignore.invalid logical to indicate whether to ignore dimension data
 #'   with invalid, incomplete or missing data.
@@ -85,16 +85,12 @@ eq5d.data.frame <- function(scores, version=NULL, type=NULL, country=NULL, ignor
     stop("Unable to identify EQ-5D dimensions in data.frame.")
   }
 
-  if(!bwidth %in% names(scores)) {
-    bwidth <- NULL
-  }
-
   res <- apply(scores, 1, function(x) {
     if(type=="DSU") {
       if(is.null(bwidth)) {
         eq5d.default(x[eq5d.columns], version=version, type=type, country=country, ignore.invalid=ignore.invalid, age=x[age], sex=x[sex])
       } else {
-        eq5d.default(x[eq5d.columns], version=version, type=type, country=country, ignore.invalid=ignore.invalid, age=x[age], sex=x[sex], bwidth=x[bwidth])
+        eq5d.default(x[eq5d.columns], version=version, type=type, country=country, ignore.invalid=ignore.invalid, age=x[age], sex=x[sex], bwidth=bwidth)
       }
     } else {
       eq5d.default(x[eq5d.columns], version=version, type=type, country=country, ignore.invalid=ignore.invalid, ...)
@@ -152,6 +148,7 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
 
 .eq5d <- function(scores,version=version,type=type, country=country, ignore.invalid, ...){
   args <- list(...)
+
   if(!is.null(args$bwidth)) {
     bwidth <- suppressWarnings(as.numeric(args$bwidth))
     if(is.na(bwidth) || bwidth < 0) {

@@ -18,8 +18,8 @@ version.}
 \item{type}{string specifying method type used in deriving value set scores.
 Options are TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L, CW for EQ-5D-5L
 crosswalk conversion valuesets, RCW for EQ-5D-3L reverse crosswalk
-conversion valuesets and DSU for the NICE Decision Support Unit age-sex
-based EQ-5D-3L to EQ-5D-5L and EQ-5D-5L to EQ-5D-3L mappings}
+conversion valuesets and DSU for the NICE Decision Support Unit's EEPRU 
+age-sex based EQ-5D-3L to EQ-5D-5L and EQ-5D-5L to EQ-5D-3L mappings.}
 
 \item{country}{string of value set country name used.}
 
@@ -37,8 +37,8 @@ used. See \code{\link{eq5dmap}} for valid options.}
 a numeric vector of utility index scores.
 }
 \description{
-Wrapper for \code{eq5d3l} and \code{eq5d5l}. Calculate EQ-5D index scores for
-EQ-5D-3L and EQ-5D-5L. Available value sets can be viewed using the function
+Wrapper for \code{eq5d3l}, \code{eq5d5l} and \code{eq5dy}. Calculate EQ-5D index scores for
+EQ-5D-3L, EQ-5D-5L and EQ-5D-Y. Available value sets can be viewed using the function
 \code{valuesets}.
 }
 \examples{
