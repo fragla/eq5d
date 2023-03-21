@@ -84,13 +84,23 @@ eq5d.data.frame <- function(scores, version=NULL, type=NULL, country=NULL, ignor
   } else {
     stop("Unable to identify EQ-5D dimensions in data.frame.")
   }
+  
+  if(!length(bwidth) %in% 0:1) {
+    stop("bwidth must be a single column name or decimal.")
+  }
+
+  if(!bwidth %in% names(scores) && !is.numeric(bwidth)) {
+    bwidth <- NULL
+  }
 
   res <- apply(scores, 1, function(x) {
     if(type=="DSU") {
       if(is.null(bwidth)) {
         eq5d.default(x[eq5d.columns], version=version, type=type, country=country, ignore.invalid=ignore.invalid, age=x[age], sex=x[sex])
-      } else {
+      } else if(is.numeric(bwidth)) {
         eq5d.default(x[eq5d.columns], version=version, type=type, country=country, ignore.invalid=ignore.invalid, age=x[age], sex=x[sex], bwidth=bwidth)
+      } else {
+        eq5d.default(x[eq5d.columns], version=version, type=type, country=country, ignore.invalid=ignore.invalid, age=x[age], sex=x[sex], bwidth=x[bwidth])
       }
     } else {
       eq5d.default(x[eq5d.columns], version=version, type=type, country=country, ignore.invalid=ignore.invalid, ...)
@@ -148,7 +158,6 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
 
 .eq5d <- function(scores,version=version,type=type, country=country, ignore.invalid, ...){
   args <- list(...)
-
   if(!is.null(args$bwidth)) {
     bwidth <- suppressWarnings(as.numeric(args$bwidth))
     if(is.na(bwidth) || bwidth < 0) {
