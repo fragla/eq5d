@@ -5,7 +5,7 @@
 \alias{VT}
 \title{EQ-5D-5L VT value set data}
 \format{
-An object of class \code{data.frame} with 35 rows and 38 columns.
+An object of class \code{data.frame} with 35 rows and 39 columns.
 }
 \source{
 \itemize{
@@ -23,6 +23,7 @@ An object of class \code{data.frame} with 35 rows and 38 columns.
 \item{\strong{Hungary}: Rencz F, Brodszky V, Gulácsi L, Golicki D, Ruzsa G, Pickard AS, Law EH, Péntek M. Parallel Valuation of the EQ-5D-3L and EQ-5D-5L by Time Trade-Off in Hungary. Value Health. 2020 Sep;23(9):1235-1245. doi: 10.1016/j.jval.2020.03.019. Epub 2020 Aug 12. \href{https://pubmed.ncbi.nlm.nih.gov/32940242/}{PubMed}}
 \item{\strong{India}: Jyani G, Sharma A, Prinja S, Kar SS, Trivedi M, Patro BK, Goyal A, Purba FD, Finch AP, Rajsekar K, Raman S, Stolk E, Kaur M. Development of an EQ-5D Value Set for India Using an Extended Design (DEVINE) Study: The Indian 5-Level Version EQ-5D Value Set. Value Health. 2022 Jul;25(7):1218-1226. doi: 10.1016/j.jval.2021.11.1370. Epub 2022 Jan 5. \href{https://pubmed.ncbi.nlm.nih.gov/35779943/}{PubMed}}
 \item{\strong{Indonesia}: Purba FD, Hunfeld JAM, Iskandarsyah A, Fitriana TS, Sadarjoen SS, Ramos-Goñi JM, Passchier J, Busschbach JJ. The Indonesian EQ-5D-5L Value Set. PharmacoEconomics. 2017 Nov;35(11)1153-1165. doi: 10.1007/s40273-017-0538-9. \href{https://pubmed.ncbi.nlm.nih.gov/28695543/}{PubMed}}
+\item{\strong{Iran}: Afshari S, Daroudi R, Goudarzi R, Mahboub-Ahari A, Yaseri M, Sari AA, Ameri H, Bahariniya S, Oliaei-Manesh A, Kalavani K, Zare Z, Hasannezhad E, Mirzaei M, Amiri Z. A national survey of Iranian general population to estimate a value set for the EQ-5D-5L. Qual Life Res. 2023 Mar 10. doi: 10.1007/s11136-023-03378-1. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/36897530/}{PubMed}}
 \item{\strong{Ireland}: Hobbins A, Barry L, Kelleher D, Shah K, Devlin N, Ramos Goñi JM, O’Neill C. Utility Values for Health States in Ireland: A Value Set for the EQ-5D-5L. PharmacoEconomics. 2018 Nov;36(11):1345-1353. doi: 10.1007/s40273-018-0690-x. \href{https://pubmed.ncbi.nlm.nih.gov/30051267/}{PubMed}}
 \item{\strong{Italy}: Finch AP, Meregaglia M, Ciani O, Roudijk B, Jommi C. An EQ-5D-5L value set for Italy using videoconferencing interviews and feasibility of a new mode of administration. Social Science & Medicine. 2021 Oct. doi: 10.1016/j.socscimed.2021.114519. \href{https://www.sciencedirect.com/science/article/pii/S0277953621008510}{Journal}}
 \item{\strong{Japan}: Shiroiwa T, Ikeda S, Noto S, Igarashi A, Fukuda T, Saito S, Shimozuma K. Comparison of Value Set Based on DCE and/or TTO Data: Scoring for EQ-5D-5L Health States in Japan. Value in Health. 2016 Jul-Aug;19(5):648-54. \href{https://pubmed.ncbi.nlm.nih.gov/27565282/}{PubMed}}
