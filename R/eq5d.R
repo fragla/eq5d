@@ -21,7 +21,8 @@
 #' @param ... character vectors for column names when using a data.frame. Use
 #'   "dimensions" (default c("MO", "SC", "UA", "PD" and "AD")), "five.digit"
 #'   (default "State") or "utility", "age", "sex" and "bwidth" (defaults
-#'   "Utility", "Age", "Sex" and "bwidth") for NICE DSU mapping. When a single
+#'   "Utility", "Age", "Sex" and "bwidth") for NICE DSU mapping. bwidth can also
+#'   be a number which is applied to the whole dataset. When a single
 #'   NICE DSU score is being calculated "age", "sex" and "bwidth" are also
 #'   used. See \code{\link{eq5dmap}} for valid options.
 #' @return a numeric vector of utility index scores.
