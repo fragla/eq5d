@@ -235,9 +235,9 @@ res
 
 ```
 
-### Health Grid Profile
+### Health Profile Grid
 
-The Health Grid Profile (HPG) was also introduced by [Devlin et al](https://pubmed.ncbi.nlm.nih.gov/20623685/) in 2010. The HPG provides a visual way to observe changes in individuals between two time points. The HPG requires profiles for each time point to be ordered from best to worst. The ***hpg*** function uses a specified value set for this with profiles being assigned a ranking between 1 and 243 for EQ-5D-3L and 1 and 3125 for EQ-5D-5L based on severity (1 being the best and 243/3125 the worst). The rankings for the two time points for each individual are plotted with the location of each point showing whether there has been an improvement or deterioration. The further a point is above the 45° line, the great the improvement in an individuals health. Conversely, the further below the line a point is the more health has deteriorated. Those individuals on the line show "no change".
+The Health Profile Grid (HPG) was also introduced by [Devlin et al](https://pubmed.ncbi.nlm.nih.gov/20623685/) in 2010. The HPG provides a visual way to observe changes in individuals between two time points. The HPG requires profiles for each time point to be ordered from best to worst. The ***hpg*** function uses a specified value set for this with profiles being assigned a ranking between 1 and 243 for EQ-5D-3L and 1 and 3125 for EQ-5D-5L based on severity (1 being the best and 243/3125 the worst). The rankings for the two time points for each individual are plotted with the location of each point showing whether there has been an improvement or deterioration. The further a point is above the 45° line, the great the improvement in an individuals health. Conversely, the further below the line a point is the more health has deteriorated. Those individuals on the line show "no change".
 
 ```{r hpg}
 library(readxl)

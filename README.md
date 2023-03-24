@@ -1,6 +1,5 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
 <!-- badges: start -->
 
 [![R build
@@ -444,9 +443,9 @@ res
 #> [1] 0.52
 ```
 
-### Health Grid Profile
+### Health Profile Grid
 
-The Health Grid Profile (HPG) was also introduced by [Devlin et
+The Health Profile Grid (HPG) was also introduced by [Devlin et
 al](https://pubmed.ncbi.nlm.nih.gov/20623685/) in 2010. The HPG provides
 a visual way to observe changes in individuals between two time points.
 The HPG requires profiles for each time point to be ordered from best to
@@ -600,28 +599,28 @@ dat <- data.frame(
 
 eq5dds(dat, version="3L")
 #>     MO   SC   UA   PD   AD
-#> 1 41.7 33.3  0.0 50.0 41.7
-#> 2 33.3 16.7 33.3 16.7 16.7
-#> 3 25.0 50.0 66.7 33.3 41.7
+#> 1 50.0 66.7 41.7 41.7 41.7
+#> 2 16.7 16.7 33.3 25.0 33.3
+#> 3 33.3 16.7 25.0 33.3 25.0
 
 eq5dds(dat, version="3L", counts=TRUE)
 #>   MO SC UA PD AD
-#> 1  5  4  0  6  5
-#> 2  4  2  4  2  2
-#> 3  3  6  8  4  5
+#> 1  6  8  5  5  5
+#> 2  2  2  4  3  4
+#> 3  4  2  3  4  3
 
 eq5dds(dat, version="3L", by="Sex")
 #> data[, by]: Female
-#>     MO SC   UA   PD AD
-#> 1 33.3 50  0.0  0.0 50
-#> 2 50.0  0 33.3 33.3  0
-#> 3 16.7 50 66.7 66.7 50
+#>     MO   SC   UA   PD   AD
+#> 1 50.0 83.3 33.3 33.3 50.0
+#> 2 16.7  0.0 50.0 33.3 33.3
+#> 3 33.3 16.7 16.7 33.3 16.7
 #> ------------------------------------------------------------ 
 #> data[, by]: Male
-#>     MO   SC   UA  PD   AD
-#> 1 50.0 16.7  0.0 100 33.3
-#> 2 16.7 33.3 33.3   0 33.3
-#> 3 33.3 50.0 66.7   0 33.3
+#>     MO   SC   UA   PD   AD
+#> 1 50.0 50.0 50.0 50.0 33.3
+#> 2 16.7 33.3 16.7 16.7 33.3
+#> 3 33.3 16.7 33.3 33.3 33.3
 ```
 
 ## Helper functions
@@ -697,7 +696,7 @@ results.
 ![Shiny EQ-5D app excel data
 formats](man/figures/shiny_app_excel_scores.png)
 
-The app is launched using the ***shiny\_eq5d*** function.
+The app is launched using the ***shiny_eq5d*** function.
 
 ``` r
 shiny_eq5d()
