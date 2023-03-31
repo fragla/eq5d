@@ -8,7 +8,7 @@
 An object of class \code{data.frame} with 31250 rows and 22 columns.
 }
 \source{
-Hernández Alava M, Pudney S, Wailoo A. Estimating the Relationship Between EQ-5D-5L and EQ-5D-3L: Results from a UK Population Study. Pharmacoeconomics. 2023 Feb;41(2):199-207. doi: 10.1007/s40273-022-01218-7. Epub 2022 Nov 30. \href{https://pubmed.ncbi.nlm.nih.gov/36449173}{PubMed}
+Hernández Alava M, Pudney S, Wailoo A. Estimating the Relationship Between EQ-5D-5L and EQ-5D-3L: Results from a UK Population Study. Pharmacoeconomics. 2023 Feb;41(2):199-207. doi: 10.1007/s40273-022-01218-7. Epub 2022 Nov 30. \href{https://pubmed.ncbi.nlm.nih.gov/36449173/}{PubMed}
 
 Hernández Alava M, Pudney S, Wailoo A. Estimating the Relationship Between EQ-5D-5L and EQ-5D-3L: Results From an English Population Study [EEPRU Report]. University of Sheffield & University of York. \href{https://eepru.sites.sheffield.ac.uk/projects/estimating-the-relationship-between-eq-5d-5l-and-eq-5d-3l}{Article}
 
