@@ -81,7 +81,7 @@ eq5d(scores=scores.df2$state, type="TTO", version="3L", country="UK")
 scores.df3 <- data.frame(
   Utility=c(0.715,0.435,0.95),
   Age=c(50,30,70),
-  Sex=c("m","f","m")
+  Sex=c("m","f","m"),
   bwidth=c(0.2,0.2,0.1)
 )
 
