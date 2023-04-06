@@ -560,7 +560,7 @@ shinyServer(function(input, output, session) {
     }
     colnames(res)[ncol(res)] <- "Index"
 
-    if(all(getDimensionNames() %in% colnames(rawdata()))) {
+    if(all(getDimensionNames() %in% colnames(dataset()))) {
       if("lss" %in% input$severity_scores) {
         res$LSS <- lss(dataset(), version=input$version, ignore.invalid=ignoreInvalid(), dimensions=getDimensionNames())
       }
@@ -589,7 +589,7 @@ shinyServer(function(input, output, session) {
     return(ignore.invalid)
   })
 
-  output$plot <- renderggiraph({
+  output$plot <- renderGirafe({
     if(is.null(input$data) || is.null(input$plot_type) || is.null(input$group))
       return()
     
@@ -601,7 +601,9 @@ shinyServer(function(input, output, session) {
 
     code <- getPlot()
 
-    output <- ggiraph(code = print(code), selection_type = "single")
+    #output <- ggiraph(code = print(code), selection_type = "single")
+    output <- girafe(ggobj = code)
+    output <- girafe_options(x = output, selection_type = "single", opts_toolbar(saveaspng = FALSE, hidden = c("lasso_select", "lasso_deselect")))
 
     return(output)
   })

@@ -81,7 +81,7 @@ shinyUI(
       mainPanel(
         fluidRow(
           column(8, 
-            withSpinner(ggiraphOutput("plot")),
+            withSpinner(girafeOutput("plot")),
           ),
           column(4,  style = "margin-top: 300px;",
             uiOutput("export_plot")
