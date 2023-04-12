@@ -6,8 +6,9 @@
 #'
 #' @param scores numeric or data.frame with names/colnames MO, SC, UA, PD and AD
 #'   representing Mobility, Self-care, Usual activities, Pain/discomfort and
-#'   Anxiety/depression. Alternatively an EQ-5D score can be provided in
-#'   five digit format e.g. 12321.
+#'   Anxiety/depression. Alternatively EQ-5D scores can be provided in
+#'   five digit format e.g. 12321. If five digit scores are used in a data.frame
+#'   the default column name look for by the function is "State".
 #' @param version string of value "3L", "5L" or "Y" to indicate instrument
 #'   version.
 #' @param type string specifying method type used in deriving value set scores.
