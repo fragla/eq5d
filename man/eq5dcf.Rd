@@ -7,8 +7,10 @@
 eq5dcf(data, version, ignore.invalid, proportions, digits, ...)
 }
 \arguments{
-\item{data}{data.frame with names MO, SC, UA, PD and AD representing
-Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.}
+\item{data}{A data.frame with columns MO, SC, UA, PD and AD representing
+Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression 
+or a "State" column containing five digit scores. Alternatively a vector of 
+five digit scores can also be used.}
 
 \item{version}{string of value "3L" or "5L" to indicate instrument version.}
 

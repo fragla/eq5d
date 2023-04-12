@@ -3,8 +3,10 @@
 #' Calculate the frequency, percentage, cumulative frequency and cumulative 
 #' percentage for each profile in an EQ-5D dataset.
 #' 
-#' @param data data.frame with names MO, SC, UA, PD and AD representing
-#'   Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.
+#' @param data A data.frame with columns MO, SC, UA, PD and AD representing
+#'   Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression 
+#'   or a "State" column containing five digit scores. Alternatively a vector of 
+#'   five digit scores can also be used. 
 #' @param version string of value "3L" or "5L" to indicate instrument version.
 #' @param ignore.invalid booloean whether to ignore invalid scores. TRUE returns NA, FALSE throws an 
 #' error.
@@ -29,9 +31,18 @@ eq5dcf.data.frame <- function(data, version, ignore.invalid=TRUE, proportions=FA
   args <- list(...)
   
   dimensions <- .getDimensionNames()
-  if(!is.null(args$dimensions)) {dimensions <- args$dimensions}
+  five.digit <- "State"
   
-  states <- getHealthStatesFromDimensions(data, version, ignore.invalid, dimensions)
+  if(!is.null(args$dimensions)) {dimensions <- args$dimensions}
+  if(!is.null(args$five.digit)) {five.digit <- args$five.digit}
+  
+  if(all(dimensions %in% names(data))) {
+    states <- getHealthStatesFromDimensions(data, version, ignore.invalid, dimensions)
+  } else if(five.digit %in% names(data)) {
+    states <- data[[five.digit]]
+  } else {
+    stop("Unable to identify EQ-5D dimensions in data.frame.")
+  }
   eq5dcf.default(states, version, ignore.invalid, proportions, digits=digits, ...)
 }
 
