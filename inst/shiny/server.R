@@ -787,8 +787,6 @@ shinyServer(function(input, output, session) {
     pre <- data[data[[input$group]]==input$group_member[1],]
     post <- data[data[[input$group]]==input$group_member[2],]
     
-    print(all.equal(pre[[getPaired()]], post[[getPaired()]]))
-    
     if(!all.equal(pre[[getPaired()]], post[[getPaired()]]))
       stop("Unable to match subjects")
 
