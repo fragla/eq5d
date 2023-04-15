@@ -51,7 +51,7 @@ shinyUI(
     tabPanel("Analysis",
       sidebarPanel(
         conditionalPanel(
-          condition = "input.plot_type != 'radar' && input.plot_type != 'summary'",
+          condition = "input.plot_type != 'radar' && input.plot_type != 'summary' && input.plot_type != 'hsdc' && input.plot_type != 'hpg'",
           uiOutput("choose_plot_data")
         ),
         uiOutput("choose_plot_type"),
@@ -61,7 +61,7 @@ shinyUI(
           uiOutput("choose_group_members")
         ),
         conditionalPanel(
-          condition = "input.plot_type != 'radar' && input.plot_type != 'summary' && input.plot_type != 'hsdc'",
+          condition = "input.plot_type != 'radar' && input.plot_type != 'summary' && input.plot_type != 'hsdc' && input.plot_type != 'hpg'",
           uiOutput("show_average"),
           uiOutput("choose_average_method")
         ),

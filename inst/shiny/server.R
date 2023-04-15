@@ -151,10 +151,6 @@ shinyServer(function(input, output, session) {
   output$include_raw_data <- renderUI({
     checkboxInput("raw", "Include all submitted data in table", TRUE)
   })
-  
-  output$include_raw_data <- renderUI({
-    checkboxInput("raw", "Include all submitted data in table", TRUE)
-  })
 
   getPaired <- reactive({
     data <- getTableDataByGroup()
@@ -579,6 +575,7 @@ shinyServer(function(input, output, session) {
     
     if(!is.null(input$group) && input$group != "None") {
       data <- data[which(data[,input$group] %in% input$group_member),]
+      data[[input$group]] <- factor(data[[input$group]], levels=unique(data[[input$group]]))
     }
     
     return(data)
@@ -622,6 +619,9 @@ shinyServer(function(input, output, session) {
     } else if(input$plot_type=="hsdc") {
       print("HSDC")
       code <- hsdc_plot()
+    } else if(input$plot_type=="hpg") {
+      print("HPG")
+      code <- hpg_plot()
     } else if(input$plot_type=="radar") {
       print("Radar")
       code <- radar_plot()
@@ -765,6 +765,51 @@ shinyServer(function(input, output, session) {
 
   })
   
+  hpg_plot <- reactive({
+    if(is.null(input$data) || is.null(input$plot_type) || is.null(input$group))
+      return()
+    
+    if(is.null(getPaired))
+      stop("Paired data required for HPG plot.")
+    
+    if(input$group=="None")
+      stop("Group required for HPG plot.")
+    
+    if(length(input$group_member)!=2)
+      stop("Two groups required for HPG plot")
+    
+    data <- getTableDataByGroup()
+    
+    #order by paired column
+    data <- data[order(data[[getPaired()]], data[[input$group]]),]
+    
+    #use first 50 entries of each group as pre/post
+    pre <- data[data[[input$group]]==input$group_member[1],]
+    post <- data[data[[input$group]]==input$group_member[2],]
+    
+    print(all.equal(pre[[getPaired()]], post[[getPaired()]]))
+    
+    if(!all.equal(pre[[getPaired()]], post[[getPaired()]]))
+      stop("Unable to match subjects")
+
+    #run hpg function on data.frames
+    res <- hpg(pre, post, country=input$country, version=input$version, type=input$type)
+    
+    ts <- length(getHealthStates(input$version))
+    
+    p <- ggplot(res, aes(Post, Pre, color=PCHC)) +
+      geom_point(aes(shape=PCHC)) +
+      coord_cartesian(xlim=c(1,ts), ylim=c(1,ts)) +
+      scale_x_continuous(breaks=c(1,ts)) +
+      scale_y_continuous(breaks=c(1,ts)) +
+      annotate("segment", x=1, y=1, xend=ts, yend=ts, colour="black") +
+      theme(panel.border=element_blank(), panel.grid.minor=element_blank()) +
+      xlab(input$group_member[2]) +
+      ylab(input$group_member[1])
+    
+    return(p)
+  })
+  
   radar_plot <- reactive({
     if(is.null(input$data) || is.null(input$plot_type) || is.null(input$group))
       return()
@@ -819,6 +864,7 @@ shinyServer(function(input, output, session) {
       data <- do.call(rbind, unname(Map(cbind, Group = names(data), data)))
       colnames(data) <- c(input$group, "Score", "Dimension", summary_type)
       data$Score <- as.factor(data$Score)
+      data[[input$group]] <- factor(data[[input$group]], levels=unique(data[[input$group]]))
       p <- ggplot(data, aes_string(fill="Score", y=summary_type, x="Dimension", tooltip=summary_type)) + 
         geom_bar_interactive(position="dodge", stat="identity") + facet_wrap(as.formula(paste("~", input$group)))
     }
@@ -844,7 +890,7 @@ shinyServer(function(input, output, session) {
 
   output$choose_plot_type <- renderUI({
     selectInput("plot_type", "Plot type:",
-        c("Summary"="summary", "Density"="density", "ECDF"="ecdf", "HSDC"="hsdc", "Radar"="radar")
+        c("Summary"="summary", "Density"="density", "ECDF"="ecdf", "Health State Density Curve"="hsdc", "Health Profile Grid"="hpg", "Radar"="radar")
     )
   })
 
@@ -977,6 +1023,22 @@ shinyServer(function(input, output, session) {
           renderDT(summ[[input$eq5dds]],options = list(searching = FALSE, paging = FALSE, info = FALSE))
         )
       }
+    } else if(input$plot_type =="hpg") {
+      data <- getTableDataByGroup()
+      
+      pre <- data[data[[input$group]]==input$group_member[1],]
+      post <- data[data[[input$group]]==input$group_member[2],]
+      
+      if(pre[[input$id]] != post[[input$id]]) {
+        stop(paste("Paired IDs do not match"))
+      }
+      
+      pchc <- pchc(pre, post, version=input$version, no.problems=TRUE, totals=TRUE, summary=TRUE)
+
+      taglist <- tagList(
+        h5("PCHC"),
+        renderDT(pchc,options = list(searching = FALSE, paging = FALSE, info = FALSE))
+      )
     } else {
       stats <- getStatistics()
       if(is.null(stats))
@@ -1019,7 +1081,7 @@ shinyServer(function(input, output, session) {
     data <- getTableDataByGroup()
     paired <- FALSE
     if(!is.null(getPaired()) & length(getPaired()) > 0 & !is.null(input$paired) && input$paired) {
-      data <- data[order(data[input$id], data[input$group]),]
+      data <- data[order(data[[input$id]], data[[input$group]]),]
       paired <- TRUE
     }
     res <- wilcox.test(as.formula(paste(input$plot_data," ~ ", input$group)), data, paired=paired)
