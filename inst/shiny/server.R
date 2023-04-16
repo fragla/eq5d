@@ -735,9 +735,10 @@ shinyServer(function(input, output, session) {
     } else {
       colours <- getGroupColours()
       
-      hsdi <- sapply(unique(data[[input$group]]), function(x){
+      hsdi <- sapply(input$group_member, function(x){
         hsdi(data[data[[input$group]]==x,], version=input$version)
       })
+      names(hsdi) <- input$group_member
       label <- paste("HSDI:", paste(names(hsdi), hsdi, sep="=", collapse = ", "))
 
       res <- lapply(unique(data[[input$group]]), function(x){
@@ -752,7 +753,7 @@ shinyServer(function(input, output, session) {
       p <- ggplot(res, aes_string("CumulativeProp", "CumulativeState", colour=input$group, group=input$group)) + 
         geom_line() + 
         annotate("segment", x=0, y=0, xend=1,yend=1, colour="black") +  
-        annotate("text", x=0.5, y=0.9, label=label) +
+        annotate("text", x=0.5, y=0.9, label=label, size=3) +
         theme(panel.border = element_blank(), panel.grid.minor = element_blank()) +
         coord_cartesian(xlim = c(0, 1), ylim = c(0, 1)) +
         scale_fill_manual(values=colours) + 
@@ -776,7 +777,11 @@ shinyServer(function(input, output, session) {
       stop("Group required for HPG plot.")
     
     if(length(input$group_member)!=2)
-      stop("Two groups required for HPG plot")
+      stop("Two levels required for HPG plot")
+    
+    
+    if(!is.null(input$paired) && !input$paired)
+      stop("Data are paired checkbox must be selected")
     
     data <- getTableDataByGroup()
     
@@ -1024,12 +1029,18 @@ shinyServer(function(input, output, session) {
     } else if(input$plot_type =="hpg") {
       data <- getTableDataByGroup()
       
+      if(length(input$group_member)!=2)
+        stop("Two levels required for HPG plot")
+      
       pre <- data[data[[input$group]]==input$group_member[1],]
       post <- data[data[[input$group]]==input$group_member[2],]
       
-      if(pre[[input$id]] != post[[input$id]]) {
+      if(!all.equal(pre[[input$id]], post[[input$id]])) {
         stop(paste("Paired IDs do not match"))
       }
+      
+      if(!input$paired)
+        stop("Data are paired checkbox must be selected")
       
       pchc <- pchc(pre, post, version=input$version, no.problems=TRUE, totals=TRUE, summary=TRUE)
 
