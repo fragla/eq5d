@@ -258,6 +258,14 @@ test_that("EQ-5D-5L Romania gives correct answer", {
   expect_equal(eq5d5l(c(MO=5,SC=5,UA=5,PD=5,AD=5), "Romania"), -0.323)
 })
 
+test_that("EQ-5D-5L Slovenia gives correct answer", {
+  expect_equal(eq5d5l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "Slovenia"), 1)
+  expect_equal(eq5d5l(c(MO=2,SC=2,UA=2,PD=2,AD=2), "Slovenia"), 0.764)
+  expect_equal(eq5d5l(c(MO=3,SC=3,UA=3,PD=3,AD=3), "Slovenia"), 0.505)
+  expect_equal(eq5d5l(c(MO=4,SC=4,UA=4,PD=4,AD=4), "Slovenia"), -0.360)
+  expect_equal(eq5d5l(c(MO=5,SC=5,UA=5,PD=5,AD=5), "Slovenia"), -1.090, tolerance = .0011)
+})
+
 test_that("EQ-5D-5L Spain gives correct answer", {
   expect_equal(eq5d5l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "Spain"), 1)
   expect_equal(eq5d5l(c(MO=2,SC=1,UA=1,PD=1,AD=1), "Spain"), 0.916)
