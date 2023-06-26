@@ -3,7 +3,7 @@
 
 # eq5d (development version)
 
-- Iranian EQ-5D-5L value set added.
+- Iranian and Slovenian EQ-5D-5L value sets added.
 
 - When analysing data using the NICE DSU models, the value passed to
   bwidth argument in the eq5d function can now be a column name (column
