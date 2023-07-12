@@ -719,7 +719,10 @@ app ecdf plot screenshot](man/figures/shiny_app_screenshot_ecdf.png)
 ![Shiny EQ-5D app radar plot
 screenshot](man/figures/shiny_app_screenshot_radar.png) ![Shiny EQ-5D
 app posthoc stats plot
-screenshot](man/figures/shiny_app_screenshot_posthoc.png)
+screenshot](man/figures/shiny_app_screenshot_posthoc.png) ![Shiny EQ-5D
+app HSDC plot screenshot](man/figures/shiny_app_screenshot_hsdc.png)
+![Shiny EQ-5D app HPG plot
+screenshot](man/figures/shiny_app_screenshot_hpg.png)
 
 ## License
 
