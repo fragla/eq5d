@@ -1,0 +1,130 @@
+---
+title: "Mapping between EQ-5D-5L and EQ-5D-3L using the NICE Decision Support Unit EEPRU models"
+author: "Fraser Morton"
+date: "2023-07-12"
+output: html_document
+vignette: >
+  %\VignetteIndexEntry{Mapping between EQ-5D-5L and EQ-5D-3L using the NICE Decision Support Unit EEPRU models}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+It has been demonstrated by [Wailoo *et al*](https://pubmed.ncbi.nlm.nih.gov/33840435/) that EQ-5D-3L and EQ-5D-5L value changes in health differently. In order to enable bidirectional comparison between EQ-5D-3L and EQ-5D-5L datasets the NICE Decision Support Unit at the University of Sheffield has produced their "EEPRU" models that can be used to map data between EQ-5D versions and can be used on health states, utility scores calculated using a value set or approximate (summarised) utility scores. In the UK NICE have stated that this is the method that should be used for UK reference-case analyses instead of the 2018 EQ‑5D‑5L value set for England published by [Devlin *et al*](https://pubmed.ncbi.nlm.nih.gov/28833869/). This vignette demonstrates how to map scores between EQ-5D-3L and EQ-5D-5L using the eq5d package.
+
+### Available value sets
+
+The available "DSU" value sets can be viewed using the ***valuesets*** function. The results can be filtered by EQ-5D version or by country.
+
+```{r dsu_valuesets}
+  library(eq5d)
+
+  # DSU EQ-5D-5L to EQ-5D-3L UK value set
+  valuesets(version = "5L", type = "DSU", country = "UK")
+
+  ## All DSU EQ-5D-5L to EQ-5D-3L value sets
+  valuesets(version = "5L", type = "DSU")
+
+```
+
+<br>
+
+### Mapping health states from EQ-5D-5L to EQ-5D-3L
+
+As with standard value sets, the ***eq5d*** function can map states as individual dimensions or as five digit scores. However, the models developed also require age and sex to be provided in addition to the responses of the EQ-5D instrument. As with the original Stata code age can be provided in two ways, either in years or as an age category. The age categories range from 1 to 5 where 1 = 18-34, 2 = 35-44, 3 = 45-54, 4 = 55-64 and 5 = 65-100. There will be no difference in results whether, for example, an age of 47 or the age category "3" is used. The sex parameter should be provided as "Male", "Female", "M" or "F" and is case insensitive. 
+
+<br>
+
+##### Mapping single states
+
+```{r dsu_dimensions_1}
+
+# Using age in years and sex as "m"
+eq5d(c(MO=1, SC=2, UA=3, PD=4, AD=5), type = "DSU", country = "UK", age = 43, version = "5L", sex = "m")
+
+# Using an age category and sex as "Male"
+eq5d(12345, type = "DSU", country = "UK", age = 2, version = "5L", sex = "Male")
+
+```
+
+<br>
+
+##### Mapping multiple states
+
+```{r dsu_dimensions_2}
+
+# get states and create data.frame
+set.seed(12345)
+dat1 <- data.frame(State = sample(getHealthStates("5L"), 10), 
+                   Age = sample(18:100, 10), 
+                   Sex = sample(c("M","F"), replace = TRUE, 10))
+
+print(dat1)
+
+eq5d(dat1, version="5L", type="DSU", country="UK")
+
+```
+
+<br>
+
+### Mapping utility values from the 2018 EQ‑5D‑5L value set for England
+
+Mapping utility scores that have been calculated using a standard value set between EQ-5D versions is performed in a similar way to mapping health states with the health state simply being substituted for the utility score.
+
+```{r dsu_exact_utility}
+
+# Using utility score 0.322 (score for state 12345), an age category and sex as "Male"
+eq5d(0.322, type = "DSU", country = "UK", age = 2, version = "5L", sex = "Male")
+
+
+# Multiple states
+
+# create data.frame of utility scores using the 2018 EQ-5D-5L value set for England for the states in dat1
+dat2 <- data.frame(Utility = eq5d(dat1$State, version = "5L", type = "VT", country = "England"), 
+                   Age = dat1$Age,
+                   Sex = dat1$Sex)
+                   
+print(dat2)
+
+eq5d(dat2, version="5L", type="DSU", country="UK")
+
+```                   
+
+<br>
+
+### Mapping approximate/summarised utility values
+
+If approximate or summarised utility scores are being mapped, a bandwidth parameter needs to be provided in addition to the age and sex parameters. The bandwidth parameter specifies the neighbourhood and the rate at which the weight declines with distance. It is possible to provide a single bandwidth score that can be applied to all utility scores in a dataset. However, the DSU specify that bandwidth scores should be < 0.8: 0.2, 0.8-0.951: 0.1, 0.951-1: small, but large enough to include 1. Individual bandwidth scores can be provided by a bwidth column containing the scores. 
+
+```{r dsu_summary_utility}
+
+# Get all utility scores from 2018 EQ‑5D‑5L value set for England 
+exist.utils <- unique(DSU5L$UK)
+min <- min(DSU5L$UK)
+max <- max(DSU5L$UK)
+
+# calculate range of values between min and max
+poss.utils <- seq(from=min, to=max, by=0.001)
+
+# create data.frame of 10 utility scores that aren't in the 2018 EQ‑5D‑5L value set for England 
+set.seed(54321)
+dat3 <- data.frame(Utility = sample(poss.utils[which(!poss.utils %in% exist.utils)], 10),
+                   Age = sample(18:100, 10), 
+                   Sex = sample(c("M","F"), replace = TRUE, 10))
+
+print(dat3)
+
+# map scores using a single bandwidth value for all scores
+eq5d(dat3, version="5L", type="DSU", country="UK", bwidth=0.2)
+
+# add bwidth column with values based on the DSU recommendations
+dat3$bwidth <- c(0.2, 0.1, 0.2, 0.2, 0.1, 0.2, 0.2, 0.2, 0.2, 0.01)
+
+eq5d(dat3, version="5L", type="DSU", country="UK")
+
+```
+
+Differences can be observed in the 2nd, 5th, and 10th mapped scores where the DSU guidelines are followed for the bandwidth value rather than a single value of 0.2 for all utility score.
