@@ -393,13 +393,7 @@ shiny_eq5d()
 ```
 Alternatively, it can be accessed without installing R/Shiny/eq5d by visiting [shinyapps.io](https://fragla.shinyapps.io/shiny-eq5d).
 
-![Shiny EQ-5D app main screenshot](man/figures/shiny_app_screenshot_main.png)
-![Shiny EQ-5D app main screenshot](man/figures/shiny_app_screenshot_barplot.png)
-![Shiny EQ-5D app density plot screenshot](man/figures/shiny_app_screenshot_density.png)
-![Shiny EQ-5D app ecdf plot screenshot](man/figures/shiny_app_screenshot_ecdf.png)
-![Shiny EQ-5D app radar plot screenshot](man/figures/shiny_app_screenshot_radar.png)
-![Shiny EQ-5D app posthoc stats plot screenshot](man/figures/shiny_app_screenshot_posthoc.png)
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/fragla/eq5d/blob/master/LICENSE.md) file for details.
+
