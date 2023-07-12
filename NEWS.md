@@ -10,6 +10,9 @@
   contains a value for each observation) or a single numerical value to
   be applied to all observations.
 
+- New vignette describing how to map between EQ-5D-5L and EQ-5D-3L using
+  the NICE DSU EEPRU models.
+
 # eq5d 0.14.0 (2023-02-03)
 
 - Functions for Probability of Superiority, Health Grid Profile, Health
