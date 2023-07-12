@@ -40,7 +40,7 @@ in population health surveys.
 The eq5d package provides methods for the cross-sectional and
 longitudinal analysis of EQ-5D profiles and also the calculation of
 utility index scores from a subject’s dimension scores. Additionally, a
-[Shiny](https://shiny.rstudio.com) app is included to enable the
+[Shiny](https://shiny.posit.co/) app is included to enable the
 calculation, visualisation and automated statistical analysis of
 multiple EQ-5D index values via a web browser using EQ-5D dimension
 scores stored in CSV or Excel files.
