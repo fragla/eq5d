@@ -183,10 +183,10 @@ head(valuesets(type="TTO", references=c("PubMed","DOI")))
 head(valuesets(type="VAS", references=c("ISBN","ExternalURL")))
 #>    Version Type Country          ISBN
 #> 1 EQ-5D-3L  VAS Belgium 1-4020-5511-0
-#> 2 EQ-5D-3L  VAS Denmark 1-4020-5511-1
-#> 3 EQ-5D-3L  VAS  Europe 1-4020-5511-2
-#> 4 EQ-5D-3L  VAS Finland 1-4020-5511-3
-#> 5 EQ-5D-3L  VAS Germany 1-4020-5511-4
+#> 2 EQ-5D-3L  VAS Denmark 1-4020-5511-0
+#> 3 EQ-5D-3L  VAS  Europe 1-4020-5511-0
+#> 4 EQ-5D-3L  VAS Finland 1-4020-5511-0
+#> 5 EQ-5D-3L  VAS Germany 1-4020-5511-0
 #> 6 EQ-5D-3L  VAS    Iran          <NA>
 #>                                                              ExternalURL
 #> 1 https://eq-5dpublications.euroqol.org/download?id=0_54011&fileId=54420
@@ -589,6 +589,7 @@ EQ-5D dataset. The “by” argument enables a grouping variable to be
 specified when analysing the data subgroup.
 
 ``` r
+set.seed(12345)
 dat <- data.frame(
          matrix(
            sample(1:3, 5*12, replace=TRUE), 12, 5, 
@@ -599,28 +600,28 @@ dat <- data.frame(
 
 eq5dds(dat, version="3L")
 #>     MO   SC   UA   PD   AD
-#> 1 50.0 66.7 41.7 41.7 41.7
-#> 2 16.7 16.7 33.3 25.0 33.3
-#> 3 33.3 16.7 25.0 33.3 25.0
+#> 1  8.3 33.3 33.3 41.7 16.7
+#> 2 58.3 50.0 25.0 16.7 33.3
+#> 3 33.3 16.7 41.7 41.7 50.0
 
 eq5dds(dat, version="3L", counts=TRUE)
 #>   MO SC UA PD AD
-#> 1  6  8  5  5  5
-#> 2  2  2  4  3  4
-#> 3  4  2  3  4  3
+#> 1  1  4  4  5  2
+#> 2  7  6  3  2  4
+#> 3  4  2  5  5  6
 
 eq5dds(dat, version="3L", by="Sex")
 #> data[, by]: Female
 #>     MO   SC   UA   PD   AD
-#> 1 50.0 83.3 33.3 33.3 50.0
-#> 2 16.7  0.0 50.0 33.3 33.3
-#> 3 33.3 16.7 16.7 33.3 16.7
+#> 1  0.0 33.3 33.3 33.3  0.0
+#> 2 66.7 50.0 33.3 16.7 16.7
+#> 3 33.3 16.7 33.3 50.0 83.3
 #> ------------------------------------------------------------ 
 #> data[, by]: Male
 #>     MO   SC   UA   PD   AD
-#> 1 50.0 50.0 50.0 50.0 33.3
-#> 2 16.7 33.3 16.7 16.7 33.3
-#> 3 33.3 16.7 33.3 33.3 33.3
+#> 1 16.7 33.3 33.3 50.0 33.3
+#> 2 50.0 50.0 16.7 16.7 50.0
+#> 3 33.3 16.7 50.0 33.3 16.7
 ```
 
 ## Helper functions
@@ -674,7 +675,7 @@ head(scores)
 
 The calculation (and visualisation) of multiple EQ-5D indices can also
 be performed by upload of a CSV or Excel file using the packaged
-[Shiny](https://shiny.rstudio.com) app. This requires the
+[Shiny](https://shiny.posit.co/) app. This requires the
 [shiny](https://cran.r-project.org/package=shiny),
 [DT](https://cran.r-project.org/package=DT),
 [FSA](https://cran.r-project.org/package=FSA),
@@ -693,8 +694,12 @@ modal dialog will prompt the user to select the appropriate columns if
 the defaults can not be found. Both files below will produce the same
 results.
 
-![Shiny EQ-5D app excel data
-formats](man/figures/shiny_app_excel_scores.png)
+<figure>
+<img src="man/figures/shiny_app_excel_scores.png"
+alt="Shiny EQ-5D app excel data formats" />
+<figcaption aria-hidden="true">Shiny EQ-5D app excel data
+formats</figcaption>
+</figure>
 
 The app is launched using the ***shiny_eq5d*** function.
 
