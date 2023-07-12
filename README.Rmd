@@ -325,6 +325,7 @@ ggplot(cf, aes(CumulativeProp, CumulativeState)) +
 The ***eq5dds*** function is an R approximation of the Stata command written by [Ramos-Goñi & Ramallo-Fariña](https://www.stata-journal.com/article.html?article=st0450). The function analyses and summarises the descriptive components of an EQ-5D dataset. The "by" argument enables a grouping variable to be specified when analysing the data subgroup.
 
 ```{r eq5dds}
+set.seed(12345)
 dat <- data.frame(
          matrix(
            sample(1:3, 5*12, replace=TRUE), 12, 5, 
