@@ -377,7 +377,7 @@ head(scores)
 
 ## Shiny web interface
 
-The calculation (and visualisation) of multiple EQ-5D indices can also be performed by upload of a CSV or Excel file using the packaged [Shiny](https://shiny.rstudio.com) app. This requires the [shiny](https://cran.r-project.org/package=shiny),  [DT](https://cran.r-project.org/package=DT), 
+The calculation (and visualisation) of multiple EQ-5D indices can also be performed by upload of a CSV or Excel file using the packaged [Shiny](https://shiny.posit.co/) app. This requires the [shiny](https://cran.r-project.org/package=shiny),  [DT](https://cran.r-project.org/package=DT), 
 [FSA](https://cran.r-project.org/package=FSA), 
 [ggplot2](https://cran.r-project.org/package=ggplot2), 
 [ggiraph](https://cran.r-project.org/package=ggiraph), 
