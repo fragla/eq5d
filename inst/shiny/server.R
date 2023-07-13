@@ -641,24 +641,26 @@ shinyServer(function(input, output, session) {
     
     if(nrow(data) > 0) {
       ave.meth <- get_average_method()
+      plot_data <- sym(input$plot_data)
       
       if(input$group=="None" || !input$raw) {
-        p <- ggplot(data, aes_string(x=input$plot_data)) + 
+        p <- ggplot(data, aes(x=!!plot_data)) + 
              geom_density(color="darkblue", fill="lightblue", alpha=0.4)
   
         if(input$average) {
-          p <- p + geom_vline_interactive(aes_string(xintercept=ave.meth(data[[input$plot_data]])),
+          p <- p + geom_vline_interactive(aes(xintercept=!!ave.meth(data[[input$plot_data]])),
               color="darkblue", linetype="dashed", tooltip = paste0(input$average_method, ": ", get_average_value()), data_id = "density_mean")
         }
              
       } else {
+        group <- sym(input$group)
         colours <- getGroupColours()
         mu <- get_average_value()
-        p <- ggplot(data, aes_string(x=input$plot_data, fill=input$group)) + 
+        p <- ggplot(data, aes(x=!!plot_data, fill=!!group)) + 
              geom_density(alpha=0.4) + scale_fill_manual(values=colours) + scale_color_manual(values=colours)  
   
         if(input$average) {
-          p <- p + geom_vline_interactive(data=mu, aes_string(xintercept="x", color="group"),
+          p <- p + geom_vline_interactive(data=mu, aes(xintercept=x, color=group),
                linetype="dashed", show.legend=FALSE, tooltip = paste0(input$average_method, ": ", mu$x), data_id = paste0("density_", input$average_method, "_", mu$group))
         }   
       }
@@ -682,24 +684,26 @@ shinyServer(function(input, output, session) {
     data <- getTableDataByGroup()
     
     ave.meth <- get_average_method()
+    plot_data <- sym(input$plot_data)
 
     if(input$group=="None" || !input$raw) {
 
-      p <- ggplot(data, aes_string(input$plot_data)) + stat_ecdf(geom = "step", colour="darkblue")
+      p <- ggplot(data, aes(!!plot_data)) + stat_ecdf(geom = "step", colour="darkblue")
 
       if(input$average) {
-        p <- p + geom_vline_interactive(aes_string(xintercept=ave.meth(data[[input$plot_data]])),
+        p <- p + geom_vline_interactive(aes(xintercept=!!ave.meth(data[[input$plot_data]])),
             color="darkblue", linetype="dashed", tooltip = paste0(input$average_method, ": ", get_average_value()), data_id = "ecdf_mean")
       }
            
     } else {
+      group <- sym(input$group)
       colours <- getGroupColours()
-      p <- ggplot(data, aes_string(input$plot_data, colour = input$group)) + 
+      p <- ggplot(data, aes(!!plot_data, colour = !!group)) + 
         stat_ecdf(geom = "step") + scale_color_manual(values=colours)
       mu <- get_average_value()        
 
       if(input$average) {
-        p <- p + geom_vline_interactive(data=mu, aes_string(xintercept="x", color="group"),
+        p <- p + geom_vline_interactive(data=mu, aes(xintercept=x, color=group),
              linetype="dashed", show.legend=FALSE, tooltip = paste0(input$average_method, ": ", mu$x), data_id = paste0("ecdf_", input$average_method, "_", mu$group))
       }   
     }
@@ -734,7 +738,7 @@ shinyServer(function(input, output, session) {
       
     } else {
       colours <- getGroupColours()
-      
+      group <- sym(input$group)
       hsdi <- sapply(input$group_member, function(x){
         hsdi(data[data[[input$group]]==x,], version=input$version)
       })
@@ -750,7 +754,7 @@ shinyServer(function(input, output, session) {
       
       res <- do.call(rbind, res)
       
-      p <- ggplot(res, aes_string("CumulativeProp", "CumulativeState", colour=input$group, group=input$group)) + 
+      p <- ggplot(res, aes(CumulativeProp, CumulativeState, colour=!!group, group=!!group)) + 
         geom_line() + 
         annotate("segment", x=0, y=0, xend=1,yend=1, colour="black") +  
         annotate("text", x=0.5, y=0.9, label=label, size=3) +
@@ -827,9 +831,10 @@ shinyServer(function(input, output, session) {
       data <- data[,names(data) %in% getDimensionNames()]
       p <- ggRadar(data=data, rescale=FALSE, colour = "#F8766D", alpha = 0.4)
     } else {
+      group <- sym(input$group)
       colours <- getGroupColours()
       data <- data[,names(data) %in% c("MO", "SC", "UA", "PD", "AD", input$group)]
-      p <- ggRadar(data=data,aes_string(color=input$group), rescale=FALSE) + 
+      p <- ggRadar(data=data,aes(color=!!group), rescale=FALSE) + 
         scale_fill_manual(values=colours) + scale_color_manual(values=colours) +
         theme(legend.position="right")
     }
@@ -846,8 +851,8 @@ shinyServer(function(input, output, session) {
     data <- getTableDataByGroup()
     
     counts <- ifelse(input$summary_type == "counts", TRUE, FALSE)
-    summary_type <- toTitleCase(input$summary_type)
-  
+    summary_type <- sym(toTitleCase(input$summary_type))
+
     if(input$group=="None" || !input$raw) {
       data <- eq5dds(data, version=input$version, counts=counts, dimensions=getDimensionNames())
       
@@ -860,7 +865,7 @@ shinyServer(function(input, output, session) {
       colnames(data) <- c("Score", "Dimension", summary_type)
       data$Score <- as.factor(data$Score)
       
-      p <- ggplot(data, aes_string(fill="Score", y=summary_type, x="Dimension", tooltip=summary_type)) + 
+      p <- ggplot(data, aes(fill=Score, y=!!summary_type, x=Dimension, tooltip=!!summary_type)) + 
         geom_bar_interactive(position="dodge", stat="identity")
     } else {
       data <- lapply(data, function(x){melt(as.matrix(x))})
@@ -868,7 +873,7 @@ shinyServer(function(input, output, session) {
       colnames(data) <- c(input$group, "Score", "Dimension", summary_type)
       data$Score <- as.factor(data$Score)
       data[[input$group]] <- factor(data[[input$group]], levels=unique(data[[input$group]]))
-      p <- ggplot(data, aes_string(fill="Score", y=summary_type, x="Dimension", tooltip=summary_type)) + 
+      p <- ggplot(data, aes(fill=Score, y=!!summary_type, x=Dimension, tooltip=!!summary_type)) + 
         geom_bar_interactive(position="dodge", stat="identity") + facet_wrap(as.formula(paste("~", input$group)))
     }
     
