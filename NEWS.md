@@ -1,7 +1,7 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-# eq5d (development version)
+# eq5d 0.15.0 (2023-07-13)
 
 - Iranian and Slovenian EQ-5D-5L value sets added.
 
