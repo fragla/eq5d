@@ -5,6 +5,8 @@
 
 - Iranian and Slovenian EQ-5D-5L value sets added.
 
+- Health Profile Grid plot added to the web app.
+
 - When analysing data using the NICE DSU models, the value passed to
   bwidth argument in the eq5d function can now be a column name (column
   contains a value for each observation) or a single numerical value to
@@ -15,7 +17,7 @@
 
 # eq5d 0.14.0 (2023-02-03)
 
-- Functions for Probability of Superiority, Health Grid Profile, Health
+- Functions for Probability of Superiority, Health Profile Grid, Health
   State Density Index and Shannon’s Index added.
 
 - “summary” argument added to PCHC function to enable either all data or
