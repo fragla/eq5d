@@ -5,7 +5,7 @@
 \alias{TTO}
 \title{EQ-5D-3L TTO value set data}
 \format{
-An object of class \code{data.frame} with 63 rows and 29 columns.
+An object of class \code{data.frame} with 63 rows and 30 columns.
 }
 \source{
 Szende, A., Oppe, M., & de Charro, F. (2007), Comparative review of Time Trade-Off value sets.
@@ -30,6 +30,7 @@ Janssen, B., Szende, A., & Ramos-Goñi JM. (2014), Data and Methods.
 \item{\strong{Italy}: Scalone L, Cortesi PA, Ciampichini R, Belisari A, D'Angiolella LS, Cesana G, Mantovani LG. Italian population-based values of EQ-5D health states. Value Health. 2013 Jul-Aug;16(5):814-22. doi: 10.1016/j.jval.2013.04.008. Epub 2013 Jun 19. \href{https://pubmed.ncbi.nlm.nih.gov/23947975/}{PubMed}}
 \item{\strong{Japan}: Tsuchiya A, Ikeda S, Ikegami N, Nishimura S, Sakai I, Fukuda T, Hamashima C, Hisashige A, Tamura M. Estimating an EQ-5D population value set: the case of Japan. Health Econ. 2002 Jun;11(4):341-53. doi: 10.1002/hec.673. \href{https://pubmed.ncbi.nlm.nih.gov/12007165/}{PubMed}}
 \item{\strong{Netherlands}: Lamers LM, McDonnell J, Stalmeier PF, Krabbe PF, Busschbach JJ. The Dutch tariff: results and arguments for an effective design for national EQ-5D valuation studies. Health Econ. 2006 Oct;15(10):1121-32. doi: 10.1002/hec.1124. \href{https://pubmed.ncbi.nlm.nih.gov/16786549/}{PubMed}}
+\item{\strong{Pakistan}: Malik M, Gu NY, Hussain A, Roudijk B, Purba FD. The EQ-5D-3L Valuation Study in Pakistan. Pharmacoecon Open. 2023 Sep 13. doi: 10.1007/s41669-023-00437-8. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/37702988/}{PubMed}}
 \item{\strong{Poland}: Golicki D, Jakubczyk M, Niewada M, Wrona W, Busschbach JJ. Valuation of EQ-5D health states in Poland: first TTO-based social value set in Central and Eastern Europe. Value in Health. 2010;13(2):289-97. \href{https://pubmed.ncbi.nlm.nih.gov/19744296/}{PubMed}}
 \item{\strong{Portugal}: Ferreira LN, Ferreira PL, Pereira LN, Oppe M. The valuation of the EQ-5D in Portugal. Qual Life Res. 2014 Mar;23(2):413-23. doi: 10.1007/s11136-013-0448-z. Epub 2013 Jun 8. \href{https://pubmed.ncbi.nlm.nih.gov/23748906/}{PubMed}}
 \item{\strong{Russia}: Omelyanovskiy V, Musina N, Ratushnyak S, Bezdenezhnykh T, Fediaeva V, Roudijk B, Purba FD. Valuation of the EQ-5D-3L in Russia. Qual Life Res. 2021 Mar 13. doi: 10.1007/s11136-021-02804-6. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/33713323/}{PubMed}}
