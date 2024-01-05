@@ -156,12 +156,22 @@ test_that("EQ-5D-5L Italy gives correct answer", {
   expect_equal(eq5d5l(c(MO=5,SC=5,UA=5,PD=5,AD=5), "Italy"), -0.571)
 })
 
-test_that("EQ-5D-5L Japan gives correct answer", {
-  expect_equal(eq5d5l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "Japan"), 1)
-  expect_equal(eq5d5l(c(MO=3,SC=5,UA=3,PD=4,AD=1), "Japan"), 0.444)
-  expect_equal(eq5d5l(c(MO=1,SC=1,UA=1,PD=2,AD=1), "Japan"), 0.895)
-  expect_equal(eq5d5l(c(MO=2,SC=1,UA=2,PD=3,AD=2), "Japan"), 0.685)
-  expect_equal(eq5d5l(c(MO=5,SC=5,UA=5,PD=5,AD=5), "Japan"), -0.025, tolerance = .0011)
+test_that("EQ-5D-5L Japan cTTO gives correct answer", {
+  expect_equal(eq5d5l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "Japan_cTTO"), 1)
+  expect_equal(eq5d5l(c(MO=3,SC=5,UA=3,PD=4,AD=1), "Japan_cTTO"), 0.444)
+  expect_equal(eq5d5l(c(MO=1,SC=1,UA=1,PD=2,AD=1), "Japan_cTTO"), 0.895)
+  expect_equal(eq5d5l(c(MO=2,SC=1,UA=2,PD=3,AD=2), "Japan_cTTO"), 0.685)
+  expect_equal(eq5d5l(c(MO=5,SC=5,UA=5,PD=5,AD=5), "Japan_cTTO"), -0.025, tolerance = .0011)
+})
+
+test_that("EQ-5D-5L Japan DCE gives correct answer", {
+  expect_equal(eq5d5l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "Japan_DCE"), 1)
+  expect_equal(eq5d5l(c(MO=3,SC=5,UA=3,PD=4,AD=1), "Japan_DCE"), 0.450)
+  expect_equal(eq5d5l(c(MO=1,SC=2,UA=1,PD=1,AD=1), "Japan_DCE"), 0.900)
+  expect_equal(eq5d5l(c(MO=2,SC=1,UA=2,PD=3,AD=2), "Japan_DCE"), 0.670)
+  expect_equal(eq5d5l(c(MO=3,SC=3,UA=3,PD=3,AD=3), "Japan_DCE"), 0.485)
+  expect_equal(eq5d5l(c(MO=4,SC=4,UA=4,PD=4,AD=4), "Japan_DCE"), 0.19)
+  expect_equal(eq5d5l(c(MO=5,SC=5,UA=5,PD=5,AD=5), "Japan_DCE"), -0.025)
 })
 
 test_that("EQ-5D-5L South Korea gives correct answer", {
