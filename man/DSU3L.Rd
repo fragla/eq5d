@@ -10,8 +10,6 @@ An object of class \code{data.frame} with 2430 rows and 22 columns.
 \source{
 Hernández Alava M, Pudney S, Wailoo A. Estimating the Relationship Between EQ-5D-5L and EQ-5D-3L: Results from a UK Population Study. Pharmacoeconomics. 2023 Feb;41(2):199-207. doi: 10.1007/s40273-022-01218-7. Epub 2022 Nov 30. \href{https://pubmed.ncbi.nlm.nih.gov/36449173/}{PubMed}
 
-Hernández Alava M, Pudney S, Wailoo A. Estimating the Relationship Between EQ-5D-5L and EQ-5D-3L: Results From an English Population Study [EEPRU Report]. University of Sheffield & University of York. \href{https://eepru.sites.sheffield.ac.uk/projects/estimating-the-relationship-between-eq-5d-5l-and-eq-5d-3l}{Article}
-
 Hernández-Alava M, Pudney S. Econometric modelling of multiple self-reports of health states: The switch from EQ-5D-3L to EQ-5D-5L in evaluating drug therapies for rheumatoid arthritis. J Health Econ. 2017 Sep;55:139-152. doi: 10.1016/j.jhealeco.2017.06.013. Epub 2017 Jul 4. \href{https://pubmed.ncbi.nlm.nih.gov/28778350/}{PubMed}.
 
 \href{https://www.sheffield.ac.uk/nice-dsu/methods-development/mapping-eq-5d-5l-3l}{NICE DSU mapping website}.
