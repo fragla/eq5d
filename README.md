@@ -20,10 +20,11 @@ components: health state description and evaluation.
 For the description component a subject self-rates their health in terms
 of five dimensions; mobility, self-care, usual activities,
 pain/discomfort, and anxiety/depression using either a three-level
-([EQ-5D-3L](https://euroqol.org/eq-5d-instruments/eq-5d-3l-about/) and
-[EQ-5D-Y](https://euroqol.org/eq-5d-instruments/eq-5d-y-about/)) or a
-five-level
-([EQ-5D-5L](https://euroqol.org/eq-5d-instruments/eq-5d-5l-about/))
+([EQ-5D-3L](https://euroqol.org/information-and-support/euroqol-instruments/eq-5d-3l/)
+and
+[EQ-5D-Y](https://euroqol.org/information-and-support/euroqol-instruments/eq-5d-y-3l/))
+or a five-level
+([EQ-5D-5L](https://euroqol.org/information-and-support/euroqol-instruments/eq-5d-5l/))
 scale.
 
 The evaluation component requires a patient to record their overall
@@ -50,8 +51,9 @@ produced using the time trade-off (TTO) valuation technique or the
 visual analogue scale (VAS) valuation technique. Some countries have TTO
 and VAS value sets for EQ-5D-3L. Additionally, EQ-5D-3L “reverse
 crosswalk” value sets published on the
-[EuroQol](https://euroqol.org/support/analysis-tools/) website that
-enable EQ-5D-3L data to be mapped to EQ-5D-5L value sets are included.
+[EuroQol](https://euroqol.org/information-and-support/resources/value-sets/)
+website that enable EQ-5D-3L data to be mapped to EQ-5D-5L value sets
+are included.
 
 For EQ-5D-5L, a standardised valuation study protocol (EQ-VT) was
 developed by the EuroQol group based on the composite time trade-off
@@ -77,7 +79,7 @@ Additional information on EQ-5D can be found on the
 (2007)](https://doi.org/10.1007/1-4020-5511-0) and [Szende *et al*
 (2014)](https://doi.org/10.1007/978-94-007-7596-1). Advice on [choosing
 a value
-set](https://euroqol.org/eq-5d-instruments/eq-5d-3l-about/valuation/choosing-a-value-set/)
+set](https://euroqol.org/information-and-support/resources/value-sets/)
 can also be found on the EuroQol website.
 
 ## Installation
@@ -521,10 +523,10 @@ shannon(data, version="3L", by.dimension=FALSE)
 #> [1] 4.17
 #> 
 #> $H.max
-#> [1] 6.97
+#> [1] 7.92
 #> 
 #> $J
-#> [1] 0.6
+#> [1] 0.53
 
 #Shannon's H', H' max and J' for each dimension
 res <- shannon(data, version="3L", by.dimension=TRUE)
