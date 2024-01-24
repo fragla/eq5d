@@ -25,7 +25,7 @@ lss <- function(scores, version, ignore.invalid, ...) {
 lss.data.frame <- function(scores, version=NULL, ignore.invalid=FALSE, ...) {
   args <- list(...)
   
-  dimensions <- .getDimensionNames()
+  dimensions <- .get_dimension_names()
   five.digit <- "State"
   
   if(!is.null(args$dimensions)) {dimensions <- args$dimensions}
@@ -33,7 +33,7 @@ lss.data.frame <- function(scores, version=NULL, ignore.invalid=FALSE, ...) {
   
   if(all(dimensions %in% names(scores))) {
     scores <- scores[,dimensions]
-    colnames(scores) <- .getDimensionNames()
+    colnames(scores) <- .get_dimension_names()
   } else if(five.digit %in% tolower(names(scores))) {
     scores <- scores[,five.digit, drop=FALSE]
   } else {
@@ -67,16 +67,16 @@ lss.default <- function(scores, version=NULL, ignore.invalid=FALSE, ...){
   }
   
   if(.length>1) {
-    if(.length==5 && all(.getDimensionNames() %in% names(scores))) {
+    if(.length==5 && all(.get_dimension_names() %in% names(scores))) {
       res <- .lss(scores, version=version, ignore.invalid=ignore.invalid)
     } else {
       res <- sapply(scores, function(x) {
         lss.default(x, version=version, ignore.invalid=ignore.invalid)
       })
     }
-  } else if (.length==1 && scores %in% getHealthStates(version)) {
+  } else if (.length==1 && scores %in% get_health_states(version)) {
     scores <- as.numeric(strsplit(as.character(scores[1]), "")[[1]])
-    names(scores) <- .getDimensionNames()
+    names(scores) <- .get_dimension_names()
     res <- .lss(scores, version=version, ignore.invalid=ignore.invalid)
   } else {
     if(ignore.invalid) {
@@ -89,7 +89,7 @@ lss.default <- function(scores, version=NULL, ignore.invalid=FALSE, ...){
 }
 
 .lss <- function(scores, version, ignore.invalid) {
-  if(!all(.getDimensionNames() %in% names(scores)) || any(!scores %in% 1:.getNumberLevels(version))) {
+  if(!all(.get_dimension_names() %in% names(scores)) || any(!scores %in% 1:.get_number_levels(version))) {
     if(ignore.invalid) {
       res <- NA
     } else {

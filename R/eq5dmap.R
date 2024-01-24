@@ -38,9 +38,9 @@ eq5dmap <- function(scores, country, version, age, sex, bwidth=0) {
     stop(paste0("For mapping from EQ-5D-", version," country must be one of: ", paste(countries, collapse=", ")))
   }
   
-  if(all(.getDimensionNames() %in% names(scores))) {
-    if(!all(scores %in% 1:.getNumberLevels(version))) {
-      stop(paste0("Scores must be in the range 1 to ", .getNumberLevels(version), " for EQ-5D-", version,"."))
+  if(all(.get_dimension_names() %in% names(scores))) {
+    if(!all(scores %in% 1:.get_number_levels(version))) {
+      stop(paste0("Scores must be in the range 1 to ", .get_number_levels(version), " for EQ-5D-", version,"."))
     }
   } else if (is.double(scores)) {
     range <- .getDSURange(country, version)
@@ -66,7 +66,7 @@ eq5dmap <- function(scores, country, version, age, sex, bwidth=0) {
     stop("bwidth must be a number >= 0.")
   }
   
-  if(all(.getDimensionNames() %in% names(scores))) {
+  if(all(.get_dimension_names() %in% names(scores))) {
     state <- paste(scores, collapse = "")
     idx <- which(survey$State==state & survey$Age==age.grp & survey$Sex==sex)
     index <- round(survey[idx, paste0(country,"Copula"), drop=TRUE],3)

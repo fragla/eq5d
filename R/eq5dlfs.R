@@ -25,7 +25,7 @@ lfs <- function(scores, version, ignore.invalid, ...) {
 lfs.data.frame <- function(scores, version=NULL, ignore.invalid=FALSE, ...) {
   args <- list(...)
   
-  dimensions <- .getDimensionNames()
+  dimensions <- .get_dimension_names()
   five.digit <- "State"
   
   if(!is.null(args$dimensions)) {dimensions <- args$dimensions}
@@ -33,7 +33,7 @@ lfs.data.frame <- function(scores, version=NULL, ignore.invalid=FALSE, ...) {
   
   if(all(dimensions %in% names(scores))) {
     scores <- scores[,dimensions]
-    colnames(scores) <- .getDimensionNames()
+    colnames(scores) <- .get_dimension_names()
   } else if(five.digit %in% tolower(names(scores))) {
     scores <- scores[,five.digit, drop=FALSE]
   } else {
@@ -67,16 +67,16 @@ lfs.default <- function(scores, version=NULL, ignore.invalid=FALSE, ...){
   }
   
   if(.length>1) {
-    if(.length==5 && all(.getDimensionNames() %in% names(scores))) {
+    if(.length==5 && all(.get_dimension_names() %in% names(scores))) {
       res <- .lfs(scores, version=version, ignore.invalid=ignore.invalid)
     } else {
       res <- sapply(scores, function(x) {
         lfs.default(x, version=version, ignore.invalid=ignore.invalid)
       })
     }
-  } else if (.length==1 && scores %in% getHealthStates(version)) {
+  } else if (.length==1 && scores %in% get_health_states(version)) {
     scores <- as.numeric(strsplit(as.character(scores[1]), "")[[1]])
-    names(scores) <- .getDimensionNames()
+    names(scores) <- .get_dimension_names()
     res <- .lfs(scores, version=version, ignore.invalid=ignore.invalid)
   } else {
     if(ignore.invalid) {
@@ -89,7 +89,7 @@ lfs.default <- function(scores, version=NULL, ignore.invalid=FALSE, ...){
 }
 
 .lfs <- function(scores, version, ignore.invalid) {
-  if(!all(.getDimensionNames() %in% names(scores)) || any(!scores %in% 1:sub("L", "", version))) {
+  if(!all(.get_dimension_names() %in% names(scores)) || any(!scores %in% 1:sub("L", "", version))) {
     if(ignore.invalid) {
       res <- NA
     } else {
@@ -102,7 +102,7 @@ lfs.default <- function(scores, version=NULL, ignore.invalid=FALSE, ...){
 
 
 .lfs <- function(scores, version, ignore.invalid) {
-  if(!all(.getDimensionNames() %in% names(scores)) || any(!scores %in% 1:.getNumberLevels(version))) {
+  if(!all(.get_dimension_names() %in% names(scores)) || any(!scores %in% 1:.get_number_levels(version))) {
     if(ignore.invalid) {
       res <- NA
     } else {
@@ -110,8 +110,8 @@ lfs.default <- function(scores, version=NULL, ignore.invalid=FALSE, ...){
     }
   } else {
     freq <- table(scores)
-    score <- rep(0,.getNumberLevels(version))
-    names(score) <- 1:.getNumberLevels(version)
+    score <- rep(0,.get_number_levels(version))
+    names(score) <- 1:.get_number_levels(version)
     score[match(names(freq), names(score))] <- freq
     score <- paste(score, collapse="")
     return(score)

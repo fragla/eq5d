@@ -11,7 +11,7 @@ hpg(
   version = NULL,
   type = NULL,
   ignore.invalid = TRUE,
-  dimensions = .getDimensionNames(),
+  dimensions = .get_dimension_names(),
   no.problems = TRUE
 )
 }

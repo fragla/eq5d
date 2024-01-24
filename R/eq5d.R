@@ -85,7 +85,7 @@ eq5d <- function (scores, version, type, country, ignore.invalid, ...) {
 eq5d.data.frame <- function(scores, version=NULL, type=NULL, country=NULL, ignore.invalid=FALSE, ...) {
   args <- list(...)
 
-  dimensions <- .getDimensionNames()
+  dimensions <- .get_dimension_names()
   five.digit <- "State"
   utility <- "Utility"
   sex <- "Sex"
@@ -101,8 +101,8 @@ eq5d.data.frame <- function(scores, version=NULL, type=NULL, country=NULL, ignor
 
   eq5d.columns <- NULL
   if(all(dimensions %in% names(scores))) {
-    colnames(scores)[match(dimensions, colnames(scores))] <- .getDimensionNames()
-    eq5d.columns <- .getDimensionNames()
+    colnames(scores)[match(dimensions, colnames(scores))] <- .get_dimension_names()
+    eq5d.columns <- .get_dimension_names()
   } else if(five.digit %in% names(scores)) {
     eq5d.columns <- five.digit
   } else if(utility %in% names(scores)) {
@@ -159,16 +159,16 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
   }
 
   if(.length>1) {
-    if(.length==5 && all(.getDimensionNames() %in% names(scores))) {
+    if(.length==5 && all(.get_dimension_names() %in% names(scores))) {
       res <- .eq5d(scores, version=version, type=type, country=country, ignore.invalid=ignore.invalid, ...)
     } else {
       res <- sapply(scores, function(x) {
         eq5d.default(x, version=version, type=type, country=country, ignore.invalid=ignore.invalid, ...)
       })
     }
-  } else if (.length==1 && scores %in% getHealthStates(version)) {
+  } else if (.length==1 && scores %in% get_health_states(version)) {
     scores <- as.numeric(strsplit(as.character(scores[1]), "")[[1]])
-    names(scores) <- .getDimensionNames()
+    names(scores) <- .get_dimension_names()
     res <- .eq5d(scores, version=version, type=type, country=country, ignore.invalid=ignore.invalid, ...)
   } else if(.length==1 && !is.na(scores) && exists(".range") && scores >= .range[1] && scores <= .range[2]) {
     res <- .eq5d(scores, version=version, type=type, country=country, ignore.invalid=ignore.invalid, ...) #sex=sex, age=age, bwidth=bwidth)
@@ -214,7 +214,7 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
   }
 
   .length <- length(scores)
-  if(.length==5 && any(!scores %in% 1:.getNumberLevels(version))) { #if length==5
+  if(.length==5 && any(!scores %in% 1:.get_number_levels(version))) { #if length==5
     if(ignore.invalid) {
       return(NA)
     } else {

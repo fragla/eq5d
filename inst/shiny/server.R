@@ -156,7 +156,7 @@ shinyServer(function(input, output, session) {
     data <- getTableDataByGroup()
     group.totals <- table(data[input$group])
     
-    data <- data[!colnames(data) %in% c(getDimensionNames(), "Index", input$group)]
+    data <- data[!colnames(data) %in% c(get_dimension_names(), "Index", input$group)]
     if(ncol(data) > 0) {
       id.columns <- lapply(data, function(x){
         id.totals <- table(x)
@@ -172,7 +172,7 @@ shinyServer(function(input, output, session) {
         return()
       
       data <- getTableData()
-      data <- data[!colnames(data) %in% c(getDimensionNames(), "Index", input$group)]
+      data <- data[!colnames(data) %in% c(get_dimension_names(), "Index", input$group)]
       id.groups <- getPaired()
       if(!is.null(id.groups)) {
         tagList(
@@ -398,7 +398,7 @@ shinyServer(function(input, output, session) {
   
   stateValid <- reactive({
     dat <- readdata()
-    is.valid <- any(dat[,input$state_col] %in% getHealthStates(input$version))
+    is.valid <- any(dat[,input$state_col] %in% get_health_states(input$version))
     return(is.valid)
   })
   
@@ -485,7 +485,7 @@ shinyServer(function(input, output, session) {
   
   getColumnIndex <- function(dat) {
     
-    short <- getDimensionNames()
+    short <- get_dimension_names()
     five.digit <- getStateName()
     utility <- getUtilityName()
     #age <- getAgeName()
@@ -535,16 +535,16 @@ shinyServer(function(input, output, session) {
   getTableData <- reactive({
     if(input$type=="DSU") {
       if(!is.null(getBwidthName()) && getBwidthName() %in% colnames(dataset())) {
-        eq5d <- eq5d(dataset(), version=input$version, type=input$type, country=input$country, ignore.invalid=ignoreInvalid(), dimensions=getDimensionNames(), age=getAgeName(), sex=getSexName(), bwidth=getBwidthName())
+        eq5d <- eq5d(dataset(), version=input$version, type=input$type, country=input$country, ignore.invalid=ignoreInvalid(), dimensions=get_dimension_names(), age=getAgeName(), sex=getSexName(), bwidth=getBwidthName())
       } else{
-        eq5d <- eq5d(dataset(), version=input$version, type=input$type, country=input$country, ignore.invalid=ignoreInvalid(), dimensions=getDimensionNames(), age=getAgeName(), sex=getSexName())
+        eq5d <- eq5d(dataset(), version=input$version, type=input$type, country=input$country, ignore.invalid=ignoreInvalid(), dimensions=get_dimension_names(), age=getAgeName(), sex=getSexName())
       }
     } else {
-      eq5d <- eq5d(dataset(), version=input$version, type=input$type, country=input$country, ignore.invalid=ignoreInvalid(), dimensions=getDimensionNames())
+      eq5d <- eq5d(dataset(), version=input$version, type=input$type, country=input$country, ignore.invalid=ignoreInvalid(), dimensions=get_dimension_names())
     }
 
     if(input$raw) {
-      if(all(getDimensionNames() %in% colnames(rawdata()))) {
+      if(all(get_dimension_names() %in% colnames(rawdata()))) {
         res <- cbind(rawdata(), eq5d)
       } else if(all(rawdata()[[getColumnIndex(rawdata())]]!=round(rawdata()[[getColumnIndex(rawdata())]]))) {
         res <- cbind(rawdata(), eq5d)
@@ -556,13 +556,13 @@ shinyServer(function(input, output, session) {
     }
     colnames(res)[ncol(res)] <- "Index"
 
-    if(all(getDimensionNames() %in% colnames(dataset()))) {
+    if(all(get_dimension_names() %in% colnames(dataset()))) {
       if("lss" %in% input$severity_scores) {
-        res$LSS <- lss(dataset(), version=input$version, ignore.invalid=ignoreInvalid(), dimensions=getDimensionNames())
+        res$LSS <- lss(dataset(), version=input$version, ignore.invalid=ignoreInvalid(), dimensions=get_dimension_names())
       }
       
       if("lfs" %in% input$severity_scores) {
-        res$LFS <- lfs(dataset(), version=input$version, ignore.invalid=ignoreInvalid(), dimensions=getDimensionNames())
+        res$LFS <- lfs(dataset(), version=input$version, ignore.invalid=ignoreInvalid(), dimensions=get_dimension_names())
       }
     }
     
@@ -802,7 +802,7 @@ shinyServer(function(input, output, session) {
     #run hpg function on data.frames
     res <- hpg(pre, post, country=input$country, version=input$version, type=input$type)
     
-    ts <- length(getHealthStates(input$version))
+    ts <- length(get_health_states(input$version))
     
     p <- ggplot(res, aes(Post, Pre, color=PCHC)) +
       geom_point(aes(shape=PCHC)) +
@@ -821,14 +821,14 @@ shinyServer(function(input, output, session) {
     if(is.null(input$data) || is.null(input$plot_type) || is.null(input$group))
       return()
     
-    if(!all(getDimensionNames() %in% colnames(dataset())))
+    if(!all(get_dimension_names() %in% colnames(dataset())))
       stop("Unable to generate plot without dimension data.")
     
     data <- getTableDataByGroup()
     
     if(input$group=="None" || !input$raw) {
     
-      data <- data[,names(data) %in% getDimensionNames()]
+      data <- data[,names(data) %in% get_dimension_names()]
       p <- ggRadar(data=data, rescale=FALSE, colour = "#F8766D", alpha = 0.4)
     } else {
       group <- sym(input$group)
@@ -845,7 +845,7 @@ shinyServer(function(input, output, session) {
     if(is.null(input$data) || is.null(input$plot_type) || is.null(input$group) || is.null(input$summary_type))
       return()
     
-    if(!all(getDimensionNames() %in% colnames(dataset())))
+    if(!all(get_dimension_names() %in% colnames(dataset())))
       stop("Unable to generate plot without dimension data.")
     
     data <- getTableDataByGroup()
@@ -854,10 +854,10 @@ shinyServer(function(input, output, session) {
     summary_type <- sym(toTitleCase(input$summary_type))
 
     if(input$group=="None" || !input$raw) {
-      data <- eq5dds(data, version=input$version, counts=counts, dimensions=getDimensionNames())
+      data <- eq5dds(data, version=input$version, counts=counts, dimensions=get_dimension_names())
       
     } else {
-      data <- eq5dds(data, version=input$version, counts=counts, by=input$group, dimensions=getDimensionNames())
+      data <- eq5dds(data, version=input$version, counts=counts, by=input$group, dimensions=get_dimension_names())
     }
     
     if(input$group=="None") {
@@ -907,7 +907,7 @@ shinyServer(function(input, output, session) {
       return()
     }
     data <- getTableData()
-    data <- data[!tolower(colnames(data)) %in% tolower(c(getDimensionNames(), getStateName(), "LFS"))]
+    data <- data[!tolower(colnames(data)) %in% tolower(c(get_dimension_names(), getStateName(), "LFS"))]
     data <- data[sapply(data, function(x) is.character(x) || is.logical(x) || is.factor(x))]
     
     groups <- "None"
@@ -944,16 +944,16 @@ shinyServer(function(input, output, session) {
       return()
     }
     
-    if(!all(getDimensionNames() %in% colnames(dataset())))
+    if(!all(get_dimension_names() %in% colnames(dataset())))
       stop("Unable to generate summary without dimension data.")
     
     counts <- ifelse(input$summary_type == "counts", TRUE, FALSE)
 
     data <- getTableDataByGroup()
     if(input$group=="None" || !input$raw) {
-     data <- eq5dds(data, version=input$version, counts=counts, dimensions=getDimensionNames())
+     data <- eq5dds(data, version=input$version, counts=counts, dimensions=get_dimension_names())
     } else {
-      data <- eq5dds(data, version=input$version, counts=counts, by=input$group, dimensions=getDimensionNames())
+      data <- eq5dds(data, version=input$version, counts=counts, by=input$group, dimensions=get_dimension_names())
     }
     return(data)
   })
@@ -963,16 +963,16 @@ shinyServer(function(input, output, session) {
       return()
     }
     
-    if(!all(getDimensionNames() %in% colnames(dataset())))
+    if(!all(get_dimension_names() %in% colnames(dataset())))
       stop("Unable to generate summary without dimension data.")
     
     data <- getTableDataByGroup()
     if(input$group=="None" || !input$raw) {
       permutations <- input$shannon_type=="permutations"
-      shannon <- shannon(data, version=input$version, by.dimension=TRUE, ignore.invalid=ignore.invalid, dimensions=getDimensionNames(), permutations=permutations)
+      shannon <- shannon(data, version=input$version, by.dimension=TRUE, ignore.invalid=ignore.invalid, dimensions=get_dimension_names(), permutations=permutations)
       shannon <- as.data.frame(t(do.call(rbind, shannon)))
       rownames(shannon) <- c("H'", "H' max", "J'")
-      shannon$Overall <- shannon(data, version=input$version, by.dimension=FALSE, ignore.invalid=ignore.invalid, dimensions=getDimensionNames(), permutations=permutations)
+      shannon$Overall <- shannon(data, version=input$version, by.dimension=FALSE, ignore.invalid=ignore.invalid, dimensions=get_dimension_names(), permutations=permutations)
     } else {
       return()
     }
@@ -1198,7 +1198,7 @@ shinyServer(function(input, output, session) {
     hcl(h = hues, l = 65, c = 100)[1:n]
   }
   
-  getDimensionNames <- reactive({
+  get_dimension_names <- reactive({
     dimensions <- c(vals$MO, vals$SC, vals$UA, vals$PD, vals$AD)
     if(all(!is.null(dimensions))) {
       return(c(vals$MO, vals$SC, vals$UA, vals$PD, vals$AD))

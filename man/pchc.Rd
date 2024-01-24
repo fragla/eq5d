@@ -12,7 +12,7 @@ pchc(
   totals = TRUE,
   by.dimension = FALSE,
   ignore.invalid = TRUE,
-  dimensions = .getDimensionNames(),
+  dimensions = .get_dimension_names(),
   summary = TRUE
 )
 }

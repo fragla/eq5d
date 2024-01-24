@@ -27,23 +27,23 @@
 #' shannon(dat, version="3L", by.dimension=TRUE)
 #' 
 #' @export
-shannon <- function(scores, version=NULL, by.dimension=TRUE, ignore.invalid=TRUE, dimensions=.getDimensionNames(), base=2, digits=2, permutations=TRUE) {
+shannon <- function(scores, version=NULL, by.dimension=TRUE, ignore.invalid=TRUE, dimensions=.get_dimension_names(), base=2, digits=2, permutations=TRUE) {
   
   if(is.null(version) || !version %in% c("3L", "5L", "Y"))
     stop("EQ-5D version not one of 3L, 5L or Y.")
   
   if(is.character(scores) || is.numeric(scores)) {
-    scores <- getDimensionsFromHealthStates(scores, version=version, ignore.invalid=ignore.invalid)
+    scores <- get_dimensions_from_health_states(scores, version=version, ignore.invalid=ignore.invalid)
   }
   
   if(all(dimensions %in% names(scores))) {
     scores <- scores[,dimensions]
-    colnames(scores) <- .getDimensionNames()
+    colnames(scores) <- .get_dimension_names()
   } else {
     stop("Unable to identify EQ-5D dimensions in data.frames.")
   }
   
-  scores.idx <- which(apply(scores, 1, function(x) { any(!x%in% 1:.getNumberLevels(version))}))
+  scores.idx <- which(apply(scores, 1, function(x) { any(!x%in% 1:.get_number_levels(version))}))
   
   if(length(scores.idx)>0) {
     if(ignore.invalid) {
@@ -54,15 +54,15 @@ shannon <- function(scores, version=NULL, by.dimension=TRUE, ignore.invalid=TRUE
   }
   
   if(!by.dimension) {
-    scores <- getHealthStatesFromDimensions(scores)
-    max.levels <- ifelse(permutations, .getNumberLevels(version)^5, length(unique(na.omit(scores))))
+    scores <- get_health_states_from_dimensions(scores)
+    max.levels <- ifelse(permutations, .get_number_levels(version)^5, length(unique(na.omit(scores))))
     res <- .shannon(scores, max.levels, base, digits)
   } else {
-    res <- lapply(.getDimensionNames(), function(x) {
-      max.levels <- ifelse(permutations, .getNumberLevels(version), length(unique(na.omit(scores[[x]]))))
+    res <- lapply(.get_dimension_names(), function(x) {
+      max.levels <- ifelse(permutations, .get_number_levels(version), length(unique(na.omit(scores[[x]]))))
       .shannon(scores[,x, drop=FALSE], max.levels, base, digits)
     })
-    names(res) <- .getDimensionNames()
+    names(res) <- .get_dimension_names()
   }
   
   return(res)

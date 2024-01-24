@@ -36,7 +36,7 @@
 eq5dds <- function(data, version, counts=FALSE, by=NULL, ignore.invalid=TRUE, ...) {
   args <- list(...)
   
-  dimensions <- .getDimensionNames()
+  dimensions <- .get_dimension_names()
   five.digit <- "State"
 
   if(!is.null(args$dimensions)) {dimensions <- args$dimensions}
@@ -46,18 +46,18 @@ eq5dds <- function(data, version, counts=FALSE, by=NULL, ignore.invalid=TRUE, ..
     stop("EQ-5D version not one of 3L, 5L or Y.")
   
   if(all(dimensions %in% names(data))) {
-    colnames(data)[match(dimensions, colnames(data))] <- .getDimensionNames()
+    colnames(data)[match(dimensions, colnames(data))] <- .get_dimension_names()
   } else if(five.digit %in% names(data)) {
-    data <- cbind(data, getDimensionsFromHealthStates(data[[five.digit]], version=version, ignore.invalid=ignore.invalid))
+    data <- cbind(data, get_dimensions_from_health_states(data[[five.digit]], version=version, ignore.invalid=ignore.invalid))
   } else if(is.character(data) || is.numeric(data)) {
-    data <- getDimensionsFromHealthStates(data, version=version, ignore.invalid=ignore.invalid)
+    data <- get_dimensions_from_health_states(data, version=version, ignore.invalid=ignore.invalid)
   } else {
     stop("Unable to identify EQ-5D dimensions in data.frame.")
   }
   
-  class.check <- sapply(data[.getDimensionNames()], function(x){class(x)!="numeric"})
+  class.check <- sapply(data[.get_dimension_names()], function(x){class(x)!="numeric"})
   if(any(class.check)) {
-    data[.getDimensionNames()] <- suppressWarnings(sapply(data[.getDimensionNames()],function(x){as.numeric(as.character(x))}))
+    data[.get_dimension_names()] <- suppressWarnings(sapply(data[.get_dimension_names()],function(x){as.numeric(as.character(x))}))
   }
   
   if(!is.null(by)) {
@@ -70,12 +70,12 @@ eq5dds <- function(data, version, counts=FALSE, by=NULL, ignore.invalid=TRUE, ..
   }
   else {
     ##remove missing/incorrect
-    max.value <- .getNumberLevels(version)
+    max.value <- .get_number_levels(version)
 
     df <- as.data.frame(matrix(0, nrow=max.value, ncol=5))
-    colnames(df) <- .getDimensionNames()
+    colnames(df) <- .get_dimension_names()
     
-    idx <- apply(data[,.getDimensionNames()], 1, function(x) {all(x %in% 1:max.value)})
+    idx <- apply(data[,.get_dimension_names()], 1, function(x) {all(x %in% 1:max.value)})
     
     data <- data[idx,]
     

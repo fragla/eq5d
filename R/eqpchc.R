@@ -33,24 +33,24 @@
 #' pchc(pre, post, version="3L", no.problems=FALSE, totals=FALSE)
 #' 
 #' @export
-pchc <- function(pre, post, version=NULL, no.problems=TRUE, totals=TRUE, by.dimension=FALSE, ignore.invalid=TRUE, dimensions=.getDimensionNames(), summary=TRUE) {
+pchc <- function(pre, post, version=NULL, no.problems=TRUE, totals=TRUE, by.dimension=FALSE, ignore.invalid=TRUE, dimensions=.get_dimension_names(), summary=TRUE) {
   
   if(is.null(version) || !version %in% c("3L", "5L", "Y"))
     stop("EQ-5D version not one of 3L, 5L or Y.")
   
   if(is.character(pre) || is.numeric(pre)) {
-    pre <- getDimensionsFromHealthStates(pre, version=version, ignore.invalid=ignore.invalid)
+    pre <- get_dimensions_from_health_states(pre, version=version, ignore.invalid=ignore.invalid)
   }
 
   if(is.character(post) || is.numeric(post)) {
-    post <- getDimensionsFromHealthStates(post, version=version, ignore.invalid=ignore.invalid)
+    post <- get_dimensions_from_health_states(post, version=version, ignore.invalid=ignore.invalid)
   }
 
   if(all(dimensions %in% names(pre)) && all(dimensions %in% names(post))) {
     pre <- pre[,dimensions]
-    colnames(pre) <- .getDimensionNames()
+    colnames(pre) <- .get_dimension_names()
     post <- post[,dimensions]
-    colnames(post) <- .getDimensionNames()
+    colnames(post) <- .get_dimension_names()
   } else {
     stop("Unable to identify EQ-5D dimensions in data.frames.")
   }
@@ -63,8 +63,8 @@ pchc <- function(pre, post, version=NULL, no.problems=TRUE, totals=TRUE, by.dime
     warning("'totals = TRUE' and 'summary = FALSE' can't be used together. 'totals' will be ignored.")
   }
   
-  pre.idx <- which(apply(pre, 1, function(x) { any(!x%in% 1:.getNumberLevels(version))}))
-  post.idx <- which(apply(post, 1, function(x) { any(!x%in% 1:.getNumberLevels(version))}))
+  pre.idx <- which(apply(pre, 1, function(x) { any(!x%in% 1:.get_number_levels(version))}))
+  post.idx <- which(apply(post, 1, function(x) { any(!x%in% 1:.get_number_levels(version))}))
   
   if(length(pre.idx)>0 || length(post.idx)>0) {
     if(ignore.invalid) {
@@ -78,14 +78,14 @@ pchc <- function(pre, post, version=NULL, no.problems=TRUE, totals=TRUE, by.dime
   if(!by.dimension) {
     res <- .pchc(pre, post, no.problems, totals, summary)
   } else {
-    res <- lapply(.getDimensionNames(), function(x) {
+    res <- lapply(.get_dimension_names(), function(x) {
       dim.pchc <- .pchc(pre[,x, drop=FALSE], post[,x, drop=FALSE], no.problems, totals, summary)
       if(summary){
         dim.pchc <- dim.pchc[!rownames(dim.pchc) %in% "Mixed change",]
       }
       dim.pchc
     })
-    names(res) <- .getDimensionNames()
+    names(res) <- .get_dimension_names()
   }
   return(res)
 }

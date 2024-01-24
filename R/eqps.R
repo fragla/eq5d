@@ -29,7 +29,7 @@
 #' ps(pre, post, version="3L")
 #' 
 #' @export
-ps <- function(pre, post, version=NULL, ignore.invalid=TRUE, dimensions=.getDimensionNames(), digits=2) {
+ps <- function(pre, post, version=NULL, ignore.invalid=TRUE, dimensions=.get_dimension_names(), digits=2) {
   dat <- pchc(pre, post, version=version, no.problems=FALSE, totals=TRUE, by.dimension=TRUE, ignore.invalid=ignore.invalid, dimensions=dimensions)
   lapply(dat, .ps)
 }

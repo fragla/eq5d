@@ -14,8 +14,8 @@ test_that("eq5dcf five digit throws error", {
 })
 
 dat.df <- read.csv("../testdata/pre_df.csv")
-dat.df.state <- data.frame(State=getHealthStatesFromDimensions(dat.df, version="3L"))
-dat.df.state2 <- data.frame(state=getHealthStatesFromDimensions(dat.df, version="3L"))
+dat.df.state <- data.frame(State=get_health_states_from_dimensions(dat.df, version="3L"))
+dat.df.state2 <- data.frame(state=get_health_states_from_dimensions(dat.df, version="3L"))
 dat.df.nam <- data.frame(Mob=dat.df$MO, SelCa=dat.df$SC, UsAct=dat.df$UA,PDis=dat.df$PD, AnxDep=dat.df$AD)
 
 test_that("eq5dcf data.frame gives correct answer", {

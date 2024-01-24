@@ -30,14 +30,14 @@ eq5dcf <- function(data, version, ignore.invalid, proportions, digits, ...) {
 eq5dcf.data.frame <- function(data, version, ignore.invalid=TRUE, proportions=FALSE, digits=1, ...) {
   args <- list(...)
   
-  dimensions <- .getDimensionNames()
+  dimensions <- .get_dimension_names()
   five.digit <- "State"
   
   if(!is.null(args$dimensions)) {dimensions <- args$dimensions}
   if(!is.null(args$five.digit)) {five.digit <- args$five.digit}
   
   if(all(dimensions %in% names(data))) {
-    states <- getHealthStatesFromDimensions(data, version, ignore.invalid, dimensions)
+    states <- get_health_states_from_dimensions(data, version, ignore.invalid, dimensions)
   } else if(five.digit %in% names(data)) {
     states <- data[[five.digit]]
   } else {
@@ -54,7 +54,7 @@ eq5dcf.matrix <- function(data, version, ignore.invalid=TRUE, proportions=FALSE,
 
 #' @export
 eq5dcf.default <- function(data, version, ignore.invalid=TRUE, proportions=FALSE, digits=1, ...) {
-  invalid.idx <- which(!data %in% getHealthStates(version))
+  invalid.idx <- which(!data %in% get_health_states(version))
   
   if(length(invalid.idx) > 0) {
     if(ignore.invalid) {

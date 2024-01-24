@@ -33,24 +33,24 @@
 #' head(res)
 #' 
 #' @export
-hpg <- function(pre, post, country=NULL, version=NULL, type=NULL, ignore.invalid=TRUE, dimensions=.getDimensionNames(), no.problems=TRUE) {
+hpg <- function(pre, post, country=NULL, version=NULL, type=NULL, ignore.invalid=TRUE, dimensions=.get_dimension_names(), no.problems=TRUE) {
   
   if(is.null(version) || !version %in% c("3L", "5L", "Y"))
     stop("EQ-5D version not one of 3L, 5L or Y.")
   
   if(is.character(pre) || is.numeric(pre)) {
-    pre <- getDimensionsFromHealthStates(pre, version=version, ignore.invalid=ignore.invalid)
+    pre <- get_dimensions_from_health_states(pre, version=version, ignore.invalid=ignore.invalid)
   }
   
   if(is.character(post) || is.numeric(post)) {
-    post <- getDimensionsFromHealthStates(post, version=version, ignore.invalid=ignore.invalid)
+    post <- get_dimensions_from_health_states(post, version=version, ignore.invalid=ignore.invalid)
   }
   
   if(all(dimensions %in% names(pre)) && all(dimensions %in% names(post))) {
     pre <- pre[,dimensions]
-    colnames(pre) <- .getDimensionNames()
+    colnames(pre) <- .get_dimension_names()
     post <- post[,dimensions]
-    colnames(post) <- .getDimensionNames()
+    colnames(post) <- .get_dimension_names()
   } else {
     stop("Unable to identify EQ-5D dimensions in data.frames.")
   }
@@ -66,7 +66,7 @@ hpg <- function(pre, post, country=NULL, version=NULL, type=NULL, ignore.invalid
   pre <- eq5d(scores=pre, version = version, type = type, country = country, ignore.invalid=TRUE)
   post <- eq5d(scores=post, version = version, type = type, country = country, ignore.invalid=TRUE)
   
-  utilities <- sort(eq5d(scores=getHealthStates(version = version), version = version, type = type, country = country), decreasing=TRUE)
+  utilities <- sort(eq5d(scores=get_health_states(version = version), version = version, type = type, country = country), decreasing=TRUE)
   
   pre.match <- sapply(pre, function(x){if(length(wm <- which.min(abs(utilities-x)))) wm else NA})
   post.match <- sapply(post, function(x){if(length(wm <- which.min(abs(utilities-x)))) wm else NA})

@@ -9,7 +9,7 @@ ps(
   post,
   version = NULL,
   ignore.invalid = TRUE,
-  dimensions = .getDimensionNames(),
+  dimensions = .get_dimension_names(),
   digits = 2
 )
 }
