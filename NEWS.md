@@ -1,6 +1,14 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
+# eq5d (development version)
+
+- Japan EQ-5D-5L hybrid DCE value set added in addition to TTO.
+
+- Bug calculating H.max for Shannon’s indices fixed.
+
+- URLs updated for new EuroQol website.
+
 # eq5d 0.15.1 (2023-11-18)
 
 - Pakistan EQ-5D-3L value set added.
