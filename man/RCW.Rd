@@ -8,7 +8,7 @@
 An object of class \code{data.frame} with 243 rows and 4 columns.
 }
 \source{
-\href{https://euroqol.org/support/analysis-tools/}{Reverse crosswalk datasets}
+\href{https://euroqol.org/information-and-support/resources/value-sets/}{Reverse crosswalk datasets}
 }
 \usage{
 RCW

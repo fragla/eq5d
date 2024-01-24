@@ -17,7 +17,7 @@ Purba FD. Valuation of the EQ-5D-3L in Russia. Qual Life Res. 2021 Mar 13.
 doi: 10.1007/s11136-021-02804-6. Epub ahead of print.
 \href{https://pubmed.ncbi.nlm.nih.gov/33713323/}{PubMed}.
 
-\href{https://euroqol.org/wp-content/uploads/2018/02/EQ-5D-5L_Crosswalk_Index_Value_Calculator_v2.xls}{EQ-5D-5L Crosswalk Index Value Calculator}
+\href{https://euroqol.org/information-and-support/resources/value-sets/}{EQ-5D-5L Crosswalk Index Value Sets}
 }
 \usage{
 CW

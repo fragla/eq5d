@@ -14,7 +14,7 @@
 #' doi: 10.1007/s11136-021-02804-6. Epub ahead of print.
 #' \href{https://pubmed.ncbi.nlm.nih.gov/33713323/}{PubMed}.
 #'
-#' \href{https://euroqol.org/wp-content/uploads/2018/02/EQ-5D-5L_Crosswalk_Index_Value_Calculator_v2.xls}{EQ-5D-5L Crosswalk Index Value Calculator}
+#' \href{https://euroqol.org/information-and-support/resources/value-sets/}{EQ-5D-5L Crosswalk Index Value Sets}
 #'
 #' @name CW
 #' @export
@@ -63,7 +63,7 @@
 #'   from the EuroQol analysis tools webpage.
 #'
 #' @source
-#' \href{https://euroqol.org/support/analysis-tools/}{Reverse crosswalk datasets}
+#' \href{https://euroqol.org/information-and-support/resources/value-sets/}{Reverse crosswalk datasets}
 #'
 #' @name RCW
 #' @export
