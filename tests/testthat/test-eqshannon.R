@@ -8,7 +8,7 @@ test_that("eqshannon five digit gives correct answer", {
   expect_equal(shannon(pre, version="3L", by.dimension=TRUE, permutations=TRUE)$UA, list(H=1.10, H.max=1.58, J=0.69))
   expect_equal(shannon(pre, version="3L", by.dimension=TRUE, permutations=TRUE)$PD, list(H=1.14, H.max=1.58, J=0.72))
   expect_equal(shannon(pre, version="3L", by.dimension=TRUE, permutations=TRUE)$AD, list(H=1.00, H.max=1.58, J=0.63))
-  expect_equal(shannon(pre, version="3L", by.dimension=FALSE, permutations=TRUE), list(H=4.33, H.max=6.97, J=0.62))
+  expect_equal(shannon(pre, version="3L", by.dimension=FALSE, permutations=TRUE), list(H=4.33, H.max=7.92, J=0.55))
   expect_equal(shannon(pre, version="3L", by.dimension=FALSE, permutations=FALSE), list(H=4.33, H.max=4.81, J=0.90))
 })
 

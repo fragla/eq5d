@@ -55,7 +55,7 @@ shannon <- function(scores, version=NULL, by.dimension=TRUE, ignore.invalid=TRUE
   
   if(!by.dimension) {
     scores <- getHealthStatesFromDimensions(scores)
-    max.levels <- ifelse(permutations, 5^.getNumberLevels(version), length(unique(na.omit(scores))))
+    max.levels <- ifelse(permutations, .getNumberLevels(version)^5, length(unique(na.omit(scores))))
     res <- .shannon(scores, max.levels, base, digits)
   } else {
     res <- lapply(.getDimensionNames(), function(x) {
