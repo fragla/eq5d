@@ -7,6 +7,9 @@
 
 - Bug calculating H.max for Shannon’s indices fixed.
 
+- Helper functions now use camel case instead of snake case.
+  getHealthStates renamed to get_all_health_states.
+
 - URLs updated for new EuroQol website.
 
 # eq5d 0.15.1 (2023-11-18)
