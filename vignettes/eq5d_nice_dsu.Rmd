@@ -58,7 +58,7 @@ eq5d(12345, type = "DSU", country = "UK", age = 2, version = "5L", sex = "Male")
 
 # get states and create data.frame
 set.seed(12345)
-dat1 <- data.frame(State = sample(get_health_states("5L"), 10), 
+dat1 <- data.frame(State = sample(get_all_health_states("5L"), 10), 
                    Age = sample(18:100, 10), 
                    Sex = sample(c("M","F"), replace = TRUE, 10))
 

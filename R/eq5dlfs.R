@@ -74,7 +74,7 @@ lfs.default <- function(scores, version=NULL, ignore.invalid=FALSE, ...){
         lfs.default(x, version=version, ignore.invalid=ignore.invalid)
       })
     }
-  } else if (.length==1 && scores %in% get_health_states(version)) {
+  } else if (.length==1 && scores %in% get_all_health_states(version)) {
     scores <- as.numeric(strsplit(as.character(scores[1]), "")[[1]])
     names(scores) <- .get_dimension_names()
     res <- .lfs(scores, version=version, ignore.invalid=ignore.invalid)

@@ -166,7 +166,7 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
         eq5d.default(x, version=version, type=type, country=country, ignore.invalid=ignore.invalid, ...)
       })
     }
-  } else if (.length==1 && scores %in% get_health_states(version)) {
+  } else if (.length==1 && scores %in% get_all_health_states(version)) {
     scores <- as.numeric(strsplit(as.character(scores[1]), "")[[1]])
     names(scores) <- .get_dimension_names()
     res <- .eq5d(scores, version=version, type=type, country=country, ignore.invalid=ignore.invalid, ...)

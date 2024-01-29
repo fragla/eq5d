@@ -629,7 +629,7 @@ eq5dds(dat, version="3L", by="Sex")
 ## Helper functions
 
 Helper functions are included, which may be useful in the processing of
-EQ-5D data. ***get_health_states*** returns a vector of all possible
+EQ-5D data. ***get_all_health_states*** returns a vector of all possible
 five digit health states for a specified EQ-5D version.
 ***get_dimensions_from_health_states*** splits a vector of five digit
 health states into a data.frame of their individual components and
@@ -639,7 +639,7 @@ a data.frame into five digit health states.
 ``` r
 
 # Get all EQ-5D-3L five digit health states (top 6 returned for brevity).
-head(get_health_states("3L"))
+head(get_all_health_states("3L"))
 #> [1] "11111" "11112" "11113" "11121" "11122" "11123"
 
 # Split five digit health states into their individual components.

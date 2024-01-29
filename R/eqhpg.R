@@ -66,7 +66,7 @@ hpg <- function(pre, post, country=NULL, version=NULL, type=NULL, ignore.invalid
   pre <- eq5d(scores=pre, version = version, type = type, country = country, ignore.invalid=TRUE)
   post <- eq5d(scores=post, version = version, type = type, country = country, ignore.invalid=TRUE)
   
-  utilities <- sort(eq5d(scores=get_health_states(version = version), version = version, type = type, country = country), decreasing=TRUE)
+  utilities <- sort(eq5d(scores=get_all_health_states(version = version), version = version, type = type, country = country), decreasing=TRUE)
   
   pre.match <- sapply(pre, function(x){if(length(wm <- which.min(abs(utilities-x)))) wm else NA})
   post.match <- sapply(post, function(x){if(length(wm <- which.min(abs(utilities-x)))) wm else NA})

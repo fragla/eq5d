@@ -1,12 +1,12 @@
 context("EQ-5D helper functions")
 
-test_that("get_health_states gives correct answer", {
-  expect_equal(get_health_states("3L")[c(4,41,106,158,179)], c("11121","12222","21331","23322","31232"))
-  expect_equal(get_health_states("5L")[c(23,980,1122,2673,3022)], c("11153","23515","24552","52253","55152"))
+test_that("get_all_health_states gives correct answer", {
+  expect_equal(get_all_health_states("3L")[c(4,41,106,158,179)], c("11121","12222","21331","23322","31232"))
+  expect_equal(get_all_health_states("5L")[c(23,980,1122,2673,3022)], c("11153","23515","24552","52253","55152"))
 })
 
-test_that("get_health_states gives returns an error", {
-  expect_error(get_health_states("10L"))
+test_that("get_all_health_states gives returns an error", {
+  expect_error(get_all_health_states("10L"))
 })
 
 test_that("get_dimensions_from_health_states gives correct answer", {

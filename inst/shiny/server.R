@@ -398,7 +398,7 @@ shinyServer(function(input, output, session) {
   
   stateValid <- reactive({
     dat <- readdata()
-    is.valid <- any(dat[,input$state_col] %in% get_health_states(input$version))
+    is.valid <- any(dat[,input$state_col] %in% get_all_health_states(input$version))
     return(is.valid)
   })
   
@@ -802,7 +802,7 @@ shinyServer(function(input, output, session) {
     #run hpg function on data.frames
     res <- hpg(pre, post, country=input$country, version=input$version, type=input$type)
     
-    ts <- length(get_health_states(input$version))
+    ts <- length(get_all_health_states(input$version))
     
     p <- ggplot(res, aes(Post, Pre, color=PCHC)) +
       geom_point(aes(shape=PCHC)) +

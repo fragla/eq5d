@@ -20,12 +20,12 @@
 #' @return A character vector of five digit health states.
 #' @aliases getHealthStates
 #' @examples
-#' get_health_states("3L")
-#' get_health_states("5L")
-#' get_health_states("Y")
+#' get_all_health_states("3L")
+#' get_all_health_states("5L")
+#' get_all_health_states("Y")
 #' 
-#' @export getHealthStates get_health_states
-get_health_states <- function(version) {
+#' @export getHealthStates get_all_health_states
+get_all_health_states <- function(version) {
   if(!version %in% c("3L", "5L", "Y"))
     stop("Version must be either 3L, 5L or Y.")
   
@@ -35,7 +35,7 @@ get_health_states <- function(version) {
     return(STATES[["5L"]])
   }
 }
-getHealthStates = get_health_states
+getHealthStates = get_all_health_states
 #' Get individual dimension scores from their five digit health states
 #' 
 #' Get a data.frame of individual dimension scores from their five digit health states.
@@ -53,7 +53,7 @@ getHealthStates = get_health_states
 #'@export get_dimensions_from_health_states splitHealthStates getDimensionsFromHealthStates
 get_dimensions_from_health_states <- function(scores, ignore.invalid=TRUE, version="5L") {
   if(ignore.invalid) {
-    idx <- which(!scores %in% get_health_states(version))
+    idx <- which(!scores %in% get_all_health_states(version))
     scores[idx] <- NA
   } else {
     stop("Invalid health states found.")
@@ -97,7 +97,7 @@ get_health_states_from_dimensions <- function(scores, version="5L", ignore.inval
   
   states <- paste0(scores$MO, scores$SC, scores$UA, scores$PD, scores$AD)
   
-  invalid.idx <- which(!states %in% get_health_states(version))
+  invalid.idx <- which(!states %in% get_all_health_states(version))
 
   if(length(invalid.idx) > 0) {
     if(ignore.invalid) {
