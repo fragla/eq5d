@@ -1,11 +1,12 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-# eq5d (development version)
+# eq5d 0.15.2 (2024-01-31)
 
 - Japan EQ-5D-5L hybrid DCE value set added in addition to TTO.
 
-- Bug calculating H.max for Shannon’s indices fixed.
+- Bug calculating Shannon H.max for 3L profiles when permutations = TRUE
+  fixed.
 
 - Helper functions now use camel case instead of snake case.
   getHealthStates renamed to get_all_health_states.

@@ -2,7 +2,7 @@
 
 * local OS X install, R 4.2.2
 * Ubuntu 20.04.3 (using GitHub Actions), R 4.3.2, R 4.2.3, devel
-* Mac OS X 12.6.9 (using GitHub actions) R 4.3.2
+* Mac OS X 12.7.2 (using GitHub actions) R 4.3.2
 * Microsoft Windows Server 2022 (using GitHub Actions), R 4.3.2
 * Windows Server 2012 R2 x64 (on appveyor-ci) R 4.3.2, R 4.2.3
 * Windows release at win-builder.r-project.org
