@@ -1,6 +1,10 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
+# eq5d (development version)
+
+- Saudi Arabia EQ-5D-5L value set added.
+
 # eq5d 0.15.2 (2024-01-31)
 
 - Japan EQ-5D-5L hybrid DCE value set added in addition to TTO.
