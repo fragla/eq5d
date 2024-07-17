@@ -1,6 +1,10 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
+# eq5d (development version)
+
+- Trinidad and Tobago EQ-5D-5L value set added.
+
 # eq5d 0.15.3 (2024-04-29)
 
 - Saudi Arabia EQ-5D-5L value set added.

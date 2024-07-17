@@ -5,7 +5,7 @@
 \alias{VT}
 \title{EQ-5D-5L VT value set data}
 \format{
-An object of class \code{data.frame} with 35 rows and 42 columns.
+An object of class \code{data.frame} with 35 rows and 43 columns.
 }
 \source{
 \itemize{
