@@ -5,7 +5,7 @@
 \alias{TTO}
 \title{EQ-5D-3L TTO value set data}
 \format{
-An object of class \code{data.frame} with 63 rows and 30 columns.
+An object of class \code{data.frame} with 63 rows and 31 columns.
 }
 \source{
 Szende, A., Oppe, M., & de Charro, F. (2007), Comparative review of Time Trade-Off value sets.
@@ -18,6 +18,7 @@ Janssen, B., Szende, A., & Ramos-Goñi JM. (2014), Data and Methods.
 \itemize{
 \item{\strong{Argentina}: Augustovski FA, Irazola VE, Velazquez AP, Gibbons L, Craig BM. Argentine valuation of the EQ-5D health states. Value Health. 2009 Jun;12(4):587-96. doi: 10.1111/j.1524-4733.2008.00468.x. Epub 2008 Nov 12. \href{https://pubmed.ncbi.nlm.nih.gov/19900257/}{PubMed}}
 \item{\strong{Australia}: Viney R, Norman R, King MT, Cronin P, Street DJ, Knox S, Ratcliffe J. Time trade-off derived EQ-5D weights for Australia. Value Health. 2011 Sep-Oct;14(6):928-36. doi: 10.1016/j.jval.2011.04.009. \href{https://pubmed.ncbi.nlm.nih.gov/21914515/}{PubMed}}
+\item{\strong{Bermuda}: Bailey H, Roudijk B, Brathwaite R. The EQ-5D-3L valuation study for Bermuda: using an on-line EQ-VT protocol. Eur J Health Econ. 2024 Jul 9. doi: 10.1007/s10198-024-01701-2. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/38982011/}{PubMed}}
 \item{\strong{Brazil}: Viegas Andrade M, Noronha K, Kind P, Maia AC, Miranda de Menezes R, De Barros Reis C, Nepomuceno Souza M, Martins D, Gomes L, Nichele D, Calazans J, Mascarenhas T, Carvalho L, Lins C. Societal Preferences for EQ-5D Health States from a Brazilian Population Survey. Value in Health Regional Issues 2013;2(3):405–412. \href{https://pubmed.ncbi.nlm.nih.gov/29702778/}{PubMed}}
 \item{\strong{Canada}: Bansback N, Tsuchiya A, Brazier J, Anis A. Canadian valuation of EQ-5D health states: preliminary value set and considerations for future valuation studies. PLoS One. 2012;7(2):e31115. \href{https://pubmed.ncbi.nlm.nih.gov/22328929/}{PubMed}}
 \item{\strong{Chile}: Zarate V, Kind P, Valenzuela P, Vignau A, Olivares-Tirado P, Munoz A. Social valuation of EQ-5D health states: the Chilean case. Value in Health. 2011 Dec;14(8):1135-41. \href{https://pubmed.ncbi.nlm.nih.gov/22152184/}{PubMed}}
