@@ -8,6 +8,13 @@ test_that("EQ-5D-Y Belgium gives correct answer", {
   expect_equal(eq5dy(c(MO=3,SC=3,UA=3,PD=3,AD=3), "Belgium"), -0.475)
 })
 
+test_that("EQ-5D-Y Brazil gives correct answer", {
+  expect_equal(eq5dy(c(MO=1,SC=1,UA=1,PD=1,AD=1), "Brazil"), 1)
+  expect_equal(eq5dy(c(MO=1,SC=2,UA=1,PD=1,AD=1), "Brazil"), 0.897)
+  expect_equal(eq5dy(c(MO=2,SC=2,UA=2,PD=2,AD=2), "Brazil"), 0.499)
+  expect_equal(eq5dy(c(MO=3,SC=3,UA=3,PD=3,AD=3), "Brazil"), -0.006)
+})
+
 test_that("EQ-5D-Y China gives correct answer", {
   expect_equal(eq5dy(c(MO=1,SC=1,UA=1,PD=1,AD=1), "China"), 1)
   expect_equal(eq5dy(c(MO=1,SC=2,UA=1,PD=1,AD=1), "China"), 0.977)
