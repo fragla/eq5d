@@ -5,12 +5,17 @@
 \alias{CW}
 \title{EQ-5D-5L Crosswalk data}
 \format{
-An object of class \code{data.frame} with 3125 rows and 11 columns.
+An object of class \code{data.frame} with 3125 rows and 12 columns.
 }
 \source{
 van Hout B, Janssen MF, et al. Interim scoring for the EQ-5D-5L: Mapping the EQ-5D-5L
   to EQ-5D-3L value sets. Value in Health 2012 Jul-Aug;15(5):708-15. doi: 10.1016/j.jval.2012.02.008.
   \href{https://pubmed.ncbi.nlm.nih.gov/22867780/}{PubMed}
+
+Bailey H, Roudijk B, Brathwaite R. The EQ-5D-3L valuation study for 
+Bermuda: using an on-line EQ-VT protocol. Eur J Health Econ. 2024 Jul 9. 
+doi: 10.1007/s10198-024-01701-2. Epub ahead of print. 
+\href{https://pubmed.ncbi.nlm.nih.gov/38982011/}{PubMed}.
 
 Omelyanovskiy V, Musina N, Ratushnyak S, Bezdenezhnykh T, Fediaeva V, Roudijk B,
 Purba FD. Valuation of the EQ-5D-3L in Russia. Qual Life Res. 2021 Mar 13.

@@ -1,5 +1,14 @@
 context("EQ-5D-5L Crosswalk")
 
+test_that("EQ-5D-3L Bermuda Crosswalk gives correct answer", {
+  expect_equal(eq5dcw(c(MO=1,SC=1,UA=1,PD=1,AD=1), "Bermuda"), 1.000)
+  expect_equal(eq5dcw(c(MO=3,SC=2,UA=1,PD=2,AD=3), "Bermuda"), 0.647)
+  expect_equal(eq5dcw(c(MO=1,SC=2,UA=1,PD=1,AD=2), "Bermuda"), 0.832)
+  expect_equal(eq5dcw(c(MO=1,SC=3,UA=1,PD=3,AD=1), "Bermuda"), 0.777)
+  expect_equal(eq5dcw(c(MO=3,SC=2,UA=4,PD=2,AD=4), "Bermuda"), 0.455)
+  expect_equal(eq5dcw(c(MO=5,SC=5,UA=5,PD=5,AD=5), "Bermuda"), -0.547)
+})
+
 test_that("EQ-5D-3L Denmark Crosswalk gives correct answer", {
   expect_equal(eq5dcw(c(MO=1,SC=1,UA=1,PD=1,AD=1), "Denmark"), 1.000)
   expect_equal(eq5dcw(c(MO=3,SC=2,UA=1,PD=2,AD=3), "Denmark"), 0.663)
