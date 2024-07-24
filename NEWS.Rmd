@@ -12,6 +12,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 - Trinidad and Tobago EQ-5D-5L value set added.
 
+- Bermuda EQ-5D-3L and EQ-5D-5L to EQ-5D-3L crosswalk value sets added.
+
+- Brazilian EQ-5D-Y value set added.
+
 # eq5d 0.15.3 (2024-04-29)
 
 - Saudi Arabia EQ-5D-5L value set added.
