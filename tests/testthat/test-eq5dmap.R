@@ -4,20 +4,24 @@ test_that("EQ-5D-5L to EQ-5D-3L age/sex mapping by dimensions gives correct answ
   expect_equal(eq5dmap(c(MO=1,SC=2,UA=3,PD=4,AD=5), "UK", "5L", 30, "female"), 0.067)
   expect_equal(eq5dmap(c(MO=2,SC=4,UA=1,PD=1,AD=2), "UK", "5L", 50, "female"), 0.761)
   expect_equal(eq5dmap(c(MO=2,SC=3,UA=4,PD=2,AD=1), "UK", "5L", 5, "male"), 0.609)
+  expect_equal(eq5dmap(c(MO=2,SC=3,UA=4,PD=2,AD=1), "UK", "5L", 5, "male", digits = 8), 0.60885463)
 })
 
 test_that("EQ-5D-3L to EQ-5D-5L age/sex mapping by dimensions gives correct answer", {
   expect_equal(eq5dmap(c(MO=1,SC=2,UA=3,PD=2,AD=1), "UK", "3L", 30, "female"), 0.612)
   expect_equal(eq5dmap(c(MO=2,SC=2,UA=1,PD=1,AD=2), "UK", "3L", 50, "female"), 0.712)
   expect_equal(eq5dmap(c(MO=3,SC=3,UA=3,PD=3,AD=3), "UK", "3L", 3, "male"), -0.215)
+  expect_equal(eq5dmap(c(MO=3,SC=3,UA=3,PD=3,AD=3), "UK", "3L", 3, "male", digits = 8), -0.21529993)
 })
 
 test_that("EQ-5D-5L to EQ-5D-3L age/sex mapping by exact index gives correct answer", {
   expect_equal(eq5dmap(0.922, "UK", "5L", 18, "male"), 0.893)
+  expect_equal(eq5dmap(0.922, "UK", "5L", 18, "male", digits = 8), 0.89307115)
 })
 
 test_that("EQ-5D-3L to EQ-5D-5L age/sex mapping by exact index gives correct answer", {
   expect_equal(eq5dmap(-0.594, "UK", "3L", 95, "female"), -0.209)
+  expect_equal(eq5dmap(-0.594, "UK", "3L", 95, "female", digits = 8), -0.20907130)
 })
 
 test_that("EQ-5D-5L to EQ-5D-3L age/sex mapping by summary index gives correct answer", {

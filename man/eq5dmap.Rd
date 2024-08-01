@@ -4,7 +4,7 @@
 \alias{eq5dmap}
 \title{Calculate utility index scores by mapping between EQ-5D-3L and EQ-5D-5L}
 \usage{
-eq5dmap(scores, country, version, age, sex, bwidth = 0)
+eq5dmap(scores, country, version, age, sex, bwidth = 0, digits = 3)
 }
 \arguments{
 \item{scores}{numeric with names MO, SC, UA, PD and AD representing
@@ -20,6 +20,8 @@ or a utility index score}
 \item{sex}{Male or Female}
 
 \item{bwidth}{bandwith score for approximate scores (< 0.8: 0.2, 0.8-0.951: 0.1, 0.951-1: small, but large enough to include 1)}
+
+\item{digits}{number of decimal places to return}
 }
 \value{
 calculated utility index score.
@@ -38,5 +40,6 @@ Available value sets can be viewed using the function \code{valuesets}.
 eq5dmap(c(MO=1,SC=2,UA=3,PD=4,AD=5), "UK", "5L", 30, "female")
 eq5dmap(0.922, "UK", "5L", 18, "male")
 eq5dmap(0.715, "UK", "5L", 50, "male", bwidth = 0.0001)
+eq5dmap(0.715, "UK", "5L", 50, "male", bwidth = 0.0001, digits = 8)
 
 }

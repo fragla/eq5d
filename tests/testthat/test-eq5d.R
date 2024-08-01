@@ -33,6 +33,7 @@ test_that("Wrapper function gives correct answer", {
   expect_equal(eq5d(c(MO=1,SC=2,UA=3,PD=2,AD=1), country="UK", version="3L", type="DSU", age=30, sex="female"), 0.612)
   expect_equal(eq5d(c(MO=2,SC=2,UA=1,PD=1,AD=2), country="UK", version="3L", type="DSU", age=50, sex="female"), 0.712)
   expect_equal(eq5d(c(MO=3,SC=3,UA=3,PD=3,AD=3), country="UK", version="3L", type="DSU", age=3, sex="male"), -0.215)
+  expect_equal(eq5d(c(MO=3,SC=3,UA=3,PD=3,AD=3), country="UK", version="3L", type="DSU", age=3, sex="male", digits = 8), -0.21529993)
   expect_equal(eq5d(0.922, country="UK", version="5L", type="DSU", age=18, sex="male"), 0.893)
   expect_equal(eq5d(0.435, country="UK", version="5L", type="DSU", age=30, sex="female", bwidth = 0.0001), 0.302)
   expect_equal(eq5d(0.922, country="UK", version="5L", type="DSU", age=18, sex="male"), 0.893)

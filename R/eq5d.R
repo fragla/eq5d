@@ -25,7 +25,8 @@
 #'   "Utility", "Age", "Sex" and "bwidth") for NICE DSU mapping. bwidth can also
 #'   be a number which is applied to the whole dataset. When a single
 #'   NICE DSU score is being calculated "age", "sex" and "bwidth" are also
-#'   used. See \code{\link{eq5dmap}} for valid options.
+#'   used. See \code{\link{eq5dmap}} for valid options. "digits" can also be 
+#'   used to return NICE DSU mapping scores with more precision.
 #' @return a numeric vector of utility index scores.
 #' @examples
 #' 
@@ -91,6 +92,7 @@ eq5d.data.frame <- function(scores, version=NULL, type=NULL, country=NULL, ignor
   sex <- "Sex"
   age <- "Age"
   bwidth <- "bwidth"
+  digits <- 3
 
   if(!is.null(args$dimensions)) {dimensions <- args$dimensions}
   if(!is.null(args$five.digit)) {five.digit <- args$five.digit}
@@ -98,6 +100,7 @@ eq5d.data.frame <- function(scores, version=NULL, type=NULL, country=NULL, ignor
   if(!is.null(args$sex)) {sex <- args$sex}
   if(!is.null(args$age)) {age <- args$age}
   if(!is.null(args$bwidth)) {bwidth <- args$bwidth}
+  if(!is.null(args$digits)) {digits <- args$digits}
 
   eq5d.columns <- NULL
   if(all(dimensions %in% names(scores))) {
@@ -122,11 +125,11 @@ eq5d.data.frame <- function(scores, version=NULL, type=NULL, country=NULL, ignor
   res <- apply(scores, 1, function(x) {
     if(type=="DSU") {
       if(is.null(bwidth)) {
-        eq5d.default(x[eq5d.columns], version=version, type=type, country=country, ignore.invalid=ignore.invalid, age=x[age], sex=x[sex])
+        eq5d.default(x[eq5d.columns], version=version, type=type, country=country, ignore.invalid=ignore.invalid, age=x[age], sex=x[sex], digits=digits)
       } else if(is.numeric(bwidth)) {
-        eq5d.default(x[eq5d.columns], version=version, type=type, country=country, ignore.invalid=ignore.invalid, age=x[age], sex=x[sex], bwidth=bwidth)
+        eq5d.default(x[eq5d.columns], version=version, type=type, country=country, ignore.invalid=ignore.invalid, age=x[age], sex=x[sex], bwidth=bwidth, digits=digits)
       } else {
-        eq5d.default(x[eq5d.columns], version=version, type=type, country=country, ignore.invalid=ignore.invalid, age=x[age], sex=x[sex], bwidth=x[bwidth])
+        eq5d.default(x[eq5d.columns], version=version, type=type, country=country, ignore.invalid=ignore.invalid, age=x[age], sex=x[sex], bwidth=x[bwidth], digits=digits)
       }
     } else {
       eq5d.default(x[eq5d.columns], version=version, type=type, country=country, ignore.invalid=ignore.invalid, ...)
@@ -212,6 +215,19 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
       stop("Sex must be Male, Female, M or F (case insensitive).")
     }
   }
+  
+  if(!is.null(args$digits)) {
+    digits <- suppressWarnings(as.numeric(args$digits))
+    if(is.na(digits)) {
+      if(ignore.invalid) {
+        return(NA)
+      } else {
+        stop("\"digits\" must be a numeric.")
+      }
+    }
+  } else {
+    digits <- 3
+  }
 
   .length <- length(scores)
   if(.length==5 && any(!scores %in% 1:.get_number_levels(version))) { #if length==5
@@ -238,7 +254,7 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
     } else if(!is.null(type) && type=="RCW") {
       eq5drcw(scores, country=country)
     } else if(!is.null(type) && type=="DSU") {
-      eq5dmap(scores, country, version, args$age, args$sex, bwidth)
+      eq5dmap(scores, country, version, args$age, args$sex, bwidth, digits)
     } else {
       stop("EQ-5D-3L valueset type not recognised. Must be one of 'TTO', 'VAS', 'RCW' or 'DSU'.")
     }
@@ -251,7 +267,7 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
     } else if(!is.null(type) && type=="CW") {
       eq5dcw(scores, country=country)
     } else if(!is.null(type) && type=="DSU") {
-      eq5dmap(scores, country, version, as.numeric(args$age), args$sex, bwidth)
+      eq5dmap(scores, country, version, as.numeric(args$age), args$sex, bwidth, digits)
     } else {
       stop("EQ-5D-5L valueset type not recognised. Must be one of 'VT', 'CW' or 'DSU'.")
     }

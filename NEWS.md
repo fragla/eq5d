@@ -9,6 +9,9 @@
 
 - Brazilian EQ-5D-Y value set added.
 
+- “digits” argument added to eq5d and eq5dmap functions to enable NICE
+  DSU mapping scores to be returned with more precision.
+
 # eq5d 0.15.3 (2024-04-29)
 
 - Saudi Arabia EQ-5D-5L value set added.

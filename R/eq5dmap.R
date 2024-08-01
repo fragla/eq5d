@@ -16,14 +16,16 @@
 #' @param age age in years (18-100), or age category (1: 18-34, 2: 35-44, 3: 45-54, 4: 55-64, 5: 65-100)
 #' @param sex Male or Female
 #' @param bwidth bandwith score for approximate scores (< 0.8: 0.2, 0.8-0.951: 0.1, 0.951-1: small, but large enough to include 1)
+#' @param digits number of decimal places to return
 #' @return calculated utility index score.
 #' @examples
 #' eq5dmap(c(MO=1,SC=2,UA=3,PD=4,AD=5), "UK", "5L", 30, "female")
 #' eq5dmap(0.922, "UK", "5L", 18, "male")
 #' eq5dmap(0.715, "UK", "5L", 50, "male", bwidth = 0.0001)
+#' eq5dmap(0.715, "UK", "5L", 50, "male", bwidth = 0.0001, digits = 8)
 #'
 #' @export
-eq5dmap <- function(scores, country, version, age, sex, bwidth=0) {
+eq5dmap <- function(scores, country, version, age, sex, bwidth=0, digits=3) {
 
   if(version=="3L") {
     survey <- DSU3L
@@ -69,7 +71,7 @@ eq5dmap <- function(scores, country, version, age, sex, bwidth=0) {
   if(all(.get_dimension_names() %in% names(scores))) {
     state <- paste(scores, collapse = "")
     idx <- which(survey$State==state & survey$Age==age.grp & survey$Sex==sex)
-    index <- round(survey[idx, paste0(country,"Copula"), drop=TRUE],3)
+    index <- round(survey[idx, paste0(country,"Copula"), drop=TRUE], digits=digits)
     return(index)
   } else if (is.numeric(scores)) {
     if(bwidth==0) {
@@ -77,13 +79,13 @@ eq5dmap <- function(scores, country, version, age, sex, bwidth=0) {
       if(length(idx)==0) {
         stop("Invalid utility score provided. If approximate score please supply bwidth value")
       } else {
-        m <- round(mean(survey[idx, paste0(country,"Copula"), drop=TRUE]),3)
+        m <- round(mean(survey[idx, paste0(country,"Copula"), drop=TRUE]), digits=digits)
       }
       return(m)
     } else {
       idx <- which(survey$Age==age.grp & survey$Sex==sex)
       epan <- .epan(target=scores, values=survey[idx, country], bwidth=bwidth)
-      wm <- round(weighted.mean(x=survey[idx, paste0(country,"Copula")], w=epan),3)
+      wm <- round(weighted.mean(x=survey[idx, paste0(country,"Copula")], w=epan), digits=digits)
       return(wm)
     }
   }
