@@ -23,7 +23,7 @@ test_that("eqpchc five digit gives correct answer", {
   expect_equal(pchc(pre, post, version="3L", no.problems=TRUE, totals=FALSE, by.dimension=TRUE)$MO, res2.mo)
   expect_equal(pchc(pre, post, version="3L", no.problems=FALSE, totals=FALSE, by.dimension=TRUE)$MO, res3.mo)
   expect_equal(pchc(pre, post, version="3L", no.problems=FALSE, totals=TRUE, by.dimension=TRUE)$MO, res4.mo)
-  expect_equal(pchc(pre, post, version="Y", no.problems=TRUE, totals=TRUE), res1)
+  expect_equal(pchc(pre, post, version="Y3L", no.problems=TRUE, totals=TRUE), res1)
   expect_equal(pchc(pre[1:6], post[1:6], version="3L", no.problems=TRUE, totals=F, summary=F), res5)
 })
 

@@ -5,12 +5,12 @@ res <- read.csv("../testdata/eq5dcf.csv", colClasses=c("character",rep("numeric"
 
 test_that("eq5dcf five digit gives correct answer", {
   expect_equal(eq5dcf(dat, version="3L", ignore.invalid=TRUE), res)
-  expect_equal(eq5dcf(dat, version="Y", ignore.invalid=TRUE), res)
+  expect_equal(eq5dcf(dat, version="Y3L", ignore.invalid=TRUE), res)
 })
 
 test_that("eq5dcf five digit throws error", {
   expect_error(eq5dcf(dat, version="3L", ignore.invalid=FALSE))
-  expect_error(eq5dcf(dat, version="Y", ignore.invalid=FALSE))
+  expect_error(eq5dcf(dat, version="Y3L", ignore.invalid=FALSE))
 })
 
 dat.df <- read.csv("../testdata/pre_df.csv")

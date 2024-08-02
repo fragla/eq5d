@@ -41,9 +41,14 @@ eq5dds <- function(data, version, counts=FALSE, by=NULL, ignore.invalid=TRUE, ..
 
   if(!is.null(args$dimensions)) {dimensions <- args$dimensions}
   if(!is.null(args$five.digit)) {five.digit <- args$five.digit}
+  
+  if (version == "Y") {
+    lifecycle::deprecate_warn("0.16.0", I('Setting `version = "Y"`'), I('`version = "Y3L"`'))
+    version <- "Y3L"
+  }
 
-  if(!version %in% c("3L", "5L", "Y"))
-    stop("EQ-5D version not one of 3L, 5L or Y.")
+  if(!version %in% c("3L", "5L", "Y3L"))
+    stop("EQ-5D version not one of 3L, 5L or Y3L.")
   
   if(all(dimensions %in% names(data))) {
     colnames(data)[match(dimensions, colnames(data))] <- .get_dimension_names()

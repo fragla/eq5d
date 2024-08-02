@@ -4,7 +4,7 @@
 #' 
 #' @param scores data.frame with names MO, SC, UA, PD and AD representing
 #'   Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.
-#' @param version string of value "3L", "5L" or "Y" to indicate instrument version.
+#' @param version string of value "3L", "5L" or "Y3L" to indicate instrument version.
 #' @param ignore.invalid whether to ignore invalid scores. TRUE returns NA, FALSE throws an 
 #' error.
 #' @param ... character vector, specifying "dimensions" column names. Defaults 
@@ -55,8 +55,13 @@ lfs.matrix <- function(scores, version=NULL, ignore.invalid=FALSE, ...) {
 #' @export
 lfs.default <- function(scores, version=NULL, ignore.invalid=FALSE, ...){
   
-  if(!version %in% c("3L", "5L", "Y"))
-    stop("EQ-5D version not one of 3L, 5L or Y.")
+  if (version == "Y") {
+    lifecycle::deprecate_warn("0.16.0", I('Setting `version = "Y"`'), I('`version = "Y3L"`'))
+    version <- "Y3L"
+  }
+  
+  if(!version %in% c("3L", "5L", "Y3L"))
+    stop("EQ-5D version not one of 3L, 5L or Y3L.")
   
   .length = length(scores)
   

@@ -13,7 +13,7 @@ Anxiety/depression. Alternatively EQ-5D scores can be provided in
 five digit format e.g. 12321. If five digit scores are used in a data.frame
 the default column name look for by the function is "State".}
 
-\item{version}{string of value "3L", "5L" or "Y" to indicate instrument
+\item{version}{string of value "3L", "5L" or "Y3L" to indicate instrument
 version.}
 
 \item{type}{string specifying method type used in deriving value set scores.
@@ -40,8 +40,8 @@ used to return NICE DSU mapping scores with more precision.}
 a numeric vector of utility index scores.
 }
 \description{
-Wrapper for \code{eq5d3l}, \code{eq5d5l} and \code{eq5dy}. Calculate EQ-5D index scores for
-EQ-5D-3L, EQ-5D-5L and EQ-5D-Y. Available value sets can be viewed using the function
+Wrapper for \code{eq5d3l}, \code{eq5d5l} and \code{eq5dy3l}. Calculate EQ-5D index scores for
+EQ-5D-3L, EQ-5D-5L and EQ-5D-Y-3L. Available value sets can be viewed using the function
 \code{valuesets}.
 }
 \examples{

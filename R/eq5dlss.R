@@ -55,8 +55,13 @@ lss.matrix <- function(scores, version=NULL, ignore.invalid=FALSE, ...) {
 #' @export
 lss.default <- function(scores, version=NULL, ignore.invalid=FALSE, ...){
   
-  if(!version %in% c("3L", "5L", "Y"))
-    stop("EQ-5D version not one of 3L, 5L or Y.")
+  if (version == "Y") {
+    lifecycle::deprecate_warn("0.16.0", I('Setting `version = "Y"`'), I('`version = "Y3L"`'))
+    version <- "Y3L"
+  }
+  
+  if(!version %in% c("3L", "5L", "Y3L"))
+    stop("EQ-5D version not one of 3L, 5L or Y3L.")
   
   .length = length(scores)
   

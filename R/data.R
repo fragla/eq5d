@@ -214,9 +214,9 @@
 #' @export
 "VT"
 
-#' EQ-5D-Y value set data
+#' EQ-5D-Y-3L value set data
 #'
-#' EQ-5D-Y value set calculation data for Belgium, China, Germany, Hungary, 
+#' EQ-5D-Y-3L value set calculation data for Belgium, Brazil, China, Germany, Hungary, 
 #' Indonesia, Japan, Netherlands, Slovenia and Spain.
 #'
 #' @source
@@ -233,6 +233,6 @@
 #'     \item{\strong{Spain}: Ramos-Goñi JM, Oppe M, Estévez-Carrillo A, Rivero-Arias O; IMPACT HTA HRQoL Group. Accounting for Unobservable Preference Heterogeneity and Evaluating Alternative Anchoring Approaches to Estimate Country-Specific EQ-5D-Y Value Sets: A Case Study Using Spanish Preference Data. Value in Health. 2021 Dec 04. doi: 10.1016/j.jval.2021.10.013.}
 #'   }
 #'
-#' @name Y
+#' @name Y3L
 #' @export
-"Y"
+"Y3L"

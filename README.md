@@ -22,7 +22,7 @@ of five dimensions; mobility, self-care, usual activities,
 pain/discomfort, and anxiety/depression using either a three-level
 ([EQ-5D-3L](https://euroqol.org/information-and-support/euroqol-instruments/eq-5d-3l/)
 and
-[EQ-5D-Y](https://euroqol.org/information-and-support/euroqol-instruments/eq-5d-y-3l/))
+[EQ-5D-Y-3L](https://euroqol.org/information-and-support/euroqol-instruments/eq-5d-y-3l/))
 or a five-level
 ([EQ-5D-5L](https://euroqol.org/information-and-support/euroqol-instruments/eq-5d-5l/))
 scale.
@@ -116,8 +116,8 @@ eq5d(scores=scores, country="UK", version="3L", type="TTO")
 eq5d(scores=12321, country="UK", version="3L", type="TTO")
 #> [1] 0.329
 
-#EQ-5D-Y using the Slovenian cTTO value set
-eq5d(scores=13321, country="Slovenia", version="Y", type="cTTO")
+#EQ-5D-Y-3L using the Slovenian cTTO value set
+eq5d(scores=13321, country="Slovenia", version="Y3L", type="cTTO")
 #> [1] 0.295
 
 #EQ-5D-5L crosswalk
@@ -176,10 +176,10 @@ head(valuesets(type="TTO", references=c("PubMed","DOI")))
 #>    Version Type   Country   PubMed                              DOI
 #> 1 EQ-5D-3L  TTO Argentina 19900257 10.1111/j.1524-4733.2008.00468.x
 #> 2 EQ-5D-3L  TTO Australia 21914515       10.1016/j.jval.2011.04.009
-#> 3 EQ-5D-3L  TTO    Brazil 29702778       10.1016/j.vhri.2013.01.009
-#> 4 EQ-5D-3L  TTO    Canada 22328929     10.1371/journal.pone.0031115
-#> 5 EQ-5D-3L  TTO     Chile 22152184      10.1016/j.jval.2011.09.002.
-#> 6 EQ-5D-3L  TTO     China 25128053       10.1016/j.jval.2014.05.007
+#> 3 EQ-5D-3L  TTO   Bermuda 38982011       10.1007/s10198-024-01701-2
+#> 4 EQ-5D-3L  TTO    Brazil 29702778       10.1016/j.vhri.2013.01.009
+#> 5 EQ-5D-3L  TTO    Canada 22328929     10.1371/journal.pone.0031115
+#> 6 EQ-5D-3L  TTO     Chile 22152184      10.1016/j.jval.2011.09.002.
 
 # Return VAS value sets with ISBN and external URL (top 6 returned for brevity).
 head(valuesets(type="VAS", references=c("ISBN","ExternalURL")))
@@ -201,12 +201,12 @@ head(valuesets(type="VAS", references=c("ISBN","ExternalURL")))
 # Return EQ-5D-5L value sets (top 6 returned for brevity).
 head(valuesets(version="5L"))
 #>    Version Type     Country   PubMed                        DOI ISBN
-#> 1 EQ-5D-5L   CW     Denmark 22867780 10.1016/j.jval.2012.02.008 <NA>
-#> 2 EQ-5D-5L   CW      France 22867780 10.1016/j.jval.2012.02.008 <NA>
-#> 3 EQ-5D-5L   CW     Germany 22867780 10.1016/j.jval.2012.02.008 <NA>
-#> 4 EQ-5D-5L   CW       Japan 22867780 10.1016/j.jval.2012.02.008 <NA>
-#> 5 EQ-5D-5L   CW Netherlands 22867780 10.1016/j.jval.2012.02.008 <NA>
-#> 6 EQ-5D-5L   CW      Russia 33713323 10.1007/s11136-021-02804-6 <NA>
+#> 1 EQ-5D-5L   CW     Bermuda 38982011 10.1007/s10198-024-01701-2 <NA>
+#> 2 EQ-5D-5L   CW     Denmark 22867780 10.1016/j.jval.2012.02.008 <NA>
+#> 3 EQ-5D-5L   CW      France 22867780 10.1016/j.jval.2012.02.008 <NA>
+#> 4 EQ-5D-5L   CW     Germany 22867780 10.1016/j.jval.2012.02.008 <NA>
+#> 5 EQ-5D-5L   CW       Japan 22867780 10.1016/j.jval.2012.02.008 <NA>
+#> 6 EQ-5D-5L   CW Netherlands 22867780 10.1016/j.jval.2012.02.008 <NA>
 #>   ExternalURL
 #> 1        <NA>
 #> 2        <NA>

@@ -3,10 +3,10 @@
 }
 
 .get_number_levels <- function(version) {
-  if(!version %in% c("3L", "5L", "Y"))
-    stop("Version must be either 3L, 5L or Y.")
+  if(!version %in% c("3L", "5L", "Y3L"))
+    stop("Version must be either 3L, 5L or Y3L.")
   
-  levels <- ifelse(version=="Y", 3, as.numeric(sub("L", "", version)))
+  levels <- ifelse(version=="Y3L", 3, as.numeric(sub("L", "", version)))
   
   return(levels)
 }
@@ -14,7 +14,7 @@
 #' Get all five digit health state scores
 #' 
 #' Get all five digit health state scores for either EQ-5D-3L, EQ-5D-5L or
-#' EQ-5D-Y
+#' EQ-5D-Y3L
 #' 
 #' @param version the EQ-5D version. Either 3L or 5L.
 #' @return A character vector of five digit health states.
@@ -22,14 +22,20 @@
 #' @examples
 #' get_all_health_states("3L")
 #' get_all_health_states("5L")
-#' get_all_health_states("Y")
+#' get_all_health_states("Y3L")
 #' 
 #' @export getHealthStates get_all_health_states
 get_all_health_states <- function(version) {
-  if(!version %in% c("3L", "5L", "Y"))
-    stop("Version must be either 3L, 5L or Y.")
   
-  if(version %in% c("3L", "Y")) {
+  if (version == "Y") {
+    lifecycle::deprecate_warn("0.16.0", I('Setting `version = "Y"`'), I('`version = "Y3L"`'))
+    version <- "Y3L"
+  }
+  
+  if(!version %in% c("3L", "5L", "Y3L"))
+    stop("Version must be either 3L, 5L or Y3L.")
+  
+  if(version %in% c("3L", "Y3L")) {
     return(STATES[["3L"]])
   } else {
     return(STATES[["5L"]])

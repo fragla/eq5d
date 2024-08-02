@@ -51,7 +51,8 @@ Suggests:
     PMCMRplus,
     knitr,
     rmarkdown,
-    covr
+    covr,
+    lifecycle
 URL: https://github.com/fragla/eq5d
 BugReports: https://github.com/fragla/eq5d/issues
 RoxygenNote: 7.3.2

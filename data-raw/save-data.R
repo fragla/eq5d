@@ -9,7 +9,7 @@ RCW <- read.csv(file.path(root, "RCW.csv"), row.names = 1L)
 TTO <- read.csv(file.path(root, "TTO.csv"), row.names = 1L)
 VAS <- read.csv(file.path(root, "VAS.csv"), row.names = 1L)
 VT <- read.csv(file.path(root, "VT.csv"), row.names = 1L)
-Y <- read.csv(file.path(root, "Y.csv"), row.names = 1L)
+Y3L <- read.csv(file.path(root, "Y.csv"), row.names = 1L)
 
 # DSU ranges
 DSU3LRANGE <- as.list(read.csv("data-raw/DSU3LRANGE.csv", row.names = 1L))
@@ -27,7 +27,7 @@ s5 <- do.call(paste0, s5[,5:1])
 STATES <- list(`3L` = s3, `5L` = s5)
 
 usethis::use_data(
-    CW, DSU3L, DSU5L, RCW, TTO, VAS, VT, Y,
+    CW, DSU3L, DSU5L, RCW, TTO, VAS, VT, Y3L,
     DSU3LRANGE, DSU5LRANGE,
     REFERENCES,
     STATES,

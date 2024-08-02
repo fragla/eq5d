@@ -13,7 +13,7 @@ valuesets(
 }
 \arguments{
 \item{type}{string EQ-5D value set type. TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L,
-cTTO for EQ-5D-Y, CW for EQ-5D-5L crosswalk conversion dataset, or DSU for NICE Decision Support
+cTTO for EQ-5D-Y-3L, CW for EQ-5D-5L crosswalk conversion dataset, or DSU for NICE Decision Support
 Unit's EQ-5D-5L to EQ-5D-3L and EQ-5D-3L to EQ-5D-5L mappings.}
 
 \item{version}{string either 3L, 5L or Y.}
@@ -37,5 +37,5 @@ valuesets()
 valuesets(type="TTO")
 valuesets(version="5L")
 valuesets(country="UK")
-valuesets(version="Y", references=c("DOI", "PubMed"))
+valuesets(version="Y3L", references=c("DOI", "PubMed"))
 }

@@ -3,14 +3,14 @@ context("EQ-5D LSS")
 test_that("single lss gives correct answer", {
   expect_equal(lss(c(MO=1,SC=2,UA=3,PD=2,AD=1), version="3L"), 9)
   expect_equal(lss(c(MO=5,SC=5,UA=5,PD=5,AD=5), version="5L"), 25)
-  expect_equal(lss(c(MO=1,SC=2,UA=3,PD=2,AD=1), version="Y"), 9)
+  expect_equal(lss(c(MO=1,SC=2,UA=3,PD=2,AD=1), version="Y3L"), 9)
   expect_equal(lss(c(MO=5,SC=5,UA=6,PD=5,AD=5), version="5L", ignore.invalid=TRUE), NA)
 })
 
 test_that("five digit lss gives correct answer", {
   expect_equal(lss(12321, version="3L"), 9)
   expect_equal(lss(55555, version="5L"), 25)
-  expect_equal(lss(12321, version="Y"), 9)
+  expect_equal(lss(12321, version="Y3L"), 9)
   expect_equal(lfs(55575, version="5L", ignore.invalid=TRUE), NA)
   expect_equal(lss(c(11111,12345, 55555), version="5L"), c(5,15,25))
   expect_equal(lss(as.character(c(11111,12345, 55555)), version="5L"), c(5,15,25))

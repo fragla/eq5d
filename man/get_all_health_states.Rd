@@ -15,11 +15,11 @@ A character vector of five digit health states.
 }
 \description{
 Get all five digit health state scores for either EQ-5D-3L, EQ-5D-5L or
-EQ-5D-Y
+EQ-5D-Y3L
 }
 \examples{
 get_all_health_states("3L")
 get_all_health_states("5L")
-get_all_health_states("Y")
+get_all_health_states("Y3L")
 
 }
