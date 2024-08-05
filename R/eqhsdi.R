@@ -21,8 +21,13 @@
 #' @export
 hsdi <- function(scores, version=NULL, ignore.invalid=TRUE, digits=2, ...) {
   
-  if(is.null(version) || !version %in% c("3L", "5L", "Y"))
-    stop("EQ-5D version not one of 3L, 5L or Y.")
+  if (!is.null(version) && version == "Y") {
+    lifecycle::deprecate_warn("0.16.0", I('Setting `version = "Y"`'), I('`version = "Y3L"`'))
+    version <- "Y3L"
+  }
+  
+  if(is.null(version) || !version %in% c("3L", "5L", "Y3L"))
+    stop("EQ-5D version not one of 3L, 5L or Y3L.")
   
   cf <- eq5dcf(scores, version=version, ignore.invalid=ignore.invalid, proportions=TRUE, digits=NULL, ...)
   cf$CumulativeState <- 1:nrow(cf) / nrow(cf)

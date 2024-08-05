@@ -147,7 +147,7 @@ eq5d.matrix <- function(scores, version=NULL, type=NULL, country=NULL, ignore.in
 #' @export
 eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.invalid=FALSE, ...){
   
-  if (version == "Y") {
+  if (!is.null(version) && version == "Y") {
     lifecycle::deprecate_warn("0.16.0", I('Setting `version = "Y"`'), I('`version = "Y3L"`'))
     version <- "Y3L"
   }

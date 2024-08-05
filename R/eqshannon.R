@@ -29,8 +29,13 @@
 #' @export
 shannon <- function(scores, version=NULL, by.dimension=TRUE, ignore.invalid=TRUE, dimensions=.get_dimension_names(), base=2, digits=2, permutations=TRUE) {
   
-  if(is.null(version) || !version %in% c("3L", "5L", "Y"))
-    stop("EQ-5D version not one of 3L, 5L or Y.")
+  if (!is.null(version) && version == "Y") {
+    lifecycle::deprecate_warn("0.16.0", I('Setting `version = "Y"`'), I('`version = "Y3L"`'))
+    version <- "Y3L"
+  }
+  
+  if(is.null(version) || !version %in% c("3L", "5L", "Y3L"))
+    stop("EQ-5D version not one of 3L, 5L or Y3L.")
   
   if(is.character(scores) || is.numeric(scores)) {
     scores <- get_dimensions_from_health_states(scores, version=version, ignore.invalid=ignore.invalid)
