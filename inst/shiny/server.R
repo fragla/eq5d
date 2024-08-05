@@ -22,7 +22,7 @@ shinyServer(function(input, output, session) {
     if(is.null(input$version))
       return()
     
-    if(input$version %in% c("3L", "Y")) {
+    if(input$version %in% c("3L", "Y3L")) {
       levels <- 1:3
     } else {
       levels <- 1:5
@@ -61,7 +61,7 @@ shinyServer(function(input, output, session) {
   
   output$choose_version <- renderUI({
     radioButtons("version", "EQ-5D version:",
-                 c("EQ-5D-3L"="3L", "EQ-5D-5L"="5L", "EQ-5D-Y"="Y"),
+                 c("EQ-5D-3L"="3L", "EQ-5D-5L"="5L", "EQ-5D-Y-3L"="Y3L"),
                  selected="3L",
                  inline=T)
   })
@@ -93,7 +93,7 @@ shinyServer(function(input, output, session) {
         if(input$country %in% colnames(DSU3L))
           type <-c(type, "DSU")
         
-    } else if(input$version=="Y") {
+    } else if(input$version=="Y3L") {
       type <-c(type, "cTTO")
     }
     else {
@@ -380,7 +380,7 @@ shinyServer(function(input, output, session) {
   vals <- reactiveValues(MO=NULL, SC=NULL, UA=NULL, PD=NULL, AD=NULL, State=NULL, Utility=NULL, Age=NULL, Sex=NULL)
   
   getMaxLevels <- reactive({
-    if(input$version %in% c("3L", "Y")) {
+    if(input$version %in% c("3L", "Y3L")) {
       return(3)
     } else if(input$version=="5L") {
       return(5)
