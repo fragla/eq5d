@@ -9,6 +9,9 @@
 
 - Brazilian EQ-5D-Y value set added.
 
+- EQ-5D-Y changed to EQ-5D-Y-3L. “Y” value for version parameter is now
+  deprecated. “Y3L” should be used instead.
+
 - “digits” argument added to eq5d and eq5dmap functions to enable NICE
   DSU mapping scores to be returned with more precision.
 
