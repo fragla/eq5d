@@ -1,10 +1,10 @@
 ## Test environments
 
-* local OS X install, R 4.2.2
-* Ubuntu 20.04.3 (using GitHub Actions), R 4.3.2, R 4.2.3, devel
-* Mac OS X 12.7.2 (using GitHub actions) R 4.3.2
-* Microsoft Windows Server 2022 (using GitHub Actions), R 4.3.2
-* Windows Server 2012 R2 x64 (on appveyor-ci) R 4.3.2, R 4.2.3
+* local OS X install, R 4.4.0
+* Ubuntu 22.04.4 (using GitHub Actions), R 4.4.1, R 4.3.3, devel
+* Mac OS X 14.6.1 (using GitHub actions) R 4.4.1
+* Microsoft Windows Server 2022 (using GitHub Actions), R 4.4.1
+* Windows Server 2012 R2 x64 (on appveyor-ci) R 4.4.1, R 4.3.3
 * Windows release at win-builder.r-project.org
 * Windows devel at win-builder.r-project.org
 * Debian Linux, R-devel, GCC, no long double (on R-hub builder)
@@ -13,14 +13,17 @@
 
 0 errors | 0 warnings | 1 notes
 
+Possibly misspelled words in DESCRIPTION:
+  Devlin (32:30)
+
 Found the following (possibly) invalid URLs:
-  URL: https://pubmed.ncbi.nlm.nih.gov/16786549/
-    From: man/TTO.Rd
-    Status: 429
-    Message: Too Many Requests
   URL: https://pubmed.ncbi.nlm.nih.gov/17294285/
     From: inst/doc/eq5d.html
           README.md
+    Status: 429
+    Message: Too Many Requests
+  URL: https://pubmed.ncbi.nlm.nih.gov/19411320/
+    From: man/TTO.Rd
     Status: 429
     Message: Too Many Requests
   URL: https://pubmed.ncbi.nlm.nih.gov/19582490/
@@ -100,10 +103,6 @@ Found the following (possibly) invalid URLs:
     From: man/TTO.Rd
     Status: 429
     Message: Too Many Requests
-  URL: https://pubmed.ncbi.nlm.nih.gov/24519603/
-    From: man/TTO.Rd
-    Status: 429
-    Message: Too Many Requests
   URL: https://pubmed.ncbi.nlm.nih.gov/25128053/
     From: man/TTO.Rd
     Status: 429
@@ -118,10 +117,6 @@ Found the following (possibly) invalid URLs:
     Status: 429
     Message: Too Many Requests
   URL: https://pubmed.ncbi.nlm.nih.gov/26242249/
-    From: man/VT.Rd
-    Status: 429
-    Message: Too Many Requests
-  URL: https://pubmed.ncbi.nlm.nih.gov/26492214/
     From: man/VT.Rd
     Status: 429
     Message: Too Many Requests
@@ -166,11 +161,15 @@ Found the following (possibly) invalid URLs:
     From: man/VT.Rd
     Status: 429
     Message: Too Many Requests
+  URL: https://pubmed.ncbi.nlm.nih.gov/30051267/
+    From: man/VT.Rd
+    Status: 429
+    Message: Too Many Requests
   URL: https://pubmed.ncbi.nlm.nih.gov/30535779/
     From: man/VT.Rd
     Status: 429
     Message: Too Many Requests
-  URL: https://pubmed.ncbi.nlm.nih.gov/30586400/
+  URL: https://pubmed.ncbi.nlm.nih.gov/31201730/
     From: man/VT.Rd
     Status: 429
     Message: Too Many Requests
@@ -178,7 +177,7 @@ Found the following (possibly) invalid URLs:
     From: man/VT.Rd
     Status: 429
     Message: Too Many Requests
-  URL: https://pubmed.ncbi.nlm.nih.gov/31683254/
+  URL: https://pubmed.ncbi.nlm.nih.gov/31912325/
     From: man/VT.Rd
     Status: 429
     Message: Too Many Requests
@@ -190,23 +189,29 @@ Found the following (possibly) invalid URLs:
     From: man/VT.Rd
     Status: 429
     Message: Too Many Requests
-  URL: https://pubmed.ncbi.nlm.nih.gov/33447958/
+  URL: https://pubmed.ncbi.nlm.nih.gov/32940242/
     From: man/TTO.Rd
+          man/VT.Rd
     Status: 429
     Message: Too Many Requests
-  URL: https://pubmed.ncbi.nlm.nih.gov/33527304/
-    From: man/VT.Rd
+  URL: https://pubmed.ncbi.nlm.nih.gov/33565048/
+    From: man/Y3L.Rd
     Status: 429
     Message: Too Many Requests
-  URL: https://pubmed.ncbi.nlm.nih.gov/33754886/
-    From: man/Y.Rd
+  URL: https://pubmed.ncbi.nlm.nih.gov/33713323/
+    From: man/CW.Rd
+          man/TTO.Rd
     Status: 429
     Message: Too Many Requests
   URL: https://pubmed.ncbi.nlm.nih.gov/33840435/
     From: inst/doc/eq5d_nice_dsu.html
     Status: 429
     Message: Too Many Requests
-  URL: https://pubmed.ncbi.nlm.nih.gov/34173957/
+  URL: https://pubmed.ncbi.nlm.nih.gov/34129227/
+    From: NEWS.md
+    Status: 429
+    Message: Too Many Requests
+  URL: https://pubmed.ncbi.nlm.nih.gov/34736804/
     From: man/VT.Rd
     Status: 429
     Message: Too Many Requests
@@ -214,28 +219,28 @@ Found the following (possibly) invalid URLs:
     From: man/VT.Rd
     Status: 429
     Message: Too Many Requests
-  URL: https://pubmed.ncbi.nlm.nih.gov/35532835/
-    From: man/VT.Rd
-    Status: 429
-    Message: Too Many Requests
   URL: https://pubmed.ncbi.nlm.nih.gov/35604633/
-    From: man/Y.Rd
+    From: man/Y3L.Rd
     Status: 429
     Message: Too Many Requests
   URL: https://pubmed.ncbi.nlm.nih.gov/35779943/
     From: man/VT.Rd
     Status: 429
     Message: Too Many Requests
-  URL: https://pubmed.ncbi.nlm.nih.gov/35927410/
-    From: man/VT.Rd
+  URL: https://pubmed.ncbi.nlm.nih.gov/36123448/
+    From: man/Y3L.Rd
+    Status: 429
+    Message: Too Many Requests
+  URL: https://pubmed.ncbi.nlm.nih.gov/36216977/
+    From: man/Y3L.Rd
     Status: 429
     Message: Too Many Requests
   URL: https://pubmed.ncbi.nlm.nih.gov/36316544/
-    From: man/Y.Rd
+    From: man/Y3L.Rd
     Status: 429
     Message: Too Many Requests
   URL: https://pubmed.ncbi.nlm.nih.gov/36348155/
-    From: man/Y.Rd
+    From: man/Y3L.Rd
     Status: 429
     Message: Too Many Requests
   URL: https://pubmed.ncbi.nlm.nih.gov/36449173/
@@ -243,16 +248,33 @@ Found the following (possibly) invalid URLs:
           man/DSU5L.Rd
     Status: 429
     Message: Too Many Requests
-  URL: https://pubmed.ncbi.nlm.nih.gov/36720793/
+  URL: https://pubmed.ncbi.nlm.nih.gov/36564844/
     From: man/VT.Rd
     Status: 429
     Message: Too Many Requests
-  URL: https://pubmed.ncbi.nlm.nih.gov/37702988/
-    From: man/TTO.Rd
+  URL: https://pubmed.ncbi.nlm.nih.gov/36897530/
+    From: man/VT.Rd
+    Status: 429
+    Message: Too Many Requests
+  URL: https://pubmed.ncbi.nlm.nih.gov/37341959/
+    From: man/VT.Rd
     Status: 429
     Message: Too Many Requests
   URL: https://pubmed.ncbi.nlm.nih.gov/38342365/
     From: man/VT.Rd
+    Status: 429
+    Message: Too Many Requests
+  URL: https://pubmed.ncbi.nlm.nih.gov/38954389/
+    From: man/Y3L.Rd
+    Status: 429
+    Message: Too Many Requests
+  URL: https://pubmed.ncbi.nlm.nih.gov/38982011/
+    From: man/CW.Rd
+          man/TTO.Rd
+    Status: 429
+    Message: Too Many Requests
+  URL: https://pubmed.ncbi.nlm.nih.gov/9366889/
+    From: man/TTO.Rd
     Status: 429
     Message: Too Many Requests
     
