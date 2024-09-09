@@ -42,6 +42,17 @@ test_that("EQ-5D-3L Japan Crosswalk gives correct answer", {
   expect_equal(eq5dcw(c(MO=5,SC=5,UA=5,PD=5,AD=5), "Japan"), -0.111)
 })
 
+test_that("EQ-5D-3L Jordan Crosswalk gives correct answer", {
+  expect_equal(eq5dcw(c(MO=1,SC=1,UA=1,PD=1,AD=1), "Jordan"), 1)
+  expect_equal(eq5dcw(c(MO=2,SC=2,UA=2,PD=2,AD=2), "Jordan"), 0.533)
+  expect_equal(eq5dcw(c(MO=3,SC=3,UA=3,PD=3,AD=3), "Jordan"), 0.426)
+  expect_equal(eq5dcw(c(MO=4,SC=4,UA=4,PD=4,AD=4), "Jordan"), 0.156)
+  expect_equal(eq5dcw(c(MO=5,SC=5,UA=5,PD=5,AD=5), "Jordan"), -0.560)
+  expect_equal(eq5dcw(c(MO=5,SC=1,UA=2,PD=3,AD=3), "Jordan"), 0.241)
+  expect_equal(eq5dcw(c(MO=3,SC=3,UA=4,PD=4,AD=4), "Jordan"), 0.211)
+  expect_equal(eq5dcw(c(MO=3,SC=4,UA=4,PD=5,AD=5), "Jordan"), -0.061)
+})
+
 test_that("EQ-5D-3L Netherlands Crosswalk gives correct answer", {
   expect_equal(eq5dcw(c(MO=1,SC=1,UA=1,PD=1,AD=1), "Netherlands"), 1)
   expect_equal(eq5dcw(c(MO=2,SC=1,UA=2,PD=1,AD=3), "Netherlands"), 0.750)
