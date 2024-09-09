@@ -1,6 +1,12 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
+# eq5d (development version)
+
+- Ghana EQ-5D-5L value set added.
+
+- Jordan EQ-5D-3L and EQ-5D-5L to EQ-5D-3L crosswalk value sets added.
+
 # eq5d 0.15.4 (2024-09-04)
 
 - Trinidad and Tobago EQ-5D-5L value set added.

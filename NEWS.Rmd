@@ -8,6 +8,12 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+# eq5d (development version)
+
+- Ghana EQ-5D-5L value set added.
+
+- Jordan EQ-5D-3L and EQ-5D-5L to EQ-5D-3L crosswalk value sets added.
+
 # eq5d 0.15.4 (2024-09-04)
 
 - Trinidad and Tobago EQ-5D-5L value set added.
