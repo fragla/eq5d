@@ -116,6 +116,14 @@ test_that("EQ-5D-3L Japan TTO gives correct answer", {
   expect_equal(eq5d3l(c(MO=3,SC=3,UA=3,PD=3,AD=3), "TTO", "Japan"), -0.111)
 })
 
+test_that("EQ-5D-3L Jordan TTO gives correct answer", {
+  expect_equal(eq5d3l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "TTO", "Jordan"), 1)
+  expect_equal(eq5d3l(c(MO=2,SC=2,UA=2,PD=2,AD=2), "TTO", "Jordan"), 0.431)
+  expect_equal(eq5d3l(c(MO=3,SC=3,UA=3,PD=3,AD=3), "TTO", "Jordan"), -0.563)
+  expect_equal(eq5d3l(c(MO=2,SC=3,UA=2,PD=3,AD=2), "TTO", "Jordan"), 0.105)
+  expect_equal(eq5d3l(c(MO=3,SC=1,UA=2,PD=2,AD=3), "TTO", "Jordan"), -0.018)
+})
+
 test_that("EQ-5D-3L South Korea TTO gives correct answer", {
   expect_equal(eq5d3l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "TTO", "SouthKorea"), 1)
   expect_equal(eq5d3l(c(MO=1,SC=1,UA=1,PD=2,AD=1), "TTO", "SouthKorea"), 0.913)
