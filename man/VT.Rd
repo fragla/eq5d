@@ -5,7 +5,7 @@
 \alias{VT}
 \title{EQ-5D-5L VT value set data}
 \format{
-An object of class \code{data.frame} with 35 rows and 43 columns.
+An object of class \code{data.frame} with 35 rows and 44 columns.
 }
 \source{
 \itemize{
@@ -19,6 +19,7 @@ An object of class \code{data.frame} with 35 rows and 43 columns.
 \item{\strong{Ethiopia}: Welie AG, Gebretekle GB, Stolk E, Mukuria C, Krahn MD, Enquoselassie F, Fenta TG. Valuing Health State: An EQ-5D-5L Value Set for Ethiopians. Value Health Reg Issues. 2019 Nov 1;22:7-14. doi: 10.1016/j.vhri.2019.08.475. \href{https://pubmed.ncbi.nlm.nih.gov/31683254/}{PubMed}}
 \item{\strong{France}: Andrade LF, Ludwig K, Goni JMR, Oppe M, de Pouvourville G. A French Value Set for the EQ-5D-5L. Pharmacoeconomics. 2020 Jan 8. doi: 10.1007/s40273-019-00876-4. \href{https://pubmed.ncbi.nlm.nih.gov/31912325/}{PubMed}}
 \item{\strong{Germany}: Ludwig K, Graf von der Schulenburg JM, Greiner W. German Value Set for the EQ-5D-5L. Pharmacoeconomics. 2018 Feb;36(6):663-674. doi: 10.1007/s40273-018-0615-8. \href{https://pubmed.ncbi.nlm.nih.gov/29460066/}{PubMed}}
+\item{\strong{Ghana}: Addo R, Mulhern B, Norman R, Owusu R, Viney R, Nonvignon J. An EQ-5D-5L Value Set for Ghana Using an Adapted EuroQol Valuation Technology Protocol. Value Health Reg Issues. 2024 Sep 4;45:101045. doi: 10.1016/j.vhri.2024.101045. Epub ahead of print. \href{https://pubmed.ncbi.nlm.nih.gov/39236574/}{PubMed}}
 \item{\strong{HongKong}: Wong ELY, Ramos-Goñi JM, Cheung AWL, Wong AYK, Rivero-Arias O. Assessing the Use of a Feedback Module to Model EQ-5D-5L Health States Values in Hong Kong. Patient. 2018 Apr;11(2):235-247. doi: 10.1007/s40271-017-0278-0. \href{https://pubmed.ncbi.nlm.nih.gov/29019161/}{PubMed}}
 \item{\strong{Hungary}: Rencz F, Brodszky V, Gulácsi L, Golicki D, Ruzsa G, Pickard AS, Law EH, Péntek M. Parallel Valuation of the EQ-5D-3L and EQ-5D-5L by Time Trade-Off in Hungary. Value Health. 2020 Sep;23(9):1235-1245. doi: 10.1016/j.jval.2020.03.019. Epub 2020 Aug 12. \href{https://pubmed.ncbi.nlm.nih.gov/32940242/}{PubMed}}
 \item{\strong{India}: Jyani G, Sharma A, Prinja S, Kar SS, Trivedi M, Patro BK, Goyal A, Purba FD, Finch AP, Rajsekar K, Raman S, Stolk E, Kaur M. Development of an EQ-5D Value Set for India Using an Extended Design (DEVINE) Study: The Indian 5-Level Version EQ-5D Value Set. Value Health. 2022 Jul;25(7):1218-1226. doi: 10.1016/j.jval.2021.11.1370. Epub 2022 Jan 5. \href{https://pubmed.ncbi.nlm.nih.gov/35779943/}{PubMed}}

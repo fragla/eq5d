@@ -5,7 +5,7 @@
 \alias{CW}
 \title{EQ-5D-5L Crosswalk data}
 \format{
-An object of class \code{data.frame} with 3125 rows and 12 columns.
+An object of class \code{data.frame} with 3125 rows and 13 columns.
 }
 \source{
 van Hout B, Janssen MF, et al. Interim scoring for the EQ-5D-5L: Mapping the EQ-5D-5L
@@ -16,6 +16,10 @@ Bailey H, Roudijk B, Brathwaite R. The EQ-5D-3L valuation study for
 Bermuda: using an on-line EQ-VT protocol. Eur J Health Econ. 2024 Jul 9. 
 doi: 10.1007/s10198-024-01701-2. Epub ahead of print. 
 \href{https://pubmed.ncbi.nlm.nih.gov/38982011/}{PubMed}.
+
+Al Rabayah A, Roudijk B, Purba FD, Rencz F, Jaddoua S, Siebert U. Valuation of the EQ-5D-3L 
+in Jordan. Eur J Health Econ. 2024 Sep 3. doi: 10.1007/s10198-024-01712-z. Epub ahead of print. 
+\href{https://pubmed.ncbi.nlm.nih.gov/39225720/}{PubMed}.
 
 Omelyanovskiy V, Musina N, Ratushnyak S, Bezdenezhnykh T, Fediaeva V, Roudijk B,
 Purba FD. Valuation of the EQ-5D-3L in Russia. Qual Life Res. 2021 Mar 13.

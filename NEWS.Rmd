@@ -8,7 +8,7 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# eq5d (development version)
+# eq5d 0.15.5 (2024-11-19)
 
 - Ghana EQ-5D-5L value set added.
 
