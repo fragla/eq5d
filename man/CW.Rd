@@ -9,22 +9,20 @@ An object of class \code{data.frame} with 3125 rows and 13 columns.
 }
 \source{
 van Hout B, Janssen MF, et al. Interim scoring for the EQ-5D-5L: Mapping the EQ-5D-5L
-  to EQ-5D-3L value sets. Value in Health 2012 Jul-Aug;15(5):708-15. doi: 10.1016/j.jval.2012.02.008.
-  \href{https://pubmed.ncbi.nlm.nih.gov/22867780/}{PubMed}
+  to EQ-5D-3L value sets. Value in Health 2012 Jul-Aug;15(5):708-15. \doi{10.1016/j.jval.2012.02.008}.
+  PMID: 22867780.
 
 Bailey H, Roudijk B, Brathwaite R. The EQ-5D-3L valuation study for 
 Bermuda: using an on-line EQ-VT protocol. Eur J Health Econ. 2024 Jul 9. 
-doi: 10.1007/s10198-024-01701-2. Epub ahead of print. 
-\href{https://pubmed.ncbi.nlm.nih.gov/38982011/}{PubMed}.
+\doi{10.1007/s10198-024-01701-2}. Epub ahead of print. PMID: 38982011.
 
 Al Rabayah A, Roudijk B, Purba FD, Rencz F, Jaddoua S, Siebert U. Valuation of the EQ-5D-3L 
-in Jordan. Eur J Health Econ. 2024 Sep 3. doi: 10.1007/s10198-024-01712-z. Epub ahead of print. 
-\href{https://pubmed.ncbi.nlm.nih.gov/39225720/}{PubMed}.
+in Jordan. Eur J Health Econ. 2024 Sep 3. \doi{10.1007/s10198-024-01712-z}. Epub ahead of print. 
+PMID: 39225720.
 
 Omelyanovskiy V, Musina N, Ratushnyak S, Bezdenezhnykh T, Fediaeva V, Roudijk B,
 Purba FD. Valuation of the EQ-5D-3L in Russia. Qual Life Res. 2021 Mar 13.
-doi: 10.1007/s11136-021-02804-6. Epub ahead of print.
-\href{https://pubmed.ncbi.nlm.nih.gov/33713323/}{PubMed}.
+\doi{10.1007/s11136-021-02804-6}. Epub ahead of print. PMID: 33713323.
 
 \href{https://euroqol.org/information-and-support/resources/value-sets/}{EQ-5D-5L Crosswalk Index Value Sets}
 }
