@@ -223,6 +223,15 @@ test_that("EQ-5D-5L NewZealand gives correct answer", {
   expect_equal(eq5d5l(c(MO=5,SC=5,UA=5,PD=5,AD=5), "NewZealand"), -0.830)
 })
 
+test_that("EQ-5D-5L Norway gives correct answer", {
+  expect_equal(eq5d5l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "Norway"), 1)
+  expect_equal(eq5d5l(c(MO=1,SC=5,UA=4,PD=3,AD=2), "Norway"), 0.460)
+  expect_equal(eq5d5l(c(MO=2,SC=2,UA=2,PD=2,AD=2), "Norway"), 0.779)
+  expect_equal(eq5d5l(c(MO=3,SC=3,UA=3,PD=3,AD=3), "Norway"), 0.539)
+  expect_equal(eq5d5l(c(MO=4,SC=4,UA=4,PD=4,AD=4), "Norway"), -0.126)
+  expect_equal(eq5d5l(c(MO=5,SC=5,UA=5,PD=5,AD=5), "Norway"), -0.453)
+})
+
 test_that("EQ-5D-5L Peru cTTO gives correct answer", {
   expect_equal(eq5d5l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "Peru_cTTO"), 1)
   expect_equal(eq5d5l(c(MO=2,SC=2,UA=2,PD=2,AD=2), "Peru_cTTO"), 0.441)
