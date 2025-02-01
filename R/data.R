@@ -163,11 +163,11 @@
 #' EQ-5D-5L VT value set data
 #'
 #' EQ-5D-5L VT value set calculation data for Australia, Belgium, Canada, China, 
-#' Denmark, Egypt, England, Ethiopia, France, Germany, HongKong, Hungary, India, 
-#' Indonesia, Iran, Ireland, Italy, Japan, Malaysia, Mexico, Netherlands, 
-#' NewZealand, Peru, Philippines, Poland, Portugal, Romania, SaudiArabia, 
-#' Slovenia, SouthKorea, Spain, Sweden, Taiwan, Thailand, 
-#' Uganda, Uruguay, USA, Vietnam and Western Preference Pattern (WePP).
+#' Denmark, Egypt, England, Ethiopia, France, Germany, Ghana, HongKong, Hungary,
+#' India, Indonesia, Iran, Ireland, Italy, Japan, Malaysia, Mexico, Netherlands, 
+#' NewZealand, Norway, Peru, Philippines, Poland, Portugal, Romania, SaudiArabia, 
+#' Slovenia, SouthKorea, Spain, Sweden, Taiwan, Thailand, Uganda, UAE, Uruguay, 
+#' USA, Vietnam and Western Preference Pattern (WePP).
 #'
 #' @source
 #' \itemize{
@@ -208,8 +208,9 @@
 #' \item{\strong{Sweden (2022)}: Sun S, Chuang LH, Sahlén KG, Lindholm L, Norström F. Estimating a social value set for EQ-5D-5L in Sweden. Health Qual Life Outcomes. 2022 Dec 23;20(1):167. \doi{10.1186/s12955-022-02083-w}. PMID: 36564844.}
 #' \item{\strong{Taiwan}: Lin HW, Li CI, Lin FJ, Chang JY, Gau CS, Luo N, Pickard AS, Ramos Goñi JM, Tang CH, Hsu CN. Valuation of the EQ-5D-5L in Taiwan. PLoS One. 2018; 13(12):: e0209344. \doi{10.1371/journal.pone.0209344}. PMID: 30586400.}
 #' \item{\strong{Thailand} Pattanaphesaj J, Thavorncharoensap M, Ramos-Goñi JM, Tongsiri S, Ingsrisawang L, Teerawattananon Y. The EQ-5D-5L Valuation study in Thailand. Expert Review of Pharmacoeconomics & Outcomes Research. 2018 Oct;18(5):551-558. \doi{10.1080/14737167.2018.1494574}. PMID: 29958008.}
-#' \item{\strong{Uganda} Yang F, Katumba KR, Roudijk B, Yang Z, Revill P, Griffin S, Ochanda PN, Lamorde M, Greco G, Seeley J, Sculpher M. Developing the EQ-5D-5L Value Set for Uganda Using the 'Lite' Protocol. Pharmacoeconomics. 2021 Nov 29:1–13. \doi{10.1007/s40273-021-01101-x}. PMID: 34841471.}
 #' \item{\strong{Trinidad_and_Tobago} Bailey H, Jonker MF, Pullenayegum E, Rencz F, Roudijk B. The EQ-5D-5L valuation study for Trinidad and Tobago. Health Qual Life Outcomes. 2024 Jul 2;22(1):51. \doi{10.1186/s12955-024-02266-7}. PMID: 38956543.}
+#' \item{\strong{UAE} Al Sayah F, Roudijk B, El Sadig M, Al Mannaei A, Farghaly MN, Dallal S, Kaddoura R, Metni M, Elbarazi I, Kharroubi SA. A Value Set for the EQ-5D-5L for United Arab Emirates. Value Health. 2025 Jan 27:S1098-3015(25)00021-X. \doi{10.1016/j.jval.2025.01.003}. Epub ahead of print. PMID: 39880198.}
+#' \item{\strong{Uganda} Yang F, Katumba KR, Roudijk B, Yang Z, Revill P, Griffin S, Ochanda PN, Lamorde M, Greco G, Seeley J, Sculpher M. Developing the EQ-5D-5L Value Set for Uganda Using the 'Lite' Protocol. Pharmacoeconomics. 2021 Nov 29:1–13. \doi{10.1007/s40273-021-01101-x}. PMID: 34841471.}
 #' \item{\strong{Uruguay}: Augustovski F, Rey-Ares L, Irazola V, Garay OU, Gianneo O, Fernández G, Morales M, Gibbons L, Ramos-Goñi JM. An EQ-5D-5L value set based on Uruguayan population preferences. Qual Life Res. 2016 Feb;25(2):323-33. \doi{10.1007/s11136-015-1086-4}. PMID: 26242249.}
 #' \item{\strong{USA}: Pickard AS, Law EH, Jiang R, Pullenayegum E, Shaw JW, Xie F, Oppe M, Boye KS, Chapman RH, Gong CL, Balch A, Busschbach JJV. United States Valuation of EQ-5D-5L Health States Using an International Protocol. Value in Health. 2019 Aug;22(8):931-941. \doi{10.1016/j.jval.2019.02.009}. PMID: 31426935.}
 #' \item{\strong{Vietnam}: Mai VQ, Sun S, Minh HV, Luo N, Giang KB, Lindholm L, Sahlen KG. An EQ-5D-5L Value Set for Vietnam. Qual Life Res. 2020;29(7):1923-1933. \doi{10.1007/s11136-020-02469-7}. PMID: 32221805.}
