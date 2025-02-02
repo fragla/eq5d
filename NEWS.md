@@ -1,6 +1,10 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
+# eq5d (development version)
+
+- United Arab Emirates EQ-5D-5L value set added.
+
 # eq5d 0.15.6 (2025-01-17)
 
 - Norwegian EQ-5D-5L value set added.
