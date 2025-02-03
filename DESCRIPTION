@@ -35,7 +35,7 @@ Description: EQ-5D is a popular health related quality of life instrument used
     or Excel files. 
 License: MIT + file LICENSE
 Encoding: UTF-8
-Depends: R (>= 3.5.0)
+Depends: R (>= 3.5.0), lifecycle, rlang
 Suggests: 
     testthat,
     shiny,
@@ -51,8 +51,7 @@ Suggests:
     PMCMRplus,
     knitr,
     rmarkdown,
-    covr,
-    lifecycle
+    covr
 URL: https://github.com/fragla/eq5d
 BugReports: https://github.com/fragla/eq5d/issues
 RoxygenNote: 7.3.2
