@@ -53,7 +53,7 @@ eq5dy3l <- function(scores, country=NULL) {
 #' @export
 #' 
 eq5dy <- function(scores, country=NULL) {
-  lifecycle::deprecate_warn("0.16.0", "eq5dy()", "eq5dy3l()")  
+  lifecycle::deprecate_soft("0.15.4", "eq5dy()", "eq5dy3l()")  
   eq5dy3l(scores, country)
 }
 

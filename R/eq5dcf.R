@@ -56,7 +56,7 @@ eq5dcf.matrix <- function(data, version, ignore.invalid=TRUE, proportions=FALSE,
 eq5dcf.default <- function(data, version, ignore.invalid=TRUE, proportions=FALSE, digits=1, ...) {
   
   if (!is.null(version) && version == "Y") {
-    lifecycle::deprecate_warn("0.16.0", I('Setting `version = "Y"`'), I('`version = "Y3L"`'))
+    lifecycle::deprecate_soft("0.15.4", I('Setting `version = "Y"`'), I('`version = "Y3L"`'))
     version <- "Y3L"
   }  
   

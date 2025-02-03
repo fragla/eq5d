@@ -148,7 +148,7 @@ eq5d.matrix <- function(scores, version=NULL, type=NULL, country=NULL, ignore.in
 eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.invalid=FALSE, ...){
   
   if (!is.null(version) && version == "Y") {
-    lifecycle::deprecate_warn("0.16.0", I('Setting `version = "Y"`'), I('`version = "Y3L"`'))
+    lifecycle::deprecate_soft("0.15.4", I('Setting `version = "Y"`'), I('`version = "Y3L"`'))
     version <- "Y3L"
   }
   
@@ -306,7 +306,7 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
 valuesets <- function(type=NULL, version=NULL, country=NULL, references=c("PubMed", "DOI", "ISBN", "ExternalURL")) {
   
   if (!is.null(version) && version == "Y") {
-    lifecycle::deprecate_warn("0.16.0", I('Setting `version = "Y"`'), I('`version = "Y3L"`'))
+    lifecycle::deprecate_soft("0.15.4", I('Setting `version = "Y"`'), I('`version = "Y3L"`'))
     version <- "Y3L"
   }
   

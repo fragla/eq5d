@@ -36,7 +36,7 @@
 hpg <- function(pre, post, country=NULL, version=NULL, type=NULL, ignore.invalid=TRUE, dimensions=.get_dimension_names(), no.problems=TRUE) {
   
   if (!is.null(version) && version == "Y") {
-    lifecycle::deprecate_warn("0.16.0", I('Setting `version = "Y"`'), I('`version = "Y3L"`'))
+    lifecycle::deprecate_soft("0.15.4", I('Setting `version = "Y"`'), I('`version = "Y3L"`'))
     version <- "Y3L"
   }
   

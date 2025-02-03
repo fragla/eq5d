@@ -43,7 +43,7 @@ eq5dds <- function(data, version, counts=FALSE, by=NULL, ignore.invalid=TRUE, ..
   if(!is.null(args$five.digit)) {five.digit <- args$five.digit}
   
   if (!is.null(version) && version == "Y") {
-    lifecycle::deprecate_warn("0.16.0", I('Setting `version = "Y"`'), I('`version = "Y3L"`'))
+    lifecycle::deprecate_soft("0.15.4", I('Setting `version = "Y"`'), I('`version = "Y3L"`'))
     version <- "Y3L"
   }
 
