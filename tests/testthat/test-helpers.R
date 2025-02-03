@@ -29,3 +29,12 @@ test_that("get_health_states_from_dimensions throws an error", {
   expect_error(get_health_states_from_dimensions(scores.df, version="5L", ignore.invalid=TRUE, dimensions=c("Mob","SC","UA","PD","AD")))
 })
 
+test_that("get_all_health_states using version='Y' is deprecated", {
+  rlang::local_options(lifecycle_verbosity = "error")
+  expect_error(get_all_health_states("Y")[c(4,41,106,158,179)])
+})
+
+test_that("get_all_health_states using version='Y' still works", {
+  rlang::local_options(lifecycle_verbosity = "quiet")
+  expect_equal(get_all_health_states("Y")[c(4,41,106,158,179)], c("11121","12222","21331","23322","31232"))
+})

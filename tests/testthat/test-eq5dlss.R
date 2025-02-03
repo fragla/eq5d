@@ -45,3 +45,13 @@ test_that("lss returns NA for incorrect parameters when ignore.invalid=TRUE", {
   expect_equal(lss(12345, version="3L", ignore.invalid=TRUE),NA)
   expect_equal(lss(c(MO=1,SC=7,UA=3,PD=2,AD=1), version="3L", ignore.invalid=TRUE), NA)
 })
+
+test_that("eq5dlss using version='Y' is deprecated", {
+  rlang::local_options(lifecycle_verbosity = "error")
+  expect_error(lss(c(MO=1,SC=2,UA=3,PD=2,AD=1), version="Y"))
+})
+
+test_that("eq5dlss using version='Y' still works", {
+  rlang::local_options(lifecycle_verbosity = "quiet")
+  expect_equal(lss(c(MO=1,SC=2,UA=3,PD=2,AD=1), version="Y"), 9)
+})

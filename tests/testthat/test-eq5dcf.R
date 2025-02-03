@@ -35,3 +35,13 @@ dat.mat <- as.matrix(dat.df)
 test_that("eq5dcf data.frame gives correct answer", {
   expect_equal(eq5dcf(dat.mat, version="3L", ignore.invalid=TRUE), res)
 })
+
+test_that("eq5dcf using version='Y' is deprecated", {
+  rlang::local_options(lifecycle_verbosity = "error")
+  expect_error(eq5dcf(dat, version="Y", ignore.invalid=TRUE))
+})
+
+test_that("eq5dcf using version='Y' still works", {
+  rlang::local_options(lifecycle_verbosity = "quiet")
+  expect_equal(eq5dcf(dat, version="Y", ignore.invalid=TRUE), res)
+})

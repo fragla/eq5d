@@ -38,3 +38,13 @@ test_that("eqshannon data.frame throws error", {
   expect_error(shannon(pre.df, version="3L", permutations=TRUE, dimensions=c("M0","SC","UA","PD","AD")))
   expect_error(shannon(pre.df, version="3L", permutations=TRUE, ignore.invalid=FALSE))
 })
+
+test_that("eqshannon using version='Y' is deprecated", {
+  rlang::local_options(lifecycle_verbosity = "error")
+  expect_error(shannon(pre, version="Y", by.dimension=TRUE, permutations=TRUE)$MO)
+})
+
+test_that("eq5dshannon using version='Y' still works", {
+  rlang::local_options(lifecycle_verbosity = "quiet")
+  expect_equal(shannon(pre, version="Y", by.dimension=TRUE, permutations=TRUE)$MO, list(H=0.97, H.max=1.58, J=0.61))
+})

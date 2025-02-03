@@ -41,3 +41,13 @@ test_that("lfs throws error for incorrect parameters", {
   expect_error(lss(data.frame(five.digit=c(11111,12345, 55555)), version="5L", dimensions=c("M","S","U","P","A")))
   
 })
+
+test_that("eq5dlfs using version='Y' is deprecated", {
+  rlang::local_options(lifecycle_verbosity = "error")
+  expect_error(lfs(c(MO=1,SC=2,UA=3,PD=2,AD=1), version="Y"))
+})
+
+test_that("eq5dlfs using version='Y' still works", {
+  rlang::local_options(lifecycle_verbosity = "quiet")
+  expect_equal(lfs(c(MO=1,SC=2,UA=3,PD=2,AD=1), version="Y"), "221")
+})

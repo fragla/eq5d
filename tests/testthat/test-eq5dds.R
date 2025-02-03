@@ -38,3 +38,13 @@ test_that("eq5dds throws error", {
   expect_error(eq5dds(test1.df, version="7L"))
   expect_error(eq5dds(test1.df[c("MO","SC","UA","PD")], version="3L"))
 })
+
+test_that("eq5dds using version='Y' is deprecated", {
+  rlang::local_options(lifecycle_verbosity = "error")
+  expect_error(eq5dds(test1.df, version="Y"))
+})
+
+test_that("eq5dds using version='Y' still works", {
+  rlang::local_options(lifecycle_verbosity = "quiet")
+  expect_equal(eq5dds(test1.df, version="Y"), res1.df)
+})

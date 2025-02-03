@@ -52,3 +52,12 @@ test_that("eqpchc data.frame throws error", {
   expect_error(pchc(pre.df[-1,], post.df, version="3L", ignore.invalid=FALSE))
 })
 
+test_that("eqpchc using version='Y' is deprecated", {
+  rlang::local_options(lifecycle_verbosity = "error")
+  expect_error(pchc(pre.df, post.df, version="Y", no.problems=TRUE, totals=TRUE))
+})
+
+test_that("eq5dpchc using version='Y' still works", {
+  rlang::local_options(lifecycle_verbosity = "quiet")
+  expect_equal(pchc(pre.df, post.df, version="Y", no.problems=TRUE, totals=TRUE), res1)
+})

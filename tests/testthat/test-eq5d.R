@@ -92,3 +92,13 @@ test_that("when ignore.invalid flag is FALSE the correct answer is returned", {
   expect_error(eq5d(c(MO=1,SC=2,UA=3,PD=2,AD=1), version="3L", type="ABC", country="Germany"))
   expect_error(eq5d(0.923, country="UK", version="5L", type="DSU", age=50, sex="male", bwidth=0))
 })
+
+test_that("eq5d using version='Y' is deprecated", {
+  rlang::local_options(lifecycle_verbosity = "error")
+  expect_error(eq5d(33333, country="Slovenia", version="Y"))
+})
+
+test_that("eq5d using version='Y' still works", {
+  rlang::local_options(lifecycle_verbosity = "quiet")
+  expect_equal(eq5d(33333, country="Slovenia", version="Y"), -0.691)
+})

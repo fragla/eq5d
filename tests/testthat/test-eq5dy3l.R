@@ -84,3 +84,13 @@ test_that("EQ-5D-Y throws error for incorrect parameters", {
   expect_error(eq5dy3l(c(M0=1,SC=2,UA=5,PD=2,AD=1), "Slovenia"))
   expect_error(eq5dy3l(c(MO=1,SC=2,UA=3,PD=2,AD=1), "Liechtenstein"))
 })
+
+test_that("eq5dlss using version='Y' is deprecated", {
+  rlang::local_options(lifecycle_verbosity = "error")
+  expect_error(eq5dy(c(MO=2,SC=2,UA=2,PD=2,AD=2), "Spain"))
+})
+
+test_that("eq5dlss using version='Y' still works", {
+  rlang::local_options(lifecycle_verbosity = "quiet")
+  expect_equal(eq5dy(c(MO=2,SC=2,UA=2,PD=2,AD=2), "Spain"), 0.458)
+})
