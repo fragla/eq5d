@@ -40,6 +40,8 @@ test_that("Wrapper function gives correct answer", {
   expect_equal(eq5d(-0.594, country="UK", version="3L", type="DSU", age=95, sex="female"), -0.209)
   expect_equal(eq5d(-0.002, country="UK", version="3L", type="DSU", age=50, sex="male", bwidth=0.1), 0.312)
   expect_equal(eq5d(0.715, country="UK", version="5L", type="DSU", age=50, sex="male", bwidth = 0.0001), 0.670)
+  expect_equal(eq5d(0.715, country="UK", version="5L", type="DSU", age=50, sex="male", bwidth = 0.0001, digits = 7), 0.6701727)
+  expect_equal(eq5d(0.715, country="UK", version="5L", type="DSU", age=50, sex="male", bwidth = 0.0001, ignore.invalid = TRUE, digits = "two"), NA)
   expect_equal(eq5d(0.435, country="UK", version="5L", type="DSU", age=30, sex="female", bwidth = 0.0001), 0.302)
   expect_equal(eq5d(0.95, country="UK", version="5L", type="DSU", age=70, sex="male", bwidth = 0.0001), 0.935)
   expect_equal(eq5d(0.715, country="UK", version="5L", type="DSU", age=50, sex="male", bwidth = 0.1), 0.637)
@@ -91,6 +93,8 @@ test_that("when ignore.invalid flag is FALSE the correct answer is returned", {
   expect_error(eq5d(c(MO=1,SC=2,UA=3,PD=2,AD=5), version="5L", type="DSU", country="Japan", age=205, sex="m"))
   expect_error(eq5d(c(MO=1,SC=2,UA=3,PD=2,AD=1), version="3L", type="ABC", country="Germany"))
   expect_error(eq5d(0.923, country="UK", version="5L", type="DSU", age=50, sex="male", bwidth=0))
+  expect_error(eq5d(0.715, country="UK", version="5L", type="DSU", age=50, sex="male", bwidth = 0.0001, digits = "two"))
+  
 })
 
 test_that("eq5d using version='Y' is deprecated", {
@@ -102,3 +106,26 @@ test_that("eq5d using version='Y' still works", {
   rlang::local_options(lifecycle_verbosity = "quiet")
   expect_equal(eq5d(33333, country="Slovenia", version="Y"), -0.691)
 })
+
+context("Value sets")
+
+test_that("valuesets function gives correct answer", {
+  expect_equal(valuesets(country="Ghana")$DOI, "10.1016/j.vhri.2024.101045")
+  expect_equal(valuesets(country = "Belgium", version = "Y3L")$DOI, "10.1007/s40273-022-01187-x")
+  expect_equal(as.character(valuesets(country = "Bermuda", version="3L", type="TTO", references=NULL)[1,]), c("EQ-5D-3L","TTO","Bermuda"))
+})
+
+test_that("valuesets function gives throws error", {
+  expect_error(valuesets(country="UK", references = "Medline"))
+})
+
+test_that("eq5d using version='Y' is deprecated", {
+  rlang::local_options(lifecycle_verbosity = "error")
+  expect_error(valuesets(country = "Belgium", version = "Y"))
+})
+
+test_that("eq5d using version='Y' still works", {
+  rlang::local_options(lifecycle_verbosity = "quiet")
+  expect_equal(valuesets(country = "Belgium", version = "Y")$DOI, "10.1007/s40273-022-01187-x")
+})
+  
