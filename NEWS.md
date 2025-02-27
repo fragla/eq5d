@@ -5,6 +5,10 @@
 
 - United Arab Emirates EQ-5D-5L value set added.
 
+- Bug fixed in calculating index score for 11111 using Australian and
+  Sri Lankan EQ-5D-3L value sets with the latest R development version
+  on Ubuntu.
+
 # eq5d 0.15.6 (2025-01-17)
 
 - Norwegian EQ-5D-5L value set added.
