@@ -209,7 +209,7 @@ eq5d3l <- function(scores, type="TTO", country="UK") {
 
   if(length(interactions) > 0) {
     interaction.pairs <- sapply(interactions, function(x) {
-      pairs <- strsplit(gsub("([[:digit:]])([[:upper:]])", "\\1 \\2", x, " ")," ")
+      pairs <- strsplit(sub("([[:digit:]])([[:upper:]])", "\\1 \\2", x, " ")," ")
       lapply(pairs, function(y){
         all(y %in% score.dimensions)
       })
