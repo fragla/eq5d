@@ -10,7 +10,8 @@ hsdc_plot(data, version, group = NULL, background = TRUE)
 \item{data}{A data.frame with columns MO, SC, UA, PD and AD representing
 Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression 
 or a "State" column containing five digit scores. Alternatively a vector of 
-five digit scores can also be used..}
+five digit scores can also be used. Additional columns can be included for 
+producing HSDCs by a grouping variable.}
 
 \item{version}{string of value "3L", "5L" or "Y3L" to indicate instrument 
 version.}
@@ -21,7 +22,7 @@ by (default=NULL)}
 \item{background}{boolean include background and gridlines.}
 }
 \value{
-ggplot object.
+a ggplot object.
 }
 \description{
 Generate Health State Density Curve for an EQ-5D dataset. Health State 
@@ -31,5 +32,6 @@ function can be provided to plot multiple curves by group.
 \examples{
 data <- read_excel(system.file("extdata", "eq5d3l_example.xlsx", package="eq5d"))
 hsdc_plot(data = data, version = "3L")
+hsdc_plot(data = data, version = "3L", group="Group")
 
 }

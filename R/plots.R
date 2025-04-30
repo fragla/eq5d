@@ -7,7 +7,8 @@
 #' @param data A data.frame with columns MO, SC, UA, PD and AD representing
 #'   Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression 
 #'   or a "State" column containing five digit scores. Alternatively a vector of 
-#'   five digit scores can also be used..
+#'   five digit scores can also be used. Additional columns can be included for 
+#'   producing HSDCs by a grouping variable.
 #' @param version string of value "3L", "5L" or "Y3L" to indicate instrument 
 #'  version.
 #' @param group string (optional) referencing a data.frame column to group data
@@ -17,6 +18,7 @@
 #' @examples
 #' data <- read_excel(system.file("extdata", "eq5d3l_example.xlsx", package="eq5d"))
 #' hsdc_plot(data = data, version = "3L")
+#' hsdc_plot(data = data, version = "3L", group="Group")
 #'
 #' @export
 hsdc_plot <- function(data, version, group=NULL, background=TRUE) {
@@ -85,4 +87,5 @@ hsdc_plot <- function(data, version, group=NULL, background=TRUE) {
     
   return(p)
 }   
+
 
