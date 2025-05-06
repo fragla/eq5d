@@ -42,7 +42,6 @@ Suggests:
     DT,
     mime,
     readxl,
-    ggplot2,
     ggiraph,
     ggiraphExtra,
     shinycssloaders,

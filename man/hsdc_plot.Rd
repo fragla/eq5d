@@ -30,7 +30,7 @@ Density Index is also calculated representing equality/inequality. A group
 function can be provided to plot multiple curves by group.
 }
 \examples{
-data <- read_excel(system.file("extdata", "eq5d3l_example.xlsx", package="eq5d"))
+data <- read.csv(system.file("extdata", "eq5d3l_example.csv", package="eq5d"))
 hsdc_plot(data = data, version = "3L")
 hsdc_plot(data = data, version = "3L", group="Group")
 

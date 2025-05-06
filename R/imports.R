@@ -3,4 +3,5 @@
 #' @importFrom stats weighted.mean
 #' @importFrom rlang local_options
 #' @importFrom lifecycle deprecate_soft
+#' @import ggplot2
 NULL

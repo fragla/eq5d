@@ -16,7 +16,7 @@
 #' @param background boolean include background and gridlines.
 #' @return a ggplot object.
 #' @examples
-#' data <- read_excel(system.file("extdata", "eq5d3l_example.xlsx", package="eq5d"))
+#' data <- read.csv(system.file("extdata", "eq5d3l_example.csv", package="eq5d"))
 #' hsdc_plot(data = data, version = "3L")
 #' hsdc_plot(data = data, version = "3L", group="Group")
 #'
@@ -35,7 +35,7 @@ hsdc_plot <- function(data, version, group=NULL, background=TRUE) {
     res <- eq5dcf(data, version=version, proportions = TRUE)
     res$CumulativeState <- 1:nrow(res)/nrow(res)
     
-    p <- ggplot(res, aes(CumulativeProp, CumulativeState)) + 
+    p <- ggplot(res, aes(.data[["CumulativeProp"]], .data[["CumulativeState"]])) + 
       geom_line(color="#FF9999") + 
       annotate("segment", x=0, y=0, xend=1,yend=1, colour="black") +  
       annotate("text", x=0.5, y=0.9, label=paste0("HSDI=", hsdi)) +
@@ -64,7 +64,7 @@ hsdc_plot <- function(data, version, group=NULL, background=TRUE) {
     
     group <- sym(group)
     
-    p <- ggplot(res, aes(CumulativeProp, CumulativeState, colour=!!group, group=!!group)) +
+    p <- ggplot(res, aes(.data[["CumulativeProp"]], .data[["CumulativeState"]], colour=!!group, group=!!group)) +
       geom_line() +
       annotate("segment", x=0, y=0, xend=1,yend=1, colour="black") +
       annotate("text", x=0.5, y=0.9, label=label, size=3) +
@@ -87,5 +87,4 @@ hsdc_plot <- function(data, version, group=NULL, background=TRUE) {
     
   return(p)
 }   
-
 
