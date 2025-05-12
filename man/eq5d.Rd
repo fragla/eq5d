@@ -34,7 +34,7 @@ with invalid, incomplete or missing data.}
 be a number which is applied to the whole dataset. When a single
 NICE DSU score is being calculated "age", "sex" and "bwidth" are also
 used. See \code{\link{eq5dmap}} for valid options. "digits" can also be 
-used to return NICE DSU mapping scores with more precision.}
+used to return scores with more precision.}
 }
 \value{
 a numeric vector of utility index scores.

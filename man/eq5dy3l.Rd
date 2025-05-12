@@ -4,13 +4,15 @@
 \alias{eq5dy3l}
 \title{Calculate EQ-5D-Y-3L index scores}
 \usage{
-eq5dy3l(scores, country = NULL)
+eq5dy3l(scores, country = NULL, digits = 3)
 }
 \arguments{
 \item{scores}{numeric with names MO, SC, UA, PD and AD representing
 Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.}
 
 \item{country}{value set country.}
+
+\item{digits}{number of decimal places to return.}
 }
 \value{
 calculated utility index score.

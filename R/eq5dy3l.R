@@ -6,12 +6,13 @@
 #' @param scores numeric with names MO, SC, UA, PD and AD representing
 #'   Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.
 #' @param country value set country.
+#' @param digits number of decimal places to return.
 #' @return calculated utility index score.
 #' @examples
 #' eq5dy3l(scores=c(MO=3,SC=3,UA=3,PD=3,AD=3), country="Slovenia")
 #'
 #' @export
-eq5dy3l <- function(scores, country=NULL) {
+eq5dy3l <- function(scores, country=NULL, digits=3) {
 
   if(!all(.get_dimension_names() %in% names(scores)))
     stop("Unable to identify EQ-5D dimensions in scores.")
@@ -34,7 +35,7 @@ eq5dy3l <- function(scores, country=NULL) {
   values <- c(survey["FullHealth"],
               .intercept(scores, survey), .power(scores, survey), .all3(scores, survey))
 
-  return(round(sum(values, na.rm = TRUE), digits=3))
+  return(round(sum(values, na.rm = TRUE), digits=digits))
 }
 
 #' Calculate EQ-5D-Y index scores
