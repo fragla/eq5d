@@ -14,6 +14,8 @@ knitr::opts_chunk$set(echo = TRUE)
 - "digits" argument added to eq5d3l, eq5d5l and eq5dy3l functions to enable 
 scores to be returned with more precision.
 
+- van Hout (2021) reverse crosswalk method added to eq5drcw function.
+
 # eq5d 0.15.7 (2025-02-28)
 
 - United Arab Emirates EQ-5D-5L value set added.

@@ -26,8 +26,19 @@ s5<- expand.grid(replicate(5L, 1:5, simplify = FALSE))
 s5 <- do.call(paste0, s5[,5:1])
 STATES <- list(`3L` = s3, `5L` = s5)
 
+# van Hout (2021) EQ-5D-3L to EQ-5D-5L
+VH_2021_PROBS <- read.csv(file.path(root, "VH2021_probs.csv"), row.names = 1L)
+COUNTRIES_5L <- valuesets(version = "5L", type="VT")[["Country"]]
+RCWVH <- lapply(COUNTRIES_5L, function(x) {
+  scores <- eq5d(eq5d:::STATES$`5L`, country = x, version = "5L", type = "VT", digits = Inf)
+  mapping <- as.matrix(VH_2021_PROBS) %*% as.matrix(scores)
+})
+RCWVH <- do.call(cbind, RCWVH)
+colnames(RCWVH) <- COUNTRIES_5L
+
+# Build sysdata.rda
 usethis::use_data(
-    CW, DSU3L, DSU5L, RCW, TTO, VAS, VT, Y3L,
+    CW, DSU3L, DSU5L, RCW, RCWVH, TTO, VAS, VT, Y3L,
     DSU3LRANGE, DSU5LRANGE,
     REFERENCES,
     STATES,

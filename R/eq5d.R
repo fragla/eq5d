@@ -257,7 +257,12 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
     if(!is.null(type) && type %in% c("TTO", "VAS")) {
       eq5d3l(scores, type=type, country=country, digits = digits)
     } else if(!is.null(type) && type=="RCW") {
-      eq5drcw(scores, country=country)
+      if(is.null(args$rcw)) {
+        rcw <- "VH"
+      } else {
+        rcw <- args$rcw
+      }
+      eq5drcw(scores, country=country, rcw=rcw, digits = digits)
     } else if(!is.null(type) && type=="DSU") {
       eq5dmap(scores, country, version, args$age, args$sex, bwidth, digits)
     } else {
