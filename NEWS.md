@@ -5,6 +5,9 @@
 
 - Moroccan EQ-5D-5L value set added.
 
+- “digits” argument added to eq5d3l, eq5d5l and eq5dy3l functions to
+  enable scores to be returned with more precision.
+
 # eq5d 0.15.7 (2025-02-28)
 
 - United Arab Emirates EQ-5D-5L value set added.

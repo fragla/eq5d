@@ -26,7 +26,7 @@
 #'   be a number which is applied to the whole dataset. When a single
 #'   NICE DSU score is being calculated "age", "sex" and "bwidth" are also
 #'   used. See \code{\link{eq5dmap}} for valid options. "digits" can also be 
-#'   used to return NICE DSU mapping scores with more precision.
+#'   used to return scores with more precision.
 #' @return a numeric vector of utility index scores.
 #' @examples
 #' 
@@ -255,7 +255,7 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
 
   if(version=="3L") {
     if(!is.null(type) && type %in% c("TTO", "VAS")) {
-      eq5d3l(scores, type=type, country=country)
+      eq5d3l(scores, type=type, country=country, digits = digits)
     } else if(!is.null(type) && type=="RCW") {
       eq5drcw(scores, country=country)
     } else if(!is.null(type) && type=="DSU") {
@@ -264,11 +264,11 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
       stop("EQ-5D-3L valueset type not recognised. Must be one of 'TTO', 'VAS', 'RCW' or 'DSU'.")
     }
   } else if (version=="Y3L") {
-    eq5dy3l(scores, country=country)
+    eq5dy3l(scores, country=country, digits = digits)
   }
   else {
     if(!is.null(type) && type=="VT") {
-      eq5d5l(scores, country=country)
+      eq5d5l(scores, country=country, digits = digits)
     } else if(!is.null(type) && type=="CW") {
       eq5dcw(scores, country=country)
     } else if(!is.null(type) && type=="DSU") {
