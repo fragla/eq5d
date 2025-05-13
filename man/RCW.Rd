@@ -3,7 +3,7 @@
 \docType{data}
 \name{RCW}
 \alias{RCW}
-\title{EQ-5D-3L Reverse Crosswalk data}
+\title{EQ-5D-3L Reverse Crosswalk data (deprecated)}
 \format{
 An object of class \code{data.frame} with 243 rows and 4 columns.
 }
@@ -15,7 +15,8 @@ RCW
 }
 \description{
 Reverse Crosswalk index value table to calculate EQ-5D-5L indices from EQ-5D-3L data
-  for England, Germany, Netherlands and USA. Table uses the values of van Hout et al
-  from the EuroQol analysis tools webpage.
+  for England, Germany, Netherlands and USA. Table uses the values published 
+  on the EuroQol analysis tools webpage based on reverse engineering of
+  van Hout et al (2012)
 }
 \keyword{datasets}
