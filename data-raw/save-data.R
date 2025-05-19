@@ -47,9 +47,4 @@ usethis::use_data(
     overwrite = TRUE
 )
 
-
-
-
-
-
-
+tools::resaveRdaFiles("R/")
