@@ -23,7 +23,7 @@ test_that("Wrapper function gives correct answer", {
   expect_equal(eq5d(test.df2, country="England", version="5L", type="VT", five.digit="state"), c(1.000,0.393,0.434,0.488,0.400))
   expect_equal(eq5d(as.matrix(test.df), country="Canada", version="5L", type="VT"), c(0.949,0.362,0.39,0.524,0.431))
   expect_equal(eq5d(c(MO=1,SC=2,UA=3,PD=2,AD=1), type="CW", version="5L", country="Denmark"), 0.736)
-  expect_equal(eq5d(c(MO=3,SC=3,UA=3,PD=3,AD=3), type="RCW", version="3L", country="Netherlands", rcw="EQ"), -0.312)
+  expect_equal(eq5d(c(MO=3,SC=3,UA=3,PD=3,AD=3), type="RCW", version="3L", country="Netherlands", method="EQ"), -0.312)
   expect_equal(eq5d(12345, country="Indonesia", version="5L", type="VT"), 0.240)
   expect_equal(eq5d(33333, country="Slovenia", version="Y3L"), -0.691)
   expect_equal(eq5d(test.char, country="UK", version="3L", type="TTO"), c(0.329, -0.090, -0.127))
@@ -110,7 +110,7 @@ test_that("eq5d using version='Y' still works", {
 context("Value sets")
 
 test_that("valuesets function gives correct answer", {
-  expect_equal(valuesets(country="Ghana")$DOI, "10.1016/j.vhri.2024.101045")
+  expect_equal(valuesets(country="Ghana")$DOI, c("10.1016/j.vhri.2024.101045", "10.1016/j.jval.2021.03.009"))
   expect_equal(valuesets(country = "Belgium", version = "Y3L")$DOI, "10.1007/s40273-022-01187-x")
   expect_equal(as.character(valuesets(country = "Bermuda", version="3L", type="TTO", references=NULL)[1,]), c("EQ-5D-3L","TTO","Bermuda"))
 })

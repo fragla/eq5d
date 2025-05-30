@@ -6,7 +6,7 @@
 #' @param scores numeric with names MO, SC, UA, PD and AD representing
 #'   Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.
 #' @param country value set country.
-#' @param rcw crosswalk values to use. Either "VH" (Van Hout, 2021) or "EQ" EuroQol.
+#' @param method crosswalk values to use. Either "VH" (Van Hout, 2021) or "EQ" EuroQol.
 #' @param digits number of decimal places to return.
 #' @return calculated utility index score.
 #' @examples
@@ -14,19 +14,19 @@
 #' eq5drcw(scores=c(MO=3,SC=3,UA=3,PD=3,AD=3), country="Germany")
 #'
 #' @export
-eq5drcw <- function(scores, country="UK", rcw="VH", digits = 3) {
+eq5drcw <- function(scores, country="UK", method="VH", digits = 3) {
   if(!all(.get_dimension_names() %in% names(scores))) {
     stop("Unable to identify EQ-5D dimensions in scores.")
   }
   
-  if(!rcw %in% c("VH", "EQ")) {
+  if(!method %in% c("VH", "EQ")) {
     stop("Unable to identify reverse crosswalk values to use.")
   }
 
   if(!all(scores %in% 1:3))
     stop("Scores must be coded as 1, 2, or 3 for EQ-5D-3L Reverse Crosswalk.")
 
-  if(rcw == "VH") {
+  if(method == "VH") {
     survey <- RCWVH
   } else {
     survey <- RCW
