@@ -257,12 +257,12 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
     if(!is.null(type) && type %in% c("TTO", "VAS")) {
       eq5d3l(scores, type=type, country=country, digits = digits)
     } else if(!is.null(type) && type=="RCW") {
-      if(is.null(args$rcw)) {
-        rcw <- "VH"
+      if(is.null(args$method)) {
+        method <- "VH"
       } else {
-        rcw <- args$rcw
+        method <- args$method
       }
-      eq5drcw(scores, country=country, rcw=rcw, digits = digits)
+      eq5drcw(scores, country=country, method=method, digits = digits)
     } else if(!is.null(type) && type=="DSU") {
       eq5dmap(scores, country, version, args$age, args$sex, bwidth, digits)
     } else {
@@ -321,19 +321,23 @@ valuesets <- function(type=NULL, version=NULL, country=NULL, references=c("PubMe
   tto <- data.frame(Version="EQ-5D-3L", Type="TTO", Country=colnames(TTO))
   vas <- data.frame(Version="EQ-5D-3L", Type="VAS", Country=colnames(VAS))
   rcw <- data.frame(Version="EQ-5D-3L", Type="RCW", Country=colnames(RCW))
+  rcwvh <- data.frame(Version="EQ-5D-3L", Type="RCW", Country=colnames(RCWVH))
   vt <- data.frame(Version="EQ-5D-5L", Type="VT", Country=colnames(VT))
   cw <- data.frame(Version="EQ-5D-5L", Type="CW", Country=colnames(CW))
   y <- data.frame(Version="EQ-5D-Y-3L", Type="cTTO", Country=colnames(Y3L))
   dsu3l <- data.frame(Version="EQ-5D-3L", Type="DSU", Country=sub("Copula", "", grep("Copula", sort(colnames(DSU3L)), value=TRUE)))
   dsu5l <- data.frame(Version="EQ-5D-5L", Type="DSU", Country=sub("Copula", "", grep("Copula", sort(colnames(DSU5L)), value=TRUE)))
-  vs <- rbind(tto, vas, rcw, vt, cw, y, dsu3l, dsu5l)
 
+  vs1 <- rbind(tto, vas, rcw, vt, cw, y, dsu3l, dsu5l)
+  vs1 <- merge(vs1, REFERENCES, by = c("Version", "Type", "Country"))
+  
+  vs2 <- cbind(rcwvh, REFERENCES[REFERENCES$Type=="RCW" & is.na(REFERENCES$Country),!names(REFERENCES) %in% c("Country", "Version", "Type")], row.names = NULL)
+  vs <- rbind(vs1, vs2)
+  
   if(!is.null(type)) vs <- vs[vs$Type==type,]
   if(!is.null(version)) vs <- vs[vs$Version==version,]
   if(!is.null(country)) vs <- vs[grep(paste0("^",country), vs$Country),]
   rownames(vs) <- NULL
-  
-  vs <- merge(vs, REFERENCES, by = c("Version", "Type", "Country"))
   
   if(is.null(references)) {
     vs <- vs[,c("Version", "Type", "Country")]
