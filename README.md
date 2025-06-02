@@ -1,5 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
 <!-- badges: start -->
 
 [![R build
@@ -50,7 +51,9 @@ Value sets for EQ-5D-3L are available for many countries and have been
 produced using the time trade-off (TTO) valuation technique or the
 visual analogue scale (VAS) valuation technique. Some countries have TTO
 and VAS value sets for EQ-5D-3L. Additionally, EQ-5D-3L “reverse
-crosswalk” value sets published on the
+crosswalk” value sets based on the [van Hout *et al*
+(2021)](https://pubmed.ncbi.nlm.nih.gov/34452708/) models as well as
+those published on the
 [EuroQol](https://euroqol.org/information-and-support/resources/value-sets/)
 website that enable EQ-5D-3L data to be mapped to EQ-5D-5L value sets
 are included.
@@ -61,8 +64,8 @@ developed by the EuroQol group based on the composite time trade-off
 (DCE). The EuroQol group recommends users to use a standard value set
 where available.
 
-The EQ-5D-5L “crosswalk” value sets published by [van Hout *et
-al*](https://pubmed.ncbi.nlm.nih.gov/22867780/) as well as that for
+The EQ-5D-5L “crosswalk” value sets published by [van Hout *et al*
+(2012)](https://pubmed.ncbi.nlm.nih.gov/22867780/) as well as that for
 Russia are also included. The crosswalk value sets enable index values
 to be calculated for EQ-5D-5L data where no value set is available by
 mapping between the EQ-5D-5L and EQ-5D-3L descriptive systems.
@@ -102,6 +105,8 @@ devtools::install_github("fragla/eq5d")
 
 ``` r
 library(eq5d)
+#> Loading required package: lifecycle
+#> Loading required package: rlang
 
 #single calculation
 
@@ -126,7 +131,7 @@ eq5d(scores=55555, country="Spain", version="5L", type="CW")
 
 #EQ-5D-3L reverse crosswalk
 eq5d(scores=33333, country="Germany", version="3L", type="RCW")
-#> [1] -0.329
+#> [1] -0.495
 
 #EQ-5D-5L to EQ-5D-3L NICE DSU mapping
 
@@ -200,20 +205,13 @@ head(valuesets(type="VAS", references=c("ISBN","ExternalURL")))
 
 # Return EQ-5D-5L value sets (top 6 returned for brevity).
 head(valuesets(version="5L"))
-#>    Version Type     Country   PubMed                        DOI ISBN
-#> 1 EQ-5D-5L   CW     Bermuda 38982011 10.1007/s10198-024-01701-2 <NA>
-#> 2 EQ-5D-5L   CW     Denmark 22867780 10.1016/j.jval.2012.02.008 <NA>
-#> 3 EQ-5D-5L   CW      France 22867780 10.1016/j.jval.2012.02.008 <NA>
-#> 4 EQ-5D-5L   CW     Germany 22867780 10.1016/j.jval.2012.02.008 <NA>
-#> 5 EQ-5D-5L   CW       Japan 22867780 10.1016/j.jval.2012.02.008 <NA>
-#> 6 EQ-5D-5L   CW Netherlands 22867780 10.1016/j.jval.2012.02.008 <NA>
-#>   ExternalURL
-#> 1        <NA>
-#> 2        <NA>
-#> 3        <NA>
-#> 4        <NA>
-#> 5        <NA>
-#> 6        <NA>
+#>    Version Type Country   PubMed                        DOI ISBN ExternalURL
+#> 1 EQ-5D-5L   CW Bermuda 38982011 10.1007/s10198-024-01701-2 <NA>        <NA>
+#> 2 EQ-5D-5L   CW Denmark 22867780 10.1016/j.jval.2012.02.008 <NA>        <NA>
+#> 3 EQ-5D-5L   CW  France 22867780 10.1016/j.jval.2012.02.008 <NA>        <NA>
+#> 4 EQ-5D-5L   CW Germany 22867780 10.1016/j.jval.2012.02.008 <NA>        <NA>
+#> 5 EQ-5D-5L   CW   Japan 22867780 10.1016/j.jval.2012.02.008 <NA>        <NA>
+#> 6 EQ-5D-5L   CW  Jordan 39225720 10.1007/s10198-024-01712-z <NA>        <NA>
 
 # Return all French value sets.
 valuesets(country="France")
@@ -221,6 +219,7 @@ valuesets(country="France")
 #> 1 EQ-5D-3L  TTO  France 21935715  10.1007/s10198-011-0351-x <NA>        <NA>
 #> 2 EQ-5D-5L   CW  France 22867780 10.1016/j.jval.2012.02.008 <NA>        <NA>
 #> 3 EQ-5D-5L   VT  France 31912325 10.1007/s40273-019-00876-4 <NA>        <NA>
+#> 4 EQ-5D-3L  RCW  France 34452708 10.1016/j.jval.2021.03.009 <NA>        <NA>
 
 # Return all EQ-5D-5L to EQ-5D-3L DSU value sets without references.
 valuesets(type="DSU", version="5L", references=NULL)
