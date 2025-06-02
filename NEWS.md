@@ -10,7 +10,7 @@
 
 - van Hout (2021) reverse crosswalk method added to eq5drcw function.
   This is now the default option for mapping EQ-5D-3L to EQ-5D-5L. The
-  old EuroQol mappings can be accessed by specifying the `rcw = "EQ`
+  old EuroQol mappings can be accessed by specifying the `method = "EQ"`
   argument.
 
 # eq5d 0.15.7 (2025-02-28)
