@@ -6,7 +6,8 @@
 #' @param scores numeric with names MO, SC, UA, PD and AD representing
 #'   Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.
 #' @param country value set country.
-#' @param method crosswalk values to use. Either "VH" (Van Hout, 2021) or "EQ" EuroQol.
+#' @param method crosswalk values to use. Either "VH" (Van Hout, 2021) or "EQ" 
+#' (EuroQol 2019 values). The van Hout method is recommended.
 #' @param digits number of decimal places to return.
 #' @return calculated utility index score.
 #' @examples
@@ -25,7 +26,7 @@ eq5drcw <- function(scores, country="UK", method="VH", digits = 3) {
 
   if(!all(scores %in% 1:3))
     stop("Scores must be coded as 1, 2, or 3 for EQ-5D-3L Reverse Crosswalk.")
-
+  
   if(method == "VH") {
     survey <- RCWVH
   } else {
