@@ -12,7 +12,8 @@ Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.}
 
 \item{country}{value set country.}
 
-\item{method}{crosswalk values to use. Either "VH" (Van Hout, 2021) or "EQ" EuroQol.}
+\item{method}{crosswalk values to use. Either "VH" (Van Hout, 2021) or "EQ" 
+(EuroQol 2019 values). The van Hout method is recommended.}
 
 \item{digits}{number of decimal places to return.}
 }
