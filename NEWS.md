@@ -5,6 +5,14 @@
 
 - Moroccan EQ-5D-5L value set added.
 
+- “digits” argument added to eq5d3l, eq5d5l and eq5dy3l functions to
+  enable scores to be returned with more precision.
+
+- van Hout (2021) reverse crosswalk method added to eq5drcw function.
+  This is now the default and recommended option for mapping EQ-5D-3L to
+  EQ-5D-5L. The previous EuroQol (2019) mappings can be accessed by
+  specifying the `method = "EQ"` argument.
+
 # eq5d 0.15.7 (2025-02-28)
 
 - United Arab Emirates EQ-5D-5L value set added.

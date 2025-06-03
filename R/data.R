@@ -63,11 +63,12 @@
 #' @export
 "DSU5L"
 
-#' EQ-5D-3L Reverse Crosswalk data
+#' EQ-5D-3L Reverse Crosswalk data (deprecated)
 #'
 #' Reverse Crosswalk index value table to calculate EQ-5D-5L indices from EQ-5D-3L data
-#'   for England, Germany, Netherlands and USA. Table uses the values of van Hout et al
-#'   from the EuroQol analysis tools webpage.
+#'   for England, Germany, Netherlands and USA. Table uses the values published 
+#'   on the EuroQol analysis tools webpage based on reverse engineering of
+#'   van Hout et al (2012)
 #'
 #' @source
 #' \href{https://euroqol.org/information-and-support/resources/value-sets/}{Reverse crosswalk datasets}
@@ -75,6 +76,18 @@
 #' @name RCW
 #' @export
 "RCW"
+
+#' EQ-5D-3L Reverse Crosswalk data
+#'
+#' Reverse Crosswalk index value table to calculate EQ-5D-5L indices from EQ-5D-3L data
+#'   using the van Hout et al (2021) method.
+#'
+#' @source
+#' \doi{10.1016/j.jval.2021.03.009}
+#'
+#' @name RCWVH
+#' @export
+"RCWVH"
 
 #' EQ-5D-3L TTO value set data
 #'

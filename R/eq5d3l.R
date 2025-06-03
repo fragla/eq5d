@@ -7,13 +7,14 @@
 #'   Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.
 #' @param type 3L values set type. Either TTO or VAS.
 #' @param country value set country.
+#' @param digits number of decimal places to return.
 #' @return calculated utility index score.
 #' @examples
 #' eq5d3l(scores=c(MO=1,SC=2,UA=3,PD=1,AD=3), type="VAS", country="UK")
 #' eq5d3l(scores=c(MO=3,SC=2,UA=3,PD=2,AD=3), type="TTO", country="Germany")
 #'
 #' @export
-eq5d3l <- function(scores, type="TTO", country="UK") {
+eq5d3l <- function(scores, type="TTO", country="UK", digits=3) {
 
   if(!all(.get_dimension_names() %in% names(scores))) {
     stop("Unable to identify EQ-5D dimensions in scores.")
@@ -49,7 +50,7 @@ eq5d3l <- function(scores, type="TTO", country="UK") {
     index <- .eq5d3l.add(values)
   }
 
-  return(round(index, digits=3))
+  return(round(index, digits=digits))
 }
 
 .eq5d3l.add <- function(values) {

@@ -4,13 +4,18 @@
 \alias{eq5drcw}
 \title{Calculate EQ-5D-3L reverse crosswalk index scores}
 \usage{
-eq5drcw(scores, country = "UK")
+eq5drcw(scores, country = "UK", method = "VH", digits = 3)
 }
 \arguments{
 \item{scores}{numeric with names MO, SC, UA, PD and AD representing
 Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.}
 
 \item{country}{value set country.}
+
+\item{method}{crosswalk values to use. Either "VH" (Van Hout, 2021) or "EQ" 
+(EuroQol 2019 values). The van Hout method is recommended.}
+
+\item{digits}{number of decimal places to return.}
 }
 \value{
 calculated utility index score.

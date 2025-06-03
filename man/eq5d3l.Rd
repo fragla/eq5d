@@ -4,7 +4,7 @@
 \alias{eq5d3l}
 \title{Calculate EQ-5D-3L index scores}
 \usage{
-eq5d3l(scores, type = "TTO", country = "UK")
+eq5d3l(scores, type = "TTO", country = "UK", digits = 3)
 }
 \arguments{
 \item{scores}{numeric with names MO, SC, UA, PD and AD representing
@@ -13,6 +13,8 @@ Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.}
 \item{type}{3L values set type. Either TTO or VAS.}
 
 \item{country}{value set country.}
+
+\item{digits}{number of decimal places to return.}
 }
 \value{
 calculated utility index score.
