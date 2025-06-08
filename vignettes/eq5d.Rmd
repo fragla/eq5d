@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 
 EQ-5D is a popular health related quality of life instrument used in the clinical and economic evaluation of health care. Developed by the [EuroQol](https://euroqol.org/) group, the instrument consists of two components: health state description and evaluation. 
 
-For the description component a subject self-rates their health in terms of five dimensions; mobility, self-care, usual activities, pain/discomfort, and anxiety/depression using either a three-level ([EQ-5D-3L](https://euroqol.org/information-and-support/euroqol-instruments/eq-5d-3l/) and [EQ-5D-Y](https://euroqol.org/information-and-support/euroqol-instruments/eq-5d-y-3l/)) or a five-level ([EQ-5D-5L](https://euroqol.org/information-and-support/euroqol-instruments/eq-5d-5l/)) scale. 
+For the description component a subject self-rates their health in terms of five dimensions; mobility, self-care, usual activities, pain/discomfort, and anxiety/depression using either a three-level ([EQ-5D-3L](https://euroqol.org/information-and-support/euroqol-instruments/eq-5d-3l/) and [EQ-5D-Y-3L](https://euroqol.org/information-and-support/euroqol-instruments/eq-5d-y-3l/)) or a five-level ([EQ-5D-5L](https://euroqol.org/information-and-support/euroqol-instruments/eq-5d-5l/)) scale. 
 
 The evaluation component requires a patient to record their overall health status using a visual analogue scale (EQ-VAS).
 
@@ -28,11 +28,11 @@ Following assessment the scores from the descriptive component can be reported a
 
 The eq5d package provides methods for the cross-sectional and longitudinal analysis of EQ-5D profiles and also the calculation of utility index scores from a subject's dimension scores. Additionally, a [Shiny](https://shiny.posit.co/) app is included to enable the calculation, visualisation and automated statistical analysis of multiple EQ-5D index values via a web browser using EQ-5D dimension scores stored in CSV or Excel files.
 
-Value sets for EQ-5D-3L are available for many countries and have been produced using the time trade-off (TTO) valuation technique or the visual analogue scale (VAS) valuation technique.  Some countries have TTO and VAS value sets for EQ-5D-3L. Additionally, EQ-5D-3L "reverse crosswalk" value sets published on the [EuroQol](https://euroqol.org/information-and-support/resources/value-sets/) website that enable EQ-5D-3L data to be mapped to EQ-5D-5L value sets are included. 
+Value sets for EQ-5D-3L are available for many countries and have been produced using the time trade-off (TTO) valuation technique or the visual analogue scale (VAS) valuation technique.  Some countries have TTO and VAS value sets for EQ-5D-3L. Additionally, EQ-5D-3L "reverse crosswalk" value sets based on the [van Hout *et al* (2021)](https://pubmed.ncbi.nlm.nih.gov/34452708/) models as well as those published on the [EuroQol](https://euroqol.org/information-and-support/resources/value-sets/) website that enable EQ-5D-3L data to be mapped to EQ-5D-5L value sets are included. 
 
 For EQ-5D-5L, a standardised valuation study protocol (EQ-VT) was developed by the EuroQol group based on the composite time trade-off (cTTO) valuation technique supplemented by a discrete choice experiment (DCE).  The EuroQol group recommends users to use a standard value set where available.
 
-The EQ-5D-5L "crosswalk" value sets published by [van Hout *et al*](https://pubmed.ncbi.nlm.nih.gov/22867780/) as well as that for Russia are also included. The crosswalk value sets enable index values to be calculated for EQ-5D-5L data where no value set is available by mapping between the EQ-5D-5L and EQ-5D-3L descriptive systems.
+The EQ-5D-5L "crosswalk" value sets published by [van Hout *et al* (2012)](https://pubmed.ncbi.nlm.nih.gov/22867780/) as well as that for Russia are also included. The crosswalk value sets enable index values to be calculated for EQ-5D-5L data where no value set is available by mapping between the EQ-5D-5L and EQ-5D-3L descriptive systems.
 
 The recently published age and sex conditional based mapping data by the [NICE Decision Support Unit](https://www.sheffield.ac.uk/nice-dsu/methods-development/mapping-eq-5d-5l-3l) are also now part of the package. These enable age-sex based EQ-5D-3L to EQ-5D-5L and EQ-5D-5L to EQ-5D-3L mappings from dimensions and exact or approximate utility index scores. 
 
@@ -71,7 +71,7 @@ eq5d(scores=scores, country="UK", version="3L", type="TTO")
 #Using five digit format
 eq5d(scores=12321, country="UK", version="3L", type="TTO")
 
-#EQ-5D-Y using the Slovenian cTTO value set
+#EQ-5D-Y-3L using the Slovenian cTTO value set
 eq5d(scores=13321, country="Slovenia", version="Y3L", type="cTTO")
 
 #EQ-5D-5L crosswalk
@@ -341,7 +341,7 @@ eq5dds(dat, version="3L", by="Sex")
 
 ## Helper functions
 
-Helper functions are included, which may be useful in the processing of EQ-5D data. ***get_health_states*** returns a vector of all possible five digit health states for a specified EQ-5D version. ***get_dimensions_from_health_states*** splits a vector of five digit health states into a data.frame of their individual components and ***get_health_states_from_dimensions*** combines indiviual dimensions in a data.frame into five digit health states.
+Helper functions are included, which may be useful in the processing of EQ-5D data. ***get_all_health_states*** returns a vector of all possible five digit health states for a specified EQ-5D version. ***get_dimensions_from_health_states*** splits a vector of five digit health states into a data.frame of their individual components and ***get_health_states_from_dimensions*** combines indiviual dimensions in a data.frame into five digit health states.
 
 ```{r helper}
 
