@@ -1,7 +1,7 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-# eq5d (development version)
+# eq5d 0.16.0 (2025-06-19)
 
 - Moroccan EQ-5D-5L value set added.
 
@@ -10,8 +10,8 @@
 
 - van Hout (2021) reverse crosswalk method added to eq5drcw function.
   This is now the default and recommended option for mapping EQ-5D-3L to
-  EQ-5D-5L. The previous EuroQol (2019) mappings can be accessed by
-  specifying the `method = "EQ"` argument.
+  EQ-5D-5L. The previous EuroQol (2019) mappings can be accessed from
+  within R by specifying the `method = "EQ"` argument.
 
 - Shiny app updated to include van Hout (2021) reverse crosswalk value
   sets. EuroQol (2019) value sets now removed.
