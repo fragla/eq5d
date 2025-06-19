@@ -318,15 +318,15 @@ valuesets <- function(type=NULL, version=NULL, country=NULL, references=c("PubMe
   if(!is.null(version) && version == "Y3L") version <- "Y-3L"
   if(!is.null(version)) version <- paste0("EQ-5D-", version)
 
-  tto <- data.frame(Version="EQ-5D-3L", Type="TTO", Country=colnames(TTO))
-  vas <- data.frame(Version="EQ-5D-3L", Type="VAS", Country=colnames(VAS))
-  rcw <- data.frame(Version="EQ-5D-3L", Type="RCW", Country=colnames(RCW))
-  rcwvh <- data.frame(Version="EQ-5D-3L", Type="RCW", Country=colnames(RCWVH))
-  vt <- data.frame(Version="EQ-5D-5L", Type="VT", Country=colnames(VT))
-  cw <- data.frame(Version="EQ-5D-5L", Type="CW", Country=colnames(CW))
-  y <- data.frame(Version="EQ-5D-Y-3L", Type="cTTO", Country=colnames(Y3L))
-  dsu3l <- data.frame(Version="EQ-5D-3L", Type="DSU", Country=sub("Copula", "", grep("Copula", sort(colnames(DSU3L)), value=TRUE)))
-  dsu5l <- data.frame(Version="EQ-5D-5L", Type="DSU", Country=sub("Copula", "", grep("Copula", sort(colnames(DSU5L)), value=TRUE)))
+  tto <- data.frame(Version="EQ-5D-3L", Type="TTO", Country=colnames(TTO), Notes=NA)
+  vas <- data.frame(Version="EQ-5D-3L", Type="VAS", Country=colnames(VAS), Notes=NA)
+  rcw <- data.frame(Version="EQ-5D-3L", Type="RCW", Country=colnames(RCW), Notes="EuroQol (2019)")
+  rcwvh <- data.frame(Version="EQ-5D-3L", Type="RCW", Country=colnames(RCWVH), Notes="van Hout (2021)")
+  vt <- data.frame(Version="EQ-5D-5L", Type="VT", Country=colnames(VT), Notes=NA)
+  cw <- data.frame(Version="EQ-5D-5L", Type="CW", Country=colnames(CW), Notes=NA)
+  y <- data.frame(Version="EQ-5D-Y-3L", Type="cTTO", Country=colnames(Y3L), Notes=NA)
+  dsu3l <- data.frame(Version="EQ-5D-3L", Type="DSU", Country=sub("Copula", "", grep("Copula", sort(colnames(DSU3L)), value=TRUE)), Notes=NA)
+  dsu5l <- data.frame(Version="EQ-5D-5L", Type="DSU", Country=sub("Copula", "", grep("Copula", sort(colnames(DSU5L)), value=TRUE)), Notes=NA)
 
   vs1 <- rbind(tto, vas, rcw, vt, cw, y, dsu3l, dsu5l)
   vs1 <- merge(vs1, REFERENCES, by = c("Version", "Type", "Country"))
@@ -340,11 +340,15 @@ valuesets <- function(type=NULL, version=NULL, country=NULL, references=c("PubMe
   rownames(vs) <- NULL
   
   if(is.null(references)) {
-    vs <- vs[,c("Version", "Type", "Country")]
-  } else if (all(references %in% c("PubMed", "DOI", "ISBN", "ExternalURL"))) {
-    vs <- vs[,c("Version", "Type", "Country", references)]
+    vs <- vs[,c("Version", "Type", "Country", "Notes")]
+  } else if (all(references %in% c("PubMed", "DOI", "ISBN", "ExternalURL", "Notes"))) {
+    vs <- vs[,c("Version", "Type", "Country", references, "Notes")]
   } else {
     stop("One or more reference columns not found. Valid options are one or more of PubMed, DOI, ISBN and ExternalURL.")
+  }
+  
+  if(all(is.na(vs$Notes))) {
+    vs <- vs[,!(names(vs) %in% "Notes")]
   }
   
   vs
