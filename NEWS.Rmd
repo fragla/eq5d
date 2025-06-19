@@ -16,8 +16,11 @@ scores to be returned with more precision.
 
 - van Hout (2021) reverse crosswalk method added to eq5drcw function. This is 
 now the default and recommended option for mapping EQ-5D-3L to EQ-5D-5L. The 
-previous EuroQol (2019) mappings can be accessed by specifying the 
+previous EuroQol (2019) mappings can be accessed from within R by specifying the 
 `method = "EQ"` argument.
+
+- Shiny app updated to include van Hout (2021) reverse crosswalk value sets. 
+EuroQol (2019) value sets now removed.
 
 # eq5d 0.15.7 (2025-02-28)
 
