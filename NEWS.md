@@ -13,6 +13,9 @@
   EQ-5D-5L. The previous EuroQol (2019) mappings can be accessed by
   specifying the `method = "EQ"` argument.
 
+- Shiny app updated to include van Hout (2021) reverse crosswalk value
+  sets. EuroQol (2019) value sets now removed.
+
 # eq5d 0.15.7 (2025-02-28)
 
 - United Arab Emirates EQ-5D-5L value set added.

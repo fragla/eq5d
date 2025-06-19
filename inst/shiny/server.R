@@ -87,7 +87,7 @@ shinyServer(function(input, output, session) {
         if(input$country %in% colnames(VAS))
           type <-c(type, "VAS")
         
-        if(input$country %in% colnames(RCW))
+        if(input$country %in% colnames(RCWVH))
           type <-c(type, "RCW")
         
         if(input$country %in% colnames(DSU3L))
@@ -216,6 +216,10 @@ shinyServer(function(input, output, session) {
     print(paste(input$version, type=input$type, country=input$country))
     vs <- valuesets(version=input$version, type=input$type, country=input$country)
     
+    if("Notes" %in% colnames(vs)) {
+      vs <- vs[which(vs$Notes != "EuroQol (2019)"),]
+    }
+
     if(nrow(vs) != 1)
       return()
     
