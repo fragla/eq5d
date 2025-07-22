@@ -1,6 +1,10 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
+# eq5d (development version)
+
+- Australian EQ-5D-Y-3L value set added.
+
 # eq5d 0.16.0 (2025-06-19)
 
 - Moroccan EQ-5D-5L value set added.

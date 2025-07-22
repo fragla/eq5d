@@ -5,10 +5,11 @@
 \alias{Y3L}
 \title{EQ-5D-Y-3L value set data}
 \format{
-An object of class \code{data.frame} with 14 rows and 10 columns.
+An object of class \code{data.frame} with 14 rows and 11 columns.
 }
 \source{
 \itemize{
+    \item{\strong{Australia}: Pan T, Roudijk B, Devlin N, Mulhern B, Norman R. An Australian Value Set for the EQ-5D-Y-3L. Health Qual Life Outcomes. 2025 Jul 15;23(1):72. \doi{10.1186/s12955-025-02402-x}. PMID: 40660259.}
     \item{\strong{Belgium}: Dewilde S, Roudijk B, Tollenaar NH, Ramos-Goñi JM. An EQ-5D-Y-3L Value Set for Belgium. Pharmacoeconomics. 2022 Nov 1:1–12. \doi{10.1007/s40273-022-01187-x}. Epub ahead of print.  PMID: 36316544.}
     \item{\strong{Brazil}: Espirito Santo CM, Miyamoto GC, Santos VS, Ben ÂJ, Finch AP, Roudijk B, de Jesus-Moraleida FR, Stein AT, Santos M, Yamato TP. Estimating an EQ-5D-Y-3L Value Set for Brazil. Pharmacoeconomics. 2024 Jul 2. \doi{10.1007/s40273-024-01404-9}. Epub ahead of print. PMID: 38954389.}
     \item{\strong{China}: Yang Z, Jiang J, Wang P, Jin X, Wu J, Fang Y, Feng D, Xi X, Li S, Jing M, Zheng B, Huang W, Luo N. Estimating an EQ-5D-Y-3L Value Set for China. Pharmacoeconomics. 2022 Nov 18. \doi{10.1007/s40273-022-01216-9}. Epub ahead of print. PMID: 36396878.}
@@ -25,7 +26,7 @@ An object of class \code{data.frame} with 14 rows and 10 columns.
 Y3L
 }
 \description{
-EQ-5D-Y-3L value set calculation data for Belgium, Brazil, China, Germany, Hungary, 
+EQ-5D-Y-3L value set calculation data for Australia, Belgium, Brazil, China, Germany, Hungary, 
 Indonesia, Japan, Netherlands, Slovenia and Spain.
 }
 \keyword{datasets}
