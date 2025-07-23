@@ -15,7 +15,8 @@
 #'   Options are TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L, CW for EQ-5D-5L
 #'   crosswalk conversion valuesets, RCW for EQ-5D-3L reverse crosswalk
 #'   conversion valuesets and DSU for the NICE Decision Support Unit's EEPRU 
-#'   age-sex based EQ-5D-3L to EQ-5D-5L and EQ-5D-5L to EQ-5D-3L mappings.
+#'   age-sex based EQ-5D-3L to EQ-5D-5L and EQ-5D-5L to EQ-5D-3L mappings. Not 
+#'   required for EQ-5D-Y-3L.
 #' @param country string of value set country name used.
 #' @param ignore.invalid logical to indicate whether to ignore dimension data
 #'   with invalid, incomplete or missing data.
@@ -291,9 +292,10 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
 #'     in the \code{eq5d} package.
 #'
 #' @param type string EQ-5D value set type. TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L,
-#'   cTTO for EQ-5D-Y-3L, CW for EQ-5D-5L crosswalk conversion dataset, or DSU for NICE Decision Support
+#'   IVP (International Valuation Protocol of Ramos-Goñi et al (2020)) for EQ-5D-Y-3L, 
+#'   CW for EQ-5D-5L crosswalk conversion dataset, or DSU for NICE Decision Support
 #'   Unit's EQ-5D-5L to EQ-5D-3L and EQ-5D-3L to EQ-5D-5L mappings.
-#' @param version string either 3L, 5L or Y.
+#' @param version string either 3L, 5L or Y3L.
 #' @param country string one of the countries for which there is a value set.
 #' @param references character vector of reference columns. One or more of PubMed, 
 #'   DOI, ISBN or ExternalURL. Default is all. Reference columns can be removed by 
@@ -324,7 +326,7 @@ valuesets <- function(type=NULL, version=NULL, country=NULL, references=c("PubMe
   rcwvh <- data.frame(Version="EQ-5D-3L", Type="RCW", Country=colnames(RCWVH), Notes="van Hout (2021)")
   vt <- data.frame(Version="EQ-5D-5L", Type="VT", Country=colnames(VT), Notes=NA)
   cw <- data.frame(Version="EQ-5D-5L", Type="CW", Country=colnames(CW), Notes=NA)
-  y <- data.frame(Version="EQ-5D-Y-3L", Type="cTTO", Country=colnames(Y3L), Notes=NA)
+  y <- data.frame(Version="EQ-5D-Y-3L", Type="IVP", Country=colnames(Y3L), Notes=NA)
   dsu3l <- data.frame(Version="EQ-5D-3L", Type="DSU", Country=sub("Copula", "", grep("Copula", sort(colnames(DSU3L)), value=TRUE)), Notes=NA)
   dsu5l <- data.frame(Version="EQ-5D-5L", Type="DSU", Country=sub("Copula", "", grep("Copula", sort(colnames(DSU5L)), value=TRUE)), Notes=NA)
 

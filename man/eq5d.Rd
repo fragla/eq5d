@@ -20,7 +20,8 @@ version.}
 Options are TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L, CW for EQ-5D-5L
 crosswalk conversion valuesets, RCW for EQ-5D-3L reverse crosswalk
 conversion valuesets and DSU for the NICE Decision Support Unit's EEPRU 
-age-sex based EQ-5D-3L to EQ-5D-5L and EQ-5D-5L to EQ-5D-3L mappings.}
+age-sex based EQ-5D-3L to EQ-5D-5L and EQ-5D-5L to EQ-5D-3L mappings. Not 
+required for EQ-5D-Y-3L.}
 
 \item{country}{string of value set country name used.}
 

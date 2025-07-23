@@ -13,10 +13,11 @@ valuesets(
 }
 \arguments{
 \item{type}{string EQ-5D value set type. TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L,
-cTTO for EQ-5D-Y-3L, CW for EQ-5D-5L crosswalk conversion dataset, or DSU for NICE Decision Support
+IVP (International Valuation Protocol of Ramos-Goñi et al (2020)) for EQ-5D-Y-3L, 
+CW for EQ-5D-5L crosswalk conversion dataset, or DSU for NICE Decision Support
 Unit's EQ-5D-5L to EQ-5D-3L and EQ-5D-3L to EQ-5D-5L mappings.}
 
-\item{version}{string either 3L, 5L or Y.}
+\item{version}{string either 3L, 5L or Y3L.}
 
 \item{country}{string one of the countries for which there is a value set.}
 
