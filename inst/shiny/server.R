@@ -94,7 +94,7 @@ shinyServer(function(input, output, session) {
           type <-c(type, "DSU")
         
     } else if(input$version=="Y3L") {
-      type <-c(type, "cTTO")
+      type <-c(type, "IVP")
     }
     else {
       
