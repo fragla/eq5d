@@ -121,8 +121,8 @@ eq5d(scores=scores, country="UK", version="3L", type="TTO")
 eq5d(scores=12321, country="UK", version="3L", type="TTO")
 #> [1] 0.329
 
-#EQ-5D-Y-3L using the Slovenian cTTO value set
-eq5d(scores=13321, country="Slovenia", version="Y3L", type="cTTO")
+#EQ-5D-Y-3L using the Slovenian value set
+eq5d(scores=13321, country="Slovenia", version="Y3L")
 #> [1] 0.295
 
 #EQ-5D-5L crosswalk
@@ -220,6 +220,11 @@ valuesets(country="France")
 #> 2 EQ-5D-5L   CW  France 22867780 10.1016/j.jval.2012.02.008 <NA>        <NA>
 #> 3 EQ-5D-5L   VT  France 31912325 10.1007/s40273-019-00876-4 <NA>        <NA>
 #> 4 EQ-5D-3L  RCW  France 34452708 10.1016/j.jval.2021.03.009 <NA>        <NA>
+#>             Notes
+#> 1            <NA>
+#> 2            <NA>
+#> 3            <NA>
+#> 4 van Hout (2021)
 
 # Return all EQ-5D-5L to EQ-5D-3L DSU value sets without references.
 valuesets(type="DSU", version="5L", references=NULL)
