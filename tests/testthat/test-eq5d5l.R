@@ -305,6 +305,18 @@ test_that("EQ-5D-5L Saudi Arabia gives correct answer", {
   
 })
 
+test_that("EQ-5D-5L Singapore gives correct answer", {
+  expect_equal(eq5d5l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "Singapore"), 1)
+  expect_equal(eq5d5l(c(MO=2,SC=2,UA=2,PD=2,AD=2), "Singapore"), 0.685)
+  expect_equal(eq5d5l(c(MO=3,SC=3,UA=3,PD=3,AD=3), "Singapore"), 0.353)
+  expect_equal(eq5d5l(c(MO=4,SC=4,UA=4,PD=4,AD=4), "Singapore"), -0.624)
+  expect_equal(eq5d5l(c(MO=5,SC=5,UA=5,PD=5,AD=5), "Singapore"), -0.851)
+#  expect_equal(eq5d5l(c(MO=2,SC=2,UA=2,PD=2,AD=2), "Singapore"), 0.68506804)
+#  expect_equal(eq5d5l(c(MO=3,SC=3,UA=3,PD=3,AD=3), "Singapore"), 0.35250462)
+#  expect_equal(eq5d5l(c(MO=4,SC=4,UA=4,PD=4,AD=4), "Singapore"), -0.62399988)
+#  expect_equal(eq5d5l(c(MO=5,SC=5,UA=5,PD=5,AD=5), "Singapore"), -0.8506522)
+})
+
 test_that("EQ-5D-5L Slovenia gives correct answer", {
   expect_equal(eq5d5l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "Slovenia"), 1)
   expect_equal(eq5d5l(c(MO=2,SC=2,UA=2,PD=2,AD=2), "Slovenia"), 0.764)

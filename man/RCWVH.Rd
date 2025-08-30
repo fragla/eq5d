@@ -5,7 +5,7 @@
 \alias{RCWVH}
 \title{EQ-5D-3L Reverse Crosswalk data}
 \format{
-An object of class \code{matrix} (inherits from \code{array}) with 243 rows and 47 columns.
+An object of class \code{matrix} (inherits from \code{array}) with 243 rows and 48 columns.
 }
 \source{
 \doi{10.1016/j.jval.2021.03.009}

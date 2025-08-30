@@ -34,7 +34,9 @@ eq5d5l <- function(scores, country="England", digits = 3) {
               .level4Or5(scores, survey),
               .num45sq(scores, survey),
               .N4(scores,survey),
-              .N5(scores,survey))
+              .N5(scores,survey),
+              .MOAD(scores,survey),
+              .PDAD(scores,survey))
 
     return(round(sum(values, na.rm = TRUE), digits=digits))
 }
@@ -71,5 +73,17 @@ eq5d5l <- function(scores, country="England", digits = 3) {
   ##at least one mobility, care, activity, pain, anxiety == 5
   if(any(scores == 5) && !is.na(survey["N5"])) {
     survey["N5"]
+  }
+}
+
+.MOAD <- function(scores, survey) {
+  if(!is.na(survey["MOAD"])) {
+    (scores["MO"] - 1) * (scores["AD"] - 1) * survey["MOAD"]#-0.00694155
+  }
+}
+
+.PDAD <- function(scores, survey) {
+  if(!is.na(survey["PDAD"])) {
+    (scores["PD"] - 1) * (scores["AD"] - 1) * survey["PDAD"]
   }
 }
