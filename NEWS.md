@@ -3,6 +3,8 @@
 
 # eq5d (development version)
 
+- Singaporean EQ-5D-5L value set added.
+
 - Australian EQ-5D-Y-3L value set added.
 
 - Type for EQ-5D-Y-3L renames to “IVP” (International Valuation
