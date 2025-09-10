@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 - Australian EQ-5D-Y-3L value set added.
 
-- Type for EQ-5D-Y-3L renames to "IVP" (International Valuation Protocol).
+- Type for EQ-5D-Y-3L renamed to "IVP" (International Valuation Protocol).
 
 # eq5d 0.16.0 (2025-06-19)
 
