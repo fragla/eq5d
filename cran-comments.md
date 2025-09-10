@@ -1,13 +1,13 @@
 ## Test environments
 
 * local OS X install, R 4.4.2
-* Ubuntu 24.04.2 (using GitHub Actions), R 4.5.1, R 4.4.3, devel
-* Mac OS X 14.7.6 (using GitHub Actions) R 4.5.1
+* Ubuntu 24.04.3 (using GitHub Actions), R 4.5.1, R 4.4.3, devel
+* Mac OS X 15.5.0 (using GitHub Actions) R 4.5.1
 * Microsoft Windows Server 2022 (using GitHub Actions), R 4.5.1
 * Windows Server 2012 R2 x64 (on appveyor-ci) R 4.5.1, R 4.4.3
 * Windows release at win-builder.r-project.org
 * Windows devel at win-builder.r-project.org
-* Ubuntu 24.04.2, R-devel, no long double (R-hub builder/GitHub Actions)
+* Ubuntu 24.04.3, R-devel, no long double (R-hub builder/GitHub Actions)
 
 ## R CMD check results
 
