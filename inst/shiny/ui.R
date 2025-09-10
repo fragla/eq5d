@@ -114,7 +114,7 @@ shinyUI(
           a("here", href="data/eq5d3l_example.xlsx", target="_blank"), "."),
         div(img(src="images/shiny_app_excel_scores.png", width="75%"), style="text-align:center"),
         p("Dimensions scores can also be converted from EQ-5D-3L to EQ-5D-5L and 
-          EQ-5D-5L to EQ-5D-3L using the ", a(href='https://www.sheffield.ac.uk/nice-dsu/methods-development/mapping-eq-5d-5l-3l', 'NICE Decision Support Unit'),
+          EQ-5D-5L to EQ-5D-3L using the ", a(href='https://sheffield.ac.uk/nice-dsu/methods-development/mapping-eq-5d-5l-3l', 'NICE Decision Support Unit'),
           " age-sex based mappings. To use these value sets files require \"Age\" and 
           \"Sex\" columns in addition to dimension scores. Age should be specified 
           in years (18-100) or as a category (1: 18-34, 2: 35-44, 3: 45-54, 4: 55-64, 

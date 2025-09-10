@@ -3,7 +3,7 @@
 #' Conditional prediction of the utility values of 5L scores onto 3L value 
 #' sets and 3L scores onto 5L value sets from observed or specified values 
 #' conditional on age and gender using the NICE Decision Support Unit's EEPRU
-#' funded models (see \href{https://www.sheffield.ac.uk/nice-dsu/methods-development/mapping-eq-5d-5l-3l}{NICE DSU}'s
+#' funded models (see \href{https://sheffield.ac.uk/nice-dsu/methods-development/mapping-eq-5d-5l-3l}{NICE DSU}'s
 #' website for more information).
 #'
 #' Available value sets can be viewed using the function \code{valuesets}.

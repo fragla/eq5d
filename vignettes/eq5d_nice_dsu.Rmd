@@ -97,7 +97,7 @@ eq5d(dat2, version="5L", type="DSU", country="UK")
 
 ### Mapping approximate/summarised utility values
 
-If approximate or summarised utility scores are being mapped, a bandwidth parameter needs to be provided in addition to the age and sex parameters. The bandwidth parameter specifies the neighbourhood and the rate at which the weight declines with distance. It is possible to provide a single bandwidth score that can be applied to all utility scores in a dataset. However, the DSU specify that bandwidth scores should be < 0.8: 0.2, 0.8-0.951: 0.1, 0.951-1: small, but large enough to include 1. Individual bandwidth scores can be provided by a bwidth column containing the scores. For more information please view the tutorial on the [NICE DSU website](https://www.sheffield.ac.uk/nice-dsu/methods-development/mapping-eq-5d-5l-3l).
+If approximate or summarised utility scores are being mapped, a bandwidth parameter needs to be provided in addition to the age and sex parameters. The bandwidth parameter specifies the neighbourhood and the rate at which the weight declines with distance. It is possible to provide a single bandwidth score that can be applied to all utility scores in a dataset. However, the DSU specify that bandwidth scores should be < 0.8: 0.2, 0.8-0.951: 0.1, 0.951-1: small, but large enough to include 1. Individual bandwidth scores can be provided by a bwidth column containing the scores. For more information please view the tutorial on the [NICE DSU website](https://sheffield.ac.uk/nice-dsu/methods-development/mapping-eq-5d-5l-3l).
 
 ```{r dsu_summary_utility}
 

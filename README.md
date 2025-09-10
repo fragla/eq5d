@@ -72,7 +72,7 @@ mapping between the EQ-5D-5L and EQ-5D-3L descriptive systems.
 
 The recently published age and sex conditional based mapping data by the
 [NICE Decision Support
-Unit](https://www.sheffield.ac.uk/nice-dsu/methods-development/mapping-eq-5d-5l-3l)
+Unit](https://sheffield.ac.uk/nice-dsu/methods-development/mapping-eq-5d-5l-3l)
 are also now part of the package. These enable age-sex based EQ-5D-3L to
 EQ-5D-5L and EQ-5D-5L to EQ-5D-3L mappings from dimensions and exact or
 approximate utility index scores.

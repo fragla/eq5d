@@ -34,7 +34,7 @@ For EQ-5D-5L, a standardised valuation study protocol (EQ-VT) was developed by t
 
 The EQ-5D-5L "crosswalk" value sets published by [van Hout *et al* (2012)](https://pubmed.ncbi.nlm.nih.gov/22867780/) as well as that for Russia are also included. The crosswalk value sets enable index values to be calculated for EQ-5D-5L data where no value set is available by mapping between the EQ-5D-5L and EQ-5D-3L descriptive systems.
 
-The recently published age and sex conditional based mapping data by the [NICE Decision Support Unit](https://www.sheffield.ac.uk/nice-dsu/methods-development/mapping-eq-5d-5l-3l) are also now part of the package. These enable age-sex based EQ-5D-3L to EQ-5D-5L and EQ-5D-5L to EQ-5D-3L mappings from dimensions and exact or approximate utility index scores. 
+The recently published age and sex conditional based mapping data by the [NICE Decision Support Unit](https://sheffield.ac.uk/nice-dsu/methods-development/mapping-eq-5d-5l-3l) are also now part of the package. These enable age-sex based EQ-5D-3L to EQ-5D-5L and EQ-5D-5L to EQ-5D-3L mappings from dimensions and exact or approximate utility index scores. 
 
 Additional information on EQ-5D can be found on the [EuroQol](https://euroqol.org/) website as well as in [Szende *et al* (2007)](https://doi.org/10.1007/1-4020-5511-0) and [Szende 
     *et al* (2014)](https://doi.org/10.1007/978-94-007-7596-1). Advice on [choosing a value set](https://euroqol.org/information-and-support/resources/value-sets/

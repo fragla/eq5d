@@ -12,7 +12,7 @@ Hernández Alava M, Pudney S, Wailoo A. Estimating the Relationship Between EQ-5
 
 Hernández-Alava M, Pudney S. Econometric modelling of multiple self-reports of health states: The switch from EQ-5D-3L to EQ-5D-5L in evaluating drug therapies for rheumatoid arthritis. J Health Econ. 2017 Sep;55:139-152. \doi{10.1016/j.jhealeco.2017.06.013}. Epub 2017 Jul 4. PMID: 28778350.
 
-\href{https://www.sheffield.ac.uk/nice-dsu/methods-development/mapping-eq-5d-5l-3l}{NICE DSU mapping website}.
+\href{https://sheffield.ac.uk/nice-dsu/methods-development/mapping-eq-5d-5l-3l}{NICE DSU mapping website}.
 }
 \usage{
 DSU3L
