@@ -252,7 +252,8 @@
 #'     \item{\strong{Japan}: Shiroiwa T, Ikeda S, Noto S, Fukuda T, Stolk E. Valuation Survey of EQ-5D-Y Based on the International Common Protocol: Development of a Value Set in Japan. Med Decis Making. 2021 Mar 23:272989X211001859. \doi{10.1177/0272989X211001859}. Epub ahead of print. PMID: 33754886.}
 #'     \item{\strong{Netherlands}:Roudijk B, Sajjad A, Essers B, Lipman S, Stalmeier P, Finch AP. A Value Set for the EQ-5D-Y-3L in the Netherlands. Pharmacoeconomics. 2022 Oct 10:1–11. \doi{10.1007/s40273-022-01192-0}. Epub ahead of print. PMID: 36216977.}
 #'     \item{\strong{Slovenia}: Prevolnik Rupel V, Ogorevc M; IMPACT HTA HRQoL Group. EQ-5D-Y Value Set for Slovenia. Pharmacoeconomics. 2021 Feb 10. \doi{10.1007/s40273-020-00994-4}. Epub ahead of print. PMID: 33565048.}
-#'     \item{\strong{Spain}: Ramos-Goñi JM, Oppe M, Estévez-Carrillo A, Rivero-Arias O; IMPACT HTA HRQoL Group. Accounting for Unobservable Preference Heterogeneity and Evaluating Alternative Anchoring Approaches to Estimate Country-Specific EQ-5D-Y Value Sets: A Case Study Using Spanish Preference Data. Value Health. 2022 May;25(5):835-843. \doi{10.1016/j.jval.2021.10.013}. Epub 2021 Dec 6. PMID: 35500952..}
+#'     \item{\strong{Spain}: Ramos-Goñi JM, Oppe M, Estévez-Carrillo A, Rivero-Arias O; IMPACT HTA HRQoL Group. Accounting for Unobservable Preference Heterogeneity and Evaluating Alternative Anchoring Approaches to Estimate Country-Specific EQ-5D-Y Value Sets: A Case Study Using Spanish Preference Data. Value Health. 2022 May;25(5):835-843. \doi{10.1016/j.jval.2021.10.013}. Epub 2021 Dec 6. PMID: 35500952.}
+#'     \item{\strong{USA}: Pickard AS, Nazari JL, Ramos-Goñi JM, Gu NY. Valuing child health: an EQ-5D-Y-3L value set for the United States. Value Health. 2025 Nov 26:S1098-3015(25)05689-X. \doi{10.1016/j.jval.2025.11.003}. Epub ahead of print. PMID: 41314415.}
 #'   }
 #'
 #' @name Y3L

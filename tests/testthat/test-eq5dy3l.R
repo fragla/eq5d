@@ -83,6 +83,13 @@ test_that("EQ-5D-Y Spain gives correct answer", {
   expect_equal(eq5dy3l(c(MO=2,SC=2,UA=2,PD=2,AD=2), "Spain"), 0.458)
   expect_equal(eq5dy3l(c(MO=3,SC=3,UA=3,PD=3,AD=3), "Spain"), -0.539)
 })
+
+test_that("EQ-5D-Y USA gives correct answer", {
+  expect_equal(eq5dy3l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "USA"), 1)
+  expect_equal(eq5dy3l(c(MO=1,SC=2,UA=1,PD=1,AD=1), "USA"), 0.976)
+  expect_equal(eq5dy3l(c(MO=2,SC=2,UA=2,PD=2,AD=2), "USA"), 0.683)
+  expect_equal(eq5dy3l(c(MO=3,SC=3,UA=3,PD=3,AD=3), "USA"), 0.079)
+})
   
 context("EQ-5D-Y Incorrect params")
 
