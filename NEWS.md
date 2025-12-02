@@ -1,6 +1,10 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
+# eq5d (development version)
+
+- United States EQ-5D-Y-3L value set added.
+
 # eq5d 0.16.1 (2025-09-10)
 
 - Singaporean EQ-5D-5L value set added.
