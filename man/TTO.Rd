@@ -5,7 +5,7 @@
 \alias{TTO}
 \title{EQ-5D-3L TTO value set data}
 \format{
-An object of class \code{data.frame} with 63 rows and 32 columns.
+An object of class \code{data.frame} with 63 rows and 33 columns.
 }
 \source{
 Szende, A., Oppe, M., & de Charro, F. (2007), Comparative review of Time Trade-Off value sets.
@@ -31,7 +31,8 @@ Janssen, B., Szende, A., & Ramos-Goñi JM. (2014), Data and Methods.
 \item{\strong{Italy}: Scalone L, Cortesi PA, Ciampichini R, Belisari A, D'Angiolella LS, Cesana G, Mantovani LG. Italian population-based values of EQ-5D health states. Value Health. 2013 Jul-Aug;16(5):814-22. \doi{10.1016/j.jval.2013.04.008}. Epub 2013 Jun 19. PMID: 23947975.}
 \item{\strong{Japan}: Tsuchiya A, Ikeda S, Ikegami N, Nishimura S, Sakai I, Fukuda T, Hamashima C, Hisashige A, Tamura M. Estimating an EQ-5D population value set: the case of Japan. Health Econ. 2002 Jun;11(4):341-53. \doi{10.1002/hec.673}. PMID: 12007165.}
 \item{\strong{Jordan}: Al Rabayah A, Roudijk B, Purba FD, Rencz F, Jaddoua S, Siebert U. Valuation of the EQ-5D-3L in Jordan. Eur J Health Econ. 2024 Sep 3. \doi{10.1007/s10198-024-01712-z}. Epub ahead of print. PMID: 39225720.}
-\item{\strong{Netherlands}: Lamers LM, McDonnell J, Stalmeier PF, Krabbe PF, Busschbach JJ. The Dutch tariff: results and arguments for an effective design for national EQ-5D valuation studies. Health Econ. 2006 Oct;15(10):1121-32. \doi{10.1002/hec.1124}. PMID: 16786549.}
+\item{\strong{Netherlands (2006)}: Lamers LM, McDonnell J, Stalmeier PF, Krabbe PF, Busschbach JJ. The Dutch tariff: results and arguments for an effective design for national EQ-5D valuation studies. Health Econ. 2006 Oct;15(10):1121-32. \doi{10.1002/hec.1124}. PMID: 16786549.}
+\item{\strong{Netherlands (2026)}: Roudijk B, Jonker MF. Revisiting health state preferences after 20 years: A new EQ-5D-3L value set for the Netherlands. Eur J Health Econ. 2026 Jan 12. \doi{10.1007/s10198-025-01892-2}. PMID: 41525009.}
 \item{\strong{Pakistan}: Malik M, Gu NY, Hussain A, Roudijk B, Purba FD. The EQ-5D-3L Valuation Study in Pakistan. Pharmacoecon Open. 2023 Sep 13. \doi{10.1007/s41669-023-00437-8}. Epub ahead of print. PMID: 37702988.}
 \item{\strong{Poland}: Golicki D, Jakubczyk M, Niewada M, Wrona W, Busschbach JJ. Valuation of EQ-5D health states in Poland: first TTO-based social value set in Central and Eastern Europe. Value Health. 2010 Mar-Apr;13(2):289-97. \doi{10.1111/j.1524-4733.2009.00596.x}. Epub 2009 Sep 10. PMID: 19744296.}
 \item{\strong{Portugal}: Ferreira LN, Ferreira PL, Pereira LN, Oppe M. The valuation of the EQ-5D in Portugal. Qual Life Res. 2014 Mar;23(2):413-23. \doi{10.1007/s11136-013-0448-z}. Epub 2013 Jun 8. PMID: 23748906.}
@@ -56,8 +57,8 @@ TTO
 \description{
 Coefficients for the estimation of the EQ-5D-3L index values based on TTO valuation studies
   for Argentina, Australia, Brazil, Canada, Chile, China, Denmark, Ecuador, 
-  France, Germany, Hungary, Italy, Japan, Netherlands, Pakistan, Poland, Portugal, 
-  Russia, Singapore, SouthKorea, Spain, SriLanka, Sweden, Taiwan, Thailand, 
-  Trinidad and Tobago, Tunisia, UK, USA and Zimbabwe.
+  France, Germany, Hungary, Italy, Japan, Netherlands (2006), Netherlands (2026), 
+  Pakistan, Poland, Portugal, Russia, Singapore, SouthKorea, Spain, SriLanka, 
+  Sweden, Taiwan, Thailand, Trinidad and Tobago, Tunisia, UK, USA and Zimbabwe.
 }
 \keyword{datasets}

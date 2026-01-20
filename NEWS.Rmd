@@ -11,6 +11,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 - United States EQ-5D-Y-3L value set added.
 
+-  Dutch EQ-5D-3L value set added. There are now two EQ-5D-3L value sets, the 
+original 2006 value set and the new 2026 value set.
+
 # eq5d 0.16.1 (2025-09-10)
 
 - Singaporean EQ-5D-5L value set added.

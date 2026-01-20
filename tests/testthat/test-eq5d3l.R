@@ -134,12 +134,19 @@ test_that("EQ-5D-3L South Korea TTO gives correct answer", {
   expect_equal(eq5d3l(c(MO=3,SC=3,UA=3,PD=3,AD=3), "TTO", "SouthKorea"), -0.171)
 })
 
-test_that("EQ-5D-3L Netherlands TTO gives correct answer", {
-  expect_equal(eq5d3l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "TTO", "Netherlands"), 1)
-  expect_equal(eq5d3l(c(MO=2,SC=1,UA=2,PD=1,AD=1), "TTO", "Netherlands"), 0.861)
-  expect_equal(eq5d3l(c(MO=2,SC=1,UA=2,PD=3,AD=1), "TTO", "Netherlands"), 0.298)
-  expect_equal(eq5d3l(c(MO=2,SC=1,UA=3,PD=3,AD=3), "TTO", "Netherlands"), -0.052)
-  expect_equal(eq5d3l(c(MO=3,SC=3,UA=3,PD=3,AD=3), "TTO", "Netherlands"), -0.329)
+test_that("EQ-5D-3L Netherlands 2006 TTO gives correct answer", {
+  expect_equal(eq5d3l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "TTO", "Netherlands_2006"), 1)
+  expect_equal(eq5d3l(c(MO=2,SC=1,UA=2,PD=1,AD=1), "TTO", "Netherlands_2006"), 0.861)
+  expect_equal(eq5d3l(c(MO=2,SC=1,UA=2,PD=3,AD=1), "TTO", "Netherlands_2006"), 0.298)
+  expect_equal(eq5d3l(c(MO=2,SC=1,UA=3,PD=3,AD=3), "TTO", "Netherlands_2006"), -0.052)
+  expect_equal(eq5d3l(c(MO=3,SC=3,UA=3,PD=3,AD=3), "TTO", "Netherlands_2006"), -0.329)
+})
+
+test_that("EQ-5D-3L Netherlands 2026 TTO gives correct answer", {
+  expect_equal(eq5d3l(c(MO=1,SC=1,UA=1,PD=1,AD=1), "TTO", "Netherlands_2026"), 1)
+  expect_equal(eq5d3l(c(MO=1,SC=2,UA=3,PD=1,AD=3), "TTO", "Netherlands_2026"), 0.295)
+  expect_equal(eq5d3l(c(MO=2,SC=2,UA=2,PD=2,AD=2), "TTO", "Netherlands_2026"), 0.521)
+  expect_equal(eq5d3l(c(MO=3,SC=3,UA=3,PD=3,AD=3), "TTO", "Netherlands_2026"), -0.723)
 })
 
 test_that("EQ-5D-3L Pakistan TTO gives correct answer", {
