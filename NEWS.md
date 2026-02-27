@@ -1,7 +1,7 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-# eq5d (development version)
+# eq5d 0.16.2 (2026-02-27)
 
 - United States EQ-5D-Y-3L value set added.
 
