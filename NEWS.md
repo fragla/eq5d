@@ -5,6 +5,9 @@
 
 - UK EQ-5D-5L value set added.
 
+- Fixed issue with Shiny app not loading due to eq5d_table rendering
+  early.
+
 # eq5d 0.16.2 (2026-02-27)
 
 - United States EQ-5D-Y-3L value set added.
