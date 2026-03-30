@@ -54,7 +54,24 @@ shinyServer(function(input, output, session) {
     possible_types  <- c("TTO", "VAS", "RCW", "DSU", "IVP", "VT", "CW")
     types_available <- intersect(possible_types, unique(vs$Type))
     validate(need(length(types_available) > 0, "No value set types available for this selection."))
-    selectInput("type", "Type:", choices = types_available, selected = FALSE, selectize = FALSE)
+    
+    # Determine preferred default based on version
+    preferred <- if (input$version == "3L") {
+      "TTO"
+    } else if (input$version == "5L") {
+      "VT"
+    } else {
+      NULL
+    }
+    
+    # Only use it if it's actually available
+    selected_val <- if(!is.null(preferred) && preferred %in% types_available) {
+      preferred
+    } else {
+      types_available[1]
+    }
+    
+    selectInput("type", "Type:", choices = types_available, selected = selected_val, selectize = FALSE)
   })
 
   output$include_severity_scores <- renderUI({
