@@ -5,7 +5,7 @@
 \alias{Y3L}
 \title{EQ-5D-Y-3L value set data}
 \format{
-An object of class \code{data.frame} with 14 rows and 12 columns.
+An object of class \code{data.frame} with 14 rows and 13 columns.
 }
 \source{
 \itemize{
@@ -14,6 +14,7 @@ An object of class \code{data.frame} with 14 rows and 12 columns.
     \item{\strong{Brazil}: Espirito Santo CM, Miyamoto GC, Santos VS, Ben ÂJ, Finch AP, Roudijk B, de Jesus-Moraleida FR, Stein AT, Santos M, Yamato TP. Estimating an EQ-5D-Y-3L Value Set for Brazil. Pharmacoeconomics. 2024 Jul 2. \doi{10.1007/s40273-024-01404-9}. Epub ahead of print. PMID: 38954389.}
     \item{\strong{China}: Yang Z, Jiang J, Wang P, Jin X, Wu J, Fang Y, Feng D, Xi X, Li S, Jing M, Zheng B, Huang W, Luo N. Estimating an EQ-5D-Y-3L Value Set for China. Pharmacoeconomics. 2022 Nov 18. \doi{10.1007/s40273-022-01216-9}. Epub ahead of print. PMID: 36396878.}
     \item{\strong{Germany}: Kreimeier S, Mott D, Ludwig K, Greiner W; IMPACT HTA HRQoL Group. EQ-5D-Y Value Set for Germany. Pharmacoeconomics. 2022 May 23:1–13. \doi{10.1007/s40273-022-01143-9}. Epub ahead of print. PMID: 35604633.}
+    \item{\strong{HongKong}: Wong EL, Wang K, Wong AY, Cheung AW, Wong CKH, Luo N, Rivero-Arias O, Yeoh EK. Value set of EQ-5D-Y-3L for Hong Kong. Health Qual Life Outcomes. 2026 Mar 23. \doi{10.1186/s12955-026-02522-y}. Epub ahead of print. PMID: 41872908.}
     \item{\strong{Hungary}: Rencz F, Ruzsa G, Bató A, Yang Z, Finch AP, Brodszky V. Value Set for the EQ-5D-Y-3L in Hungary. Pharmacoeconomics. 2022 Sep 20:1–11. \doi{10.1007/s40273-022-01190-2}. Epub ahead of print. PMID: 36123448.}
     \item{\strong{Indonesia}: Fitriana TS, Roudijk B, Purba FD, Busschbach JJV, Stolk E. Estimating an EQ-5D-Y-3L Value Set for Indonesia by Mapping the DCE onto TTO Values. Pharmacoeconomics. 2022 Nov 9. \doi{10.1007/s40273-022-01210-1}. Epub ahead of print.  PMID: 36348155.} 
     \item{\strong{Japan}: Shiroiwa T, Ikeda S, Noto S, Fukuda T, Stolk E. Valuation Survey of EQ-5D-Y Based on the International Common Protocol: Development of a Value Set in Japan. Med Decis Making. 2021 Mar 23:272989X211001859. \doi{10.1177/0272989X211001859}. Epub ahead of print. PMID: 33754886.}

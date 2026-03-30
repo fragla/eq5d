@@ -5,6 +5,8 @@
 
 - UK EQ-5D-5L value set added.
 
+- Hong Kong EQ-5D-Y-3L value set added.
+
 - Fixed issue with Shiny app not loading due to eq5d_table rendering
   early.
 
