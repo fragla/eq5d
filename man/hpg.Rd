@@ -2,61 +2,155 @@
 % Please edit documentation in R/eqhpg.R
 \name{hpg}
 \alias{hpg}
-\title{Calculate the Health Profile Grid}
+\alias{hpg.default}
+\alias{hpg.formula}
+\title{Health Profile Grid (HPG) for EQ-5D}
 \usage{
 hpg(
+  pre,
+  post = NULL,
+  country = NULL,
+  version = NULL,
+  type = NULL,
+  ignore.invalid = TRUE,
+  dimensions = NULL,
+  pre.level = NULL,
+  post.level = NULL,
+  no.problems = TRUE,
+  data = NULL
+)
+
+\method{hpg}{default}(
   pre,
   post,
   country = NULL,
   version = NULL,
   type = NULL,
   ignore.invalid = TRUE,
-  dimensions = .get_dimension_names(),
-  no.problems = TRUE
+  dimensions = NULL,
+  pre.level = NULL,
+  post.level = NULL,
+  no.problems = TRUE,
+  data = NULL
+)
+
+\method{hpg}{formula}(
+  formula,
+  post = NULL,
+  country = NULL,
+  version = NULL,
+  type = NULL,
+  ignore.invalid = TRUE,
+  dimensions = NULL,
+  pre.level = NULL,
+  post.level = NULL,
+  no.problems = TRUE,
+  data = NULL
 )
 }
 \arguments{
-\item{pre}{data.frame, numeric or character. For data.frame default column 
-names should be MO, SC, UA, PD and AD representing Mobility, Self-care, 
-Usual activities, Pain/discomfort and Anxiety/depression. Vector using five 
-digit format can also be used.}
+\item{pre}{For the wide-form interface, pre-intervention EQ-5D values
+(5-digit profiles or dimension data.frame).
+For the formula interface, a formula describing EQ-5D variables on the
+left-hand side and a time variable (and optionally an ID variable)
+on the right-hand side, e.g. \code{profile ~ visit | id}.}
 
-\item{post}{data.frame, numeric or character. For data.frame default column 
-names should be MO, SC, UA, PD and AD representing Mobility, Self-care, 
-Usual activities, Pain/discomfort and Anxiety/depression. Vector using five 
-digit format can also be used.}
+\item{post}{For the wide-form interface, post-intervention EQ-5D values.
+Ignored for the formula interface.}
 
-\item{country}{string of value set country name used.}
+\item{country}{Country name passed to \code{eq5d()}.}
 
-\item{version}{string of value "3L" or "5L" to indicate instrument version.}
+\item{version}{EQ-5D version: \code{"3L"}, \code{"5L"}, or \code{"Y3L"}.}
 
-\item{type}{string specifying method type used in deriving value set scores.
-Options are TTO or VAS for EQ-5D-3L, VT for EQ-5D-5L, CW for EQ-5D-5L
-crosswalk conversion valuesets, RCW for EQ-5D-3L reverse crosswalk
-conversion valuesets.}
+\item{type}{EQ-5D valuation method supplied to \code{eq5d()}.}
 
-\item{ignore.invalid}{boolean whether to ignore invalid scores. TRUE returns NA, FALSE 
-throws an error.}
+\item{ignore.invalid}{Logical; if TRUE, invalid EQ-5D values are replaced with NA.
+If FALSE, invalid values trigger an error.}
 
-\item{dimensions}{character vector, specifying "dimension" column names. Defaults 
-are "MO", "SC", "UA", "PD" and "AD".}
+\item{dimensions}{Optional named character vector mapping canonical dimension
+names (\code{MO}, \code{SC}, \code{UA}, \code{PD}, \code{AD}) to alternative
+column names. Only used in formula methods with multiple dimension columns.}
 
-\item{no.problems}{boolean. Summarise 11111 "No change" subjects in a "No problems" 
-group.}
+\item{pre.level}{Optional value of the time variable representing the
+pre-intervention visit.}
+
+\item{post.level}{Optional value of the time variable representing the
+post-intervention visit.}
+
+\item{no.problems}{Logical; passed to \code{pchc()} to classify
+\code{11111 -> 11111} transitions as \code{"No problems"}.}
+
+\item{data}{Long-form dataset used with the formula interface.
+Ignored for the wide-form interface.}
+
+\item{formula}{A formula describing EQ‑5D variables on the left‑hand side
+and a time variable (and optionally an ID variable) on the right‑hand side,
+separated by \code{|}. Used only with the formula interface.}
 }
 \value{
-a data.frame or list of data.frames containing the columns Pre, Post and PCHC. 
-Pre and Post contain the severity rankings and PCHC the PCHC category.
+A data.frame with columns:
+\itemize{
+  \item \strong{Pre} - severity rank of the pre-intervention utility score
+  \item \strong{Post} - severity rank of the post-intervention utility score
+  \item \strong{PCHC} - individual-level PCHC category
+}
 }
 \description{
-Calculate the Health Profile Grid (HPG) for two EQ-5D datasets.
+Computes the Health Profile Grid (HPG) for two sets of EQ-5D health states.
+The HPG displays pre- and post-intervention utility ranks and the associated
+PCHC category for each subject.
+
+Two input interfaces are supported:
+
+\strong{1. Wide-form input (default method)}  
+\code{hpg(pre, post)}  
+where \code{pre} and \code{post} are EQ-5D health states represented either as:
+\itemize{
+  \item 5-digit EQ-5D profiles (character or numeric), or
+  \item data.frames with dimension columns \code{MO}, \code{SC}, \code{UA},
+        \code{PD}, \code{AD}
+}
+
+\strong{2. Long-form input (formula method)}  
+\code{hpg(formula, data)}  
+where the formula has left-hand side forms:
+\itemize{
+  \item a single 5-digit EQ-5D profile column
+  \item dimension columns, e.g. \code{MO + SC + UA + PD + AD}
+  \item \code{cbind(MO,SC,UA,PD,AD)}
+}
+and right-hand side of the form \code{time | id}, where:
+\itemize{
+ \item \code{time} is the visit variable
+ \item \code{id} is the subject identifier
+}
+
+For formula methods, the time variable must contain exactly two observable
+levels unless the user specifies \code{pre.level} and \code{post.level}.
+When not supplied, HPG follows the same ordering logic as \code{pchc.formula()}:
+\itemize{
+  \item factor time variables use the factor level order
+  \item character/numeric time variables use the order of appearance
+}
 }
 \examples{
-dat <- read.csv(system.file("extdata", "eq5d3l_example.csv", package="eq5d"))
+\dontrun{
 
-pre <- dat[dat$Group=="Group1",][1:50,]
-post <- dat[dat$Group=="Group2",][1:50,]
-res <- hpg(pre, post, country="UK", version="3L", type="TTO")
-head(res)
+## Wide-form usage
+hpg(pre, post, country = "UK", version = "3L", type = "TTO")
+
+## Long-form with a 5-digit profile column
+hpg(profile ~ visit | id, data = df,
+    country = "UK", version = "3L", type = "TTO")
+
+## Long-form with dimension columns
+hpg(MO + SC + UA + PD + AD ~ visit | id, data = df,
+    country = "UK", version = "3L", type = "TTO")
+
+## Explicit time ordering
+hpg(profile ~ time | id, data = df, version = "3L",
+    pre.level = "baseline", post.level = "followup")
+
+}
 
 }

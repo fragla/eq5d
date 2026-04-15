@@ -57,7 +57,7 @@ getHealthStates = get_all_health_states
 #' get_dimensions_from_health_states(c("12345", "54321"), version="5L")
 #' 
 #'@export get_dimensions_from_health_states splitHealthStates getDimensionsFromHealthStates
-get_dimensions_from_health_states <- function(scores, ignore.invalid=TRUE, version="5L") {
+get_dimensions_from_health_states <- function(scores, version="5L", ignore.invalid=TRUE) {
   if(ignore.invalid) {
     idx <- which(!scores %in% get_all_health_states(version))
     scores[idx] <- NA
@@ -79,10 +79,10 @@ splitHealthStates = getDimensionsFromHealthStates = get_dimensions_from_health_s
 #' Merge MO, SC, UA, PD and AD dimension scores to get five digit health states.
 #' 
 #' @param scores a data.fram containing each dimension in a column
-#' @param ignore.invalid whether to ignore invalid scores. TRUE returns NA, FALSE throws an 
-#' error.
 #' @param version 3L, 5L or Y. Used for validating scores when ignore.invalid 
 #' is FALSE.
+#' @param ignore.invalid whether to ignore invalid scores. TRUE returns NA, FALSE throws an 
+#' error.
 #' @param dimensions character vector specifying "dimensions" column names. Defaults 
 #' are "MO", "SC", "UA", "PD" and "AD".
 #' @return A character vector of individual dimension scores.

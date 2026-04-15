@@ -2,63 +2,129 @@
 % Please edit documentation in R/eqpchc.R
 \name{pchc}
 \alias{pchc}
-\title{Calculate the Paretian Classification of Health Change}
+\alias{pchc.default}
+\alias{pchc.formula}
+\title{Paretian Classification of Health Change (PCHC)}
 \usage{
 pchc(
   pre,
-  post,
+  post = NULL,
   version = NULL,
+  id = NULL,
+  pre.level = NULL,
+  post.level = NULL,
+  duplicates = c("error", "first", "last"),
   no.problems = TRUE,
   totals = TRUE,
   by.dimension = FALSE,
   ignore.invalid = TRUE,
-  dimensions = .get_dimension_names(),
-  summary = TRUE
+  dimensions = NULL,
+  summary = TRUE,
+  data = NULL
+)
+
+\method{pchc}{default}(
+  pre,
+  post,
+  version = NULL,
+  id = NULL,
+  pre.level = NULL,
+  post.level = NULL,
+  duplicates = c("error", "first", "last"),
+  no.problems = TRUE,
+  totals = TRUE,
+  by.dimension = FALSE,
+  ignore.invalid = TRUE,
+  dimensions = NULL,
+  summary = TRUE,
+  data = NULL
+)
+
+\method{pchc}{formula}(
+  formula,
+  post = NULL,
+  version = NULL,
+  id = NULL,
+  pre.level = NULL,
+  post.level = NULL,
+  duplicates = c("error", "first", "last"),
+  no.problems = TRUE,
+  totals = TRUE,
+  by.dimension = FALSE,
+  ignore.invalid = TRUE,
+  dimensions = NULL,
+  summary = TRUE,
+  data = NULL
 )
 }
 \arguments{
-\item{pre}{data.frame, numeric or character. For data.frame default column 
-names should be MO, SC, UA, PD and AD representing Mobility, Self-care, 
-Usual activities, Pain/discomfort and Anxiety/depression. Vector using five 
-digit format can also be used.}
+\item{pre}{A data.frame of EQ-5D dimensions or a vector of 5-digit EQ-5D profiles.}
 
-\item{post}{data.frame, numeric or character. For data.frame default column 
-names should be MO, SC, UA, PD and AD representing Mobility, Self-care, 
-Usual activities, Pain/discomfort and Anxiety/depression. Vector using five 
-digit format can also be used.}
+\item{post}{Same format as \code{pre}, representing post-intervention states.}
 
-\item{version}{string of value "3L" or "5L" to indicate instrument version.}
+\item{version}{EQ-5D instrument version: \code{"3L"}, \code{"5L"}, or \code{"Y3L"}.}
 
-\item{no.problems}{boolean. Summarise 11111 "No change" subjects in a "No problems" 
-group.}
+\item{id}{Optional character string naming the subject identifier column
+when it is not supplied in the formula.}
 
-\item{totals}{boolean. Include a summary total.}
+\item{pre.level}{Optional value of the time variable identifying the
+pre‑intervention visit. Required when the time variable has more than
+two levels or when automatic inference would be incorrect.}
 
-\item{by.dimension}{boolean. Summarise results by each EQ-5D dimension rather 
-than by the whole dataset.}
+\item{post.level}{Optional value of the time variable identifying the
+post‑intervention visit.}
 
-\item{ignore.invalid}{boolean whether to ignore invalid scores. TRUE returns NA, FALSE 
-throws an error.}
+\item{duplicates}{How to handle duplicate observations per subject and
+time point in long‑form data. One of \code{"error"}, \code{"first"},
+or \code{"last"}.}
 
-\item{dimensions}{character vector, specifying "dimension" column names. Defaults 
-are "MO", "SC", "UA", "PD" and "AD".}
+\item{no.problems}{Logical; classify \code{11111 -> 11111} as \code{"No problems"}.}
 
-\item{summary}{boolean. Summarise results or return all classifications.}
+\item{totals}{Logical; include total rows in the summary table.}
+
+\item{by.dimension}{Logical; compute PCHC separately for each EQ-5D dimension.}
+
+\item{ignore.invalid}{Logical; if TRUE, invalid or missing values yield NA rows;
+if FALSE, an error is thrown.}
+
+\item{dimensions}{Character vector naming EQ-5D dimension columns.}
+
+\item{summary}{Logical; return summary table or individual classifications.}
+
+\item{data}{A long‑form data.frame used with the formula interface.}
+
+\item{formula}{A formula specifying EQ‑5D variables on the left‑hand side
+and a time variable (and optionally an ID variable) on the right‑hand side.
+This argument is used only in the formula interface.}
 }
 \value{
-a data.frame or list of data.frames of changes according to PCHC.
-contain dimensions names and rows the EQ-5D score or, if summary=FALSE, a vector or  
-list of vectors of changes.
+A data.frame or list summarising PCHC categories, or a vector of
+individual‑level classifications when \code{summary = FALSE}.
 }
 \description{
-Calculate the Paretian Classification of Health Change (PCHC) for two EQ-5D datasets.
+Computes the Paretian Classification of Health Change (PCHC) for EQ‑5D data.
+PCHC classifies change between two EQ‑5D health states into:
+\itemize{
+  \item \strong{Improve}
+  \item \strong{Worsen}
+  \item \strong{No change}
+  \item \strong{Mixed change}
+  \item \strong{No problems} (optional)
 }
-\examples{
-dat <- read.csv(system.file("extdata", "eq5d3l_example.csv", package="eq5d"))
 
-pre <- dat[dat$Group=="Group1",][1:50,]
-post <- dat[dat$Group=="Group2",][1:50,]
+The method applied depends on the class of the first argument:
+\itemize{
+  \item \code{pchc.default()} for wide‑form data with explicit pre/post states
+  \item \code{pchc.formula()} for long‑form data using a formula interface
+}
 
-pchc(pre, post, version="3L", no.problems=FALSE, totals=FALSE)
+Computes the Paretian Classification of Health Change from wide-form EQ-5D
+data where pre- and post-intervention states are supplied as separate objects.
 
+Computes the Paretian Classification of Health Change from long-form EQ-5D
+data using a formula interface.
+}
+\details{
+Missing or invalid EQ‑5D values are handled consistently across all methods
+via the \code{ignore.invalid} argument.
 }

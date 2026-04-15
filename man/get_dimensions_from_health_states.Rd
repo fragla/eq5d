@@ -8,18 +8,18 @@
 \usage{
 get_dimensions_from_health_states(
   scores,
-  ignore.invalid = TRUE,
-  version = "5L"
+  version = "5L",
+  ignore.invalid = TRUE
 )
 }
 \arguments{
 \item{scores}{a vector of five digit scores}
 
-\item{ignore.invalid}{whether to ignore invalid scores. TRUE returns NA, FALSE throws an 
-error.}
-
 \item{version}{3L, 5L or Y. Used for validating scores when ignore.invalid 
 is FALSE.}
+
+\item{ignore.invalid}{whether to ignore invalid scores. TRUE returns NA, FALSE throws an 
+error.}
 }
 \value{
 A data.frame of individual dimension scores.

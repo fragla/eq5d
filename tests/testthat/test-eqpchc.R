@@ -61,3 +61,75 @@ test_that("eq5dpchc using version='Y' still works", {
   rlang::local_options(lifecycle_verbosity = "quiet")
   expect_equal(pchc(pre.df, post.df, version="Y", no.problems=TRUE, totals=TRUE), res1)
 })
+
+#### formula interface tests ####
+
+test_that("pchc.formula(profile) matches wide-form", {
+  df <- make_long_profile(pre, post)
+  expect_equal(pchc(profile ~ visit | id, data=df, version="3L"), res1)
+})
+
+test_that("pchc.formula(dimensions) matches wide-form", {
+  df <- make_long_dimensions(pre, post)
+  expect_equal(pchc(MO + SC + UA + PD + AD ~ visit | id, data=df, version="3L"), res1)
+})
+
+test_that("pchc.formula(cbind) matches wide-form", {
+  df <- make_long_dimensions(pre, post)
+  expect_equal(pchc(cbind(MO,SC,UA,PD,AD) ~ visit | id, data=df, version="3L"), res1)
+})
+
+test_that("pchc.formula supports dimensions= mapping", {
+  df <- make_long_dimensions(pre, post)
+  names(df)[3:7] <- c("mob","self","use","pain","anx")
+  
+  expect_equal(
+    pchc(
+      mob + self + use + pain + anx ~ visit | id, data=df, 
+      version="3L", dimensions=c(MO="mob", SC="self", UA="use", PD="pain", AD="anx")
+    ),
+    res1
+  )
+})
+
+test_that("pchc.formula errors on missing dimension columns", {
+  df <- make_long_dimensions(pre, post)
+  df$MO <- NULL
+  expect_error(pchc(MO + SC + UA + PD + AD ~ visit | id, data=df, version="3L"))
+})
+
+test_that("pchc.formula errors on invalid dimension mapping", {
+  df <- make_long_dimensions(pre, post)
+  expect_error(
+    pchc(
+      MO + SC + UA + PD + AD ~ visit | id, data=df, version="3L",
+      dimensions=c(MO="wrong", SC="SC", UA="UA", PD="PD", AD="AD"))
+  )
+})
+
+test_that("pchc.formula errors on >2 time levels", {
+  df <- make_long_dimensions(pre, post)
+  df$visit[1] <- "middle"  # create 3 levels
+  expect_error(pchc(MO + SC + UA + PD + AD ~ visit | id, data=df, version="3L"))
+})
+
+test_that("pchc.formula summary=FALSE works", {
+  df <- make_long_profile(pre[1:6], post[1:6])
+  expect_equal(pchc(profile ~ visit | id, data=df, version="3L", no.problems=TRUE, totals=FALSE, summary=FALSE), res5)
+})
+
+
+test_that("pchc.formula(profile) errors with ignore.invalid=FALSE on bad profile", {
+  bad <- pre
+  bad[3] <- "99999"   # invalid 5-digit state
+  df <- make_long_profile(bad, post)
+  
+  expect_error(pchc(profile ~ visit | id, data=df, version="3L", ignore.invalid=FALSE))
+})
+
+test_that("pchc.formula(dimensions) errors with ignore.invalid=FALSE on bad dimension", {
+  df <- make_long_dimensions(pre, post)
+  df$MO[5] <- 9   # invalid 3L level
+  
+  expect_error(pchc(MO + SC + UA + PD + AD ~ visit | id, data=df, version="3L", ignore.invalid=FALSE))
+})
