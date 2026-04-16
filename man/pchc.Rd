@@ -78,7 +78,7 @@ post‑intervention visit.}
 time point in long‑form data. One of \code{"error"}, \code{"first"},
 or \code{"last"}.}
 
-\item{no.problems}{Logical; classify \code{11111 -> 11111} as \code{"No problems"}.}
+\item{no.problems}{Logical; classify \code{11111 to 11111} as \code{"No problems"}.}
 
 \item{totals}{Logical; include total rows in the summary table.}
 
