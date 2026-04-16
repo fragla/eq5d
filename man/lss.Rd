@@ -7,23 +7,33 @@
 lss(scores, version, ignore.invalid, ...)
 }
 \arguments{
-\item{scores}{data.frame with names MO, SC, UA, PD and AD representing
-Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.}
+\item{scores}{EQ-5D health states supplied as:
+\itemize{
+  \item a named numeric vector of dimension levels (MO, SC, UA, PD, AD),
+  \item a 5-digit EQ-5D health state (character or numeric),
+  \item a vector of 5-digit health states,
+  \item or a data.frame containing either dimension columns
+        or a single health state column.
+}}
 
-\item{version}{string of value "3L" or "5L" to indicate instrument version.}
+\item{version}{string of value "3L", "5L" or "Y3L" to indicate instrument version.}
 
 \item{ignore.invalid}{whether to ignore invalid scores. TRUE returns NA, FALSE throws an 
 error.}
 
-\item{...}{character vector, specifying "dimensions" column names. Defaults 
+\item{...}{Optional arguments.
+  \describe{
+    \item{dimensions}{Character vector giving names of EQ-5D dimension columns.}
+    \item{five.digit}{Name of the column containing 5-digit EQ-5D health states
+      when `scores` is a data.frame (default: "State"). Matching is case-insensitive.}
+  }
 are "MO", "SC", "UA", "PD" and "AD".}
 }
 \value{
-a data.frame or list of data.frames of counts/percentages. Columns 
-contain dimensions names and rows the EQ-5D score.
+an integer vector of Level Sum Scores.
 }
 \description{
-Calculate the Levels Sum Score for a single or number of EQ-5D profiles
+Calculate the Levels Sum Score for one or more EQ-5D profiles
 }
 \examples{
 lss(c(MO=1,SC=2,UA=3,PD=2,AD=1), version="3L")
