@@ -1,20 +1,30 @@
-#' Calculate the Level Freqeuncy Score for an EQ-5D profile
+#' Calculate the Level Frequency Score for an EQ-5D profile
 #' 
-#' Calculate the Levels Frequency Score for a single or number of EQ-5D profiles
+#' Calculate the Levels Frequency Score for one or more EQ-5D profiles
 #' 
-#' @param scores data.frame with names MO, SC, UA, PD and AD representing
-#'   Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression.
+#' @param scores EQ-5D health states supplied as:
+#'   \itemize{
+#'     \item a named numeric vector of dimension levels (MO, SC, UA, PD, AD),
+#'     \item a 5-digit EQ-5D health state (character or numeric),
+#'     \item a vector of 5-digit health states,
+#'     \item or a data.frame containing either dimension columns
+#'           or a single health state column.
+#'   }
 #' @param version string of value "3L", "5L" or "Y3L" to indicate instrument version.
 #' @param ignore.invalid whether to ignore invalid scores. TRUE returns NA, FALSE throws an 
 #' error.
-#' @param ... character vector, specifying "dimensions" column names. Defaults 
-#' are "MO", "SC", "UA", "PD" and "AD".
-#' @return a data.frame or list of data.frames of counts/percentages. Columns 
-#' contain dimensions names and rows the EQ-5D score.
+#' @param ... Optional arguments.
+#'   \describe{
+#'     \item{dimensions}{Character vector giving names of EQ-5D dimension columns.}
+#'     \item{five.digit}{Name of the column containing 5-digit EQ-5D health states
+#'       when `scores` is a data.frame (default: "State"). Matching is case-insensitive.}
+#'   }
+#' @return a character vector of Level Frequency Scores.
 #' @examples
 #' lfs(c(MO=1,SC=2,UA=3,PD=2,AD=1), version="3L")
 #' lfs(55555, version="5L")
 #' lfs(c(11111, 12345, 55555), version="5L")
+#' lfs(data.frame(state = c("11111", "12345")), version = "5L")
 #' 
 #' @export
 lfs <- function(scores, version, ignore.invalid, ...) {
@@ -34,16 +44,35 @@ lfs.data.frame <- function(scores, version=NULL, ignore.invalid=FALSE, ...) {
   if(all(dimensions %in% names(scores))) {
     scores <- scores[,dimensions, drop = FALSE]
     colnames(scores) <- .get_dimension_names()
-  } else if(five.digit %in% tolower(names(scores))) {
-    scores <- scores[,five.digit, drop=FALSE]
+    
+    return(
+      vapply(
+        seq_len(nrow(scores)),
+        function(i) {
+          row <- scores[i, , drop = FALSE]
+          x   <- setNames(as.numeric(row), names(row))
+          lfs.default(x, version = version, ignore.invalid = ignore.invalid, ...)
+        },
+        FUN.VALUE = NA_character_
+      )
+    )
   } else {
-    stop("Unable to identify EQ-5D dimensions in data.frame.", call. = FALSE)
+    nms <- names(scores)
+    idx <- match(tolower(five.digit), tolower(nms))
+    
+    if (!is.na(idx)) {
+      state_vec <- scores[[nms[idx]]]
+      
+      res <- vapply(state_vec,
+        function(x) {
+          lfs.default(x, version=version, ignore.invalid=ignore.invalid,...)
+      }, FUN.VALUE = NA_character_)
+      
+      return(unname(res))
+    } else {
+      stop("Unable to identify EQ-5D dimensions in data.frame.", call. = FALSE)
+    }
   }
-  
-  res <- vapply(seq_len(nrow(scores)), function(x) {
-    lfs.default(scores[x, , drop = TRUE], version=version, ignore.invalid=ignore.invalid,...)
-  }, FUN.VALUE = NA_character_)
-  return(res)
 }
 
 #' @export

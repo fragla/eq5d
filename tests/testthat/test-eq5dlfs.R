@@ -19,10 +19,12 @@ test_that("five digit lfs gives correct answer", {
 test.df <- data.frame(MO=c(1,2,3,4,5),SC=c(1,5,4,3,2),UA=c(1,5,2,3,1),PD=c(1,3,4,3,4),AD=c(1,2,1,2,1))
 test.df.2 <- test.df
 colnames(test.df.2) <- c("M", "S", "U", "P", "A")
+test.df.3 <- data.frame(state=c("11111","12345", "55555"), stringsAsFactors = FALSE)
 
 test_that("data.frame lfs gives correct answer", {
   expect_equal(lfs(test.df, version="5L"), c("50000","02102","11120","01310","21011"))
   expect_equal(lfs(test.df.2, version="5L", dimensions=c("M","S","U","P","A")), c("50000","02102","11120","01310","21011"))
+  expect_equal(lfs(test.df.3, version = "5L"),  c("50000", "11111", "00005"))
 })
 
 test_that("matrix lfs gives correct answer", {
