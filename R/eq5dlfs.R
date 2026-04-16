@@ -94,19 +94,6 @@ lfs.default <- function(scores, version=NULL, ignore.invalid=FALSE, ...){
 }
 
 .lfs <- function(scores, version, ignore.invalid) {
-  if(!all(.get_dimension_names() %in% names(scores)) || any(!scores %in% 1:sub("L", "", version))) {
-    if(ignore.invalid) {
-      res <- NA
-    } else {
-      stop("Invalid dimension state found.")
-    }
-  } else {
-    return(sum(scores))
-  }
-}
-
-
-.lfs <- function(scores, version, ignore.invalid) {
   if(!all(.get_dimension_names() %in% names(scores)) || any(!scores %in% 1:.get_number_levels(version))) {
     if(ignore.invalid) {
       res <- NA
