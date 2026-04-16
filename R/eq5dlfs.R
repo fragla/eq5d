@@ -32,17 +32,17 @@ lfs.data.frame <- function(scores, version=NULL, ignore.invalid=FALSE, ...) {
   if(!is.null(args$five.digit)) {five.digit <- args$five.digit}
   
   if(all(dimensions %in% names(scores))) {
-    scores <- scores[,dimensions]
+    scores <- scores[,dimensions, drop = FALSE]
     colnames(scores) <- .get_dimension_names()
   } else if(five.digit %in% tolower(names(scores))) {
     scores <- scores[,five.digit, drop=FALSE]
   } else {
-    stop("Unable to identify EQ-5D dimensions in data.frame.")
+    stop("Unable to identify EQ-5D dimensions in data.frame.", call. = FALSE)
   }
   
-  res <- apply(scores, 1, function(x) {
-    lfs.default(x, version=version, ignore.invalid=ignore.invalid,...)
-  })
+  res <- vapply(seq_len(nrow(scores)), function(x) {
+    lfs.default(scores[x, , drop = TRUE], version=version, ignore.invalid=ignore.invalid,...)
+  }, FUN.VALUE = NA_character_)
   return(res)
 }
 
@@ -75,9 +75,9 @@ lfs.default <- function(scores, version=NULL, ignore.invalid=FALSE, ...){
     if(.length==5 && all(.get_dimension_names() %in% names(scores))) {
       res <- .lfs(scores, version=version, ignore.invalid=ignore.invalid)
     } else {
-      res <- sapply(scores, function(x) {
+      res <- vapply(scores, function(x) {
         lfs.default(x, version=version, ignore.invalid=ignore.invalid)
-      })
+      }, FUN.VALUE = NA_character_)
     }
   } else if (.length==1 && scores %in% get_all_health_states(version)) {
     scores <- as.numeric(strsplit(as.character(scores[1]), "")[[1]])
@@ -85,7 +85,7 @@ lfs.default <- function(scores, version=NULL, ignore.invalid=FALSE, ...){
     res <- .lfs(scores, version=version, ignore.invalid=ignore.invalid)
   } else {
     if(ignore.invalid) {
-      res <- NA
+      res <- NA_character_
     } else {
       stop("Invalid dimension state found.")
     }
@@ -94,18 +94,16 @@ lfs.default <- function(scores, version=NULL, ignore.invalid=FALSE, ...){
 }
 
 .lfs <- function(scores, version, ignore.invalid) {
-  if(!all(.get_dimension_names() %in% names(scores)) || any(!scores %in% 1:.get_number_levels(version))) {
+  n_levels <- .get_number_levels(version)
+  
+  if(!all(.get_dimension_names() %in% names(scores)) || any(!scores %in% seq_len(n_levels))) {
     if(ignore.invalid) {
-      res <- NA
+      return(NA_character_)
     } else {
       stop("Invalid dimension state found.")
     }
-  } else {
-    freq <- table(scores)
-    score <- rep(0,.get_number_levels(version))
-    names(score) <- 1:.get_number_levels(version)
-    score[match(names(freq), names(score))] <- freq
-    score <- paste(score, collapse="")
-    return(score)
   }
+  
+  freq <- table(factor(scores, levels = seq_len(n_levels)))
+  paste0(freq, collapse = "")
 }

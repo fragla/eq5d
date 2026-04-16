@@ -3,7 +3,7 @@ context("EQ-5D lfs")
 test_that("single lfs gives correct answer", {
   expect_equal(lfs(c(MO=1,SC=2,UA=3,PD=2,AD=1), version="3L"), "221")
   expect_equal(lfs(c(MO=5,SC=5,UA=5,PD=5,AD=5), version="5L"), "00005")
-  expect_equal(lfs(c(MO=5,SC=5,UA=6,PD=5,AD=5), version="5L", ignore.invalid=TRUE), NA)
+  expect_equal(lfs(c(MO=5,SC=5,UA=6,PD=5,AD=5), version="5L", ignore.invalid=TRUE), NA_character_)
   expect_equal(lfs(c(MO=1,SC=2,UA=3,PD=2,AD=1), version="Y3L"), "221")
 })
 
@@ -11,7 +11,7 @@ test_that("five digit lfs gives correct answer", {
   expect_equal(lfs(12321, version="3L"), "221")
   expect_equal(lfs(55555, version="5L"), "00005")
   expect_equal(lfs(12321, version="Y3L"), "221")
-  expect_equal(lfs(55575, version="5L", ignore.invalid=TRUE), NA)
+  expect_equal(lfs(55575, version="5L", ignore.invalid=TRUE), NA_character_)
   expect_equal(lfs(c(11111,12345, 55555), version="5L"), c("50000","11111","00005"))
   expect_equal(lfs(as.character(c(11111,12345, 55555)), version="5L"), c("50000","11111","00005"))
 })
