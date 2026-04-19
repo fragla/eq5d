@@ -9,7 +9,7 @@ shannon(
   version = NULL,
   by.dimension = TRUE,
   ignore.invalid = TRUE,
-  dimensions = .get_dimension_names(),
+  dimensions = NULL,
   base = 2,
   digits = 2,
   permutations = TRUE

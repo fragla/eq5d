@@ -3,13 +3,16 @@ context("EQ-5D Shannon Index")
 pre <- read.csv("../testdata/pre.csv")$x
 
 test_that("eqshannon five digit gives correct answer", {
-  expect_equal(shannon(pre, version="3L", by.dimension=TRUE, permutations=TRUE)$MO, list(H=0.97, H.max=1.58, J=0.61))
-  expect_equal(shannon(pre, version="3L", by.dimension=TRUE, permutations=TRUE)$SC, list(H=1.09, H.max=1.58, J=0.68))
-  expect_equal(shannon(pre, version="3L", by.dimension=TRUE, permutations=TRUE)$UA, list(H=1.10, H.max=1.58, J=0.69))
-  expect_equal(shannon(pre, version="3L", by.dimension=TRUE, permutations=TRUE)$PD, list(H=1.14, H.max=1.58, J=0.72))
-  expect_equal(shannon(pre, version="3L", by.dimension=TRUE, permutations=TRUE)$AD, list(H=1.00, H.max=1.58, J=0.63))
-  expect_equal(shannon(pre, version="3L", by.dimension=FALSE, permutations=TRUE), list(H=4.33, H.max=7.92, J=0.55))
-  expect_equal(shannon(pre, version="3L", by.dimension=FALSE, permutations=FALSE), list(H=4.33, H.max=4.81, J=0.90))
+  res1 <- shannon(pre, version="3L", by.dimension=TRUE, permutations=TRUE)
+  res2 <- shannon(pre, version="3L", by.dimension=FALSE, permutations=TRUE)
+  res3 <- shannon(pre, version="3L", by.dimension=FALSE, permutations=FALSE)
+  expect_equal(unname(as.numeric(res1[res1$dimension == "MO", c("H","H.max","J")])), c(0.97, 1.58, 0.61))
+  expect_equal(unname(as.numeric(res1[res1$dimension == "SC", c("H","H.max","J")])), c(1.09, 1.58, 0.68))
+  expect_equal(unname(as.numeric(res1[res1$dimension == "UA", c("H","H.max","J")])), c(1.10, 1.58, 0.69))
+  expect_equal(unname(as.numeric(res1[res1$dimension == "PD", c("H","H.max","J")])), c(1.14, 1.58, 0.72))
+  expect_equal(unname(as.numeric(res1[res1$dimension == "AD", c("H","H.max","J")])), c(1.00, 1.58, 0.63))
+  expect_equal(unname(as.numeric(res2[,c("H","H.max","J")])), c(4.33, 7.92, 0.55))
+  expect_equal(unname(as.numeric(res3[,c("H","H.max","J")])), c(4.33, 4.81, 0.90))
 })
 
 test_that("eqshannon throws error", {
@@ -21,16 +24,18 @@ test_that("eqshannon throws error", {
 pre.df <- read.csv("../testdata/pre_df.csv")
 
 test_that("eqshannon data.frame gives correct answer", {
-  expect_equal(shannon(pre.df, version="3L", by.dimension=TRUE, permutations=TRUE)$MO, list(H=0.97, H.max=1.58, J=0.61))
-  expect_equal(shannon(pre.df, version="3L", by.dimension=TRUE, permutations=TRUE)$SC, list(H=1.09, H.max=1.58, J=0.68))
-  expect_equal(shannon(pre.df, version="3L", by.dimension=TRUE, permutations=TRUE)$UA, list(H=1.10, H.max=1.58, J=0.69))
-  expect_equal(shannon(pre.df, version="3L", by.dimension=TRUE, permutations=TRUE)$PD, list(H=1.14, H.max=1.58, J=0.72))
-  expect_equal(shannon(pre.df, version="3L", by.dimension=TRUE, permutations=TRUE)$AD, list(H=1.00, H.max=1.58, J=0.63)) 
-  expect_equal(shannon(pre.df, version="3L", by.dimension=TRUE, permutations=FALSE)$MO, list(H=0.97, H.max=1, J=0.97))
-  expect_equal(shannon(pre.df, version="3L", by.dimension=TRUE, permutations=FALSE)$SC, list(H=1.09, H.max=1.58, J=0.68))
-  expect_equal(shannon(pre.df, version="3L", by.dimension=TRUE, permutations=FALSE)$UA, list(H=1.10, H.max=1.58, J=0.69))
-  expect_equal(shannon(pre.df, version="3L", by.dimension=TRUE, permutations=FALSE)$PD, list(H=1.14, H.max=1.58, J=0.72))
-  expect_equal(shannon(pre.df, version="3L", by.dimension=TRUE, permutations=FALSE)$AD, list(H=1.00, H.max=1.00, J=1.00)) 
+  res4 <- shannon(pre.df, version="3L", by.dimension=TRUE, permutations=TRUE)
+  res5 <- shannon(pre.df, version="3L", by.dimension=TRUE, permutations=FALSE)
+  expect_equal(unname(as.numeric(res4[res4$dimension == "MO", c("H","H.max","J")])), c(0.97, 1.58, 0.61))
+  expect_equal(unname(as.numeric(res4[res4$dimension == "SC", c("H","H.max","J")])), c(1.09, 1.58, 0.68))
+  expect_equal(unname(as.numeric(res4[res4$dimension == "UA", c("H","H.max","J")])), c(1.10, 1.58, 0.69))
+  expect_equal(unname(as.numeric(res4[res4$dimension == "PD", c("H","H.max","J")])), c(1.14, 1.58, 0.72))
+  expect_equal(unname(as.numeric(res4[res4$dimension == "AD", c("H","H.max","J")])), c(1.00, 1.58, 0.63)) 
+  expect_equal(unname(as.numeric(res5[res5$dimension == "MO", c("H","H.max","J")])), c(0.97, 1, 0.97))
+  expect_equal(unname(as.numeric(res5[res5$dimension == "SC", c("H","H.max","J")])), c(1.09, 1.58, 0.68))
+  expect_equal(unname(as.numeric(res5[res5$dimension == "UA", c("H","H.max","J")])), c(1.10, 1.58, 0.69))
+  expect_equal(unname(as.numeric(res5[res5$dimension == "PD", c("H","H.max","J")])), c(1.14, 1.58, 0.72))
+  expect_equal(unname(as.numeric(res5[res5$dimension == "AD", c("H","H.max","J")])), c(1.00, 1.00, 1.00)) 
   
 })
 
@@ -41,10 +46,11 @@ test_that("eqshannon data.frame throws error", {
 
 test_that("eqshannon using version='Y' is deprecated", {
   rlang::local_options(lifecycle_verbosity = "error")
-  expect_error(shannon(pre, version="Y", by.dimension=TRUE, permutations=TRUE)$MO)
+  expect_error(shannon(pre, version="Y", by.dimension=TRUE, permutations=TRUE))
 })
 
 test_that("eq5dshannon using version='Y' still works", {
   rlang::local_options(lifecycle_verbosity = "quiet")
-  expect_equal(shannon(pre, version="Y", by.dimension=TRUE, permutations=TRUE)$MO, list(H=0.97, H.max=1.58, J=0.61))
+  res6 <- shannon(pre, version="Y", by.dimension=TRUE, permutations=TRUE)
+  expect_equal(unname(as.numeric(res6[res6$dimension == "MO", c("H","H.max","J")])), c(0.97, 1.58, 0.61))
 })

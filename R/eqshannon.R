@@ -27,7 +27,7 @@
 #' shannon(dat, version="3L", by.dimension=TRUE)
 #' 
 #' @export
-shannon <- function(scores, version=NULL, by.dimension=TRUE, ignore.invalid=TRUE, dimensions=.get_dimension_names(), base=2, digits=2, permutations=TRUE) {
+shannon <- function(scores, version=NULL, by.dimension=TRUE, ignore.invalid=TRUE, dimensions=NULL, base=2, digits=2, permutations=TRUE) {
   
   if (!is.null(version) && version == "Y") {
     lifecycle::deprecate_soft("0.15.4", I('Setting `version = "Y"`'), I('`version = "Y3L"`'))
@@ -35,64 +35,104 @@ shannon <- function(scores, version=NULL, by.dimension=TRUE, ignore.invalid=TRUE
   }
   
   if(is.null(version) || !version %in% c("3L", "5L", "Y3L"))
-    stop("EQ-5D version not one of 3L, 5L or Y3L.")
+    stop("EQ-5D version not one of 3L, 5L or Y3L.", call. = FALSE)
+  
+  if(is.null(dimensions)) {
+    dimensions <- .get_dimension_names()
+  }
   
   if(is.character(scores) || is.numeric(scores)) {
     scores <- get_dimensions_from_health_states(scores, version=version, ignore.invalid=ignore.invalid)
   }
   
-  if(all(dimensions %in% names(scores))) {
-    scores <- scores[,dimensions]
-    colnames(scores) <- .get_dimension_names()
-  } else {
-    stop("Unable to identify EQ-5D dimensions in data.frames.")
+  if (!is.data.frame(scores) || !all(dimensions %in% names(scores))) {
+    stop("Unable to identify EQ-5D dimensions in data.frame.", call. = FALSE)
   }
   
-  scores.idx <- which(apply(scores, 1, function(x) { any(!x%in% 1:.get_number_levels(version))}))
+  scores <- scores[, dimensions, drop = FALSE]
+  colnames(scores) <- .get_dimension_names()
   
-  if(length(scores.idx)>0) {
-    if(ignore.invalid) {
-      scores[scores.idx,] <- NA
+#  scores.idx <- which(apply(scores, 1, function(x) { any(!x%in% 1:.get_number_levels(version))}))
+  
+  bad <- vapply(seq_len(nrow(scores)),
+    function(x) {
+      any(!scores[x, ] %in% seq_len(.get_number_levels(version)))
+    },
+    logical(1)
+  )
+  
+  if (any(bad)) {
+    if (ignore.invalid) {
+      scores[bad, ] <- NA
     } else {
-      stop("Missing/non-numeric dimension found.")
+      stop("Invalid EQ-5D dimension levels detected.", call. = FALSE)
     }
   }
   
-  if(!by.dimension) {
-    scores <- get_health_states_from_dimensions(scores)
-    max.levels <- ifelse(permutations, .get_number_levels(version)^5, length(unique(na.omit(scores))))
-    res <- .shannon(scores, max.levels, base, digits)
-  } else {
-    res <- lapply(.get_dimension_names(), function(x) {
-      max.levels <- ifelse(permutations, .get_number_levels(version), length(unique(na.omit(scores[[x]]))))
-      .shannon(scores[,x, drop=FALSE], max.levels, base, digits)
-    })
-    names(res) <- .get_dimension_names()
-  }
+  # if(length(scores.idx)>0) {
+  #   if(ignore.invalid) {
+  #     scores[scores.idx,] <- NA
+  #   } else {
+  #     stop("Missing/non-numeric dimension found.")
+  #   }
+  # }
   
-  return(res)
-
+  if(!by.dimension) {
+    states <- get_health_states_from_dimensions(scores)
+    max.levels <- ifelse(permutations, .get_number_levels(version)^5, length(unique(na.omit(states))))
+    ent <- .shannon(counts = .profile_counts(states), max.levels = max.levels, base = base)
+    
+    return(
+      data.frame(
+        scope = "profile",
+        H = round(ent$H, digits),
+        H.max = round(ent$H.max, digits),
+        J = round(ent$J, digits),
+        row.names = NULL
+      )
+    )
+  } else {
+    res <- lapply(.get_dimension_names(), function(d) {
+      x <- scores[[d]]
+      
+      max.levels <- ifelse(permutations, .get_number_levels(version), length(unique(na.omit(x))))
+      ent <- .shannon(counts = .profile_counts(x), max.levels = max.levels, base = base)
+      
+      data.frame(
+        dimension = d,
+        H = round(ent$H, digits),
+        H.max = round(ent$H.max, digits),
+        J = round(ent$J, digits)
+      )
+    })
+    
+    return(do.call(rbind, res))
+  }
 }
 
-.shannon <- function(scores, max.levels, base=2, digits=2) {
-
-  #H'max based on max levels or permutations of health states
-  H.max <- log(max.levels, base)
-  
-  #Totals of each level
-  t <- table(scores)
-  
-  #Total number subjects
-  n <- sum(t)
+.shannon <- function(counts, max.levels, base=2) {
+  n <- sum(counts)
+  if (n == 0) {
+    return(list(H = NA_real_, H.max = NA_real_, J = NA_real_))
+  }
   
   #Proportions of each level
-  p <- t  / n
+  p <- counts / n
+  p <- p[p > 0] # Remove zero proportions to avoid log(0)
   
-  #H' - Shannon index
+  #H'max based on max levels or permutations of health states
   H <- -sum(p * log(p, base))
+  
+  # Maximum entropy
+  H.max <- log(max.levels, base)
   
   #J' - Shannon’s Evenness index 
   J <- H / H.max
   
-  list(H=round(H, digits), H.max=round(H.max, digits), J=round(J, digits))
+  list(H = H, H.max = H.max, J = J)
+}
+
+
+.profile_counts <- function(x) {
+  table(x, useNA = "no")
 }
