@@ -2,36 +2,53 @@
 % Please edit documentation in R/eq5dcf.R
 \name{eq5dcf}
 \alias{eq5dcf}
-\title{Calculate the cumulative frequency profile of an EQ-5D dataset}
+\title{Calculate the cumulative frequency distribution of EQ-5D health states}
 \usage{
-eq5dcf(data, version, ignore.invalid, proportions, digits, ...)
+eq5dcf(scores, version, ignore.invalid = TRUE, digits = 1, ...)
 }
 \arguments{
-\item{data}{A data.frame with columns MO, SC, UA, PD and AD representing
-Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression 
-or a "State" column containing five digit scores. Alternatively a vector of 
-five digit scores can also be used.}
+\item{scores}{EQ-5D health states supplied as:
+\itemize{
+  \item a vector of 5-digit EQ-5D health states (character or numeric), or
+  \item a data.frame containing either dimension columns
+        (\code{MO}, \code{SC}, \code{UA}, \code{PD}, \code{AD})
+        or a single health-state column named \code{"state"}
+        (case-insensitive).
+}}
 
-\item{version}{string of value "3L" or "5L" to indicate instrument version.}
+\item{version}{Character string identifying the EQ-5D version:
+one of \code{"3L"}, \code{"5L"}, or \code{"Y3L"}.}
 
-\item{ignore.invalid}{booloean whether to ignore invalid scores. TRUE returns NA, FALSE throws an 
-error.}
+\item{ignore.invalid}{Logical. If \code{TRUE}, invalid health states are
+replaced with \code{NA}. If \code{FALSE}, invalid values trigger an error.}
 
-\item{proportions}{boolean whether to include proportion data columns Proportions and
-CumulativeProp. Default is FALSE.}
+\item{digits}{Integer specifying the number of decimal places used when
+rounding percentages. Defaults to 1.}
 
-\item{digits}{numeric specifying the number of decimal places for percentages. Defaults to 1.}
-
-\item{...}{character vector, specifying "dimensions" column names. Defaults 
-are "MO", "SC", "UA", "PD" and "AD".}
+\item{...}{Additional arguments reserved for future use.}
 }
 \value{
-a data.frame or list of data.frames of counts/percentages. Columns 
-contain dimensions names and rows the EQ-5D score.
+A data.frame with one row per observed health state and columns:
+  \itemize{
+    \item \code{State}: EQ-5D health state (five-digit code),
+    \item \code{Frequency}: number of observations of the state,
+    \item \code{Proportion}: relative frequency of the state,
+    \item \code{CumulativeProp}: cumulative proportion of states,
+    \item \code{CumulativeState}: cumulative share of distinct states,
+    \item \code{Percentage}: percentage frequency,
+    \item \code{CumulativePerc}: cumulative percentage.
+  }
 }
 \description{
-Calculate the frequency, percentage, cumulative frequency and cumulative 
-percentage for each profile in an EQ-5D dataset.
+Computes the frequency, proportion, and cumulative distribution of EQ-5D
+health states in a dataset. The function accepts EQ-5D data supplied either
+as dimension-level columns (MO, SC, UA, PD, AD) or as a single column of
+five-digit EQ-5D health states.
+}
+\details{
+The output is a tidy data.frame containing frequencies and cumulative
+proportions, suitable for computing informativity indices (e.g. HSDI)
+or for plotting Health State Density Curves (HSDC).
 }
 \examples{
 dat <- read.csv(system.file("extdata", "eq5d3l_example.csv", package="eq5d"))

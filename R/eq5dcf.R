@@ -1,101 +1,114 @@
-#' Calculate the cumulative frequency profile of an EQ-5D dataset
-#' 
-#' Calculate the frequency, percentage, cumulative frequency and cumulative 
-#' percentage for each profile in an EQ-5D dataset.
-#' 
-#' @param data A data.frame with columns MO, SC, UA, PD and AD representing
-#'   Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression 
-#'   or a "State" column containing five digit scores. Alternatively a vector of 
-#'   five digit scores can also be used. 
-#' @param version string of value "3L" or "5L" to indicate instrument version.
-#' @param ignore.invalid booloean whether to ignore invalid scores. TRUE returns NA, FALSE throws an 
-#' error.
-#' @param proportions boolean whether to include proportion data columns Proportions and
-#' CumulativeProp. Default is FALSE.
-#' @param digits  numeric specifying the number of decimal places for percentages. Defaults to 1.
-#' @param ... character vector, specifying "dimensions" column names. Defaults 
-#' are "MO", "SC", "UA", "PD" and "AD".
-#' @return a data.frame or list of data.frames of counts/percentages. Columns 
-#' contain dimensions names and rows the EQ-5D score.
+#' Calculate the cumulative frequency distribution of EQ-5D health states
+#'
+#' Computes the frequency, proportion, and cumulative distribution of EQ-5D
+#' health states in a dataset. The function accepts EQ-5D data supplied either
+#' as dimension-level columns (MO, SC, UA, PD, AD) or as a single column of
+#' five-digit EQ-5D health states.
+#'
+#' The output is a tidy data.frame containing frequencies and cumulative
+#' proportions, suitable for computing informativity indices (e.g. HSDI)
+#' or for plotting Health State Density Curves (HSDC).
+#'
+#' @param scores EQ-5D health states supplied as:
+#'   \itemize{
+#'     \item a vector of 5-digit EQ-5D health states (character or numeric), or
+#'     \item a data.frame containing either dimension columns
+#'           (\code{MO}, \code{SC}, \code{UA}, \code{PD}, \code{AD})
+#'           or a single health-state column named \code{"state"}
+#'           (case-insensitive).
+#'   }
+#' @param version Character string identifying the EQ-5D version:
+#'   one of \code{"3L"}, \code{"5L"}, or \code{"Y3L"}.
+#' @param ignore.invalid Logical. If \code{TRUE}, invalid health states are
+#'   replaced with \code{NA}. If \code{FALSE}, invalid values trigger an error.
+#' @param digits Integer specifying the number of decimal places used when
+#'   rounding percentages. Defaults to 1.
+#' @param ... Additional arguments reserved for future use.
+#'
+#' @return A data.frame with one row per observed health state and columns:
+#'   \itemize{
+#'     \item \code{State}: EQ-5D health state (five-digit code),
+#'     \item \code{Frequency}: number of observations of the state,
+#'     \item \code{Proportion}: relative frequency of the state,
+#'     \item \code{CumulativeProp}: cumulative proportion of states,
+#'     \item \code{CumulativeState}: cumulative share of distinct states,
+#'     \item \code{Percentage}: percentage frequency,
+#'     \item \code{CumulativePerc}: cumulative percentage.
+#'   }
+#'
 #' @examples
 #' dat <- read.csv(system.file("extdata", "eq5d3l_example.csv", package="eq5d"))
 #' eq5dcf(dat, "3L")
 #' 
 #' @export
-eq5dcf <- function(data, version, ignore.invalid, proportions, digits, ...) {
-  UseMethod("eq5dcf", data)
-}
-
-#' @export
-eq5dcf.data.frame <- function(data, version, ignore.invalid=TRUE, proportions=FALSE, digits=1, ...) {
-  args <- list(...)
-  
-  dimensions <- .get_dimension_names()
-  five.digit <- "State"
-  
-  if(!is.null(args$dimensions)) {dimensions <- args$dimensions}
-  if(!is.null(args$five.digit)) {five.digit <- args$five.digit}
-  
-  if(all(dimensions %in% names(data))) {
-    states <- get_health_states_from_dimensions(data, version, ignore.invalid, dimensions)
-  } else if(five.digit %in% names(data)) {
-    states <- data[[five.digit]]
-  } else {
-    stop("Unable to identify EQ-5D dimensions in data.frame.")
-  }
-  eq5dcf.default(states, version, ignore.invalid, proportions, digits=digits, ...)
-}
-
-#' @export
-eq5dcf.matrix <- function(data, version, ignore.invalid=TRUE, proportions=FALSE, digits=1, ...) {
-  data <- as.data.frame(data)
-  eq5dcf.data.frame(data, version, ignore.invalid, proportions, digits, ...)
-}
-
-#' @export
-eq5dcf.default <- function(data, version, ignore.invalid=TRUE, proportions=FALSE, digits=1, ...) {
+eq5dcf <- function(scores, version, ignore.invalid=TRUE, digits=1, ...) {
   
   if (!is.null(version) && version == "Y") {
     lifecycle::deprecate_soft("0.15.4", I('Setting `version = "Y"`'), I('`version = "Y3L"`'))
     version <- "Y3L"
-  }  
+  }
   
-  invalid.idx <- which(!data %in% get_all_health_states(version))
+  if (is.null(version) || !version %in% c("3L", "5L", "Y3L")) {
+    stop("EQ-5D version not one of 3L, 5L or Y3L.", call. = FALSE)
+  }
   
-  if(length(invalid.idx) > 0) {
-    if(ignore.invalid) {
-      data[invalid.idx] <- NA
+  ## ---- normalise input to state vector ----
+  if (is.data.frame(scores)) {
+    
+    dims <- .get_dimension_names()
+    nms  <- names(scores)
+    idx  <- match("state", tolower(nms))
+    
+    if (all(dims %in% nms)) {
+      states <- get_health_states_from_dimensions(
+        scores,
+        version = version,
+        ignore.invalid = ignore.invalid
+      )
+    } else if (!is.na(idx)) {
+      states <- scores[[nms[idx]]]
     } else {
-      stop("Invalid dimension state(s) found.")
+      stop("Unable to identify EQ-5D states in data.frame.", call. = FALSE)
     }
-  } 
-
-  #State, Frequency, Percentage, Cumulative frequency, Cumulative percentage
-  frequencies <- sort(table(data), decreasing=TRUE)
-  percentage <- prop.table(as.numeric(frequencies)) * 100
-  cum.freq <- cumsum(as.numeric(frequencies))
-  cum.perc <- cum.freq/sum(frequencies) * 100
-  
-  if(proportions) {
-    prop <- prop.table(as.numeric(frequencies))
-    cum.prop <- cum.freq/sum(frequencies)
-  }
-  
-  if(!is.null(digits)) {
-    percentage <- round(percentage, digits)
-    cum.perc <- round(cum.perc, digits)
-  }
-  
-  if(proportions) {
-    cf <- data.frame(State=names(frequencies), Frequency=as.numeric(frequencies),
-               Percentage=percentage, Proportions=prop, CumulativeFreq=cum.freq, CumulativePerc=cum.perc, 
-               CumulativeProp=cum.prop, stringsAsFactors=FALSE)
+    
   } else {
-    cf <- data.frame(State=names(frequencies), Frequency=as.numeric(frequencies),
-                     Percentage=percentage, CumulativeFreq=cum.freq, CumulativePerc=cum.perc, 
-                     stringsAsFactors=FALSE)
+    states <- scores
   }
   
-  return(cf)
-}
+  ## ---- validate states ----
+  valid <- get_all_health_states(version)
+  bad   <- !states %in% valid
+  
+  if (any(bad)) {
+    if (ignore.invalid) {
+      states[bad] <- NA
+    } else {
+      stop("Invalid EQ-5D state(s) found.", call. = FALSE)
+    }
+  }
+  
+  ## ---- frequency table ----
+  freq <- sort(table(states, useNA = "no"), decreasing = TRUE)
+  n    <- sum(freq)
+  
+  df <- data.frame(
+    State = names(freq),
+    Frequency = as.integer(freq),
+    stringsAsFactors = FALSE
+  )
+  
+  ## ---- proportions and cumulative measures ----
+  df$Proportion      <- df$Frequency / n
+  df$CumulativeProp  <- cumsum(df$Proportion)
+  df$CumulativeState <- seq_len(nrow(df)) / nrow(df)
 
+  if (!is.null(digits)) {
+    df$Percentage     <- round(df$Proportion * 100, digits)
+    df$CumulativePerc <- round(df$CumulativeProp * 100, digits)
+  } else {
+    df$Percentage     <- df$Proportion * 100
+    df$CumulativePerc <- df$CumulativeProp * 100
+  }
+  
+  return(df)
+}
