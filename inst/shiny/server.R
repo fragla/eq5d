@@ -383,7 +383,7 @@ shinyServer(function(input, output, session) {
     if (input$group == "None" || !isTRUE(input$raw)) {
       hsdi_val <- hsdi(data, version = input$version)
       res <- eq5dcf(data, version = input$version, proportions = TRUE)
-      res$CumulativeState <- 1:nrow(res) / nrow(res)
+      #res$CumulativeState <- 1:nrow(res) / nrow(res)
       ggplot(res, aes(CumulativeProp, CumulativeState)) +
         geom_line(color = "#FF9999") +
         annotate("segment", x = 0, y = 0, xend = 1, yend = 1, colour = "black") +
@@ -400,7 +400,7 @@ shinyServer(function(input, output, session) {
       label <- paste("HSDI:", paste(names(hsdi_list), hsdi_list, sep = "=", collapse = ", "))
       res <- lapply(unique(data[[input$group]]), function(x) {
         cf <- eq5dcf(data[data[[input$group]] == x, ], version = input$version, proportions = TRUE)
-        cf$CumulativeState <- 1:nrow(cf) / nrow(cf)
+        #cf$CumulativeState <- 1:nrow(cf) / nrow(cf)
         cf[, input$group] <- x
         cf
       })
@@ -532,9 +532,12 @@ shinyServer(function(input, output, session) {
     if (input$group != "None" && isTRUE(input$raw)) { return() }
     permutations <- input$shannon_type == "permutations"
     sh <- shannon(data, version = input$version, by.dimension = TRUE, ignore.invalid = ignoreInvalid(), dimensions = get_dimension_names(), permutations = permutations)
-    sh <- as.data.frame(t(do.call(rbind, sh)))
-    rownames(sh) <- c("H'", "H' max", "J'")
-    sh$Overall <- shannon(data, version = input$version, by.dimension = FALSE, ignore.invalid = ignoreInvalid(), dimensions = get_dimension_names(), permutations = permutations)
+    colnames(sh)[colnames(sh) == "H"] <- "H'"
+    colnames(sh)[colnames(sh) == "H.max"] <- "H' max"
+    colnames(sh)[colnames(sh) == "J"] <- "J'"
+    #sh <- as.data.frame(t(do.call(rbind, sh)))
+    #rownames(sh) <- c("H'", "H' max", "J'")
+    sh$Overall <- shannon(data, version = input$version, by.dimension = FALSE, ignore.invalid = ignoreInvalid(), dimensions = get_dimension_names(), permutations = permutations)$H
     sh
   })
 
