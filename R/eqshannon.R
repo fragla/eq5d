@@ -52,8 +52,6 @@ shannon <- function(scores, version=NULL, by.dimension=TRUE, ignore.invalid=TRUE
   scores <- scores[, dimensions, drop = FALSE]
   colnames(scores) <- .get_dimension_names()
   
-#  scores.idx <- which(apply(scores, 1, function(x) { any(!x%in% 1:.get_number_levels(version))}))
-  
   bad <- vapply(seq_len(nrow(scores)),
     function(x) {
       any(!scores[x, ] %in% seq_len(.get_number_levels(version)))
@@ -68,14 +66,6 @@ shannon <- function(scores, version=NULL, by.dimension=TRUE, ignore.invalid=TRUE
       stop("Invalid EQ-5D dimension levels detected.", call. = FALSE)
     }
   }
-  
-  # if(length(scores.idx)>0) {
-  #   if(ignore.invalid) {
-  #     scores[scores.idx,] <- NA
-  #   } else {
-  #     stop("Missing/non-numeric dimension found.")
-  #   }
-  # }
   
   if(!by.dimension) {
     states <- get_health_states_from_dimensions(scores)
