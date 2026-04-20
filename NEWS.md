@@ -1,6 +1,32 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
+# eq5d (development)
+
+## Internal refactoring and structural improvements
+
+- Internal implementations of LFS and LSS revised to ensure type-stable
+  outputs.
+
+- RSeverity, informativity, and cumulative distribution components
+  refactored to provide clearer, more consistent internal data
+  structures.
+
+- `shannon()` now returns a tidy data.frame representation to simplify
+  downstream use and improving consistency.
+
+- Cumulative frequency calculations (`eq5dcf()`) revised to construct a
+  cumulative distribution based on relative frequencies.
+  Percentage-based summaries retained for presentation.
+
+- Informational measures such as the Health State Density Index
+  (`hsdi()`) now operate explicitly on proportional cumulative
+  distributions with rounding confined to presentation contexts.
+
+- Tests updated to reflect the updated code changes.
+
+- Shiny application logic updated to align with the revised code.
+
 # eq5d 0.16.3 (2026-03-30)
 
 - UK EQ-5D-5L value set added.
