@@ -26,6 +26,15 @@
 #'
 #' \strong{2. Long‑form + formula interface}  
 #' \code{ps(formula, data)} mirroring the interface of \code{pchc()}.
+#' 
+#' For formula methods, the time variable must contain exactly two observable
+#' levels unless the user specifies \code{pre.level} and \code{post.level}.
+#' When not supplied, the ordering of pre‑ and post‑measurements is determined
+#' automatically as follows:
+#' \itemize{
+#'   \item factor time variables use the factor level order
+#'   \item character or numeric time variables use the order of appearance
+#' }
 #'
 #' @param pre For the wide‑form interface, pre‑intervention EQ‑5D states
 #'   (5‑digit character/numeric vector or data frame of EQ‑5D dimensions).

@@ -127,6 +127,15 @@ data using a formula interface.
 \details{
 Missing or invalid EQ‑5D values are handled consistently across all methods
 via the \code{ignore.invalid} argument.
+
+For formula methods the time variable must contain exactly two observable
+levels unless the user specifies \code{pre.level} and \code{post.level}.
+When not supplied, the ordering of pre‑ and post‑measurements is determined
+automatically as follows:
+\itemize{
+  \item factor time variables use the factor level order
+  \item character or numeric time variables use the order of appearance
+}
 }
 \examples{
 ## Load example EQ-5D-3L data included with the package

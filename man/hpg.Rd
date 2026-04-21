@@ -125,32 +125,47 @@ and right-hand side of the form \code{time | id}, where:
  \item \code{id} is the subject identifier
 }
 
-For formula methods, the time variable must contain exactly two observable
+For formula methods the time variable must contain exactly two observable
 levels unless the user specifies \code{pre.level} and \code{post.level}.
-When not supplied, HPG follows the same ordering logic as \code{pchc.formula()}:
+When not supplied, the ordering of pre- and post-measurements is determined
+automatically as follows:
 \itemize{
   \item factor time variables use the factor level order
-  \item character/numeric time variables use the order of appearance
+  \item character or numeric time variables use the order of appearance
 }
 }
 \examples{
 \dontrun{
+## Load example EQ-5D-3L data included with the package
+dat <- read.csv(
+  system.file("extdata", "eq5d3l_example.csv", package = "eq5d")
+)
 
-## Wide-form usage
-hpg(pre, post, country = "UK", version = "3L", type = "TTO")
+## Wide-form usage (illustrative row-wise pairing)
+pre  <- dat[dat$Group == "Group1", ][1:50, ]
+post <- dat[dat$Group == "Group2", ][1:50, ]
 
-## Long-form with a 5-digit profile column
+res <- hpg(pre, post,
+           country = "UK",
+           version = "3L",
+           type    = "TTO")
+
+head(res)
+
+## Long-form usage via formula interface
+## (requires data in long format with subject identifiers)
+
+## Using a 5-digit EQ-5D profile column
 hpg(profile ~ visit | id, data = df,
     country = "UK", version = "3L", type = "TTO")
 
-## Long-form with dimension columns
+## Using EQ-5D dimension columns
 hpg(MO + SC + UA + PD + AD ~ visit | id, data = df,
     country = "UK", version = "3L", type = "TTO")
 
 ## Explicit time ordering
 hpg(profile ~ time | id, data = df, version = "3L",
-    pre.level = "baseline", post.level = "followup")
-
+    pre.level  = "baseline",
+    post.level = "followup")
 }
-
 }

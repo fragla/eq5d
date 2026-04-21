@@ -15,8 +15,13 @@
 #' are "MO", "SC", "UA", "PD" and "AD".
 #' @return numeric containing the HSDI value.
 #' @examples
-#' dat <- read.csv(system.file("extdata", "eq5d3l_example.csv", package="eq5d"))
-#' hsdi(dat, version="3L")
+#' ## Load example EQ-5D-3L data included with the package
+#' dat <- read.csv(
+#'   system.file("extdata", "eq5d3l_example.csv", package = "eq5d")
+#' )
+#'
+#' ## Health State Density Index (HSDI)
+#' hsdi(dat, version = "3L")
 #' 
 #' @export
 hsdi <- function(scores, version=NULL, ignore.invalid=TRUE, digits=2, ...) {
