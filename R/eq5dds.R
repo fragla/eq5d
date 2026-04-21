@@ -14,6 +14,8 @@
 #' group the results.
 #' @param ignore.invalid boolean whether to ignore invalid scores. TRUE returns NA, FALSE 
 #' throws an error.
+#' @param digits Integer specifying the number of decimal places used
+#'   when reporting percentages. Set to \code{NULL} to suppress rounding.
 #' @param ... character vector, specifying "dimensions" column names. Defaults 
 #' are "MO", "SC", "UA", "PD" and "AD".
 #' @return a data.frame or list of data.frames of counts/percentages. Columns 
@@ -33,7 +35,7 @@
 #' eq5dds(dat, version="3L", by="Sex")
 #' 
 #' @export
-eq5dds <- function(data, version, counts=FALSE, by=NULL, ignore.invalid=TRUE, ...) {
+eq5dds <- function(data, version, counts=FALSE, by=NULL, ignore.invalid=TRUE, digits=1, ...) {
   args <- list(...)
   
   dimensions <- .get_dimension_names()
@@ -90,7 +92,13 @@ eq5dds <- function(data, version, counts=FALSE, by=NULL, ignore.invalid=TRUE, ..
     }
     
     if(!counts) {
-      df <- as.data.frame(round(prop.table(as.matrix(df), 2)*100,1))
+      pct <- prop.table(as.matrix(df), 2) * 100
+      
+      if (!is.null(digits)) {
+        pct <- round(pct, digits = digits)
+      }
+      
+      df <- as.data.frame(pct)
     }
     return(df)
   }

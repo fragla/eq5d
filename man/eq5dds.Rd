@@ -4,7 +4,15 @@
 \alias{eq5dds}
 \title{Analyse the descriptive system of an EQ-5D dataset}
 \usage{
-eq5dds(data, version, counts = FALSE, by = NULL, ignore.invalid = TRUE, ...)
+eq5dds(
+  data,
+  version,
+  counts = FALSE,
+  by = NULL,
+  ignore.invalid = TRUE,
+  digits = 1,
+  ...
+)
 }
 \arguments{
 \item{data}{numeric or data.frame with names/colnames MO, SC, UA, PD and AD
@@ -22,6 +30,9 @@ group the results.}
 
 \item{ignore.invalid}{boolean whether to ignore invalid scores. TRUE returns NA, FALSE 
 throws an error.}
+
+\item{digits}{Integer specifying the number of decimal places used
+when reporting percentages. Set to \code{NULL} to suppress rounding.}
 
 \item{...}{character vector, specifying "dimensions" column names. Defaults 
 are "MO", "SC", "UA", "PD" and "AD".}
