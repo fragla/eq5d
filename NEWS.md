@@ -3,6 +3,28 @@
 
 # eq5d (development)
 
+### Data and analytical infrastructure
+
+- Added `descriptive_data()`, providing a canonical, tidy representation
+  of the EQ‑5D descriptive system for reuse across plots and tables.
+
+## Visualisation
+
+- Added `plot_descriptive()` to visualise the EQ‑5D descriptive system
+  using side‑by‑side bar charts, with optional faceting for grouped
+  data.
+
+- Added `plot_hsdc()` to visualise Health State Density Curves (HSDC)
+  from pre-computed cumulative distributions.
+
+- Added `plot_severity_summary()` to visualise EQ-5D index values across
+  severity strata using the Level Frequency Score (LFS) or Level Sum
+  Score (LSS).
+
+- Added `plot_hpg()` to visualise paired EQ-5D health state transitions
+  using the Health Profile Grid, supporting optional exclusion of
+  full-health transitions and publication-ready styling.
+
 ## Internal refactoring and structural improvements
 
 - Internal implementations of LFS and LSS revised to ensure type-stable
