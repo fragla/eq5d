@@ -128,3 +128,22 @@ data using a formula interface.
 Missing or invalid EQ‑5D values are handled consistently across all methods
 via the \code{ignore.invalid} argument.
 }
+\examples{
+## Load example EQ-5D-3L data included with the package
+dat <- read.csv(
+  system.file("extdata", "eq5d3l_example.csv", package = "eq5d")
+)
+
+## Wide form (explicit pre/post data)
+pre  <- dat[dat$Group == "Group1", ][1:50, ]
+post <- dat[dat$Group == "Group2", ][1:50, ]
+
+pchc(pre, post, version = "3L", no.problems = FALSE, totals = FALSE)
+
+## Long form (formula interface)
+\dontrun{
+pchc(profile ~ visit | id, data = eq_long)
+pchc(MO + SC + UA + PD + AD ~ visit | id, data = eq_long)
+}
+
+}
