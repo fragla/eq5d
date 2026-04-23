@@ -98,8 +98,15 @@ and a time variable (and optionally an ID variable) on the right‑hand side.
 This argument is used only in the formula interface.}
 }
 \value{
-A data.frame or list summarising PCHC categories, or a vector of
-individual‑level classifications when \code{summary = FALSE}.
+When \code{summary = FALSE} and \code{by.dimension = FALSE}, a character
+vector of individual-level PCHC classifications.
+
+When \code{summary = TRUE} and \code{by.dimension = FALSE}, a data.frame
+summarising PCHC categories with counts and percentages.
+
+When \code{by.dimension = TRUE}, a named list is returned with one element
+per EQ-5D dimension. Each element is a character vector (when
+\code{summary = FALSE}) or a data.frame (when \code{summary = TRUE}).
 }
 \description{
 Computes the Paretian Classification of Health Change (PCHC) for EQ‑5D data.
@@ -125,6 +132,13 @@ Computes the Paretian Classification of Health Change from long-form EQ-5D
 data using a formula interface.
 }
 \details{
+When \code{summary = FALSE}, the function returns individual‑level PCHC
+classifications, one per subject. When \code{summary = TRUE}, it returns
+a tabular summary reporting counts and percentages by PCHC category,
+suitable for reporting.
+
+The \code{totals} argument applies only when \code{summary = TRUE}; it is
+ignored otherwise.
 Missing or invalid EQ‑5D values are handled consistently across all methods
 via the \code{ignore.invalid} argument.
 

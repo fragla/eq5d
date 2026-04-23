@@ -8,6 +8,13 @@
 - Added `descriptive_data()`, providing a canonical, tidy representation
   of the EQ‑5D descriptive system for reuse across plots and tables.
 
+- Added `table_descriptive()`, a reporting helper for producing
+  descriptive‑system tables of EQ‑5D response‑level distributions by
+  dimension.
+
+- Added `table_ps()`, a reporting helper for formatting Probability of
+  Superiority (PS) output into a tabular representation.
+
 ## Visualisation
 
 - Added `plot_descriptive()` to visualise the EQ‑5D descriptive system
