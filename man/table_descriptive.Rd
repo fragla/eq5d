@@ -4,12 +4,7 @@
 \alias{table_descriptive}
 \title{Descriptive System Tables for EQ-5D}
 \usage{
-table_descriptive(
-  dd,
-  type = c("percent", "count"),
-  digits = 1,
-  include_total = TRUE
-)
+table_descriptive(dd, digits = 1, include_total = TRUE, group_order = NULL)
 }
 \arguments{
 \item{dd}{A data.frame returned by \code{\link{descriptive_data}}, containing
@@ -17,14 +12,17 @@ the columns \code{Dimension}, \code{Level}, \code{Value}, and
 \code{Metric}. Grouped descriptive data are supported via a
 \code{Group} column.}
 
-\item{type}{Character string specifying which table to produce.
-One of \code{"percent"} or \code{"count"}.}
-
 \item{digits}{Integer specifying the number of decimal places used when
 rounding percentages. Ignored for count tables.}
 
 \item{include_total}{Logical; if \code{TRUE}, include a \code{"Total"}
-column for count tables. Ignored for percentage tables.}
+row.}
+
+\item{group_order}{Optional character vector specifying the order in which
+groups should be displayed when \code{dd} contains a \code{Group} column.
+Must match the levels of \code{dd$Group}. If \code{NULL} (default),
+groups are ordered according to the factor levels of \code{Group}
+as produced by \code{\link{descriptive_data}}.}
 }
 \value{
 If descriptive data are ungrouped, a data.frame. If grouped, a named
@@ -60,17 +58,19 @@ dat <- read.csv(
   system.file("extdata", "eq5d3l_example.csv", package = "eq5d")
 )
 
+dat1 <- subset(dat, Group == "Group1")
+
 ## Percentage table
-dd_pct <- descriptive_data(dat, version = "3L")
-table_descriptive(dd_pct, type = "percent")
+dd_pct <- descriptive_data(dat1, version = "3L", metric = "percent")
+table_descriptive(dd_pct)
 
 ## Count table
-dd_cnt <- descriptive_data(dat, version = "3L", metric = "count")
-table_descriptive(dd_cnt, type = "count")
+dd_cnt <- descriptive_data(dat1, version = "3L", metric = "count")
+table_descriptive(dd_cnt)
 
 ## Grouped percentage tables
-dd_grp <- descriptive_data(dat, version = "3L", group = "Group")
-table_descriptive(dd_grp, type = "percent")
+dd_grp <- descriptive_data(dat, version = "3L", metric = "percent", group = "Group")
+table_descriptive(dd_grp)
 
 }
 \references{
