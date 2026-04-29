@@ -7,15 +7,18 @@
 table_ps(ps_out, digits = 2)
 }
 \arguments{
-\item{ps_out}{Output from \code{\link{ps}}, either a named numeric vector
-of PS values or a named list of such vectors.}
+\item{ps_out}{Output from \code{\link{ps}}: a named list of numeric
+Probability of Superiority values by EQ‑5D dimension, or a named list
+of such lists for grouped output.}
 
 \item{digits}{Integer specifying the number of decimal places used when
-rounding PS values.}
+rounding PS values. Defaults to 2.}
 }
 \value{
-A data.frame with columns \code{Dimension} and \code{PS}, or a named list
-of such data.frames when grouped input is supplied.
+If \code{ps_out} is ungrouped, a data.frame with columns \code{Dimension} 
+and \code{PS}.
+
+If \code{ps_out} is grouped, a named list of such data.frames.
 }
 \description{
 Formats output from \code{\link{ps}} into a tabular representation suitable
@@ -24,4 +27,16 @@ for reporting.
 The function does not compute Probability of Superiority values; it
 restructures the numeric output of \code{ps()} into a data.frame with
 explicit dimension labels.
+}
+\examples{
+dat <- read.csv(
+  system.file("extdata", "eq5d3l_example.csv", package = "eq5d")
+)
+
+pre  <- dat[dat$Group == "Group1", ][1:50, ]
+post <- dat[dat$Group == "Group2", ][1:50, ]
+
+ps_res <- ps(pre, post, version = "3L")
+table_ps(ps_res)
+
 }
