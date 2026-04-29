@@ -35,7 +35,7 @@ test_that("descriptive_data computes correct percentages", {
   dd <- descriptive_data(
     test_data,
     version = "3L",
-    metric  = "percentage"
+    metric  = "percent"
   )
   
   mo <- dd[dd$Dimension == "MO", ]

@@ -7,7 +7,7 @@
 descriptive_data(
   data,
   version,
-  metric = c("percentage", "count"),
+  metric = c("percent", "count"),
   group = NULL,
   dimensions = c("MO", "SC", "UA", "PD", "AD"),
   ignore.invalid = TRUE
@@ -18,7 +18,7 @@ descriptive_data(
 
 \item{version}{EQ-5D version ("3L", "5L", or "Y3L").}
 
-\item{metric}{Character string, one of \code{"percentage"} (default)
+\item{metric}{Character string, one of \code{"percent"} (default)
 or \code{"count"}.}
 
 \item{group}{Optional character scalar giving the name of a grouping variable.}
@@ -33,14 +33,14 @@ A tidy data.frame with columns:
     \item \code{Dimension} EQ-5D dimension (MO, SC, UA, PD, AD)
     \item \code{Level} Response level (1, 2, ..., L)
     \item \code{Value} Count or percentage
-    \item \code{Metric} Either "count" or "percentage"
+    \item \code{Metric} Either "count" or "percent"
     \item \code{Group} Group label (if grouping applied)
   }
 }
 \description{
 Creates a tidy data.frame representing the EQ-5D descriptive system,
 suitable for plotting and tabular presentation. The output contains
-explicit columns for dimension, level, metric (count or percentage),
+explicit columns for dimension, level, metric (count or percent),
 and optional grouping variables.
 }
 \details{

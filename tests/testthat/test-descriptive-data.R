@@ -21,10 +21,10 @@ test_that("descriptive_data supports counts and percentages", {
     system.file("extdata", "eq5d3l_example.csv", package = "eq5d")
   )
   
-  dd_pct <- descriptive_data(dat, version = "3L", metric = "percentage")
+  dd_pct <- descriptive_data(dat, version = "3L", metric = "percent")
   dd_cnt <- descriptive_data(dat, version = "3L", metric = "count")
   
-  expect_true(all(dd_pct$Metric == "percentage"))
+  expect_true(all(dd_pct$Metric == "percent"))
   expect_true(all(dd_cnt$Metric == "count"))
 })
 

@@ -2,7 +2,7 @@
 #'
 #' Creates a tidy data.frame representing the EQ-5D descriptive system,
 #' suitable for plotting and tabular presentation. The output contains
-#' explicit columns for dimension, level, metric (count or percentage),
+#' explicit columns for dimension, level, metric (count or percent),
 #' and optional grouping variables.
 #'
 #' This function is designed as a canonical internal representation and
@@ -11,7 +11,7 @@
 #'
 #' @param data A data.frame containing EQ-5D responses.
 #' @param version EQ-5D version ("3L", "5L", or "Y3L").
-#' @param metric Character string, one of \code{"percentage"} (default)
+#' @param metric Character string, one of \code{"percent"} (default)
 #'   or \code{"count"}.
 #' @param group Optional character scalar giving the name of a grouping variable.
 #' @param dimensions Character vector of EQ-5D dimension names.
@@ -22,7 +22,7 @@
 #'     \item \code{Dimension} EQ-5D dimension (MO, SC, UA, PD, AD)
 #'     \item \code{Level} Response level (1, 2, ..., L)
 #'     \item \code{Value} Count or percentage
-#'     \item \code{Metric} Either "count" or "percentage"
+#'     \item \code{Metric} Either "count" or "percent"
 #'     \item \code{Group} Group label (if grouping applied)
 #'   }
 #'
@@ -63,7 +63,7 @@
 descriptive_data <- function(
     data,
     version,
-    metric = c("percentage", "count"),
+    metric = c("percent", "count"),
     group = NULL,
     dimensions = c("MO", "SC", "UA", "PD", "AD"),
     ignore.invalid = TRUE
@@ -79,7 +79,7 @@ descriptive_data <- function(
     stop("Grouping column not found in data.", call. = FALSE)
   }
   
-  ## Use eq5dds for computation (counts or percentages)
+  ## Use eq5dds for computation (counts or percents)
   counts_flag <- metric == "count"
   
   if (is.null(group)) {
