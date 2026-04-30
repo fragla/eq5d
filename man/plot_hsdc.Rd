@@ -56,7 +56,7 @@ observations, analogous to a Lorenz curve.
 }
 \details{
 The input data must be a pre-computed cumulative distribution,
-typically returned by \code{\link{eq5dcf}} or \code{\link{make_hsdc_data}}.
+typically returned by \code{\link{eq5dcf}} or \code{\link{make_hsdc_by_group}}.
 This function performs no analytical computation; it only visualises
 the supplied data.
 
