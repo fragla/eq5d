@@ -2,21 +2,41 @@
 % Please edit documentation in R/hsdc-data.R
 \name{make_hsdi_by_group}
 \alias{make_hsdi_by_group}
-\title{Compute HSDI by group}
+\title{Compute Health State Density Index (HSDI) by group}
 \usage{
 make_hsdi_by_group(data, group, version)
 }
 \arguments{
-\item{data}{A data.frame containing EQ-5D data.}
+\item{data}{A data.frame containing EQ-5D descriptive-system data.}
 
-\item{group}{Character scalar giving the grouping variable name.}
+\item{group}{Character scalar giving the name of the grouping variable
+in \code{data}.}
 
-\item{version}{EQ-5D version ("3L", "5L", or "Y3L").}
+\item{version}{EQ-5D instrument version. One of \code{"3L"}, \code{"5L"},
+or \code{"Y3L"}.}
 }
 \value{
-A named numeric vector of HSDI values.
+A named numeric vector of HSDI values, with one entry per group.
 }
 \description{
 Computes the Health State Density Index (HSDI) separately for each level
-of a grouping variable.
+of a grouping variable. This function is a lightweight orchestration
+helper that performs explicit data splitting prior to computation and
+does not alter the definition or interpretation of HSDI.
+}
+\examples{
+dat <- read.csv(
+  system.file("extdata", "eq5d3l_example.csv", package = "eq5d")
+)
+
+## HSDI by group
+hsdi_by_group <- make_hsdi_by_group(
+  dat,
+  group = "Group",
+  version = "3L"
+)
+
+}
+\seealso{
+\code{\link{eq5dcf}}, \code{\link{hsdi}}, \code{\link{make_hsdc_by_group}}
 }

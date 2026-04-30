@@ -77,7 +77,7 @@ plot_hsdc(cf)
 
 ## Grouped Health State Density Curves
 ## Generate cumulative distributions by group
-hsdc_grp <- make_hsdc_data(dat, group = "Group", version = "3L")
+hsdc_grp <- make_hsdc_by_group(dat, group = "Group", version = "3L")
 
 ## Compute HSDI by group
 hsdi_grp <- make_hsdi_by_group(dat, group = "Group", version = "3L")
@@ -100,5 +100,5 @@ Devlin N, Parkin D, Janssen B (2020).
 Springer Open. \doi{10.1007/978-3-030-47622-9}
 }
 \seealso{
-\code{\link{eq5dcf}}, \code{\link{hsdi}}, \code{\link{make_hsdc_data}}
+\code{\link{eq5dcf}}, \code{\link{hsdi}}, \code{\link{make_hsdc_by_group}}
 }

@@ -21,7 +21,7 @@ test_that("plot_hsdc supports grouped HSDC data", {
     system.file("extdata", "eq5d3l_example.csv", package = "eq5d")
   )
   
-  hsdc_grp <- make_hsdc_data(dat, group = "Group", version = "3L")
+  hsdc_grp <- make_hsdc_by_group(dat, group = "Group", version = "3L")
   hsdi_grp <- make_hsdi_by_group(dat, group = "Group", version = "3L")
   
   p <- plot_hsdc(

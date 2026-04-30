@@ -40,7 +40,7 @@
 #' health states.
 #'
 #' @seealso
-#' \code{\link{eq5dcf}}, \code{\link{hsdi}}, \code{\link{make_hsdc_data}}
+#' \code{\link{eq5dcf}}, \code{\link{hsdi}}, \code{\link{make_hsdc_by_group}}
 #'
 #' @references
 #' Zamora B, Parkin D, Feng Y, Bateman A, Herdman M, Devlin N (2018).
@@ -59,7 +59,7 @@
 #'
 #' ## Grouped Health State Density Curves
 #' ## Generate cumulative distributions by group
-#' hsdc_grp <- make_hsdc_data(dat, group = "Group", version = "3L")
+#' hsdc_grp <- make_hsdc_by_group(dat, group = "Group", version = "3L")
 #'
 #' ## Compute HSDI by group
 #' hsdi_grp <- make_hsdi_by_group(dat, group = "Group", version = "3L")

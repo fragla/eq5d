@@ -1,16 +1,46 @@
-#' Generate grouped HSDC data
+#' Generate Health State Density Curve (HSDC) data by group
 #'
-#' Applies \code{eq5dcf()} separately to each level of a grouping variable
-#' and returns a combined data.frame suitable for Health State Density
-#' Curve (HSDC) plotting.
+#' @description
+#' Computes health-state cumulative frequency distributions separately for
+#' each level of a grouping variable and returns a combined data frame
+#' suitable for Health State Density Curve (HSDC) plotting.
 #'
-#' @param data A data.frame containing EQ-5D data.
-#' @param group Character scalar giving the grouping variable name.
-#' @param version EQ-5D version ("3L", "5L", or "Y3L").
+#' This function is a lightweight orchestration helper: it performs explicit
+#' data splitting and applies \code{\link{eq5dcf}} to each subgroup, but does
+#' not alter the definition or interpretation of the underlying distributional
+#' summaries.
 #'
-#' @return A data.frame containing cumulative distributions for each group.
+#' @param data A data.frame containing EQ-5D descriptive-system data.
+#' @param group Character scalar specifying the name of the grouping variable
+#'   in \code{data}.
+#' @param version EQ-5D instrument version. One of \code{"3L"}, \code{"5L"},
+#'   or \code{"Y3L"}.
+#'
+#' @return
+#' A data.frame containing cumulative frequency distributions for each group.
+#' The returned data are suitable for direct use with
+#' \code{\link{plot_hsdc}}.
+#'
+#' @seealso
+#' \code{\link{eq5dcf}}, \code{\link{hsdi}}, \code{\link{plot_hsdc}},
+#' \code{\link{make_hsdi_by_group}}
+#'
+#' @examples
+#' dat <- read.csv(
+#'   system.file("extdata", "eq5d3l_example.csv", package = "eq5d")
+#' )
+#'
+#' ## Grouped HSDC data by treatment group
+#' hsdc_by_group <- make_hsdc_by_group(
+#'   dat,
+#'   group = "Group",
+#'   version = "3L"
+#' )
+#'
+#' plot_hsdc(hsdc_by_group)
+#'
 #' @export
-make_hsdc_data <- function(data, group, version) {
+make_hsdc_by_group <- function(data, group, version) {
   
   if (!is.data.frame(data)) {
     stop("`data` must be a data.frame.", call. = FALSE)
@@ -38,17 +68,38 @@ make_hsdc_data <- function(data, group, version) {
   do.call(rbind, hsdc_list)
 }
 
-
-#' Compute HSDI by group
+#' Compute Health State Density Index (HSDI) by group
 #'
+#' @description
 #' Computes the Health State Density Index (HSDI) separately for each level
-#' of a grouping variable.
+#' of a grouping variable. This function is a lightweight orchestration
+#' helper that performs explicit data splitting prior to computation and
+#' does not alter the definition or interpretation of HSDI.
 #'
-#' @param data A data.frame containing EQ-5D data.
-#' @param group Character scalar giving the grouping variable name.
-#' @param version EQ-5D version ("3L", "5L", or "Y3L").
+#' @param data A data.frame containing EQ-5D descriptive-system data.
+#' @param group Character scalar giving the name of the grouping variable
+#'   in \code{data}.
+#' @param version EQ-5D instrument version. One of \code{"3L"}, \code{"5L"},
+#'   or \code{"Y3L"}.
 #'
-#' @return A named numeric vector of HSDI values.
+#' @return
+#' A named numeric vector of HSDI values, with one entry per group.
+#'
+#' @seealso
+#' \code{\link{eq5dcf}}, \code{\link{hsdi}}, \code{\link{make_hsdc_by_group}}
+#'
+#' @examples
+#' dat <- read.csv(
+#'   system.file("extdata", "eq5d3l_example.csv", package = "eq5d")
+#' )
+#'
+#' ## HSDI by group
+#' hsdi_by_group <- make_hsdi_by_group(
+#'   dat,
+#'   group = "Group",
+#'   version = "3L"
+#' )
+#'
 #' @export
 make_hsdi_by_group <- function(data, group, version) {
   
@@ -60,14 +111,9 @@ make_hsdi_by_group <- function(data, group, version) {
     stop("Grouping variable not found in data.", call. = FALSE)
   }
   
-  tapply(
-    data[[group]],
-    data[[group]],
-    function(g) {
-      hsdi(
-        data[data[[group]] == g, ],
-        version = version
-      )
-    }
-  )
+  split_data <- split(data, data[[group]])
+  
+  sapply(split_data, function(d) {
+    hsdi(d, version = version)
+  })
 }
