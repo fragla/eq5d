@@ -120,7 +120,7 @@ plot_severity_summary <- function(
     ggplot2::geom_linerange(
       ggplot2::aes(ymin = .data$lowest, ymax = .data$highest),
       linewidth = 0.3,
-      colour = "666666"
+      colour = "#666666"
     ) +
     ggplot2::geom_line(
       ggplot2::aes(y = .data$median, group = 1),
