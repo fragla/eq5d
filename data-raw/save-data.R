@@ -26,13 +26,67 @@ s5<- expand.grid(replicate(5L, 1:5, simplify = FALSE))
 s5 <- do.call(paste0, s5[,5:1])
 STATES <- list(`3L` = s3, `5L` = s5)
 
+# internal helper function to calculate VT scores for all states in a survey
+.score_5l_vt_states <- function(states, survey) {
+  
+  keep <- function(x) {
+    if (is.null(x) || length(x) == 0L) {
+      NULL
+    } else {
+      unname(as.numeric(x))
+    }
+  }
+  
+  unname(vapply(states, function(st) {
+    
+    scores <- as.integer(strsplit(st, "")[[1]])
+    names(scores) <- c("MO", "SC", "UA", "PD", "AD")
+    
+    values <- c(
+      unname(survey["StartValue"]),
+      keep(eq5d:::.dimensionScores(scores, survey)),
+      keep(eq5d:::.minOneGreaterThan1(scores, survey)),
+      keep(eq5d:::.level4Or5(scores, survey)),
+      keep(eq5d:::.num45sq(scores, survey)),
+      keep(eq5d:::.N4(scores, survey)),
+      keep(eq5d:::.N5(scores, survey)),
+      keep(eq5d:::.MOAD(scores, survey)),
+      keep(eq5d:::.PDAD(scores, survey))
+    )
+    
+    sum(values, na.rm = TRUE)
+    
+  }, numeric(1)))
+}
+
+
 # van Hout (2021) EQ-5D-3L to EQ-5D-5L
-VH_2021_PROBS <- read.csv(file.path(root, "VH2021_probs.csv"), row.names = 1L)
+# VH_2021_PROBS <- read.csv(file.path(root, "VH2021_probs.csv"), row.names = 1L)
+# COUNTRIES_5L <- colnames(VT)
+# RCWVH <- lapply(COUNTRIES_5L, function(x) {
+#   scores <- eq5d(eq5d:::STATES$`5L`, country = x, version = "5L", type = "VT", digits = Inf)
+#   mapping <- as.matrix(VH_2021_PROBS) %*% as.matrix(scores)
+# })
+# RCWVH <- do.call(cbind, RCWVH)
+# colnames(RCWVH) <- COUNTRIES_5L
+
+VH_2021_PROBS <- read.csv(
+  file.path(root, "VH2021_probs.csv"),
+  row.names = 1L
+)
+
 COUNTRIES_5L <- colnames(VT)
-RCWVH <- lapply(COUNTRIES_5L, function(x) {
-  scores <- eq5d(eq5d:::STATES$`5L`, country = x, version = "5L", type = "VT", digits = Inf)
-  mapping <- as.matrix(VH_2021_PROBS) %*% as.matrix(scores)
+
+RCWVH <- lapply(COUNTRIES_5L, function(country) {
+  
+  # Match eq5d5l(): name coefficient vector using VT rownames
+  survey <- setNames(VT[[country]], rownames(VT))
+  
+  scores_5L <- .score_5l_vt_states(STATES$`5L`, survey)
+  
+  drop(as.matrix(VH_2021_PROBS) %*% matrix(scores_5L, ncol = 1))
 })
+
 RCWVH <- do.call(cbind, RCWVH)
 colnames(RCWVH) <- COUNTRIES_5L
 

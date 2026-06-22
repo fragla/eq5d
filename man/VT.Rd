@@ -5,7 +5,7 @@
 \alias{VT}
 \title{EQ-5D-5L VT value set data}
 \format{
-An object of class \code{data.frame} with 37 rows and 49 columns.
+An object of class \code{data.frame} with 37 rows and 50 columns.
 }
 \source{
 \itemize{
@@ -33,6 +33,7 @@ An object of class \code{data.frame} with 37 rows and 49 columns.
 \item{\strong{Morocco}: Azizi A, Boutib A, Achak D, Purba FD, Rencz F, Saad E, Hilali A, Ahid S, Nejjari C, Stolk EA, Roudijk B, Youlyouz-Marfak I, Marfak A.Valuing health-related quality of life: an EQ-5D-5L value set for Morocco. Qual Life Res. 2025 Feb 28. \doi{10.1007/s11136-025-03930-1}. Online ahead of print. PMID: 40019677.}
 \item{\strong{Netherlands}: Versteegh MM, Vermeulen KM, Evers SM, de Wit GA, Prenger R, Stolk EA. Dutch Tariff for the Five-Level Version of EQ-5D. Value in Health. 2016 Jun;19(4):343-52.  \doi{10.1016/j.jval.2016.01.003}. PMID: 27325326.}
 \item{\strong{New Zealand}: Sullivan T, Hansen P, Ombler F, Derrett S, Devlin N. A new tool for creating personal and social EQ-5D-5L value sets, including valuing 'dead'. Soc Sci Med. 2020 Feb;246:112707. \doi{10.1016/j.socscimed.2019.112707}. Epub 2019 Nov 30. PMID: 31945596.}
+\item{\strong{Nigeria}: Yusuf AH, Ardo BU, Thavorncharoensap M, Roudijk B, Purba FD, Yang Z, Liao M, Chaikledkaew U, Youngkong S, Thakkinstian A, Agada-Amade YA, Amole TG, Sambo MN, Ohiri K. The EQ-5D-5L valuation study in Nigeria. Qual Life Res. 2026 Jun 15;35(8):206. \doi{10.1007/s11136-026-04319-4}. PMID: 42295458.}
 \item{\strong{Norway}: Garratt AM, Stavem K, Shaw JW, Rand K. EQ-5D-5L value set for Norway: a hybrid model using cTTO and DCE data. Qual Life Res. 2024 Nov 20. \doi{10.1007/s11136-024-03837-3}. Epub ahead of print. PMID: 39565555.}
 \item{\strong{Peru} Augustovski F, Belizán M, Gibbons L, Reyes N, Stolk E, Craig BM, Tejada RA. Peruvian Valuation of the EQ-5D-5L: A Direct Comparison of Time Trade-Off and Discrete Choice Experiments. Value Health. 2020;23(7):880-888. \doi{10.1016/j.jval.2020.05.004}. PMID: 32762989.}
 \item{\strong{Philippines} Miguel RTD, Rivera AS, Cheng KJG, Rand K, Purba FD, Luo N, Zarsuelo MA, Genuino-Marfori AJ, Florentino-Fariñas I, Guerrero AM, Lam HY. Estimating the EQ-5D-5L value set for the Philippines. Qual Life Res. 2022 May 9. \doi{10.1007/s11136-022-03143-w}. PMID: 35532835.}
