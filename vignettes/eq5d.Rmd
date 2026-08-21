@@ -28,11 +28,11 @@ Following assessment the scores from the descriptive component can be reported a
 
 The eq5d package provides methods for the cross-sectional and longitudinal analysis of EQ-5D profiles and also the calculation of utility index scores from a subject's dimension scores. Additionally, a [Shiny](https://shiny.posit.co/) app is included to enable the calculation, visualisation and automated statistical analysis of multiple EQ-5D index values via a web browser using EQ-5D dimension scores stored in CSV or Excel files.
 
-Value sets for EQ-5D-3L are available for many countries and have been produced using the time trade-off (TTO) valuation technique or the visual analogue scale (VAS) valuation technique.  Some countries have TTO and VAS value sets for EQ-5D-3L. Additionally, EQ-5D-3L "reverse crosswalk" value sets based on the [van Hout *et al* (2021)](https://pubmed.ncbi.nlm.nih.gov/34452708/) models as well as those published on the [EuroQol](https://euroqol.org/information-and-support/resources/value-sets/) website that enable EQ-5D-3L data to be mapped to EQ-5D-5L value sets are included. 
+Value sets for EQ-5D-3L are available for many countries and have been produced using the time trade-off (TTO) valuation technique or the visual analogue scale (VAS) valuation technique.  Some countries have TTO and VAS value sets for EQ-5D-3L. Additionally, EQ-5D-3L "reverse crosswalk" value sets based on the [van Hout *et al* (2021)](https://doi.org/10.1016/j.jval.2021.03.009) models as well as those published on the [EuroQol](https://euroqol.org/information-and-support/resources/value-sets/) website that enable EQ-5D-3L data to be mapped to EQ-5D-5L value sets are included. 
 
 For EQ-5D-5L, a standardised valuation study protocol (EQ-VT) was developed by the EuroQol group based on the composite time trade-off (cTTO) valuation technique supplemented by a discrete choice experiment (DCE).  The EuroQol group recommends users to use a standard value set where available.
 
-The EQ-5D-5L "crosswalk" value sets published by [van Hout *et al* (2012)](https://pubmed.ncbi.nlm.nih.gov/22867780/) as well as that for Russia are also included. The crosswalk value sets enable index values to be calculated for EQ-5D-5L data where no value set is available by mapping between the EQ-5D-5L and EQ-5D-3L descriptive systems.
+The EQ-5D-5L "crosswalk" value sets published by [van Hout *et al* (2012)](https://doi.org/10.1016/j.jval.2012.02.008) as well as that for Russia are also included. The crosswalk value sets enable index values to be calculated for EQ-5D-5L data where no value set is available by mapping between the EQ-5D-5L and EQ-5D-3L descriptive systems.
 
 The recently published age and sex conditional based mapping data by the [NICE Decision Support Unit](https://sheffield.ac.uk/nice-dsu/methods-development/mapping-eq-5d-5l-3l) are also now part of the package. These enable age-sex based EQ-5D-3L to EQ-5D-5L and EQ-5D-5L to EQ-5D-3L mappings from dimensions and exact or approximate utility index scores. 
 
@@ -168,7 +168,7 @@ lss(c(11111, 12345, 55555), version="5L")
 
 ```
 
-The Level Frequency Score (LFS) is an alternative method of summarising profile data developed by [Oppe and de Charro](https://pubmed.ncbi.nlm.nih.gov/11189116). Here the frequency of the levels for each health state are characterised. As described in Devlin, Janssen and Parkin's book, the full health profile 11111 for EQ-5D-5L has 5, 1 s, no level 2, 3, 4 and 5s, so the LFS is 50000; the health profile 55555 is 00005; profiles such as 31524 and 53412 would be 11111.
+The Level Frequency Score (LFS) is an alternative method of summarising profile data developed by [Oppe and de Charro](https://doi.org/10.1016/s0001-4575(00)00023-3). Here the frequency of the levels for each health state are characterised. As described in Devlin, Janssen and Parkin's book, the full health profile 11111 for EQ-5D-5L has 5, 1 s, no level 2, 3, 4 and 5s, so the LFS is 50000; the health profile 55555 is 00005; profiles such as 31524 and 53412 would be 11111.
 
 ```{r eq5dlfs}
 lfs(c(MO=1,SC=2,UA=3,PD=2,AD=1), version="3L")
@@ -181,7 +181,7 @@ lfs(c(11111, 12345, 55555), version="5L")
 
 ### Paretian Classification of Health Change
 
-The Paretian Classification of Health Change (PCHC) was developed by [Devlin et al](https://pubmed.ncbi.nlm.nih.gov/20623685) in 2010 and is used to compare changes in individuals over time. PCHC classifies the change in an individual's health state as better (improvement in at least one dimension), worse (a deterioration in at least one dimension), mixed (improvements and deteriorations in dimensions) or there being no change in the health state. Those classified in the No change group with the 11111 health state can be separated into their own "No problems" group. PCHC can be calculated using the ***pchc*** function.
+The Paretian Classification of Health Change (PCHC) was developed by [Devlin et al](https://doi.org/10.1002/hec.1608) in 2010 and is used to compare changes in individuals over time. PCHC classifies the change in an individual's health state as better (improvement in at least one dimension), worse (a deterioration in at least one dimension), mixed (improvements and deteriorations in dimensions) or there being no change in the health state. Those classified in the No change group with the 11111 health state can be separated into their own "No problems" group. PCHC can be calculated using the ***pchc*** function.
 
 ```{r pchc}
 library(readxl)
@@ -215,7 +215,7 @@ head(res4)
 
 ### Probability of Superiority
 
-The Probability of Superiority (PS) is a non-parametric measure of effect size introduced by [Buchholz et al](https://pubmed.ncbi.nlm.nih.gov/25355653/) in 2015 and enables the assessment of paired samples of EQ-5D profile data in the context of assessing changes in health in terms of improvement or deterioration. For each EQ-5D dimension the number of subjects that have improved over time is divided by the total number of matched pairs. Ties (those with no changes) were accounted for through the addition of half the number of ties to the numerator. The score is less than 0.5 if more patients deteriorate than improve, 0.5 if the same number of patients improve and deteriorate or do not change and greater than 0.5 if more patients improve than deteriorate.
+The Probability of Superiority (PS) is a non-parametric measure of effect size introduced by [Buchholz et al](https://doi.org/10.1007/s11136-014-0838-x) in 2015 and enables the assessment of paired samples of EQ-5D profile data in the context of assessing changes in health in terms of improvement or deterioration. For each EQ-5D dimension the number of subjects that have improved over time is divided by the total number of matched pairs. Ties (those with no changes) were accounted for through the addition of half the number of ties to the numerator. The score is less than 0.5 if more patients deteriorate than improve, 0.5 if the same number of patients improve and deteriorate or do not change and greater than 0.5 if more patients improve than deteriorate.
 
 ```{r ps}
 library(readxl)
@@ -234,7 +234,7 @@ res
 
 ### Health Profile Grid
 
-The Health Profile Grid (HPG) was also introduced by [Devlin et al](https://pubmed.ncbi.nlm.nih.gov/20623685/) in 2010. The HPG provides a visual way to observe changes in individuals between two time points. The HPG requires profiles for each time point to be ordered from best to worst. The ***hpg*** function uses a specified value set for this with profiles being assigned a ranking between 1 and 243 for EQ-5D-3L and 1 and 3125 for EQ-5D-5L based on severity (1 being the best and 243/3125 the worst). The rankings for the two time points for each individual are plotted with the location of each point showing whether there has been an improvement or deterioration. The further a point is above the 45° line, the great the improvement in an individuals health. Conversely, the further below the line a point is the more health has deteriorated. Those individuals on the line show "no change".
+The Health Profile Grid (HPG) was also introduced by [Devlin et al](https://doi.org/10.1002/hec.1608) in 2010. The HPG provides a visual way to observe changes in individuals between two time points. The HPG requires profiles for each time point to be ordered from best to worst. The ***hpg*** function uses a specified value set for this with profiles being assigned a ranking between 1 and 243 for EQ-5D-3L and 1 and 3125 for EQ-5D-5L based on severity (1 being the best and 243/3125 the worst). The rankings for the two time points for each individual are plotted with the location of each point showing whether there has been an improvement or deterioration. The further a point is above the 45° line, the great the improvement in an individuals health. Conversely, the further below the line a point is the more health has deteriorated. Those individuals on the line show "no change".
 
 ```{r hpg}
 library(readxl)
@@ -269,7 +269,7 @@ ggplot(res, aes(Post, Pre, color=PCHC)) +
 
 ### Shannon's Indices
 
-Shannon's indices were first used to assess how evenly EQ-5D dimension scores or health states in a dataset are distributed by [Janssen et al](https://pubmed.ncbi.nlm.nih.gov/17294285/) in 2007. Shannon's H' (diversity) index represents the absolute amount of informativity captured with Shannon's J' (evenness) index capturing the evenness of the distribution of data. Shannon's J' is calculated by dividing H' by H' max to give a value between 0 and 1. Lower values indicate more diversity and higher values indicate less.
+Shannon's indices were first used to assess how evenly EQ-5D dimension scores or health states in a dataset are distributed by [Janssen et al](https://doi.org/10.1007/s11136-006-9160-6) in 2007. Shannon's H' (diversity) index represents the absolute amount of informativity captured with Shannon's J' (evenness) index capturing the evenness of the distribution of data. Shannon's J' is calculated by dividing H' by H' max to give a value between 0 and 1. Lower values indicate more diversity and higher values indicate less.
 
 ```{r shannon}
 library(readxl)

@@ -52,7 +52,7 @@ produced using the time trade-off (TTO) valuation technique or the
 visual analogue scale (VAS) valuation technique. Some countries have TTO
 and VAS value sets for EQ-5D-3L. Additionally, EQ-5D-3L “reverse
 crosswalk” value sets based on the [van Hout *et al*
-(2021)](https://pubmed.ncbi.nlm.nih.gov/34452708/) models as well as
+(2021)](https://doi.org/10.1016/j.jval.2021.03.009) models as well as
 those published on the
 [EuroQol](https://euroqol.org/information-and-support/resources/value-sets/)
 website that enable EQ-5D-3L data to be mapped to EQ-5D-5L value sets
@@ -65,10 +65,11 @@ developed by the EuroQol group based on the composite time trade-off
 where available.
 
 The EQ-5D-5L “crosswalk” value sets published by [van Hout *et al*
-(2012)](https://pubmed.ncbi.nlm.nih.gov/22867780/) as well as that for
-Russia are also included. The crosswalk value sets enable index values
-to be calculated for EQ-5D-5L data where no value set is available by
-mapping between the EQ-5D-5L and EQ-5D-3L descriptive systems.
+(2012)](https://doi.org/10.1016/10.1016/j.jval.2012.02.008) as well as
+that for Russia are also included. The crosswalk value sets enable index
+values to be calculated for EQ-5D-5L data where no value set is
+available by mapping between the EQ-5D-5L and EQ-5D-3L descriptive
+systems.
 
 The recently published age and sex conditional based mapping data by the
 [NICE Decision Support
@@ -136,15 +137,15 @@ eq5d(scores=33333, country="Germany", version="3L", type="RCW")
 #EQ-5D-5L to EQ-5D-3L NICE DSU mapping
 
 #Using dimensions
-eq5d(c(MO=1,SC=2,UA=3,PD=4,AD=5), version="5L", type="DSU", country="UK", age=23, sex="male")
+eq5d(c(MO=1,SC=2,UA=3,PD=4,AD=5), version="5L", type="DSU", country="England_2018", age=23, sex="male")
 #> [1] 0.083
 
 #Using exact utility score
-eq5d(0.922, country="UK", version="5L", type="DSU", age=18, sex="male")
+eq5d(0.922, country="England_2018", version="5L", type="DSU", age=18, sex="male")
 #> [1] 0.893
 
 #Using approximate utility score
-eq5d(0.435, country="UK", version="5L", type="DSU", age=30, sex="female", bwidth=0.0001)
+eq5d(0.435, country="England_2018", version="5L", type="DSU", age=30, sex="female", bwidth=0.0001)
 #> [1] 0.302
 
 #multiple calculations using the Canadian VT value set
@@ -215,27 +216,57 @@ head(valuesets(version="5L"))
 
 # Return all French value sets.
 valuesets(country="France")
-#>    Version Type Country   PubMed                        DOI ISBN ExternalURL
-#> 1 EQ-5D-3L  TTO  France 21935715  10.1007/s10198-011-0351-x <NA>        <NA>
-#> 2 EQ-5D-5L   CW  France 22867780 10.1016/j.jval.2012.02.008 <NA>        <NA>
-#> 3 EQ-5D-5L   VT  France 31912325 10.1007/s40273-019-00876-4 <NA>        <NA>
-#> 4 EQ-5D-3L  RCW  France 34452708 10.1016/j.jval.2021.03.009 <NA>        <NA>
+#>    Version Type Country   PubMed                        DOI ISBN
+#> 1 EQ-5D-3L  DSU  France       NA                       <NA> <NA>
+#> 2 EQ-5D-3L  TTO  France 21935715  10.1007/s10198-011-0351-x <NA>
+#> 3 EQ-5D-5L   CW  France 22867780 10.1016/j.jval.2012.02.008 <NA>
+#> 4 EQ-5D-5L  DSU  France       NA                       <NA> <NA>
+#> 5 EQ-5D-5L   VT  France 31912325 10.1007/s40273-019-00876-4 <NA>
+#> 6 EQ-5D-3L  RCW  France 34452708 10.1016/j.jval.2021.03.009 <NA>
+#>                                                                ExternalURL
+#> 1                                                                     <NA>
+#> 2                                                                     <NA>
+#> 3                                                                     <NA>
+#> 4 https://sheffield.ac.uk/nice-dsu/methods-development/mapping-eq-5d-5l-3l
+#> 5                                                                     <NA>
+#> 6                                                                     <NA>
 #>             Notes
 #> 1            <NA>
 #> 2            <NA>
 #> 3            <NA>
-#> 4 van Hout (2021)
+#> 4            <NA>
+#> 5            <NA>
+#> 6 van Hout (2021)
 
 # Return all EQ-5D-5L to EQ-5D-3L DSU value sets without references.
 valuesets(type="DSU", version="5L", references=NULL)
-#>    Version Type     Country
-#> 1 EQ-5D-5L  DSU       China
-#> 2 EQ-5D-5L  DSU     Germany
-#> 3 EQ-5D-5L  DSU       Japan
-#> 4 EQ-5D-5L  DSU Netherlands
-#> 5 EQ-5D-5L  DSU  SouthKorea
-#> 6 EQ-5D-5L  DSU       Spain
-#> 7 EQ-5D-5L  DSU          UK
+#>     Version Type             Country
+#> 1  EQ-5D-5L  DSU           Australia
+#> 2  EQ-5D-5L  DSU             Belgium
+#> 3  EQ-5D-5L  DSU              Canada
+#> 4  EQ-5D-5L  DSU               China
+#> 5  EQ-5D-5L  DSU             Denmark
+#> 6  EQ-5D-5L  DSU        England_2018
+#> 7  EQ-5D-5L  DSU              France
+#> 8  EQ-5D-5L  DSU             Germany
+#> 9  EQ-5D-5L  DSU             Hungary
+#> 10 EQ-5D-5L  DSU                Iran
+#> 11 EQ-5D-5L  DSU               Italy
+#> 12 EQ-5D-5L  DSU               Japan
+#> 13 EQ-5D-5L  DSU            Malaysia
+#> 14 EQ-5D-5L  DSU         Netherlands
+#> 15 EQ-5D-5L  DSU            Pakistan
+#> 16 EQ-5D-5L  DSU              Poland
+#> 17 EQ-5D-5L  DSU            Portugal
+#> 18 EQ-5D-5L  DSU             Romania
+#> 19 EQ-5D-5L  DSU           Singapore
+#> 20 EQ-5D-5L  DSU          SouthKorea
+#> 21 EQ-5D-5L  DSU               Spain
+#> 22 EQ-5D-5L  DSU              Taiwan
+#> 23 EQ-5D-5L  DSU            Thailand
+#> 24 EQ-5D-5L  DSU Trinidad_and_Tobago
+#> 25 EQ-5D-5L  DSU             UK_2026
+#> 26 EQ-5D-5L  DSU                 USA
 ```
 
 ## Analysis of EQ-5D Profiles
@@ -266,13 +297,20 @@ res <- eq5dcf(data, "3L")
 
 # Return data.frame of cumulative frequency stats (top 6 returned for brevity).
 head(res)
-#>   State Frequency Percentage CumulativeFreq CumulativePerc
-#> 1 11121        36       18.0             36           18.0
-#> 2 11111        24       12.0             60           30.0
-#> 3 22222        21       10.5             81           40.5
-#> 4 22221        18        9.0             99           49.5
-#> 5 11221        12        6.0            111           55.5
-#> 6 21221        11        5.5            122           61.0
+#>   State Frequency Proportion CumulativeProp CumulativeState Percentage
+#> 1 11121        36      0.180          0.180         0.03125       18.0
+#> 2 11111        24      0.120          0.300         0.06250       12.0
+#> 3 22222        21      0.105          0.405         0.09375       10.5
+#> 4 22221        18      0.090          0.495         0.12500        9.0
+#> 5 11221        12      0.060          0.555         0.15625        6.0
+#> 6 21221        11      0.055          0.610         0.18750        5.5
+#>   CumulativePerc
+#> 1           18.0
+#> 2           30.0
+#> 3           40.5
+#> 4           49.5
+#> 5           55.5
+#> 6           61.0
 ```
 
 ### Summarising the Severity of EQ-5D Profiles
@@ -295,12 +333,12 @@ lss(c(11111, 12345, 55555), version="5L")
 
 The Level Frequency Score (LFS) is an alternative method of summarising
 profile data developed by [Oppe and de
-Charro](https://pubmed.ncbi.nlm.nih.gov/11189116). Here the frequency of
-the levels for each health state are characterised. As described in
-Devlin, Janssen and Parkin’s book, the full health profile 11111 for
-EQ-5D-5L has 5, 1 s, no level 2, 3, 4 and 5s, so the LFS is 50000; the
-health profile 55555 is 00005; profiles such as 31524 and 53412 would be
-11111.
+Charro](https://doi.org/10.1016/10.1016/s0001-4575(00)00023-3). Here the
+frequency of the levels for each health state are characterised. As
+described in Devlin, Janssen and Parkin’s book, the full health profile
+11111 for EQ-5D-5L has 5, 1 s, no level 2, 3, 4 and 5s, so the LFS is
+50000; the health profile 55555 is 00005; profiles such as 31524 and
+53412 would be 11111.
 
 ``` r
 lfs(c(MO=1,SC=2,UA=3,PD=2,AD=1), version="3L")
@@ -316,7 +354,7 @@ lfs(c(11111, 12345, 55555), version="5L")
 ### Paretian Classification of Health Change
 
 The Paretian Classification of Health Change (PCHC) was developed by
-[Devlin et al](https://pubmed.ncbi.nlm.nih.gov/20623685) in 2010 and is
+[Devlin et al](https://doi.org/10.1016/10.1002/hec.1608) in 2010 and is
 used to compare changes in individuals over time. PCHC classifies the
 change in an individual’s health state as better (improvement in at
 least one dimension), worse (a deterioration in at least one dimension),
@@ -410,16 +448,16 @@ head(res4)
 
 The Probability of Superiority (PS) is a non-parametric measure of
 effect size introduced by [Buchholz et
-al](https://pubmed.ncbi.nlm.nih.gov/25355653/) in 2015 and enables the
-assessment of paired samples of EQ-5D profile data in the context of
-assessing changes in health in terms of improvement or deterioration.
-For each EQ-5D dimension the number of subjects that have improved over
-time is divided by the total number of matched pairs. Ties (those with
-no changes) were accounted for through the addition of half the number
-of ties to the numerator. The score is less than 0.5 if more patients
-deteriorate than improve, 0.5 if the same number of patients improve and
-deteriorate or do not change and greater than 0.5 if more patients
-improve than deteriorate.
+al](https://doi.org/10.1016/10.1007/s11136-014-0838-x) in 2015 and
+enables the assessment of paired samples of EQ-5D profile data in the
+context of assessing changes in health in terms of improvement or
+deterioration. For each EQ-5D dimension the number of subjects that have
+improved over time is divided by the total number of matched pairs. Ties
+(those with no changes) were accounted for through the addition of half
+the number of ties to the numerator. The score is less than 0.5 if more
+patients deteriorate than improve, 0.5 if the same number of patients
+improve and deteriorate or do not change and greater than 0.5 if more
+patients improve than deteriorate.
 
 ``` r
 library(readxl)
@@ -452,7 +490,7 @@ res
 ### Health Profile Grid
 
 The Health Profile Grid (HPG) was also introduced by [Devlin et
-al](https://pubmed.ncbi.nlm.nih.gov/20623685/) in 2010. The HPG provides
+al](https://doi.org/10.1016/10.1002/hec.1608) in 2010. The HPG provides
 a visual way to observe changes in individuals between two time points.
 The HPG requires profiles for each time point to be ordered from best to
 worst. The ***hpg*** function uses a specified value set for this with
@@ -502,18 +540,18 @@ ggplot(res, aes(Post, Pre, color=PCHC)) +
   ylab("Pre-treatment")
 ```
 
-<img src="man/figures/README-hpg-1.png" width="100%" />
+<img src="man/figures/README-hpg-1.png" alt="" width="100%" />
 
 ### Shannon’s Indices
 
 Shannon’s indices were first used to assess how evenly EQ-5D dimension
 scores or health states in a dataset are distributed by [Janssen et
-al](https://pubmed.ncbi.nlm.nih.gov/17294285/) in 2007. Shannon’s H’
-(diversity) index represents the absolute amount of informativity
-captured with Shannon’s J’ (evenness) index capturing the evenness of
-the distribution of data. Shannon’s J’ is calculated by dividing H’ by
-H’ max to give a value between 0 and 1. Lower values indicate more
-diversity and higher values indicate less.
+al](https://doi.org/10.1016/10.1007/s11136-006-9160-6) in 2007.
+Shannon’s H’ (diversity) index represents the absolute amount of
+informativity captured with Shannon’s J’ (evenness) index capturing the
+evenness of the distribution of data. Shannon’s J’ is calculated by
+dividing H’ by H’ max to give a value between 0 and 1. Lower values
+indicate more diversity and higher values indicate less.
 
 ``` r
 library(readxl)
@@ -523,26 +561,19 @@ data <- read_excel(system.file("extdata", "eq5d3l_example.xlsx", package="eq5d")
 
 #Shannon's H', H' max and J' for the whole dataset
 shannon(data, version="3L", by.dimension=FALSE)
-#> $H
-#> [1] 4.17
-#> 
-#> $H.max
-#> [1] 7.92
-#> 
-#> $J
-#> [1] 0.53
+#>     scope    H H.max    J
+#> 1 profile 4.17  7.92 0.53
 
 #Shannon's H', H' max and J' for each dimension
 res <- shannon(data, version="3L", by.dimension=TRUE)
 
 #Convert to data.frame for ease of viewing
 do.call(rbind, res)
-#>    H    H.max J   
-#> MO 1    1.58  0.63
-#> SC 0.97 1.58  0.61
-#> UA 1.22 1.58  0.77
-#> PD 1.13 1.58  0.71
-#> AD 1.09 1.58  0.69
+#>           [,1]   [,2]   [,3]   [,4]   [,5]  
+#> dimension "MO"   "SC"   "UA"   "PD"   "AD"  
+#> H         "1"    "0.97" "1.22" "1.13" "1.09"
+#> H.max     "1.58" "1.58" "1.58" "1.58" "1.58"
+#> J         "0.63" "0.61" "0.77" "0.71" "0.69"
 ```
 
 ### Health State Density Curve and Health State Density Index
@@ -583,7 +614,7 @@ ggplot(cf, aes(CumulativeProp, CumulativeState)) +
   ylab("Cumulative proportion of profiles")
 ```
 
-<img src="man/figures/README-hsdi-1.png" width="100%" />
+<img src="man/figures/README-hsdi-1.png" alt="" width="100%" />
 
 ### EQ-5D-DS
 

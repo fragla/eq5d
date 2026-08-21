@@ -13,7 +13,7 @@ vignette: >
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-It has been demonstrated by [Wailoo *et al*](https://pubmed.ncbi.nlm.nih.gov/33840435/) that EQ-5D-3L and EQ-5D-5L value changes in health differently. In order to enable bidirectional comparison between EQ-5D-3L and EQ-5D-5L datasets the NICE Decision Support Unit at the University of Sheffield has produced their "EEPRU" models that can be used to map data between EQ-5D versions and can be used on health states, utility scores calculated using a value set or approximate (summarised) utility scores. In the UK NICE have stated that this is the method that should be used for UK reference-case analyses instead of the 2018 EQ‑5D‑5L value set for England published by [Devlin *et al*](https://pubmed.ncbi.nlm.nih.gov/28833869/). This vignette demonstrates how to map scores between EQ-5D-3L and EQ-5D-5L using the eq5d package.
+It has been demonstrated by [Wailoo *et al*](https://doi.org/10.1016/j.jval.2020.11.012) that EQ-5D-3L and EQ-5D-5L value changes in health differently. In order to enable bidirectional comparison between EQ-5D-3L and EQ-5D-5L datasets the NICE Decision Support Unit at the University of Sheffield has produced their "EEPRU" models that can be used to map data between EQ-5D versions and can be used on health states, utility scores calculated using a value set or approximate (summarised) utility scores. In the UK NICE have stated that this is the method that should be used for UK reference-case analyses instead of the 2018 EQ‑5D‑5L value set for England published by [Devlin *et al*](https://doi.org/10.1002/hec.3564). This vignette demonstrates how to map scores between EQ-5D-3L and EQ-5D-5L using the eq5d package.
 
 ### Available value sets
 
