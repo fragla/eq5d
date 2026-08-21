@@ -5,7 +5,7 @@
 \alias{DSU3L}
 \title{DSU mapping from EQ-5D-3L to EQ-5D-5L}
 \format{
-An object of class \code{data.frame} with 2430 rows and 22 columns.
+An object of class \code{data.frame} with 2430 rows and 60 columns.
 }
 \source{
 Hernández Alava M, Pudney S, Wailoo A. Estimating the Relationship Between EQ-5D-5L and EQ-5D-3L: Results from a UK Population Study. Pharmacoeconomics. 2023 Feb;41(2):199-207. \doi{10.1007/s40273-022-01218-7}. Epub 2022 Nov 30. PMID: 36449173.

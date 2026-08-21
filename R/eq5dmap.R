@@ -8,21 +8,33 @@
 #'
 #' Available value sets can be viewed using the function \code{valuesets}.
 #'
+#' Mapping may be performed from either EQ-5D dimension scores or an existing
+#' utility index score. When a utility score is supplied, exact lookup is used
+#' when \code{bwidth = 0} (default); otherwise an Epanechnikov kernel smoother is applied.
+#' Utility values in the package lookup tables are stored rounded to 3 decimal
+#' places, consistent with standard reporting of EQ-5D index scores. Exact
+#' lookup is therefore generally intended for utility values reported to 3
+#' decimal places.
+#'
 #' @param scores numeric with names MO, SC, UA, PD and AD representing
 #'   Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression. 
 #'   or a utility index score
-#' @param country value set country
+#' @param country value set country. The original DSU mapping used the England
+#'   EQ-5D-5L value set, available as \code{"England_2018"}. The newer UK
+#'   EQ-5D-5L value set is available as \code{"UK_2026"}. \code{"UK"} is
+#'   retained as an alias for \code{"England_2018"}. For backwards 
+#'   compatibility, \code{"UK"} is treated as an alias for \code{"England_2018"}.
 #' @param version string of value "3L" or "5L" to indicate starting instrument version.
 #' @param age age in years (18-100), or age category (1: 18-34, 2: 35-44, 3: 45-54, 4: 55-64, 5: 65-100)
 #' @param sex Male or Female
-#' @param bwidth bandwith score for approximate scores (< 0.8: 0.2, 0.8-0.951: 0.1, 0.951-1: small, but large enough to include 1)
+#' @param bwidth bandwidth score for approximate scores (< 0.8: 0.2, 0.8-0.951: 0.1, 0.951-1: small, but large enough to include 1)
 #' @param digits number of decimal places to return
 #' @return calculated utility index score.
 #' @examples
-#' eq5dmap(c(MO=1,SC=2,UA=3,PD=4,AD=5), "UK", "5L", 30, "female")
-#' eq5dmap(0.922, "UK", "5L", 18, "male")
-#' eq5dmap(0.715, "UK", "5L", 50, "male", bwidth = 0.0001)
-#' eq5dmap(0.715, "UK", "5L", 50, "male", bwidth = 0.0001, digits = 8)
+#' eq5dmap(c(MO=1,SC=2,UA=3,PD=4,AD=5), "UK_2026", "5L", 30, "female")
+#' eq5dmap(0.848, "UK_2026", "3L", 70, "male")
+#' eq5dmap(0.715, "England_2018", "5L", 50, "male", bwidth = 0.0001)
+#' eq5dmap(0.715, "England_2018", "5L", 50, "male", bwidth = 0.0001, digits = 8)
 #'
 #' @export
 eq5dmap <- function(scores, country, version, age, sex, bwidth=0, digits=3) {
@@ -36,8 +48,19 @@ eq5dmap <- function(scores, country, version, age, sex, bwidth=0, digits=3) {
   }
 
   if(is.null(country) || !country %in% colnames(survey)) {
-    countries <- sub("Copula", "", grep("Copula", sort(colnames(survey)), value=TRUE))
-    stop(paste0("For mapping from EQ-5D-", version," country must be one of: ", paste(countries, collapse=", ")))
+    
+    if(!is.null(country) && country == "UK") {
+      country <- "England_2018"
+    } else {
+      countries <- sub("Copula", "", grep("Copula", sort(colnames(survey)), value = TRUE))
+      stop(
+        paste0(
+          "For mapping from EQ-5D-", version,
+          " country must be one of: ",
+          paste(countries, collapse = ", ")
+        )
+      )
+    }
   }
   
   if(all(.get_dimension_names() %in% names(scores))) {
@@ -75,7 +98,9 @@ eq5dmap <- function(scores, country, version, age, sex, bwidth=0, digits=3) {
     return(index)
   } else if (is.numeric(scores)) {
     if(bwidth==0) {
-      idx <- which(survey[[country]]==scores & survey[["Age"]]==age.grp & survey[["Sex"]]==sex)
+      #idx <- which(survey[[country]]==scores & survey[["Age"]]==age.grp & survey[["Sex"]]==sex)
+      # avoid floating-point equality issues
+      idx <- which(abs(survey[[country]] - scores) < 1e-12 & survey$Age == age.grp & survey$Sex == sex)
       if(length(idx)==0) {
         stop("Invalid utility score provided. If approximate score please supply bwidth value")
       } else {

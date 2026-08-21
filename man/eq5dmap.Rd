@@ -11,7 +11,11 @@ eq5dmap(scores, country, version, age, sex, bwidth = 0, digits = 3)
 Mobility, Self-care, Usual activities, Pain/discomfort and Anxiety/depression. 
 or a utility index score}
 
-\item{country}{value set country}
+\item{country}{value set country. The original DSU mapping used the England
+EQ-5D-5L value set, available as \code{"England_2018"}. The newer UK
+EQ-5D-5L value set is available as \code{"UK_2026"}. \code{"UK"} is
+retained as an alias for \code{"England_2018"}. For backwards 
+compatibility, \code{"UK"} is treated as an alias for \code{"England_2018"}.}
 
 \item{version}{string of value "3L" or "5L" to indicate starting instrument version.}
 
@@ -19,7 +23,7 @@ or a utility index score}
 
 \item{sex}{Male or Female}
 
-\item{bwidth}{bandwith score for approximate scores (< 0.8: 0.2, 0.8-0.951: 0.1, 0.951-1: small, but large enough to include 1)}
+\item{bwidth}{bandwidth score for approximate scores (< 0.8: 0.2, 0.8-0.951: 0.1, 0.951-1: small, but large enough to include 1)}
 
 \item{digits}{number of decimal places to return}
 }
@@ -35,11 +39,19 @@ website for more information).
 }
 \details{
 Available value sets can be viewed using the function \code{valuesets}.
+
+Mapping may be performed from either EQ-5D dimension scores or an existing
+utility index score. When a utility score is supplied, exact lookup is used
+when \code{bwidth = 0} (default); otherwise an Epanechnikov kernel smoother is applied.
+Utility values in the package lookup tables are stored rounded to 3 decimal
+places, consistent with standard reporting of EQ-5D index scores. Exact
+lookup is therefore generally intended for utility values reported to 3
+decimal places.
 }
 \examples{
-eq5dmap(c(MO=1,SC=2,UA=3,PD=4,AD=5), "UK", "5L", 30, "female")
-eq5dmap(0.922, "UK", "5L", 18, "male")
-eq5dmap(0.715, "UK", "5L", 50, "male", bwidth = 0.0001)
-eq5dmap(0.715, "UK", "5L", 50, "male", bwidth = 0.0001, digits = 8)
+eq5dmap(c(MO=1,SC=2,UA=3,PD=4,AD=5), "UK_2026", "5L", 30, "female")
+eq5dmap(0.848, "UK_2026", "3L", 70, "male")
+eq5dmap(0.715, "England_2018", "5L", 50, "male", bwidth = 0.0001)
+eq5dmap(0.715, "England_2018", "5L", 50, "male", bwidth = 0.0001, digits = 8)
 
 }

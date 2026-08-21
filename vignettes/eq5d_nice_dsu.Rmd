@@ -22,7 +22,7 @@ The available "DSU" value sets can be viewed using the ***valuesets*** function.
 ```{r dsu_valuesets}
   library(eq5d)
 
-  # DSU EQ-5D-5L to EQ-5D-3L UK value set
+  # 2026 DSU EQ-5D-5L to EQ-5D-3L UK value set
   valuesets(version = "5L", type = "DSU", country = "UK")
 
   ## All DSU EQ-5D-5L to EQ-5D-3L value sets
@@ -43,10 +43,10 @@ As with standard value sets, the ***eq5d*** function can map states as individua
 ```{r dsu_dimensions_1}
 
 # Using age in years and sex as "m"
-eq5d(c(MO=1, SC=2, UA=3, PD=4, AD=5), type = "DSU", country = "UK", age = 43, version = "5L", sex = "m")
+eq5d(c(MO=1, SC=2, UA=3, PD=4, AD=5), type = "DSU", country = "England_2018", age = 43, version = "5L", sex = "m")
 
 # Using an age category and sex as "Male"
-eq5d(12345, type = "DSU", country = "UK", age = 2, version = "5L", sex = "Male")
+eq5d(12345, type = "DSU", country = "England_2018", age = 2, version = "5L", sex = "Male")
 
 ```
 
@@ -64,7 +64,7 @@ dat1 <- data.frame(State = sample(get_all_health_states("5L"), 10),
 
 print(dat1)
 
-eq5d(dat1, version="5L", type="DSU", country="UK")
+eq5d(dat1, version="5L", type="DSU", country="England_2018")
 
 ```
 
@@ -77,7 +77,7 @@ Mapping utility scores that have been calculated using a standard value set betw
 ```{r dsu_exact_utility}
 
 # Using utility score 0.322 (score for state 12345), an age category and sex as "Male"
-eq5d(0.322, type = "DSU", country = "UK", age = 2, version = "5L", sex = "Male")
+eq5d(0.322, type = "DSU", country = "England_2018", age = 2, version = "5L", sex = "Male")
 
 
 # Multiple states
@@ -89,7 +89,7 @@ dat2 <- data.frame(Utility = eq5d(dat1$State, version = "5L", type = "VT", count
                    
 print(dat2)
 
-eq5d(dat2, version="5L", type="DSU", country="UK")
+eq5d(dat2, version="5L", type="DSU", country="England_2018")
 
 ```                   
 
@@ -102,9 +102,9 @@ If approximate or summarised utility scores are being mapped, a bandwidth parame
 ```{r dsu_summary_utility}
 
 # Get all utility scores from 2018 EQ‑5D‑5L value set for England 
-exist.utils <- unique(DSU5L$UK)
-min <- min(DSU5L$UK)
-max <- max(DSU5L$UK)
+exist.utils <- unique(DSU5L$England_2018)
+min <- min(DSU5L$England_2018)
+max <- max(DSU5L$England_2018)
 
 # calculate range of values between min and max
 poss.utils <- seq(from=min, to=max, by=0.001)
@@ -118,12 +118,12 @@ dat3 <- data.frame(Utility = sample(poss.utils[which(!poss.utils %in% exist.util
 print(dat3)
 
 # map scores using a single bandwidth value for all scores
-eq5d(dat3, version="5L", type="DSU", country="UK", bwidth=0.2)
+eq5d(dat3, version="5L", type="DSU", country="England_2018", bwidth=0.2)
 
 # add bwidth column with values based on the DSU recommendations
 dat3$bwidth <- c(0.2, 0.1, 0.2, 0.2, 0.1, 0.2, 0.2, 0.2, 0.2, 0.01)
 
-eq5d(dat3, version="5L", type="DSU", country="UK")
+eq5d(dat3, version="5L", type="DSU", country="England_2018")
 
 ```
 

@@ -3,8 +3,10 @@ root <- file.path(here::here(), "data-raw")
 
 # valueset tables
 CW <- read.csv(file.path(root, "CW.csv"), row.names = 1L)
-DSU3L <- read.csv(file.path(root, "DSU3L.csv"), row.names = 1L)
-DSU5L <- read.csv(file.path(root, "DSU5L.csv"), row.names = 1L)
+# DSU3L <- read.csv(file.path(root, "DSU3L.csv"), row.names = 1L)
+# DSU5L <- read.csv(file.path(root, "DSU5L.csv"), row.names = 1L)
+DSU3L <- read.csv(file.path(root, "DSU3L_2026.csv"), row.names = 1L)
+DSU5L <- read.csv(file.path(root, "DSU5L_2026.csv"), row.names = 1L)
 RCW <- read.csv(file.path(root, "RCW.csv"), row.names = 1L)
 TTO <- read.csv(file.path(root, "TTO.csv"), row.names = 1L)
 VAS <- read.csv(file.path(root, "VAS.csv"), row.names = 1L)
@@ -12,8 +14,17 @@ VT <- read.csv(file.path(root, "VT.csv"), row.names = 1L)
 Y3L <- read.csv(file.path(root, "Y.csv"), row.names = 1L)
 
 # DSU ranges
-DSU3LRANGE <- as.list(read.csv("data-raw/DSU3LRANGE.csv", row.names = 1L))
-DSU5LRANGE <- as.list(read.csv("data-raw/DSU5LRANGE.csv", row.names = 1L))
+#DSU3LRANGE <- as.list(read.csv("data-raw/DSU3LRANGE.csv", row.names = 1L))
+#DSU5LRANGE <- as.list(read.csv("data-raw/DSU5LRANGE.csv", row.names = 1L))
+
+dsu_ranges <- function(x) {
+  cols <- c("MO", "SC", "UA", "PD", "AD", "State", "Age", "Sex", grep("Copula", colnames(x), value = TRUE))
+  ranges <- lapply(x[, which(!names(x) %in% cols)], range)
+  ranges
+}
+
+DSU3LRANGE <- dsu_ranges(DSU3L)
+DSU5LRANGE <- dsu_ranges(DSU5L)
 
 # valueset references
 REFERENCES <- read.csv(file.path(root, "references.csv"))
