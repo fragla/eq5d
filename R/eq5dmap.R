@@ -46,21 +46,18 @@ eq5dmap <- function(scores, country, version, age, sex, bwidth=0, digits=3) {
   } else {
     stop("Version must be either 3L or 5L.")
   }
+  
+  country <- .normalise_country(country)
 
   if(is.null(country) || !country %in% colnames(survey)) {
-    
-    if(!is.null(country) && country == "UK") {
-      country <- "England_2018"
-    } else {
-      countries <- sub("Copula", "", grep("Copula", sort(colnames(survey)), value = TRUE))
-      stop(
-        paste0(
-          "For mapping from EQ-5D-", version,
-          " country must be one of: ",
-          paste(countries, collapse = ", ")
-        )
+    countries <- sub("Copula", "", grep("Copula", sort(colnames(survey)), value = TRUE))
+    stop(
+      paste0(
+        "For mapping from EQ-5D-", version,
+        " country must be one of: ",
+        paste(countries, collapse = ", ")
       )
-    }
+    )
   }
   
   if(all(.get_dimension_names() %in% names(scores))) {

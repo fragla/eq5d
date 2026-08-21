@@ -117,3 +117,10 @@ get_health_states_from_dimensions <- function(scores, version="5L", ignore.inval
 }
 
 getHealthStatesFromDimensions = get_health_states_from_dimensions
+
+.normalise_country <- function(country) {
+  if (length(country) == 1L && !is.na(country) && country == "UK") {
+    country <- "England_2018"
+  }
+  return(country)
+}

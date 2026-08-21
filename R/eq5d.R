@@ -158,6 +158,7 @@ eq5d.default <- function(scores, version=NULL, type=NULL, country=NULL, ignore.i
 
   .length = length(scores)
   if(!is.null(type) && type=="DSU") {
+    country <- .normalise_country(country)
     .range <- .getDSURange(country, version)
   }
 
