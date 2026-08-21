@@ -15,7 +15,7 @@
 - Added `table_ps()`, a reporting helper for formatting Probability of
   Superiority (PS) output into a tabular representation.
 
-## Visualisation
+### Visualisation
 
 - Added `plot_descriptive()` to visualise the EQ‑5D descriptive system
   using side‑by‑side bar charts, with optional faceting for grouped
@@ -32,12 +32,12 @@
   using the Health Profile Grid, supporting optional exclusion of
   full-health transitions and publication-ready styling.
 
-## Internal refactoring and structural improvements
+### Internal refactoring and structural improvements
 
 - Internal implementations of LFS and LSS revised to ensure type-stable
   outputs.
 
-- RSeverity, informativity, and cumulative distribution components
+- Severity, informativity, and cumulative distribution components
   refactored to provide clearer, more consistent internal data
   structures.
 
@@ -55,6 +55,19 @@
 - Tests updated to reflect the updated code changes.
 
 - Shiny application logic updated to align with the revised code.
+
+### DSU mapping
+
+- Updated DSU mapping lookup tables to include the UK EQ-5D value set
+  (`UK_2026`). The original DSU mapping value set is now explicitly
+  available as `England_2018`, with `country = "UK"` retained as a
+  backwards-compatible alias. Additional DSU mappings for other
+  countries are also available.
+
+- Utility values in DSU lookup tables are now stored rounded to 3
+  decimal places and copula mapping values rounded to 8 decimal places,
+  improving consistency with standard EQ-5D reporting, reducing
+  floating-point matching issues, and decreasing package size.
 
 # eq5d 0.16.3 (2026-03-30)
 
@@ -235,7 +248,7 @@
 - Ecuadorian EQ-5D-3L value set added.
 
 - Egyptian EQ-5D-5L removed due to article being retracted - see
-  [PubMed](https://pubmed.ncbi.nlm.nih.gov/34129227/).
+  [here](https://doi.org/10.1016/10.1007/s40273-021-01055-0).
 
 - Clearer messaging about ‘ignore.invalid’ parameter error message.
 
