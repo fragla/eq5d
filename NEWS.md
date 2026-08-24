@@ -248,7 +248,7 @@
 - Ecuadorian EQ-5D-3L value set added.
 
 - Egyptian EQ-5D-5L removed due to article being retracted - see
-  [here](https://doi.org/10.1016/10.1007/s40273-021-01055-0).
+  [here](https://doi.org/10.1007/s40273-021-01055-0).
 
 - Clearer messaging about ‘ignore.invalid’ parameter error message.
 
