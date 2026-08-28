@@ -1,7 +1,7 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-# eq5d (development)
+# eq5d 0.16.4 (2026-08-28)
 
 ### Data and analytical infrastructure
 
@@ -31,6 +31,15 @@
 - Added `plot_hpg()` to visualise paired EQ-5D health state transitions
   using the Health Profile Grid, supporting optional exclusion of
   full-health transitions and publication-ready styling.
+
+### Documentation and reporting guidance
+
+- Added a set of reporting vignettes covering descriptive system
+  reporting, severity and distributional summaries, and longitudinal
+  change analysis.
+
+- Added an overview vignette describing the reporting workflows and
+  reporting tools available in `eq5d`.
 
 ### Internal refactoring and structural improvements
 
