@@ -12,7 +12,7 @@ status](https://www.r-pkg.org/badges/version/eq5d)](https://CRAN.R-project.org/p
 [![Codecov test
 coverage](https://codecov.io/gh/fragla/eq5d/branch/master/graph/badge.svg)](https://app.codecov.io/gh/fragla/eq5d?branch=master)
 [![License:
-MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.md)
+MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/fragla/eq5d/blob/master/LICENSE.md)
 <!-- badges: end -->
 
 `eq5d` provides tools for the valuation, reporting and analysis of EQ-5D

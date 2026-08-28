@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 [![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/eq5d)](https://CRAN.R-project.org/package=eq5d)
 [![R-CMD-check](https://github.com/fragla/eq5d/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/fragla/eq5d/actions/workflows/check-standard.yaml)
 [![Codecov test coverage](https://codecov.io/gh/fragla/eq5d/branch/master/graph/badge.svg)](https://app.codecov.io/gh/fragla/eq5d?branch=master)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/fragla/eq5d/blob/master/LICENSE.md)
 <!-- badges: end -->
 
 `eq5d` provides tools for the valuation, reporting and analysis of EQ-5D 
