@@ -1,7 +1,7 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-# eq5d 0.16.4 (2026-08-28)
+# eq5d 0.17.0 (2026-08-28)
 
 ### Data and analytical infrastructure
 
