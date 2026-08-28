@@ -1,0 +1,234 @@
+---
+title: "Reporting EQ-5D Data with eq5d"
+author: "Fraser Morton"
+date: "`r format(Sys.Date(), '%d %B %Y')`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Reporting EQ-5D Data with eq5d}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+## Introduction
+
+EQ-5D data can be reported in a number of ways. Descriptive system responses 
+provide information across the five EQ-5D dimensions, while value sets allow 
+states to be converted into preference-based utility scores. Depending on the 
+study objectives analyses may also focus on severity, distributional 
+characteristics or changes in health over time.
+
+The `eq5d` package provides tools for these common reporting tasks. This 
+vignette gives an overview of the reporting tools available in the package and 
+introduces the accompanying vignettes that cover each area in more detail. 
+Throughout the emphasis is on producing clear reproducible summaries of EQ-5D 
+data. 
+
+The methods implemented in these vignettes broadly follow the recommendations 
+described by [Devlin, Janssen and Parkin](https://link.springer.com/book/10.1007/978-3-030-47622-9), 
+which provides a comprehensive reference for analysing and reporting EQ-5D data.
+
+## Vignette roadmap
+
+The reporting functionality in `eq5d` is described across a small set of
+complementary vignettes. New users may find it useful to work through them in 
+the following order:
+
+- **Reporting EQ-5D Data**  
+  Provides an overview of the reporting tools available in `eq5d` and explains 
+  how the different components fit together.
+
+- **Reporting the EQ-5D Descriptive System**  
+  Covers the structure of the descriptive system and how it can be summarised 
+  and reported.
+
+- **Reporting EQ-5D Severity and Distributional Summaries**  
+  Describes severity measures, informativity metrics and summaries of 
+  health state distributions.
+
+- **Reporting EQ-5D Change Analysis**  
+  Covers methods for reporting longitudinal change, including profile-based and 
+  comparative summaries.
+
+Each vignette is self-contained, but together they provide a complete guide to 
+reporting EQ-5D data using `eq5d`.
+
+An additional vignette is available for **Mapping between EQ-5D-5L and 
+EQ-5D-3L using the NICE Decision Support Unit (DSU) models**.
+
+## Scope of reported summaries
+
+`eq5d` provides functions for reporting several aspects of EQ-5D data, 
+including descriptive system responses, utility scores, severity measures, 
+distributional summaries and longitudinal change.
+
+The package focusses on methods that are commonly used in EQ-5D analysis and 
+reporting, providing standardised outputs that can be incorporated into 
+reproducible analytical workflows.
+
+A companion Shiny application provides an interactive interface to many of the 
+same analytical methods, together with additional visualisations and 
+exploratory summaries. 
+
+The remaining sections of this vignette briefly introduce the main reporting 
+methods available in the package.
+
+## Value-based measurement and mapping
+
+A common step in EQ-5D analysis is converting descriptive system responses 
+into utility index scores.
+
+```{r}
+suppressPackageStartupMessages(library(eq5d))
+
+dat <- read.csv(
+  system.file("extdata", "eq5d3l_example.csv", package = "eq5d")
+)
+
+scores <- c(MO = 1, SC = 2, UA = 3, PD = 2, AD = 1)
+
+eq5d(scores, country = "UK", version = "3L", type = "TTO")
+```
+
+## Selecting EQ-5D value sets
+
+When reporting utility index scores, an appropriate **value set** must be 
+selected. Value sets map EQ-5D health states to utility values based on 
+population preferences and may differ according to:
+
+- EQ-5D version (e.g. EQ-5D-3L, EQ-5D-5L),
+- valuation method (e.g. TTO, VAS, EQ-VT),
+- country or population,
+- modelling approach used to derive the value set.
+
+The choice of value set depends on the study context and any relevant policy, 
+methodological or clinical requirements. For this reason `eq5d` does not assume 
+a default value set. Instead, value set selection is always made explicitly by 
+the user.
+
+Reports should always document the value set used, including the EQ-5D version, 
+country and valuation method.
+
+### Discovering available value sets
+
+Available value sets can be listed using the `valuesets()` function and 
+filtered by version, valuation method and country.
+
+For example, the following returns value sets available for France with 
+associated references:
+
+```{r}
+head(valuesets(country = "France", references = c("PubMed", "DOI")))
+```
+
+Value sets can also be queried by valuation method:
+
+```{r}
+head(valuesets(type = "VT", references = c("PubMed", "DOI")))
+```
+
+Filters can be combined to identify value sets relevant to a particular 
+analysis.
+
+## Descriptive system and severity reporting
+
+Response distributions for each EQ-5D dimension can be summarised using 
+`descriptive_data()` and presented using `table_descriptive()`. 
+
+For illustration, the example below uses a single group to produce an ungrouped 
+descriptive table.
+
+```{r, eval=TRUE}
+dat1 <- subset(dat, Group == "Group1")
+
+dd <- descriptive_data(dat1, version = "3L", metric = "percent")
+table_descriptive(dd)
+```
+
+Detailed discussion of descriptive system reporting, including grouped summaries 
+and table construction, is provided in *Reporting the EQ-5D Descriptive System*.
+
+## Severity and distributional summaries
+
+In addition to descriptive tables, EQ-5D data can be summarised using measures 
+that describe the severity and distribution of observed health states.
+
+For example, the package provides the Level Sum Score (LSS) and Level Frequency 
+Score (LFS):
+
+```{r}
+lss(scores, version = "3L")
+lfs(scores, version = "3L")
+```
+
+Additional functions support informativity measures, including Shannon entropy 
+and evenness, as well as summaries of health state distributions such as the 
+Health State Density Index (HSDI).
+
+These measures can provide useful context for understanding the distribution of 
+health outcomes within a population and are described in detail in *Reporting 
+EQ-5D Severity and Distributional Summaries*.
+
+## Longitudinal change analysis
+
+The `eq5d` package includes tools for reporting changes in EQ-5D health 
+profiles over time. For illustration, the example below constructs a simple 
+paired dataset by treating the `Group` variable as a pre/post
+indicator. This is purely for demonstration purposes.
+
+```{r}
+dat_long <- dat
+dat_long$id <- rep(seq_len(nrow(dat_long) / 2), each = 2)
+```
+
+The Paretian Classification of Health Change (PCHC) provides a profile-based 
+summary of individual change:
+
+```{r}
+pchc_res <- pchc(
+  MO + SC + UA + PD + AD ~ Group | id,
+  data    = dat_long,
+  version = "3L",
+  summary = TRUE
+)
+
+pchc_res
+```
+
+The Probability of Superiority (PS) provides a complementary population-level 
+summary of change:
+
+```{r}
+ps_res <- ps(
+  MO + SC + UA + PD + AD ~ Group | id,
+  data    = dat_long,
+  version = "3L"
+)
+
+ps_res
+```
+
+Further details on these methods and their interpretation are provided in 
+*Reporting EQ-5D Change Analysis*.
+
+## Visualisation
+
+Visualisation can complement numerical summaries and reporting tables by 
+helping to communicate patterns in EQ-5D data. 
+
+The package includes visualisation tools such as the Health Profile Grid (HPG) 
+and Health State Density Curve (HSDC), which support the interpretation of change 
+analyses and health-state distributions, respectively.
+
+As with other outputs in eq5d, visualisations are most informative when 
+considered alongside the underlying numerical summaries.
+
+## Summary
+
+This vignette provides a high-level overview of the reporting tools available 
+in `eq5d`. Subsequent vignettes describe descriptive system reporting, severity 
+and distributional summaries and longitudinal change analysis in greater 
+detail.

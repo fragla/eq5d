@@ -1,0 +1,86 @@
+---
+title: "Reporting the EQ-5D Descriptive System"
+author: "Fraser Morton"
+date: "`r format(Sys.Date(), '%d %B %Y')`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Reporting the EQ-5D Descriptive System}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+## Overview
+
+This vignette describes how EQ-5D descriptive system data can be summarised and 
+reported using `eq5d`. It covers the outputs produced by `descriptive_data()` 
+and `table_descriptive()` and explains how these can be used to report response 
+distributions across EQ-5D dimensions.
+
+## Descriptive data
+
+The `descriptive_data()` function summarises EQ-5D responses in a tidy format, 
+with one row for each dimension, response level and metric combination. This 
+format is designed to work naturally with standard R workflows and is used by 
+the reporting functions provided in the package.
+
+```{r}
+suppressPackageStartupMessages(library(eq5d))
+
+dat <- read.csv(
+  system.file("extdata", "eq5d3l_example.csv", package = "eq5d")
+)
+
+# Ungrouped example.
+dat1 <- subset(dat, Group == "Group1")
+
+dd <- descriptive_data(dat1, version = "3L", metric = "percent")
+head(dd)
+```
+
+## Counts and percentages
+
+The `metric` argument controls whether descriptive summaries are reported as 
+counts or percentages. For example, the following returns counts rather 
+than percentages:
+
+```{r}
+descriptive_data(dat1, version = "3L", metric = "count")
+```
+
+## Descriptive tables
+
+Descriptive tables can be created using `table_descriptive()`. This function 
+reshapes the output from `descriptive_data()` into a format commonly used for 
+reporting EQ-5D results.
+
+Tables may contain percentages or counts, depending on the metric used when 
+creating the descriptive data.
+
+```{r}
+table_descriptive(dd, include_total = TRUE)
+```
+
+In this table, rows represent EQ-5D response levels and columns represent 
+dimensions. The values show the proportion of respondents reporting each level.
+
+## Grouped tables
+
+Response distributions are often compared across study groups, populations or 
+time points.
+
+When a grouping variable is supplied to `descriptive_data()`, summaries are 
+calculated separately for each group. `table_descriptive()` then returns a list 
+containing one table per group.
+
+```{r}
+dd_grp <- descriptive_data(dat, version = "3L", metric = "count", group = "Group")
+table_descriptive(dd_grp)
+```
+
+This approach makes it straightforward to compare descriptive system 
+distributions across groups using a consistent reporting format throughout an 
+analysis.

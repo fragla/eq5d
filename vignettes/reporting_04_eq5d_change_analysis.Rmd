@@ -1,0 +1,161 @@
+---
+title: "Reporting EQ-5D Change Analysis"
+author: "Fraser Morton"
+date: "`r format(Sys.Date(), '%d %B %Y')`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Reporting EQ-5D Change Analysis}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+## Introduction
+
+A central use of EQ-5D data is the assessment and reporting of change in
+health over time, for example before and after treatment or intervention. 
+Because EQ-5D describes health across multiple dimensions using ordinal 
+response levels, appropriate reporting of change requires methods that preserve 
+this multidimensional structure.
+
+This vignette describes the change analysis methods available in `eq5d` and how 
+they can be used to report changes in EQ-5D over time. It builds on earlier 
+vignettes covering descriptive system reporting and other EQ-5D summaries.
+
+## Understanding EQ-5D change
+
+Change in EQ-5D profiles may involve improvement in some dimensions,
+deterioration in others, or no change at all. Even when overall utility
+index scores improve on average, individual patterns of change may be
+heterogeneous or mixed.
+
+For this reason the change analysis functions in `eq5d` focus on:
+
+- profile-based descriptions of change
+- individual-level classification prior to population-level summaries
+- reporting change using more than a single summary measure
+
+## Preparing longitudinal EQ-5D data
+
+Longitudinal EQ-5D data are most commonly stored in long format, with one
+row per observation and repeated observations for each individual. A
+clear definition of pre- and post-intervention health states is required
+before change analysis can be performed.
+
+The change-analysis functions in `eq5d` support a formula interface
+that makes this pairing explicit, specifying both the EQ-5D dimensions
+and the variable that defines time ordering.
+
+```{r}
+suppressPackageStartupMessages(library(eq5d))
+
+## Example EQ-5D-3L data included with the package
+dat <- read.csv(
+  system.file("extdata", "eq5d3l_example.csv", package = "eq5d")
+)
+
+## Construct a simple long-format example
+## (for illustration only)
+dat_long <- dat
+dat_long$id <- rep(seq_len(nrow(dat_long) / 2), each = 2)
+dat_long$visit <- dat_long$Group
+```
+
+## Paretian Classification of Health Change (PCHC)
+
+The Paretian Classification of Health Change (PCHC) classifies individual
+changes in EQ-5D profiles between two time points into mutually
+exclusive categories, including improvement, deterioration, mixed
+change, and no change.
+
+PCHC preserves the multidimensional structure of EQ-5D and summarises 
+individual change between two observations.
+
+The example below uses the formula interface introduced above.
+
+```{r}
+pchc(
+  MO + SC + UA + PD + AD ~ visit | id,
+  data = dat_long,
+  version = "3L"
+)
+```
+
+If the time variable contains exactly two observed levels, pre- and
+post-intervention states are inferred automatically. When the ordering
+is ambiguous, the `pre.level` and `post.level` arguments should be
+supplied explicitly.
+
+The package supports both long-format longitudinal data and explicitly paired 
+pre- and post-intervention datasets. For simplicity, the examples below use 
+paired datasets; the same summaries can be obtained from long-format data using 
+the formula interface shown above.
+
+```{r}
+## Prepare paired pre/post datasets
+pre  <- dat[dat$Group == "Group1", ]
+post <- dat[dat$Group == "Group2", ]
+
+pchc_res <- pchc(pre, post, version = "3L", summary = TRUE)
+pchc_res
+```
+
+The resulting table summarises the overall pattern of change within the study 
+population and can be reported alongside descriptive system summaries at 
+baseline and follow-up.
+
+## Probability of Superiority
+
+Probability of Superiority (PS) provides a population-level summary of
+change by comparing pre- and post-intervention responses on each EQ-5D 
+dimension and quantifying the balance between improvement and deterioration.
+
+Unlike PCHC, PS is returned as a separate estimate for each EQ-5D dimension and 
+can be presented using reporting tables where required.
+
+```{r}
+ps_res <- ps(pre, post, version = "3L")
+ps_res
+
+table_ps(ps_res)
+```
+
+PS should be interpreted as a comparative probability rather than as an
+individual-level effect measure. Unlike PCHC, it does not classify individual 
+change trajectories and should therefore be viewed as complementary to, rather 
+than a replacement for, profile-based classifications.
+
+## Relationship between PCHC and PS
+
+PCHC and PS provide different perspectives on change:
+
+- **PCHC** describes the pattern of change experienced by individuals.
+- **PS** summarises the balance of improvement and deterioration within the population.
+
+Reporting both summaries together provides a richer account of
+longitudinal EQ-5D change than either approach alone.
+
+## Health Profile Grid
+
+Visualisation can support the interpretation of change summaries. The Health
+Profile Grid (HPG) provides a two-dimensional representation of ranked
+EQ-5D profiles before and after intervention. In `eq5d`, HPG data are generated 
+using `hpg()` and visualised with `plot_hpg()`.
+
+```{r, fig.width = 6, fig.height = 6, fig.align = "center"}
+hpg_obj <- hpg(
+  pre,
+  post,
+  country = "UK",
+  version = "3L",
+  type = "TTO"
+)
+
+plot_hpg(hpg_obj, version = "3L")
+```
+
+Visualisations are most informative when interpreted alongside multidimensional 
+change summaries.

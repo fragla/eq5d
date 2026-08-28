@@ -1,0 +1,159 @@
+---
+title: "Reporting EQ-5D Severity and Distributional Summaries"
+author: "Fraser Morton"
+date: "`r format(Sys.Date(), '%d %B %Y')`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Reporting EQ-5D Severity and Distributional Summaries}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+## Overview
+
+In addition to descriptive system tables, EQ-5D data can be summarised using 
+measures that describe the severity and distribution of observed health states.
+
+This vignette introduces the severity and distributional reporting methods 
+available in `eq5d`, including the Level Sum Score (LSS), Level Frequency 
+Score (LFS), Shannon's entropy and evenness, and measures derived from health 
+state cumulative frequency distributions.
+
+## Example data
+
+```{r}
+suppressPackageStartupMessages(library(eq5d))
+
+## Example EQ-5D-3L data included with the package
+dat <- read.csv(
+  system.file("extdata", "eq5d3l_example.csv", package = "eq5d")
+)
+
+## For an ungrouped population-level example
+dat1 <- subset(dat, Group == "Group1")
+
+## Example EQ-5D-3L profile (single observation)
+scores <- unlist(dat1[1, c("MO", "SC", "UA", "PD", "AD")])
+```
+
+## Severity measures
+
+Severity measures provide concise summaries of EQ-5D health states and can be 
+reported alongside descriptive system tables.
+
+The `eq5d` package provides two severity measures:
+
+- the Level Sum Score (LSS)
+- the Level Frequency Score (LFS)
+
+```{r, eval=FALSE}
+# Example severity summaries
+lss(scores, version = "3L")
+lfs(scores, version = "3L")
+```
+
+LSS is calculated by summing the reported levels across dimensions, with 
+higher values indicating greater severity.
+
+LFS provides a compact description of the EQ-5D profile based on the frequency 
+of observed response levels within the health state.
+
+These measures can be reported alongside descriptive system tables to provide 
+additional information about health state severity.
+
+## Shannon's entropy and evenness
+
+The distribution of observed EQ-5D health states can also be summarised using 
+Shannon's entropy and Shannon's evenness. These measures are calculated at the 
+population level and therefore require a dataset of observed EQ-5D profiles.
+
+```{r}
+# Shannon's entropy and evenness for a population
+shannon(dat1, version = "3L")
+```
+
+Shannon's entropy was first applied to EQ-5D data by Janssen et al. (2007)
+as a way of describing the information contained within observed health state 
+distributions. Shannon's entropy (H') reflects the diversity of observed 
+responses while Shannon's evenness (J') measures how evenly responses are 
+distributed relative to the maximum possible entropy.
+
+These measures are often used to assess how much variation is 
+present in the observed responses and can help identify concentration of 
+responses arising from effects such as limited variation or ceiling effects.
+
+## Health state distribution summaries
+
+In addition to severity measures and entropy statistics, `eq5d` provides 
+summaries of how health states are distributed within a population. These 
+summaries are based on health state cumulative frequency data generated using 
+`eq5dcf()`.
+
+```{r}
+# Health state cumulative frequency object
+cf <- eq5dcf(dat1, version = "3L")
+```
+
+The **Health State Density Index (HSDI)** summarises the concentration of 
+observed health states within a population. It can be useful when comparing the 
+distribution of health states across different groups or datasets.
+
+```{r}
+idx <- hsdi(dat1, version = "3L")
+idx
+```
+
+The Health State Density Curve (HSDC) provides a graphical representation of 
+the cumulative distribution of health states.
+
+```{r eval=TRUE, fig.width = 6, fig.height = 6, fig.align = "center"}
+plot_hsdc(cf, hsdi = idx)
+```
+
+When interpreted alongside HSDI, the HSDC can help compare the distribution of 
+health states across populations and identify differences in concentration 
+across the health state spectrum.
+
+## Comparing groups
+
+When severity or distributional summaries are required for multiple groups, the 
+data can be split before analysis. The helper functions below provide a 
+convenient way to generate grouped HSDI and HSDC summaries.
+
+```{r eval=TRUE, fig.width = 6, fig.height = 6, fig.align = "center"}
+# Grouped HSDI
+hsdi_by_group <- make_hsdi_by_group(
+  dat,
+  group = "Group",
+  version = "3L"
+)
+
+hsdi_by_group
+
+# Grouped HSDC data
+hsdc_by_group <- make_hsdc_by_group(
+  dat,
+  group = "Group",
+  version = "3L"
+)
+
+plot_hsdc(hsdc_by_group, hsdi = hsdi_by_group, group = "Group")
+```
+
+Grouped summaries can be useful when comparing the distribution of health 
+states across study groups, populations or time points. These summaries are 
+intended to complement descriptive system tables and other EQ-5D reporting 
+outputs.
+
+## Summary
+
+This vignette introduced severity and distributional reporting methods
+available in `eq5d`, including LSS, LFS, Shannon's entropy and evenness,
+and health state distribution summaries based on cumulative frequency
+distributions. These measures can complement descriptive system tables by
+providing additional information about the severity, diversity and distribution 
+of observed health states.
