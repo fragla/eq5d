@@ -98,6 +98,10 @@ plot_severity_summary <- function(
   x_num <- as.numeric(plot_df$severity)
   xmin  <- x_num - tick_width / 2
   xmax  <- x_num + tick_width / 2
+  
+  ## ---- Y-axis limits -----------------------------------------------
+  ymin <- floor(min(plot_df$lowest, na.rm = TRUE) * 10) / 10
+  ymax <- ceiling(max(plot_df$highest, na.rm = TRUE) * 10) / 10
 
   ## ---- Axis labels -------------------------------------------------
   instrument_label <- switch(
@@ -114,6 +118,13 @@ plot_severity_summary <- function(
   }
 
   y_lab <- sprintf("%s index (%s)", instrument_label, country)
+  
+  ## ---- Axis text ---------------------------------------------------
+  axis_text <- if (version == "5L" && severity == "LFS") {
+    ggplot2::element_text(angle = 90, vjust = 0.5, hjust = 1)
+  } else {
+    ggplot2::element_text()
+  }
 
   ## ---- Plot --------------------------------------------------------
   ggplot2::ggplot(plot_df, ggplot2::aes(x = severity)) +
@@ -146,13 +157,16 @@ plot_severity_summary <- function(
       colour = "#7F7F7F"
     ) +
     ggplot2::scale_y_continuous(
-      limits = c(-0.35, 1.02),
-      breaks = seq(-0.3, 1.0, by = 0.1),
+      limits = c(ymin, ymax),
+      breaks = seq(ymin, ymax, by = 0.1),
       labels = function(x) sprintf("%.1f", x)
     ) +
     ggplot2::labs(
       x = x_lab,
       y = y_lab
     ) +
-    theme
+    theme +
+      ggplot2::theme(
+        axis.text.x = axis_text
+      )
 }
