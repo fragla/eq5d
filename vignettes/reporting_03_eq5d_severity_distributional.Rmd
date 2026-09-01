@@ -65,6 +65,28 @@ of observed response levels within the health state.
 These measures can be reported alongside descriptive system tables to provide 
 additional information about health state severity.
 
+## Visualising severity summaries
+
+Severity measures such as LSS and LFS can also be used to summarise utility 
+index values across severity strata. The plot_severity_summary() function 
+provides a graphical representation of these relationships.
+
+```{r eval=TRUE, fig.width = 6, fig.height = 6, fig.align = "center"}
+plot_severity_summary(
+  get_all_health_states("5L"),
+  country = "UK",
+  version = "5L",
+  type = "VT",
+  severity = "LSS"
+)
+```
+
+Visual summaries can complement numerical severity measures by illustrating how 
+utility values vary across levels of health-state severity. The plot below 
+shows EQ-5D-5L utility values calculated using the UK value set plotted against 
+LSS, with the lowest, median, and highest utility values 
+shown for each severity category.
+
 ## Shannon's entropy and evenness
 
 The distribution of observed EQ-5D health states can also be summarised using 
