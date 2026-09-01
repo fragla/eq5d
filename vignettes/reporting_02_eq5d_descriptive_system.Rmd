@@ -84,3 +84,13 @@ table_descriptive(dd_grp)
 This approach makes it straightforward to compare descriptive system 
 distributions across groups using a consistent reporting format throughout an 
 analysis.
+
+## Visualising response distributions
+
+The output produced by `descriptive_data()` can be visualised using
+`plot_descriptive()`, providing a graphical summary of response-level
+distributions across EQ-5D dimensions.
+
+```{r eval=TRUE, fig.width = 6, fig.height = 4, fig.align = "center"}
+plot_descriptive(dd_grp)
+```
