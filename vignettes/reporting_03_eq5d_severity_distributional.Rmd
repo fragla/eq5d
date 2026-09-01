@@ -83,9 +83,8 @@ plot_severity_summary(
 
 Visual summaries can complement numerical severity measures by illustrating how 
 utility values vary across levels of health-state severity. The plot below 
-shows EQ-5D-5L utility values calculated using the UK value set plotted against 
-LSS, with the lowest, median, and highest utility values 
-shown for each severity category.
+shows EQ-5D-5L utility values summarised by LSS. For each LSS value the lowest, 
+median, and highest observed utility values are displayed.
 
 ## Shannon's entropy and evenness
 
