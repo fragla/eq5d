@@ -24,6 +24,7 @@
 #' \href{https://euroqol.org/information-and-support/resources/value-sets/}{EQ-5D-5L Crosswalk Index Value Sets}
 #'
 #' @name CW
+#' @usage CW
 #' @export
 "CW"
 
@@ -42,6 +43,7 @@
 #' \href{https://sheffield.ac.uk/nice-dsu/methods-development/mapping-eq-5d-5l-3l}{NICE DSU mapping website}.
 #'
 #' @name DSU3L
+#' @usage DSU3L
 #' @export
 "DSU3L"
 
@@ -60,6 +62,7 @@
 #' \href{https://sheffield.ac.uk/nice-dsu/methods-development/mapping-eq-5d-5l-3l}{NICE DSU mapping website}.
 #'
 #' @name DSU5L
+#' @usage DSU5L
 #' @export
 "DSU5L"
 
@@ -74,6 +77,7 @@
 #' \href{https://euroqol.org/information-and-support/resources/value-sets/}{Reverse crosswalk datasets}
 #'
 #' @name RCW
+#' @usage RCW
 #' @export
 "RCW"
 
@@ -86,6 +90,7 @@
 #' \doi{10.1016/j.jval.2021.03.009}
 #'
 #' @name RCWVH
+#' @usage RCWVH
 #' @export
 "RCWVH"
 
@@ -142,6 +147,7 @@
 #' }
 #'
 #' @name TTO
+#' @usage TTO
 #' @export
 "TTO"
 
@@ -171,6 +177,7 @@
 #' }
 #'
 #' @name VAS
+#' @usage VAS
 #' @export
 "VAS"
 
@@ -235,6 +242,7 @@
 #' \item{\strong{WePP}: Olsen JA, Lamu AN, Cairns J. In search of a common currency: A comparison of seven EQ-5D-5L value sets. Health Econ. 2018 Jan;27(1):39-49. \doi{10.1002/hec.3606}. Epub 2017 Oct 24. PMID: 29063633.}
 #' }
 #' @name VT
+#' @usage VT
 #' @export
 "VT"
 
@@ -261,5 +269,6 @@
 #'   }
 #'
 #' @name Y3L
+#' @usage Y3L
 #' @export
 "Y3L"
