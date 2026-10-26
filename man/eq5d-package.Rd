@@ -20,6 +20,7 @@ Useful links:
 
 Authors:
 \itemize{
+  \item Fraser Morton \email{fraser.morton@glasgow.ac.uk}
   \item Jagtar Singh Nijjar
 }
 

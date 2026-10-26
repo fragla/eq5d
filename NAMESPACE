@@ -60,10 +60,14 @@ export(table_descriptive)
 export(table_ps)
 export(valuesets)
 importFrom(lifecycle,deprecate_soft)
-importFrom(rlang,.data)
-importFrom(rlang,local_options)
-importFrom(stats,aggregate)
-importFrom(stats,median)
-importFrom(stats,na.omit)
-importFrom(stats,setNames)
-importFrom(stats,weighted.mean)
+importFrom(rlang,
+  .data,
+  local_options
+)
+importFrom(stats,
+  aggregate,
+  median,
+  na.omit,
+  setNames,
+  weighted.mean
+)
