@@ -255,13 +255,14 @@ pchc.formula <- function(
     if (!is.null(dimensions)) {
       if (!all(canonical %in% names(dimensions)))
         stop("`dimensions` must name all EQ-5D dimensions (MO,SC,UA,PD,AD)")
-      mapped <- dimensions[canonical]
+      mapped <- unname(dimensions[canonical])
       if (!all(dims %in% mapped))
         stop("Formula LHS variables do not match supplied `dimensions` mapping.")
       dims <- mapped
+    } else if (setequal(dims, canonical)) {
+      dims <- canonical
     }
     if (!all(dims %in% names(data))) stop("Dimension columns not found in data.")
-    dims <- dims[match(canonical, names(dimensions) %||% canonical)]
   }
   
   time_var <- parsed$time

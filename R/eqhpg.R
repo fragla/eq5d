@@ -324,7 +324,9 @@ hpg.formula <- function(
       if (!all(canonical %in% names(dimensions)))
         stop("`dimensions` must map all EQ-5D dimensions (MO, SC, UA, PD, AD)")
       
-      dims <- dimensions[canonical]  # mapping
+      dims <- unname(dimensions[canonical])  # mapping
+    } else if (setequal(dims, canonical)) {
+      dims <- canonical
     }
     
     
