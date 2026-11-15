@@ -44,6 +44,9 @@ lfs.data.frame <- function(scores, version=NULL, ignore.invalid=FALSE, ...) {
   if(all(dimensions %in% names(scores))) {
     scores <- scores[,dimensions, drop = FALSE]
     colnames(scores) <- .get_dimension_names()
+    scores[] <- lapply(scores, function(x) {
+      if (is.factor(x)) as.character(x) else x
+    })
     
     return(
       vapply(

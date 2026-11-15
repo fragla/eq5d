@@ -55,6 +55,10 @@ lss.data.frame <- function(scores, version=NULL, ignore.invalid=FALSE, ...) {
     }
   }
   
+  scores[] <- lapply(scores, function(x) {
+    if (is.factor(x)) as.character(x) else x
+  })
+
   res <- vapply(
     seq_len(nrow(scores)), 
     function(i) {
