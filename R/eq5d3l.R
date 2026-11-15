@@ -229,5 +229,5 @@ eq5d3l <- function(scores, type="TTO", country="UK", digits=3) {
 }
 
 .collapseScore <- function(score) {
-  return(paste(score, collapse=""))
+  return(paste(score[.get_dimension_names()], collapse=""))
 }
