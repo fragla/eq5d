@@ -7,6 +7,40 @@ output: github_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+# eq5d (development)
+
+### Bug fixes
+
+- Fixed health-state lookup functions to construct state keys using the
+  canonical EQ-5D dimension order, ensuring correct lookups when dimensions
+  are supplied or mapped in a different order.
+
+- Fixed formula-based PCHC, Probability of Superiority (PS) and Health
+  Profile Grid (HPG) methods to resolve dimension mappings by name rather
+  than position when named dimension mappings are supplied.
+
+- Fixed longitudinal HPG analyses to align visits by subject identifier,
+  ensuring change classifications remain attached to the correct individual
+  when records are reordered or visits are missing.
+
+- Fixed longitudinal alignment of factor response variables in PCHC and
+  related methods by preserving factor response labels during subject
+  alignment.
+
+- Fixed severity scoring methods (LSS and LFS) to use factor response labels
+  rather than underlying factor storage codes when calculating scores.
+
+- Improved factor handling in PCHC by supporting factor EQ-5D profile
+  variables and factor EQ-5D dimension columns in both wide-form and
+  formula-based interfaces.
+
+- Thanks to @bitowaqr for identifying and helping to resolve several issues
+  relating to dimension ordering, longitudinal alignment and factor handling.
+
+### New value sets
+
+- EQ-5D-5L value set for Uzbekistan added.
+
 # eq5d 0.17.0 (2026-08-28)
 
 ### Data and analytical infrastructure
