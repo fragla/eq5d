@@ -89,7 +89,7 @@ eq5dmap <- function(scores, country, version, age, sex, bwidth=0, digits=3) {
   }
   
   if(all(.get_dimension_names() %in% names(scores))) {
-    state <- paste(scores, collapse = "")
+    state <- paste(scores[.get_dimension_names()], collapse = "")
     idx <- which(survey$State==state & survey$Age==age.grp & survey$Sex==sex)
     index <- round(survey[idx, paste0(country,"Copula"), drop=TRUE], digits=digits)
     return(index)

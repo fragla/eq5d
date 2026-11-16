@@ -36,6 +36,6 @@ eq5drcw <- function(scores, country="UK", method="VH", digits = 3) {
   if(is.null(country) || !country %in% colnames(survey))
     stop(paste("For EQ-5D-3L reverse crosswalk value sets country must be one of:", paste(colnames(survey), collapse=", ")))
 
-  return(round(survey[paste(scores, collapse=""), country], digits))
+  return(round(survey[paste(scores[.get_dimension_names()], collapse=""), country], digits))
 }
 
