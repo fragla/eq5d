@@ -16,7 +16,7 @@ Description: EQ-5D is a widely used health-related quality-of-life instrument
     analysis of EQ-5D data. Utility index scores can be calculated for
     EQ-5D-3L, EQ-5D-5L and EQ-5D-Y-3L data using a wide range of value sets and 
     mapping approaches. Functionality is also provided for descriptive-system 
-    reporting, severity and distributional summaries, informativity measures, 
+    reporting, severity and distributional summaries, 'informativity' measures, 
     health-state distribution analysis, longitudinal change analysis, 
     probability of superiority analysis and Health Profile Grid visualisation. 
     Methods described in Devlin et al. (2020) <doi:10.1007/978-3-030-47622-9> 
