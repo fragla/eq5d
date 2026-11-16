@@ -400,10 +400,9 @@ pchc.formula <- function(
   rownames(out) <- NULL
   out[[id_var]] <- ids
   for (nm in setdiff(names(df), id_var)) {
-    col <- rep(NA,length(ids))
-    m <- !is.na(idx)
-    col[m] <- df[idx[m], nm]
-    out[[nm]] <- col
+    col <- df[[nm]]
+    if (is.factor(col)) col <- as.character(col)
+    out[[nm]] <- col[idx]
   }
   out
 }
