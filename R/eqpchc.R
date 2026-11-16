@@ -178,6 +178,12 @@ pchc.default <- function(
     dimensions <- .get_dimension_names()
   }
   
+  if (is.factor(pre))
+    pre <- as.character(pre)
+  
+  if (is.factor(post))
+    post <- as.character(post)
+  
   if (is.character(pre) || is.numeric(pre))
     pre <- get_dimensions_from_health_states(pre, version = version, ignore.invalid = ignore.invalid)
   
@@ -189,6 +195,15 @@ pchc.default <- function(
     post <- post[, dimensions, drop = FALSE]
     colnames(pre)  <- .get_dimension_names()
     colnames(post) <- .get_dimension_names()
+    
+    pre[] <- lapply(pre, function(x) {
+      if (is.factor(x)) as.numeric(as.character(x)) else x
+    })
+    
+    post[] <- lapply(post, function(x) {
+      if (is.factor(x)) as.numeric(as.character(x)) else x
+    })
+    
   } else stop("Unable to identify EQ-5D dimension columns.")
   
   if (nrow(pre) != nrow(post))
@@ -324,6 +339,14 @@ pchc.formula <- function(
     post_mat <- as.data.frame(post_df[, dims, drop=FALSE])
     colnames(pre_mat)  <- canonical
     colnames(post_mat) <- canonical
+    
+    pre_mat[] <- lapply(pre_mat, function(x) {
+      if (is.factor(x)) as.numeric(as.character(x)) else x
+    })
+    
+    post_mat[] <- lapply(post_mat, function(x) {
+      if (is.factor(x)) as.numeric(as.character(x)) else x
+    })
   }
   
   pre_bad  <- which(apply(pre_mat,1,function(x) any(!x %in% 1:.get_number_levels(version))))
