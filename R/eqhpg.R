@@ -309,8 +309,9 @@ hpg.formula <- function(
     drop = FALSE
     ]
   
-  pre_df  <- pre_df[order(pre_df[[id_var]]), , drop = FALSE]
-  post_df <- post_df[order(post_df[[id_var]]), , drop = FALSE]
+  ids <- union(pre_df[[id_var]], post_df[[id_var]])
+  pre_df  <- pre_df[match(ids, pre_df[[id_var]]), , drop = FALSE]
+  post_df <- post_df[match(ids, post_df[[id_var]]), , drop = FALSE]
   
   
   # Resolve dimension columns using same rules as pchc.formula()
