@@ -7,7 +7,7 @@ output: github_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-# eq5d (development)
+# eq5d 0.17.1 (2026-11-18)
 
 ### Bug fixes
 

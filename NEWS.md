@@ -1,7 +1,7 @@
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-# eq5d (development)
+# eq5d 0.17.1 (2026-11-18)
 
 ### Bug fixes
 
